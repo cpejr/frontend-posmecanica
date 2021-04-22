@@ -6,7 +6,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
-import { MdLockOutline } from "react-icons/md";
+import { BiLockAlt } from "react-icons/bi";
 import IconButton from "@material-ui/core/IconButton";
 import FilledInput from "@material-ui/core/FilledInput";
 
@@ -14,15 +14,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
+    background: 'white',
+    borderRadius: 3,
   },
   textField: {
-    width: "25ch",
+    width: "40ch",
   },
 }));
 
@@ -59,7 +55,7 @@ function TextBoxPassword() {
             onChange={handleChange("password")}
             startAdornment={
               <InputAdornment position="start">
-                  <MdLockOutline />
+                  <BiLockAlt />
                 </InputAdornment>
             }
             endAdornment={

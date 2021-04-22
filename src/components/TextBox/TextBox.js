@@ -5,21 +5,18 @@ import clsx from "clsx";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import FilledInput from "@material-ui/core/FilledInput";
-import { MdLocalPostOffice } from "react-icons/md";
+import { FiMail } from "react-icons/fi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
+    background: 'white',
+    borderRadius: 3,
+    border: 0,
   },
   textField: {
-    width: "25ch",
+    width: "40ch",
   },
 }));
 
@@ -46,7 +43,7 @@ function TextBox() {
             onChange={handleChange("login")}
             startAdornment={
               <InputAdornment position="start">
-                <MdLocalPostOffice />
+                <FiMail />
               </InputAdornment>
             }
           />
