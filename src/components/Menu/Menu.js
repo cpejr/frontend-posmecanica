@@ -2,10 +2,10 @@ import React from 'react';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
 
-function Menu({ RightPanelContent }) {
+function Menu({ inputProps, RightPanelContent }) {
   return (
     <div style={{ display: 'flex', height: '100%' }}>
-      <LeftPanel />
+      <LeftPanel inputProps={inputProps} />
       <RightPanel>
         {RightPanelContent}
       </RightPanel>
