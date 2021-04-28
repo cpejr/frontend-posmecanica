@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TextBox({ icon }) {
+function TextBox({ icon,label }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: "",
@@ -37,6 +37,7 @@ function TextBox({ icon }) {
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
         >
+          <label htmlFor={label}>{label}: </label>
           <FilledInput
             value={values.login}
             onChange={handleChange("login")}
