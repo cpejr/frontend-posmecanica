@@ -37,7 +37,7 @@ function TextBox({ icon,label }) {
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
         >
-          <label htmlFor={label}>{label}: </label>
+          <label htmlFor={label}>{label} </label>
           <FilledInput
             value={values.login}
             onChange={handleChange("login")}
