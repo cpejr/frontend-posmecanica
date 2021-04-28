@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import "./FormPs.scss";
-import axios from "axios";
 import TextBox from "../../components/TextBox";
 
 // tem q colocar certinho os campos do candidato
-const initialValue = {
+/*const initialValue = {
   nome: "",
   senha: "",
   rg: "",
@@ -20,11 +18,11 @@ const initialValue = {
   grade: "",
   zona: "",
   estadocivil: "",
-};
+};*/
 
 function FormsPs() {
-  const [values, setValues] = useState(initialValue);
-  const history = useHistory();
+  //const [values, setValues] = useState(initialValue);
+  /*const history = useHistory();
 
   function onChange(e) {
     const { name, value } = e.target;
@@ -37,67 +35,70 @@ function FormsPs() {
     /*axios.create('http://localhost:3333/candidates', values).then((response) => {
       history.push('/login');
     });
-    */
   }
+  */
   // acredito q tenha q colocar os nomes dos ids igual os do back
   const formulario = (
-    <form onSubmit={onSubmit}>
-      <h1> Inscrições</h1>
+    <form>
+      <h1> Inscrição:</h1>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="Nome" />
+          <TextBox label="Nome:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Senha" />
+          <TextBox label="Senha:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="RG" />
+          <TextBox label="RG:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Email" />
+          <TextBox label="Email:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="CPF" />
+          <TextBox label="CPF:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Estado" />
+          <TextBox label="Estado:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="Nacionalidade" />
+          <TextBox label="Nacionalidade:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Cidade" />
+          <TextBox label="Cidade:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="Universidade" />
+          <TextBox label="Universidade:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Rua" />
+          <TextBox label="Rua:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="Graduação" />
+          <TextBox label="Graduação:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Grade" />
+          <TextBox label="Grade:" />
         </div>
       </div>
       <div className="linha">
         <div className="entradaEsquerda">
-          <TextBox label="Zona Eleitoral" />
+          <TextBox label="Zona Eleitoral:" />
         </div>
         <div className="entradaDireita">
-          <TextBox label="Estado Civil" />
+          <TextBox label="Estado Civil:" />
         </div>
+      </div>
+      <div className="divButton">
+        <button type="submit"> Cadastre-se</button>
       </div>
     </form>
   );

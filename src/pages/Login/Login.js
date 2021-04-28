@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import "./Login.scss";
 import TextBox from "../../components/TextBox";
 import TextBoxPassword from "../../components/TextBoxPassword";
-import axios from "axios";
 import { FiMail } from "react-icons/fi";
 
 const initialValue = {

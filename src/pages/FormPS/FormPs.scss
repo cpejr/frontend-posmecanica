@@ -28,3 +28,22 @@ body {
   flex-direction: row;
   margin-bottom: 1em;
 }
+.entradaEsquerda {
+  margin-right: 8em;
+}
+.divButton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  button {
+    height: 45px;
+    width: 50%;
+    border: 0;
+    border-radius: 7px;
+    background-color: $azulPadrao;
+    color: #ffffff;
+    border-radius: 5px;
+    text-shadow: 0em 0.3em 0.3em #000;
+    box-shadow: 1px 1px 5px #000;
+  }
+}
