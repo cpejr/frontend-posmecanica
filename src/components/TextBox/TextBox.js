@@ -5,7 +5,6 @@ import clsx from "clsx";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import FilledInput from "@material-ui/core/FilledInput";
-import { FiMail } from "react-icons/fi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TextBox() {
+function TextBox({ icon }) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: "",
@@ -43,7 +42,7 @@ function TextBox() {
             onChange={handleChange("login")}
             startAdornment={
               <InputAdornment position="start">
-                <FiMail />
+                {icon}
               </InputAdornment>
             }
           />
