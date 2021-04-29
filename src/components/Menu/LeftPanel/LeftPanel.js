@@ -4,16 +4,18 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
+import { useAuth } from '../../../providers/auth';
 
 function LeftPanel({ inputProps }) {
+  const { user } = useAuth();
   const HeaderPanel = (
     <ListItem style={{ borderBottom: '1px solid black' }}>
       <IconContext.Provider value={{ size: 40 }}>
         <BiUserCircle />
       </IconContext.Provider>
       <ListItemText style={{ marginLeft: 16 }}>
-        <div>Adilson Silva</div>
-        <div style={{ fontSize: 12 }}>adilson@ufmg.br</div>
+        <div>{user.name}</div>
+        <div style={{ fontSize: 12 }}>{user.email}</div>
       </ListItemText>
     </ListItem>
   );

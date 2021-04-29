@@ -1,96 +1,91 @@
-import React from 'react';
+/* eslint-disable no-debugger */
+import React, { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Button from '@material-ui/core/Button';
 import Pagination from '@material-ui/lab/Pagination';
+import './BoxDashboardProfesssor.scss';
+import * as managerService from '../../../services/manager/managerService';
 
-function BoxDashboardProfesssor({
-  students, filteredStudents, page, setPage, index, setIndex,
-}) {
+function BoxDashboardProfesssor() {
+  const limit = 5;
+  const [candidates, setCandidates] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [page, setPage] = useState(1);
+  const [index, setIndex] = useState(0);
+
+  useEffect(async () => {
+    const selectiveProcess = await managerService.getSelectiveProcess('process_type', 'ISOLADA');
+    const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcess.candidate_process_id);
+    setCandidates(isolatedCandidates);
+  }, []);
+  useEffect(() => {
+    setFilteredStudents(candidates.slice(0, 5));
+  }, [candidates]);
+  useEffect(() => {
+    setFilteredStudents(candidates.slice(index, limit * page));
+  }, [page]);
+
   const calculatePages = () => {
-    const division = parseInt(students.length / 5, 10);
-    return students.length % 5 === 0 ? division : division + 1;
+    const division = parseInt(candidates.length / 5, 10);
+    return candidates.length % 5 === 0 ? division : division + 1;
   };
   const nextPage = (e, value) => {
     if (value > page) {
-      setIndex(index + 5);
+      setIndex((value - 1) * 5);
     } else {
       setIndex(index - 5);
     }
     setPage(value);
   };
 
+  const handleClick = (e) => {
+    console.log(e, e.target, e.target.id);
+  };
+
   return (
-    <div style={{ height: '100%' }}>
-      <div style={{
-        height: '20%', fontSize: 42, fontFamily: 'calibri', display: 'flex', alignItems: 'center', paddingLeft: 90,
-      }}
-      >
-        Matrículas Realizadas:
+    <div className="professorMenu">
+      <div className="professorTitle">
+        Matrículas Isoladas Realizadas:
       </div>
       <div>
-        <div style={{
-          margin: '0px 50px 0px 50px',
-          height: '470px',
-          border: '1px solid #C4C4C4',
-          borderRadius: '8px',
-          boxShadow: '0px 3px 5px 0px #C4C4C4',
-          overflow: 'hidden',
-        }}
-        >
-          <div style={{
-            height: '20%',
-            background: '#C4C4C4',
-            borderRadius: '5px 5px 0px 0px',
-            fontSize: '35px',
-            fontFamily: 'calibri',
-            display: 'flex',
-            alignItems: 'center',
-            paddingLeft: '24px',
-          }}
-          >
+        <div className="professorBox">
+          <div className="profBoxTitle">
             Alunos:
           </div>
-          <div style={{
-            padding: 10, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: 370,
-          }}
-          >
+          <div className="divGrid">
             <div>
-              {filteredStudents.map((student) => (
-                <div style={{
-                  display: 'flex', alignItems: 'center',
-                }}
-                >
-                  <div style={{
-                    display: 'flex', alignItems: 'center', fontSize: 22, fontFamily: 'calibri', width: '28%',
-                  }}
-                  >
+              {filteredStudents.map((candidate, key) => (
+                <div className="listItem" id={key}>
+                  <div className="divItem">
                     <IconContext.Provider value={{ size: 60 }}>
-                      <BiUserCircle style={{ marginRight: 15 }} />
+                      <BiUserCircle className="icon" />
                     </IconContext.Provider>
-                    {student}
+                    {candidate.candidate_name}
                   </div>
-                  <div style={{
-                    display: 'flex', alignItems: 'center', width: '39%', justifyContent: 'space-around',
-                  }}
-                  >
-                    <Button style={{ background: 'green', color: 'white' }} variant="contained">Deferir</Button>
-                    <Button style={{ background: 'red', color: 'white' }} variant="contained">Indeferir</Button>
+                  <div className="divButtons">
+                    <Button className="confirmButton" id="Deferir" onClick={handleClick} variant="contained">Deferir</Button>
+                    <Button className="denyButton" id="Indeferir" onClick={handleClick} variant="contained">Indeferir</Button>
                   </div>
                   <a
                     href="https://www.google.com"
                     target="_blank"
                     rel="noreferrer"
-                    style={{
-                      color: 'black', width: '33%', display: 'flex', justifyContent: 'center', fontFamily: 'calibri',
-                    }}
+                    className="linkButton"
                   >
                     Ver situação do aluno
                   </a>
                 </div>
               ))}
             </div>
-            <Pagination onChange={(e, value) => nextPage(e, value)} count={calculatePages()} page={page} size="small" shape="rounded" style={{ display: 'flex', flexDirection: 'row-reverse', marginTop: 20 }} />
+            <Pagination
+              onChange={(e, value) => nextPage(e, value)}
+              count={calculatePages()}
+              page={page}
+              size="small"
+              shape="rounded"
+              className="pagination"
+            />
           </div>
         </div>
       </div>

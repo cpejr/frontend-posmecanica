@@ -1,45 +1,38 @@
-import React from "react";
-import "./TextBoxPassword.scss";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import { MdVisibility } from "react-icons/md";
-import { MdVisibilityOff } from "react-icons/md";
-import { BiLockAlt } from "react-icons/bi";
-import IconButton from "@material-ui/core/IconButton";
-import FilledInput from "@material-ui/core/FilledInput";
+import React, { useState } from 'react';
+import './TextBoxPassword.scss';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
-const useStyles = makeStyles((theme) => ({
+import { BiLockAlt } from 'react-icons/bi';
+import IconButton from '@material-ui/core/IconButton';
+import FilledInput from '@material-ui/core/FilledInput';
+
+const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
     background: 'white',
     borderRadius: 3,
   },
   textField: {
-    width: "40ch",
+    width: '40ch',
   },
 }));
 
-function TextBoxPassword() {
+function TextBoxPassword({ user, setUser }) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setUser({ ...user, password: value });
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleClickShowPassword = (value) => {
+    setShowPassword(value);
   };
 
   return (
@@ -50,26 +43,25 @@ function TextBoxPassword() {
           variant="outlined"
         >
           <FilledInput
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
-            startAdornment={
+            type={showPassword ? 'text' : 'password'}
+            value={user.password}
+            onChange={handleChange}
+            startAdornment={(
               <InputAdornment position="start">
-                  <BiLockAlt />
-                </InputAdornment>
-            }
-            endAdornment={
+                <BiLockAlt />
+              </InputAdornment>
+            )}
+            endAdornment={(
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
+                  onClick={() => handleClickShowPassword(!showPassword)}
                   edge="end"
                 >
-                  {values.showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+                  {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
                 </IconButton>
               </InputAdornment>
-            }
+            )}
           />
         </FormControl>
       </div>

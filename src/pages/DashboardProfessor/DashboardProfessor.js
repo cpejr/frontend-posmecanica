@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BiBeer } from 'react-icons/bi';
 import Menu from '../../components/Menu';
 import BoxDashboardProfessor from '../../components/Dashboards/Professor';
@@ -22,24 +22,9 @@ function DashboardProfessor() {
       text: 'Drafts',
     },
   ];
-  const students = ['Yasmim', 'Bryan', 'Paulo', 'Nando', 'Mauad', 'Teste', 'Teste', 'Yasmim', 'Bryan', 'Paulo', 'Nando', 'Mauad', 'Teste', 'Teste'];
-  const limit = 5;
-  const [filteredStudents, setFilteredStudents] = useState(students.slice(0, 5));
-  const [page, setPage] = useState(1);
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    setFilteredStudents(students.slice(index, limit * page));
-  }, [page]);
 
   const RightPanelContent = (
-    <BoxDashboardProfessor
-      students={students}
-      filteredStudents={filteredStudents}
-      page={page}
-      setPage={setPage}
-      index={index}
-      setIndex={setIndex}
-    />
+    <BoxDashboardProfessor />
   );
   return (
     <div style={{ height: '100%' }}>

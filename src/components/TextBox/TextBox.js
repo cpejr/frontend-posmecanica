@@ -19,17 +19,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function TextBox({ icon, label }) {
+function TextBox({
+  user, setUser, icon,
+}) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    amount: '',
-    login: '',
-    weight: '',
-    weightRange: '',
-  });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setUser({ ...user, email: value });
   };
+
   return (
     <div className={classes.root}>
       <div>
@@ -37,13 +36,9 @@ function TextBox({ icon, label }) {
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
         >
-          <label htmlFor={label}>
-            {label}
-            {' '}
-          </label>
           <FilledInput
-            value={values.login}
-            onChange={handleChange('login')}
+            value={user.email}
+            onChange={(e) => handleChange(e)}
             startAdornment={(
               <InputAdornment position="start">
                 {icon}
