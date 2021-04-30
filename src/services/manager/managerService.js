@@ -38,3 +38,8 @@ export const login = async (user) => {
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
 };
+
+export const denyCandidate = async (candidateId) => {
+  const response = await requesterService.deleteCandidate(candidateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

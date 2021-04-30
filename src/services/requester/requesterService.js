@@ -17,3 +17,5 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
 });
 
 export const login = (user) => httpClient.post('/login', user);
+
+export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);

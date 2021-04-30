@@ -1,27 +1,14 @@
-import { AppBar, Button, TextField } from "@material-ui/core";
-import React from "react";
-import "../../components/CampoText/campotxt";
-import "./forgetPass.scss";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      
-      main: '#d32f2f',
-      
-    },
-  }})
+import { Button, TextField } from '@material-ui/core';
+import React from 'react';
+import '../../components/CampoText/campotxt';
+import './forgetPass.scss';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 function forgetPass() {
-  
-
   return (
-    <ThemeProvider theme={theme}>
     <div className="container">
-      <Navbar></Navbar>
+      <Navbar />
       <div className="conta">
         <div className="page">
           <h1>Crie Uma nova Senha</h1>
@@ -54,7 +41,7 @@ function forgetPass() {
             />
           </div>
           <div className="btn">
-            <Button variant="contained" color="primary" >
+            <Button variant="contained" color="primary">
               Continuar
             </Button>
           </div>
@@ -62,7 +49,6 @@ function forgetPass() {
       </div>
       <Footer />
     </div>
-    </ThemeProvider>
   );
 }
 

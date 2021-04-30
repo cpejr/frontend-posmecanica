@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { CssBaseline } from '@material-ui/core';
 import App from './App';
-import { CssBaseline } from "@material-ui/core";
 import { AuthProvider } from './providers/auth';
 
 ReactDOM.render(

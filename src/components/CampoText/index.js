@@ -1,1 +1,1 @@
-export { default } from "./campotxt";
+export { default } from './campotxt';

@@ -39,8 +39,17 @@ function BoxDashboardProfesssor() {
     setPage(value);
   };
 
-  const handleClick = (e) => {
-    console.log(e, e.target, e.target.id);
+  const handleClick = async (e, candidate) => {
+    const buttonName = e.currentTarget.id;
+    if (buttonName === 'Deferir') {
+      // await managerService.approveCandidate();
+    } else {
+      await managerService.denyCandidate(candidate.candidate_id);
+      const removeCandidate = candidates.filter(
+        (person) => person.candidate_id !== candidate.candidate_id,
+      );
+      setCandidates(removeCandidate);
+    }
   };
 
   return (
@@ -64,8 +73,8 @@ function BoxDashboardProfesssor() {
                     {candidate.candidate_name}
                   </div>
                   <div className="divButtons">
-                    <Button className="confirmButton" id="Deferir" onClick={handleClick} variant="contained">Deferir</Button>
-                    <Button className="denyButton" id="Indeferir" onClick={handleClick} variant="contained">Indeferir</Button>
+                    <Button className="confirmButton" id="Deferir" onClick={(e) => handleClick(e, candidate)} variant="contained">Deferir</Button>
+                    <Button className="denyButton" id="Indeferir" onClick={(e) => handleClick(e, candidate)} variant="contained">Indeferir</Button>
                   </div>
                   <a
                     href="https://www.google.com"
