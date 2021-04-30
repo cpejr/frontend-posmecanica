@@ -1,0 +1,30 @@
+import axios from 'axios';
+
+const URL_BASE = 'http://localhost:3333';
+
+const httpClient = axios.create({
+  baseURL: URL_BASE,
+});
+
+const requestHandler = (request) => {
+  const token = localStorage.getItem('user');
+  if (token) {
+    const user = JSON.parse(token);
+    request.headers.Authorization = `Bearer ${user.acessToken}`;
+  }
+  return request;
+};
+
+httpClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const token = localStorage.getItem('user');
+    if (error.response.status === 403 && token) {
+      window.location.href = '/login';
+    }
+    return error.response;
+  },
+);
+
+httpClient.interceptors.request.use((request) => requestHandler(request));
+export default httpClient;

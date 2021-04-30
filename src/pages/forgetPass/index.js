@@ -1,1 +1,1 @@
-export { default } from "./EsqueciSenha";
+export { default } from './forgetPass';
