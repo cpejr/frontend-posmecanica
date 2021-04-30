@@ -1,12 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { CssBaseline } from "@material-ui/core";
+/* eslint-disable react/jsx-no-undef */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { CssBaseline } from '@material-ui/core';
+import App from './App';
+
 ReactDOM.render(
   <React.StrictMode>
-    <CssBaseline/>
+    <CssBaseline />
+    <App />
+
     <App />
   </React.StrictMode>,
 
-  document.getElementById("root")
+  document.getElementById('root'),
+
 );

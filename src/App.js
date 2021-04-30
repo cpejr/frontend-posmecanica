@@ -1,14 +1,12 @@
+/* eslint-disable import/no-named-as-default-member */
+import React from 'react';
 
-import React from "react";
-import Routes from "./routes";
-
+// eslint-disable-next-line import/no-named-as-default
+import Routes from './routes';
+import './global.scss';
 
 function App() {
-  return <Routes/>;
-  
-
+  return <Routes />;
 }
 
 export default App;
-
-

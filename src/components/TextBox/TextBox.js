@@ -1,35 +1,34 @@
-import React from "react";
-import "./TextBox.scss";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import FilledInput from "@material-ui/core/FilledInput";
+import React from 'react';
+import './TextBox.scss';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import FilledInput from '@material-ui/core/FilledInput';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: 'flex',
+    flexWrap: 'wrap',
     background: 'white',
     borderRadius: 3,
     border: 0,
   },
   textField: {
-    width: "40ch",
+    width: '40ch',
   },
 }));
 
-function TextBox({ icon,label }) {
+function TextBox({
+  user, setUser, icon,
+}) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    amount: "",
-    login: "",
-    weight: "",
-    weightRange: "",
-  });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setUser({ ...user, email: value });
   };
+
   return (
     <div className={classes.root}>
       <div>
@@ -37,15 +36,14 @@ function TextBox({ icon,label }) {
           className={clsx(classes.margin, classes.textField)}
           variant="outlined"
         >
-          <label htmlFor={label}>{label} </label>
           <FilledInput
-            value={values.login}
-            onChange={handleChange("login")}
-            startAdornment={
+            value={user.email}
+            onChange={(e) => handleChange(e)}
+            startAdornment={(
               <InputAdornment position="start">
                 {icon}
               </InputAdornment>
-            }
+            )}
           />
         </FormControl>
       </div>

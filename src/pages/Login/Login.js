@@ -1,34 +1,23 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import "./Login.scss";
-import TextBox from "../../components/TextBox";
-import TextBoxPassword from "../../components/TextBoxPassword";
-import axios from "axios";
-import { FiMail } from "react-icons/fi";
-
-const initialValue = {
-  email: '',
-  password: '',
-  type: 'administrator',
-};
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Login.scss';
+import { FiMail } from 'react-icons/fi';
+import * as managerService from '../../services/manager/managerService';
+import TextBox from '../../components/TextBox';
+import TextBoxPassword from '../../components/TextBoxPassword';
 
 function Login() {
-  const [values, setValues] = useState(initialValue);
-  const history = useHistory();
-  console.log(values);
-  function onChange(e) {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  }
+  const initialUser = {
+    email: '',
+    password: '',
+    type: 'administrator',
+  };
+  const [user, setUser] = useState(initialUser);
 
-  function onSubmit(e) {
+  const handleClick = async (e) => {
     e.preventDefault();
-    /*axios.post('http://localhost:3333/login', values).then((response) => {
-      history.push('/');
-    });
-    */
-    history.push("/");
-  }
+    await managerService.login(user);
+  };
   const icon = (
     <FiMail />
   );
@@ -37,26 +26,24 @@ function Login() {
     <div className="screen">
       <div className="login">
         <h1>Login</h1>
-        <form onSubmit={onSubmit}>
-          <div className="text1">
-            <TextBox onChange={onChange} icon={icon}/> {/* ta faltando jogar esse onChange pra dentro do component */}
+        <div className="text1">
+          <TextBox user={user} setUser={setUser} icon={icon} />
+        </div>
+        <div className="text1">
+          <TextBoxPassword user={user} setUser={setUser} />
+        </div>
+        <div className="botoes">
+          <div className="b1">
+            <button type="button" onClick={handleClick}>Entrar</button>
           </div>
-          <div className="text1">
-            <TextBoxPassword onChange={onChange}/>
+          <div className="link">
+            <Link to="login"> Esqueceu a senha? </Link>
           </div>
-          <div className="botoes">
-            <div className="b1">
-              <button type="submit">Entrar</button>
-            </div>
-            <div className="link">
-              <Link to="login"> Esqueceu a senha? </Link>
-            </div>
-            <br />
-            <div className="b2">
-              <button type="cadastro">Cadastrar-se</button>
-            </div>
+          <br />
+          <div className="b2">
+            <button type="button">Cadastrar-se</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
