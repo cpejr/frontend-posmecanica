@@ -6,9 +6,9 @@ import TextBoxPassword from "../../components/TextBoxPassword";
 import { FiMail } from "react-icons/fi";
 
 const initialValue = {
-  email: '',
-  password: '',
-  type: 'administrator',
+  email: "",
+  password: "",
+  type: "administrator",
 };
 
 function Login() {
@@ -28,9 +28,7 @@ function Login() {
     */
     history.push("/");
   }
-  const icon = (
-    <FiMail />
-  );
+  const icon = <FiMail />;
 
   return (
     <div className="screen">
@@ -38,10 +36,11 @@ function Login() {
         <h1>Login</h1>
         <form onSubmit={onSubmit}>
           <div className="text1">
-            <TextBox onChange={onChange} icon={icon}/> {/* ta faltando jogar esse onChange pra dentro do component */}
+            <TextBox onChange={onChange} icon={icon} />{" "}
+            {/* ta faltando jogar esse onChange pra dentro do component */}
           </div>
           <div className="text1">
-            <TextBoxPassword onChange={onChange}/>
+            <TextBoxPassword onChange={onChange} />
           </div>
           <div className="botoes">
             <div className="b1">
@@ -50,7 +49,6 @@ function Login() {
             <div className="link">
               <Link to="login"> Esqueceu a senha? </Link>
             </div>
-            <br />
             <div className="b2">
               <button type="cadastro">Cadastrar-se</button>
             </div>
