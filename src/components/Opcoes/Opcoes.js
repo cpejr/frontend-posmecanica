@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const CssTextField = withStyles({
   root: {
@@ -18,7 +19,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-function StyledInput({ type, label, id, width, field }) {
+function Opcoes({ type, label, id, width, field }) {
   return (
     <CssTextField
       InputLabelProps={{
@@ -38,7 +39,27 @@ function StyledInput({ type, label, id, width, field }) {
       variant="outlined"
       id={id}
       width={width}
-    ></CssTextField>
+      select
+    >
+      {field.map((option) => (
+        <MenuItem
+          InputLabelProps={{
+            style: {
+              color: "white",
+            },
+          }}
+          InputProps={{
+            style: {
+              color: "white",
+            },
+          }}
+          key={option.value}
+          value={option.value}
+        >
+          {option.label}
+        </MenuItem>
+      ))}
+    </CssTextField>
   );
 }
-export default StyledInput;
+export default Opcoes;
