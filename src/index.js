@@ -1,10 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { CssBaseline } from '@material-ui/core';
+import App from './App';
+import { AuthProvider } from './providers/auth';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <CssBaseline />
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+
+  document.getElementById('root'),
 );
