@@ -55,7 +55,6 @@ const DrawerComponent = () => {
         </List>
       </Drawer>
       <IconButton className="btnIcon" onClick={() => setopenDrawer(!openDrawer)}>
-
         <MenuIcon />
       </IconButton>
     </>
