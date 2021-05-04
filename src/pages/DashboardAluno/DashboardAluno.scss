@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+.icons {
+  max-width: 100%;
+
+  .texto {
+    height: 18vh;
+    font: normal 25pt Montserrat;
+  }
+}
+.btn{
+  display: block;
+}
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 5vh;
+}
+.icone {
+
+  width: 60px;
+  height: 70px;
+  color: black;
+}
+.texto2 {
+ 
+  font: normal 14pt Montserrat;
+  font-weight: 600;
+text-align: center;
+}
+
+.icon2 {
+  width: 60px;
+  height: 70px;
+}
+.texto3 {
+  font: normal 14pt Montserrat;
+  font-weight: 600;
+  text-align: center;
+
+}
+.icon3 {
+  width: 60px;
+  height: 70px;
+  color: black;
+}
+.texto5 {
+  font: normal 14pt Montserrat;
+  font-weight: 600;
+  text-align: center;
+  text-justify: inter-cluster;
+}
+.icon4 {
+  width: 60px;
+  height: 70px;
+  color: black;
+  
+}
+.foraicon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.texto4 {
+  font: normal 14pt Montserrat;
+  font-weight: 600;
+  text-align: center;
+  text-justify: inter-cluster;
+}

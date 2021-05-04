@@ -41,8 +41,8 @@ h2 {
 }
 .campos {
   position: absolute;
-  right: 60vh;
-  top: 20vh;
+  right: 80vh;
+  top: 10vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -57,7 +57,7 @@ h2 {
   width: 30vh;
   justify-content: center;
   position: absolute;
-  right: 58vh;
+  right: 80vh;
   bottom:-40vh;
   
  
@@ -66,4 +66,7 @@ h2 {
     position: absolute;
     left: 100px;
   }
+}
+.MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-formControl.MuiInputBase-adornedStart.MuiFilledInput-adornedStart.MuiInputBase-adornedEnd.MuiFilledInput-adornedEnd{
+margin-bottom:15px;
 }

@@ -8,8 +8,8 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
 import IconButton from '@material-ui/core/IconButton';
+import DrawerComponent from './DrawerComponent/Drawer';
 // import MenuIcon from "@material-ui/icons/Menu";
 
 // import DrawerComponent from './DrawerComponent/Drawer';
@@ -48,6 +48,7 @@ export default function Navbar() {
 
   return (
     <ThemeProvider theme={theme}>
+      <DrawerComponent />
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>

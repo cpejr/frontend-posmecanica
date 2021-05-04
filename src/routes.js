@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/index';
 import Footer from './components/Footer/Footer';
 
 import DashboardProfessor from './pages/DashboardProfessor';
+import DashboardAluno from './pages/DashboardAluno';
 
 function Routes() {
   return (
@@ -19,6 +20,7 @@ function Routes() {
         <Route path="/esquecisenha" component={forgetPass} />
         <Route path="/nav" component={Navbar} />
         <Route path="/footer" component={Footer} />
+        <Route path="/DashboardAluno" component={DashboardAluno} />
       </Switch>
     </BrowserRouter>
   );
