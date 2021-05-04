@@ -16,6 +16,12 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
   },
 });
 
+export const getSearchArea = (times) => httpClient.get('/searchAreas', {
+  params: {
+    times,
+  },
+});
+
 export const login = (user) => httpClient.post('/login', user);
 
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);

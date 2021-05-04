@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import Navbar from './components/Navbar/index';
+import ProfessorList from './pages/ProfessorList';
 
 const useStyles = makeStyles({
   container: {
@@ -25,6 +26,7 @@ function Routes() {
           <Route path="/login" component={Login} />
           <Route path="/dashboard/professor" component={DashboardProfessor} />
           <Route path="/esqueciSenha" component={forgetPass} />
+          <Route path="/professor-list" component={ProfessorList} />
         </Switch>
       </div>
     </BrowserRouter>

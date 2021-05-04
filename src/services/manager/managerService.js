@@ -26,6 +26,14 @@ export const getSelectiveProcess = async (field, filter) => {
   return filteredProcess;
 };
 
+export const getSearchArea = async () => {
+  const times = 0;
+  const response = await requesterService.getSearchArea(times);
+
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
