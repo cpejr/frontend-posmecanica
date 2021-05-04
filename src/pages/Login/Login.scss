@@ -1,13 +1,13 @@
 $corFundo: #c5d0db;
 $azulPadrao: #1d2d57;
 
-body{
-    margin: 0px;
+body {
+  margin: 0px;
 }
 .externalDiv {
   width: 100%;
   height: 100vh;
-  box-sizing:border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -67,9 +67,10 @@ body{
     margin-bottom: 30px;
   }
 }
-.text1{
-    margin-bottom: 15px;
+.text1 {
+  margin-bottom: 15px;
 }
-.link{
-    align-items: flex-start;
+.link {
+  align-items: flex-start;
+  margin-bottom: 15px;
 }
