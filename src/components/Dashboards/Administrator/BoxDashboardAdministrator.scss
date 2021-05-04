@@ -1,0 +1,41 @@
+$corFundo: #c5d0db;
+$azulPadrao: #1d2d57;
+
+body {
+  margin: 0px;
+}
+.tela {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.tituloPrincipal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "calibri";
+  font-size: 42px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.tituloSecundario {
+  font-family: "calibri";
+  font-size: 32px;
+  margin-left: 2.5%;
+}
+.inscritos {
+  font-family: "calibri";
+  background-color: #E8E8E8;
+  height: 300px;
+  width: 80%;
+  margin-top: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding:  10px;
+}
+.aba{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
