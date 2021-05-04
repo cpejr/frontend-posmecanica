@@ -16,9 +16,11 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
   },
 });
 
-export const getSearchArea = (times) => httpClient.get('/searchAreas', {
+export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {
     times,
+    field,
+    filter,
   },
 });
 
