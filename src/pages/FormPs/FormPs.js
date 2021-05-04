@@ -1,17 +1,17 @@
-import React from "react";
-import "./FormPs.scss";
-import StyledInput from "../../components/StyledInput";
-import Estados from "./Utils/Estados.js";
-import Estado_civil from "./Utils/Estado_civil";
-import Generos from "./Utils/Generos.js";
-import Racas from "./Utils/Racas";
-import Booleanos from "./Utils/Booleanos";
+import React from 'react';
+import './FormPs.scss';
+import StyledInput from '../../components/StyledInput';
+import Estados from './Utils/Estados';
+import EstadoCivil from './Utils/Estado_civil';
+import Generos from './Utils/Generos';
+import Racas from './Utils/Racas';
+import Booleanos from './Utils/Booleanos';
 
-const _estados = Estados;
-const _estados_civil = Estado_civil;
-const _generos = Generos;
-const _racas = Racas;
-const _booleanos = Booleanos;
+const estados = Estados;
+const estadosCivil = EstadoCivil;
+const generos = Generos;
+const racas = Racas;
+const booleanos = Booleanos;
 
 function FormPs() {
   return (
@@ -45,8 +45,8 @@ function FormPs() {
             id="district"
             label="Estado"
             width="16rem"
-            field={_estados}
-            select={true}
+            field={estados}
+            select
           />
           <StyledInput type="email" id="email" label="Email" width="16rem" />
           <StyledInput type="text" id="grade" label="Graduação" width="16rem" />
@@ -55,8 +55,8 @@ function FormPs() {
             id="pGu"
             label="Pós graduado(a)?"
             width="16rem"
-            field={_booleanos}
-            select={true}
+            field={booleanos}
+            select
           />
         </div>
 
@@ -74,8 +74,8 @@ function FormPs() {
             id="race"
             label="Raça"
             width="16rem"
-            field={_racas}
-            select={true}
+            field={racas}
+            select
           />
           <StyledInput
             type="number"
@@ -108,8 +108,8 @@ function FormPs() {
             id="actv_serv"
             label="Servidor ativo da UFMG?"
             width="16rem"
-            field={_booleanos}
-            select={true}
+            field={booleanos}
+            select
           />
         </div>
 
@@ -125,8 +125,8 @@ function FormPs() {
             id="civil_state"
             label="Estado Civil"
             width="16rem"
-            field={_estados_civil}
-            select={true}
+            field={estadosCivil}
+            select
           />
 
           <StyledInput
@@ -134,8 +134,8 @@ function FormPs() {
             id="gender"
             label="Gênero"
             width="16rem"
-            field={_generos}
-            select={true}
+            field={generos}
+            select
           />
           <StyledInput
             type="number"
@@ -163,8 +163,8 @@ function FormPs() {
             id="ufmgRs"
             label="Servidor aposentado da UFMG?"
             width="16rem"
-            field={_booleanos}
-            select={true}
+            field={booleanos}
+            select
           />
         </div>
       </form>

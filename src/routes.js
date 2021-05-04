@@ -6,8 +6,8 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import Navbar from './components/Navbar/index';
-import FormDis from "./pages/FormDis";
-import FormPs from "./pages/FormPs";
+import FormDis from './pages/FormDis';
+import FormPs from './pages/FormPs';
 
 const useStyles = makeStyles({
   container: {
