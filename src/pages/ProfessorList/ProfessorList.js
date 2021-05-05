@@ -75,6 +75,18 @@ function ProfessorList() {
   return (
     <div className="professor-list-container">
       <h1>Professores</h1>
+      <div className="professor-list-texts">
+        <p className="professor-list-first-text">
+          Abaixo, apresentaremos os professores relacionados às respectivas
+          áreas de pesquisa que estes fazem parte.
+        </p>
+        <p className="professor-list-second-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Harum magnam repudiandae veniam voluptatibus explicabo, enim eveniet,
+          eius deserunt doloremque, provident cumque sed quidem! Mollitia
+          quos ut dolorem, fugit dolore perspiciatis.
+        </p>
+      </div>
       <div className="header-content">
         <h2 className="header-content-title">
           Buscar por área de pesquisa
@@ -92,8 +104,9 @@ function ProfessorList() {
         </div>
       </div>
       <div>
-        <h4>
-          Resultados por:
+        <h4 className="header-content-searchby">
+          Resultados de:
+          {'\t'}
           {inputText}
         </h4>
       </div>
@@ -102,7 +115,7 @@ function ProfessorList() {
           {searchAreas.map((searchArea) => (
             <Accordion key={searchArea.search_area_id}>
               <AccordionSummary
-                expandIcon={<FaChevronCircleDown />}
+                expandIcon={<FaChevronCircleDown color="#1f487c" />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
@@ -113,7 +126,7 @@ function ProfessorList() {
                   {searchArea.professors.map((professor) => (
                     <Accordion key={professor.prof_id}>
                       <AccordionSummary
-                        expandIcon={<FaChevronCircleDown />}
+                        expandIcon={<FaChevronCircleDown color="#1f487c" />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                       >
