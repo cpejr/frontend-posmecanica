@@ -38,6 +38,11 @@ export const login = async (user) => {
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
 };
+export const createCandidate = async (candidate, selectiveProcessId) => {
+  candidate.candidate_date_inscrition = new Date();
+  const response = await requesterService.createCandidate(candidate, selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
 
 export const denyCandidate = async (candidateId) => {
   const response = await requesterService.deleteCandidate(candidateId);

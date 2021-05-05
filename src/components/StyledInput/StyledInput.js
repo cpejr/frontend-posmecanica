@@ -29,6 +29,8 @@ function StyledInput({
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
       setError(true);
+    } else {
+      setError(false);
     }
     const { value } = e.target;
     setDados({ ...dados, [entrada]: value });

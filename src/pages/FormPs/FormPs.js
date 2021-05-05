@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './FormPs.scss';
+import { useHistory } from 'react-router-dom';
 import StyledInput from '../../components/StyledInput';
-import Estados from './Utils/Estados';
-import EstadoCivil from './Utils/Estado_civil';
-import Generos from './Utils/Generos';
-import Racas from './Utils/Racas';
-import Booleanos from './Utils/Booleanos';
+import * as managerService from '../../services/manager/managerService';
+import Estados from '../../Utils/Estados';
+import EstadoCivil from '../../Utils/Estado_civil';
+import Generos from '../../Utils/Generos';
+import Racas from '../../Utils/Racas';
 
 const estados = Estados;
 const estadosCivil = EstadoCivil;
 const generos = Generos;
 const racas = Racas;
-const booleanos = Booleanos;
 
 function FormPs() {
   const initialState = {
@@ -39,11 +39,14 @@ function FormPs() {
     candidate_graduation: '',
     candidate_grade_date_begin: '',
     candidate_grade_date_end: '',
-    candidate_pGraduate_university: '',
-    candidate_ufmg_active_serv: '',
-    candidate_ufmg_retired_serv: '',
   };
   const [dados, setDados] = useState(initialState);
+  const history = useHistory();
+  const handleClick = async (e) => {
+    e.preventDefault();
+    await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+    history.push('/');
+  };
   return (
     <div className="Tela-ps">
       <h1> Inscrição:</h1>
@@ -92,7 +95,7 @@ function FormPs() {
           />
           <StyledInput
             type="text"
-            id="candidate_district"
+            id="candidate_state"
             label="Estado"
             width="16rem"
             field={estados}
@@ -118,11 +121,9 @@ function FormPs() {
           />
           <StyledInput
             type="text"
-            id="candidate_pGraduate_university"
-            label="Pós graduado(a)?"
+            id="candidate_district"
+            label="Bairro"
             width="16rem"
-            field={booleanos}
-            select
             dados={dados}
             setDados={setDados}
           />
@@ -197,16 +198,6 @@ function FormPs() {
             dados={dados}
             setDados={setDados}
           />
-          <StyledInput
-            type=""
-            id="candidate_ufmg_active_serv"
-            label="Servidor ativo da UFMG?"
-            width="16rem"
-            field={booleanos}
-            select
-            dados={dados}
-            setDados={setDados}
-          />
         </div>
 
         <div className="form-dis-col-ps">
@@ -273,27 +264,16 @@ function FormPs() {
           />
           <StyledInput
             type="date"
-            id="candidate_grade_date_end "
+            id="candidate_grade_date_end"
             label="Data final da graduação"
             width="16rem"
-            dados={dados}
-            setDados={setDados}
-          />
-
-          <StyledInput
-            type="text"
-            id="candidate_ufmg_retired_serv"
-            label="Servidor aposentado da UFMG?"
-            width="16rem"
-            field={booleanos}
-            select
             dados={dados}
             setDados={setDados}
           />
         </div>
       </form>
       <div className="divButton-ps">
-        <button type="submit"> Cadastre-se</button>
+        <button type="submit" onClick={handleClick}> Cadastre-se</button>
       </div>
     </div>
   );
