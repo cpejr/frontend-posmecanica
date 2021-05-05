@@ -1,5 +1,5 @@
 const Booleano = [
-  { label: 'SIM', value: 'SIM(a)' },
-  { label: 'NÃO', value: 'NÃO(a)' },
+  { label: 'SIM', value: true },
+  { label: 'NÃO', value: false },
 ];
 export default Booleano;

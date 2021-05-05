@@ -47,7 +47,7 @@ function FormDis() {
   const [dados, setDados] = useState(initialState);
   const handleClick = async (e) => {
     e.preventDefault();
-    await managerService.login(dados, 'd6c1981a-ac27-4c55-be4c-dd3da5ea8a85');
+    await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
   };
   return (
     <div className="Tela">
@@ -97,7 +97,7 @@ function FormDis() {
           />
           <StyledInput
             type="text"
-            id="candidate_district"
+            id="candidate_state"
             label="Estado"
             width="16rem"
             field={estados}
@@ -124,10 +124,16 @@ function FormDis() {
           <StyledInput
             type="text"
             id="candidate_pGraduate_university"
-            label="Pós graduado(a)?"
+            label="Universidade da Pós Graduação"
             width="16rem"
-            field={booleanos}
-            select
+            dados={dados}
+            setDados={setDados}
+          />
+          <StyledInput
+            type="text"
+            id="candidate_district"
+            label="Bairro"
+            width="16rem"
             dados={dados}
             setDados={setDados}
           />
