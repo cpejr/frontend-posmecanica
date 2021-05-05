@@ -29,12 +29,17 @@ export const getSelectiveProcess = async (field, filter) => {
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+  const usuario = response.data.user;
+  const fields = Object.keys(usuario).find((field) => field.includes('id'));
+  const id = usuario[fields];
   const userStorage = {
     name: response.data.user.name,
     email: response.data.user.email,
     type: response.data.user.type,
     acessToken: response.data.accessToken,
+    id,
   };
+
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
 };
@@ -42,4 +47,11 @@ export const login = async (user) => {
 export const denyCandidate = async (candidateId) => {
   const response = await requesterService.deleteCandidate(candidateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const forgetPass = async (user, id) => {
+  const newSenha = { adm_defaultPassword: user };
+  const response = await requesterService.Forgetpass(newSenha, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  window.location.href = '/login';
 };

@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     email: '',
     type: '',
     acessToken: '',
+    id: '',
   });
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
         email: '',
         type: '',
         acessToken: '',
+        id: '',
       });
     }
   }, []);

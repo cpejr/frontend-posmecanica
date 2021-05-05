@@ -1,0 +1,66 @@
+body {
+  margin: 0px;
+}
+
+.tela {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.tituloPrincipal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "calibri";
+  font-size: 42px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.tituloSecundario {
+  font-family: "calibri";
+  font-size: 32px;
+  margin-left: 2.5%;
+}
+
+.inscritos {
+  font-family: "calibri";
+  background-color: #E8E8E8;
+  height: 300px;
+  width: 80%;
+  margin-top: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10px;
+}
+
+.aba {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+/*# sourceMappingURL=BoxDashboardAdministrator.css.map */
