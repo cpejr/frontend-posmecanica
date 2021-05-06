@@ -1,20 +1,24 @@
 import React from 'react';
-import Drawer from './DrawerComponent/Drawer';
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+import './Navbar.scss';
+import { Button } from '@material-ui/core';
 
-export default function Navbar() {
+export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
+  const handleClick = () => {
+    setExpandRightPanel(!expandRightPanel);
+  };
+  const expandIcon = expandRightPanel
+    ? <AiOutlineMenuFold className="menuIcon" />
+    : <AiOutlineMenuUnfold className="menuIcon" />;
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#1D2D57', color: 'white', fontSize: '14pt',
-    }}
-    >
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '23%', padding: '15px',
-      }}
-      >
-        <img src="/images/engrenagem.png" alt="engrenagem" style={{ height: '60px', width: '60px' }} />
-        <div>Pós Mecânica UFMG</div>
+    <div className="containerHeader">
+      <div className="divLogo">
+        <img src="/images/engrenagem.png" alt="engrenagem" className="logoHeader" />
+        <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
-      <Drawer />
+      <Button className="buttonExpandIcon" onClick={handleClick}>
+        {expandIcon}
+      </Button>
     </div>
   );
 }
