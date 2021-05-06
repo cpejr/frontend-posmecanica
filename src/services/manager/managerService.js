@@ -25,6 +25,17 @@ export const getSelectiveProcess = async (field, filter) => {
   );
   return filteredProcess;
 };
+export const getByIdSelectiveProcess = async (selectiveProcessId) => {
+  const response = await requesterService.getByIdSelectiveProcess(selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdCandidate = async (candidateId) => {
+  const response = await requesterService.getByIdCandidate(candidateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const login = async (user) => {
   const response = await requesterService.login(user);
