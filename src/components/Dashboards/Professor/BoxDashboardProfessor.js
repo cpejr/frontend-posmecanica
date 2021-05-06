@@ -67,7 +67,7 @@ function BoxDashboardProfesssor() {
               {filteredStudents.map((candidate, key) => (
                 <div className="listItem" id={key}>
                   <div className="divItem">
-                    <IconContext.Provider value={{ size: 60 }}>
+                    <IconContext.Provider value={{ size: 50 }}>
                       <BiUserCircle className="icon" />
                     </IconContext.Provider>
                     {candidate.candidate_name}

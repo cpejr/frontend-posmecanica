@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAA;EACN,KAAK,EAAE,SAAS;EAChB,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,KAAK;EACV,KAAK,EAAE,MAAM;EAEb,WAAW,EAAE,IAAI;CAClB;;AACD,AAAA,mBAAmB,AAAA,mBAAmB,AAAA,QAAQ,CAAA;EAC5C,KAAK,EAAE,SAAS;CACjB",
-    "sources": [
-        "Drawer.scss"
-    ],
-    "names": [],
-    "file": "Drawer.css"
-}

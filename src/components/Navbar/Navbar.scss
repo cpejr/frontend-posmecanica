@@ -1,7 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
- 
-.MuiTypography-root-268.Texto.MuiTypography-body1-270{ 
-  font: normal 14pt Montserrat;
-  flex-grow: 1;
+.containerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(45deg, #04133a, #092161, #04133a);
+  color: white;
+  font-size: 14px;
+  font-family: Montserrat;
 }
+.divLogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 23%;
+  padding: 15px;
+}
+.logoHeader {
+  height: 60px;
+  width: 60px;
+}
+.titleHeader {
+  font-family: Montserrat;
+  font-size: 20px;
+}
+.buttonExpandIcon {
+  border-radius: 35px;
+}
+.menuIcon {
+ margin: 15px;
+ font-size: 30px;
+ color: white;
+}
+.menuIcon:hover {
+  cursor: pointer
+ }
