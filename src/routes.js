@@ -5,7 +5,10 @@ import { makeStyles } from '@material-ui/core';
 import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
+import DashboardAdministrator from './pages/DashboardAdministrator';
 import Navbar from './components/Navbar/index';
+import FormDis from './pages/FormDis';
+import FormPs from './pages/FormPs';
 
 const useStyles = makeStyles({
   container: {
@@ -24,7 +27,10 @@ function Routes() {
           <Route exact from="/" render={(props) => <Navbar {...props} />} />
           <Route path="/login" component={Login} />
           <Route path="/dashboard/professor" component={DashboardProfessor} />
+          <Route path="/dashboard/administrator" component={DashboardAdministrator} />
           <Route path="/esqueciSenha" component={forgetPass} />
+          <Route path="/formulario-disciplina-isolada" component={FormDis} />
+          <Route path="/formulario-processo-seletivo" component={FormPs} />
         </Switch>
       </div>
     </BrowserRouter>
