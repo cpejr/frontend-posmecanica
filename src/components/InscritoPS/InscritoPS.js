@@ -1,21 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './InscritoPS.scss';
-import { BsFileEarmarkArrowDown, BsThreeDots } from 'react-icons/bs';
+import { BsFileEarmarkArrowDown } from 'react-icons/bs';
 import { FaTrash } from 'react-icons/fa';
+import * as managerService from '../../services/manager/managerService';
 
-function InscritoPS({ name }) {
+function InscritoPS({ name, id }) {
+  const handleClick = async () => {
+    await managerService.denyCandidate(id);
+  };
   return (
     <div className="linhaInscrito">
-      <BsFileEarmarkArrowDown size={54} />
+      <div className="inscritoPSicon">
+        <BsFileEarmarkArrowDown size={40} />
+      </div>
       <div className="nomeInscrito">
         {name}
       </div>
-      <div className="dots">
-        <BsThreeDots size={32} />
-      </div>
-      <div className="dots">
-        <FaTrash size={28} />
+      <div className="trash">
+        <FaTrash onClick={() => handleClick()} size={28} />
       </div>
       <div className="linkDocumentos">
         <Link to="/dashboard/administrator"> Ver documentos enviados </Link>
