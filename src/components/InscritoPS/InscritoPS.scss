@@ -4,14 +4,17 @@
   align-items: center;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.5em;
 }
 .inscritoPSicon{
-  width: 12%;
+  display: flex;
+  justify-content: center;
+  width: 14.5%;
 }
 .nomeInscrito {
   cursor: s-resize;
-  font-family: "calibri";
-  font-size: 22px;
+  font-family: Montserrat;
+  font-size: 18px;
   width: 33%;
 }
 .trash {
@@ -19,6 +22,7 @@
   width: 5%;
 }
 .linkDocumentos {
-  width: 50%;
-  text-align: right;
+  width: 47.5%;
+  font-family: Montserrat;
+  text-align: center;
 } 

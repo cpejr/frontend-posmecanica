@@ -4,40 +4,40 @@ $azulPadrao: #1d2d57;
 body {
   margin: 0px;
 }
-.tela {
+.BDAtela {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
 }
-.tituloPrincipal {
+.BDAtituloPrincipal {
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: "calibri";
+  font-family: Montserrat;
   font-size: 42px;
   margin-top: 25px;
   margin-bottom: 25px;
 }
-.tituloSecundario {
-  font-family: "calibri";
+.BDAtituloSecundario {
+  font-family: Montserrat;
   font-size: 32px;
-  margin-left: 2.5%;
-}
-.inscritos {
-  font-family: "calibri";
-  background-color: #E8E8E8;
-  height: 100%;
-  width: 80%;
-  margin-top: 50px;
   margin-left: 5%;
-  margin-right: 5%;
-  margin-bottom: 5%;
-  padding:  10px;
 }
-.aba{
+.BDAinscritos {
+  font-family: "calibri";
+  background-color: #DCDCDC;
+  border-radius: 5px 5px 0px 0px;
+  max-height: 400px;
+  width: 45%;
+  padding:  10px;
+  overflow: auto;
+}
+.BDAaba{
+  margin-top: 25px;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
