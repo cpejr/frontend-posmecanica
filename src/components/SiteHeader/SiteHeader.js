@@ -9,7 +9,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { BiMenu } from 'react-icons/bi';
 
-// Arrumando nossos BO
 function SiteHeader() {
   const useStyles = makeStyles({
     list: {
