@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+.userPanelHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.userPanelInfos {
+  margin-left: 16px;
+  font-family: Montserrat;
+}
+.hide {
+  display: none;
+}
+.userPanelText {
+  font-family: Montserrat;
+}
+.mail {
+  font-size: 12px;
+}
+.divNavbar {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 0px 4px 0px rgb(0 0 0 / 75%);
+  width: 20%;
+}
+.retract {
+  width: 4%;
+}

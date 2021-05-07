@@ -25,6 +25,17 @@ export const getSelectiveProcess = async (field, filter) => {
   );
   return filteredProcess;
 };
+export const getByIdSelectiveProcess = async (selectiveProcessId) => {
+  const response = await requesterService.getByIdSelectiveProcess(selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdCandidate = async (candidateId) => {
+  const response = await requesterService.getByIdCandidate(candidateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const getSearchArea = async (field, filter) => {
   const times = 0;
@@ -44,6 +55,11 @@ export const login = async (user) => {
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
+};
+export const createCandidate = async (candidate, selectiveProcessId) => {
+  candidate.candidate_date_inscrition = new Date();
+  const response = await requesterService.createCandidate(candidate, selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const denyCandidate = async (candidateId) => {

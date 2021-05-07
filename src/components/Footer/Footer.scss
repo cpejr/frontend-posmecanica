@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 .footer {
-  background-color: #1d2d57;
+  background: linear-gradient(45deg, #04133a, #092161, #04133a);
   bottom: 0;
   width: 100%;
   display: flex;
@@ -14,11 +14,7 @@
   padding: 10px;
 }
 .imagemC {
-  padding-left: 60px;
-  transform: translateY(-7px);
-  width: 80px;
-  padding: 10px;
-  align-items: flex-end;
+  width: 108px;
 }
 .text {
   color: white;

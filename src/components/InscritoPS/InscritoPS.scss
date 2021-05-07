@@ -1,0 +1,28 @@
+.linhaInscrito {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+.inscritoPSicon{
+  display: flex;
+  justify-content: center;
+  width: 14.5%;
+}
+.nomeInscrito {
+  cursor: s-resize;
+  font-family: Montserrat;
+  font-size: 18px;
+  width: 33%;
+}
+.trash {
+  cursor: pointer;
+  width: 5%;
+}
+.linkDocumentos {
+  width: 47.5%;
+  font-family: Montserrat;
+  text-align: center;
+} 
