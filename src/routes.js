@@ -9,6 +9,7 @@ import DashboardAdministrator from './pages/DashboardAdministrator';
 import Navbar from './components/Navbar/index';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
+import ProfessorList from './pages/ProfessorList';
 
 const useStyles = makeStyles({
   container: {
@@ -31,6 +32,7 @@ function Routes() {
           <Route path="/esqueciSenha" component={forgetPass} />
           <Route path="/formulario-disciplina-isolada" component={FormDis} />
           <Route path="/formulario-processo-seletivo" component={FormPs} />
+          <Route path="/professor-list" component={ProfessorList} />
         </Switch>
       </div>
     </BrowserRouter>

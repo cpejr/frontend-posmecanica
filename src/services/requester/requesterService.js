@@ -15,6 +15,15 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
     filter,
   },
 });
+
+export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+});
+
 export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
 export const login = (user) => httpClient.post('/login', user);
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);

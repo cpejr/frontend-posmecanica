@@ -37,6 +37,13 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
+export const getSearchArea = async (field, filter) => {
+  const times = 0;
+  const response = await requesterService.getSearchArea(times, field, filter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
