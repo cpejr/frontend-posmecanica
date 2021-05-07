@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormDis.scss';
+import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import Estados from '../../Utils/Estados';
@@ -51,6 +52,7 @@ function FormDis() {
   };
   return (
     <div className="Tela">
+      <SiteHeader />
       <h1> Inscrição:</h1>
       <form className="form_dis_iso">
         <div className="form-dis-col">
