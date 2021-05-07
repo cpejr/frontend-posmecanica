@@ -9,7 +9,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { FaChevronCircleDown } from 'react-icons/fa';
 
-import orderElements from '../../utils/order';
+import orderElements from '../../Utils/order';
 import * as managerService from '../../services/manager/managerService';
 
 import './ProfessorList.scss';
@@ -36,14 +36,6 @@ function ProfessorList() {
     setSearchAreas(getSearchArea);
   }, [inputText]);
 
-  useEffect(async () => {
-    var allProfessorsGot = [];
-    await searchAreas.forEach((searchArea) => {
-      searchArea.professors.forEach((professor) => {
-        allProfessorsGot.push(professor);
-      });
-    });
-  }, []);
   const classes = useStyles();
 
   return (
