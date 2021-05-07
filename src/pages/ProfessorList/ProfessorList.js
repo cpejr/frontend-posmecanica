@@ -48,8 +48,10 @@ function ProfessorList() {
 
   return (
     <div className="professor-list-container">
-      console.log(allProfessorsGot);
       <h1>Professores</h1>
+      <div className="professor-list-container-border-bottom">
+        <> </>
+      </div>
       <div className="professor-list-texts">
         <p className="professor-list-first-text">
           Abaixo, apresentaremos os professores relacionados às respectivas
@@ -92,12 +94,19 @@ function ProfessorList() {
                 key={searchArea.search_area_id}
               >
                 <AccordionSummary
-                  className="accordionHeadeBox"
-                  expandIcon={<FaChevronCircleDown color="#1f487c" />}
+                  expandIcon={<FaChevronCircleDown color="#1f487c" size={17} />}
                 >
-                  <Typography className="accordionHeader">
-                    {searchArea.search_area_name}
-                  </Typography>
+                  <div className="accordionHeadeBox">
+                    <Typography>
+                      <div className="accordingMainTitle">
+                        {searchArea.search_area_name}
+                      </div>
+                    </Typography>
+                    <div className="accordionBorderBottom">
+                      <>
+                      </>
+                    </div>
+                  </div>
                 </AccordionSummary>
                 <AccordionDetails>
                   <div className="professor-list-item">
@@ -105,20 +114,31 @@ function ProfessorList() {
                       .map((professor) => (
                         <Accordion key={professor.prof_id}>
                           <AccordionSummary
-                            expandIcon={<FaChevronCircleDown color="#1f487c" />}
+                            expandIcon={<FaChevronCircleDown color="#1f487c" size={17} />}
                           >
                             <Typography className={classes.heading}>
-                              {professor.prof_name}
+                              <div className="accordingSecondaryTitle">
+                                {professor.prof_name}
+                              </div>
                             </Typography>
                           </AccordionSummary>
                           <AccordionDetails className="professor-list-desc">
-                            <p>{professor.prof_email}</p>
-                            <p>{professor.prof_type}</p>
-                            <div>
-                              <p>Universidade</p>
-                              <p>{professor.prof_university}</p>
+                            <div className="professor-list-desc-item">
+                              <p>Email: </p>
+                              <span>{professor.prof_email}</span>
                             </div>
-                            <p>{professor.prof_birth}</p>
+                            <div className="professor-list-desc-item">
+                              <p>Grau acadêmico: </p>
+                              <span>{professor.prof_type}</span>
+                            </div>
+                            <div className="professor-list-desc-item">
+                              <p>Universidade: </p>
+                              <span>{professor.prof_university}</span>
+                            </div>
+                            <div className="professor-list-desc-item">
+                              <p>País de origem: </p>
+                              <span>{professor.prof_country}</span>
+                            </div>
                           </AccordionDetails>
                         </Accordion>
                       ))}

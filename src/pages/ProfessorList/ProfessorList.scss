@@ -7,8 +7,12 @@
     h1 {
         color: #1f487c;
         font-size: 2.5em;
-        border-bottom: 1px solid #7a7a7a;
     }
+}
+
+.professor-list-container-border-bottom {
+    border-bottom: 1.5px solid #7a7a7a;
+    margin-top: 25px;
 }
 
 .professor-list-texts {
@@ -66,14 +70,19 @@
 }
 
 .accordionHeadeBox {
-    margin-bottom: 200px;
-    border-bottom: 1px solid gray;
-    background-color: #1f487c;
+    width: 100%;
 }
 
-.accordionHeader {
-    font-size: 24px;
-    font-weight: 500;
+.accordingMainTitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.accordionBorderBottom {
+    border-bottom: 1.5px solid #7a7a7a;
+    margin-top: 25px;
+    width: 100%;
 }
 
 .professor-list-item {
@@ -82,10 +91,36 @@
     flex-direction: column;
 }
 
+.accordingSecondaryTitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
 .professor-list-desc {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.professor-list-desc-item {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    p {
+        font-size: 15px;
+        font-weight: 700;
+        color: #7a7a7a;
+    }
+    span {
+        font-size: 15px;
+        font-weight: 400;
+        color: #7a7a7a;
+        margin-left: 5px;
+    }
 }
 
 .MuiAccordionSummary-expandIcon {
