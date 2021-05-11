@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import { FiMail } from 'react-icons/fi';
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
 import TextBox from '../../components/TextBox';
 import TextBoxPassword from '../../components/TextBoxPassword';
@@ -15,10 +16,15 @@ function Login() {
     type: 'administrator',
   };
   const [user, setUser] = useState(initialUser);
+  const { addToast } = useToasts();
 
   const handleClick = async (e) => {
-    e.preventDefault();
-    await managerService.login(user);
+    try {
+      e.preventDefault();
+      await managerService.login(user);
+    } catch {
+      addToast('Acesso negado!', { appearance: 'error' });
+    }
   };
   const icon = (
     <FiMail />
