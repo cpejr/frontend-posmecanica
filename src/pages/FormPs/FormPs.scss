@@ -19,16 +19,33 @@ body {
     font-size: 50px;
   }
 }
-.form_dis_ps {
+.form_dis_ps_box_title{
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 80%;
-  padding: 0%;
+  background-image: linear-gradient(to right, $azulPadrao,#1037a1);
+  margin:2%;
+  height: 7%;
+}
+.form_dis_ps_title{
+  color: white;
+  margin-left: 1%;
+  font-family: Montserrat;
+  font-size: 2.0em;
+}
+.form_dis_ps_line{
+  background-color: #ffff;
+  display: flex;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 1%;
+}
+.form_dis_ps_input{
+  margin-right: 5%;
 }
 
+
 .form-dis-col-ps {
+  background-color: #ffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,6 +53,7 @@ body {
 }
 
 .divButton-ps {
+  background-color: #ffff;
   display: flex;
   justify-content: center;
   margin-top: 0.2em;
@@ -52,41 +70,5 @@ body {
     text-shadow: 0em 0.3em 0.3em #000;
     box-shadow: 1px 1px 5px #000;
     margin-bottom: 3rem;
-  }
-}
-
-@media screen and (max-width: 960px) {
-  .Tela-ps {
-    flex-direction: column;
-    height: 630vw;
-    h1 {
-      text-align: center;
-      margin-top: 0.05em;
-      font-size: 50px;
-      margin: 2%;
-    }
-  }
-  .form_dis_ps {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 0%;
-  }
-
-  .form-dis-col-ps {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .divButton-ps {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 35px;
-    button {
-      height: 3rem;
-      width: 80%;
-      font-size: 30px;
-    }
   }
 }
