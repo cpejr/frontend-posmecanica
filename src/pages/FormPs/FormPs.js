@@ -51,7 +51,7 @@ function FormPs() {
   return (
     <div className="Tela-ps">
       <SiteHeader />
-      <h1> Inscrição:</h1>
+      <h1> Inscrição Processo Seletivo:</h1>
       <div className="form_dis_ps_box_title">
         <div className="form_dis_ps_title">
           Dados Pessoais
