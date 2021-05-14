@@ -60,8 +60,8 @@ function FormDis() {
         </div>
       </div>
       <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_name"
@@ -71,7 +71,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="date"
               id="candidate_birth"
@@ -81,7 +81,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_nationality"
@@ -92,8 +92,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="email"
               id="candidate_email"
@@ -103,7 +103,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_phone_number"
@@ -114,8 +114,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_civil_state"
@@ -127,7 +127,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_race"
@@ -139,7 +139,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_gender"
@@ -153,14 +153,14 @@ function FormDis() {
           </div>
         </div>
       </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_dis_box_title">
+        <div className="form_dis_title">
           Documentação
         </div>
       </div>
       <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_cpf"
@@ -171,8 +171,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_identity"
@@ -182,7 +182,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_expedition"
@@ -193,8 +193,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="texte"
               id="candidate_voter_title"
@@ -204,7 +204,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="number"
               id="candidate_zone_title"
@@ -214,7 +214,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="number"
               id="candidate_section_title"
@@ -226,14 +226,14 @@ function FormDis() {
           </div>
         </div>
       </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_dis_box_title">
+        <div className="form_dis_title">
           Endereço
         </div>
       </div>
       <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_street"
@@ -243,7 +243,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="number"
               id="candidate_adress_num"
@@ -253,7 +253,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_district"
@@ -264,8 +264,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_city"
@@ -275,7 +275,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_state"
@@ -287,7 +287,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_country"
@@ -297,7 +297,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_cep"
@@ -309,14 +309,14 @@ function FormDis() {
           </div>
         </div>
       </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_dis_box_title">
+        <div className="form_dis_title">
           Graduação
         </div>
       </div>
       <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_university"
@@ -326,7 +326,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_graduation"
@@ -336,7 +336,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="date"
               id="candidate_grade_date_begin"
@@ -346,7 +346,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="date"
               id="candidate_grade_date_end"
@@ -357,8 +357,8 @@ function FormDis() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_dis_line">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_pGraduate_university"
@@ -368,7 +368,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type=""
               id="candidate_ufmg_active_serv"
@@ -380,7 +380,7 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_ufmg_retired_serv"
@@ -394,7 +394,7 @@ function FormDis() {
           </div>
         </div>
       </div>
-      <div className="divButton">
+      <div className="form_dis_divButton">
         <button type="submit" onClick={handleClick}> Cadastre-se</button>
       </div>
     </div>
