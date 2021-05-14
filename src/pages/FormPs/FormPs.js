@@ -45,7 +45,19 @@ function FormPs() {
   const history = useHistory();
   const handleClick = async (e) => {
     e.preventDefault();
-    await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+    if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
+      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length > 3
+      && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
+      && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
+      && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
+      && dados.candidate_zone_title.length > 3 && dados.candidate_section_title.length > 3
+      && dados.candidate_street.length > 3
+      && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
+      && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
+      && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
+      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
+      await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+    }
     history.push('/');
   };
   return (
