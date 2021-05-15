@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FormPs.scss';
 import { useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
@@ -43,6 +44,8 @@ function FormPs() {
   };
   const [dados, setDados] = useState(initialState);
   const history = useHistory();
+  const { addToast } = useToasts();
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
@@ -50,15 +53,18 @@ function FormPs() {
       && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
       && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
       && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
-      && dados.candidate_zone_title.length > 3 && dados.candidate_section_title.length > 3
-      && dados.candidate_street.length > 3
+      && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
+      && dados.candidate_street.length !== ''
       && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
-      await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+      await managerService.createCandidate(dados, '0615d76a-acfa-4231-b698-0a66ec0ce7d7');
+      history.push('/');
+      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+    } else {
+      addToast('Preencha todos os campos!', { appearance: 'error' });
     }
-    history.push('/');
   };
   return (
     <div className="Tela-ps">
@@ -263,11 +269,24 @@ function FormPs() {
               setDados={setDados}
             />
           </div>
+
+        </div>
+        <div className="form_dis_ps_line">
           <div className="form_dis_ps_input">
             <StyledInput
               type="text"
               id="candidate_district"
               label="Bairro"
+              width="16rem"
+              dados={dados}
+              setDados={setDados}
+            />
+          </div>
+          <div className="form_dis_ps_input">
+            <StyledInput
+              type="text"
+              id="candidate_cep"
+              label="CEP"
               width="16rem"
               dados={dados}
               setDados={setDados}
@@ -307,16 +326,6 @@ function FormPs() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="candidate_cep"
-              label="CEP"
-              width="16rem"
-              dados={dados}
-              setDados={setDados}
-            />
-          </div>
         </div>
       </div>
       <div className="form_dis_ps_box_title">
@@ -346,6 +355,9 @@ function FormPs() {
               setDados={setDados}
             />
           </div>
+
+        </div>
+        <div className="form_dis_ps_line">
           <div className="form_dis_ps_input">
             <StyledInput
               type="date"

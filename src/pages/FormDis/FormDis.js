@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormDis.scss';
+import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
@@ -46,9 +47,27 @@ function FormDis() {
     candidate_ufmg_retired_serv: '',
   };
   const [dados, setDados] = useState(initialState);
+  const { addToast } = useToasts();
+
   const handleClick = async (e) => {
     e.preventDefault();
-    await managerService.createCandidate(dados, 'ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+    if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
+      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
+      && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
+      && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
+      && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
+      && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
+      && dados.candidate_street.length !== '' && dados.candidate_pGraduate_university.length !== ''
+      && dados.candidate_ufmg_active_serv.length !== '' && dados.candidate_ufmg_retired_serv.length !== ''
+      && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
+      && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
+      && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
+      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
+      await managerService.createCandidate(dados, '30faa94c-4855-4620-85ed-d10823469b31');
+      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+    } else {
+      addToast('Preencha todos os dados!', { appearance: 'error' });
+    }
   };
   return (
     <div className="form_dis_screen">
@@ -253,11 +272,23 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
+        </div>
+        <div className="form_dis_line">
           <div className="form_dis_input">
             <StyledInput
               type="text"
               id="candidate_district"
               label="Bairro"
+              width="16rem"
+              dados={dados}
+              setDados={setDados}
+            />
+          </div>
+          <div className="form_dis_input">
+            <StyledInput
+              type="text"
+              id="candidate_cep"
+              label="CEP"
               width="16rem"
               dados={dados}
               setDados={setDados}
@@ -297,16 +328,6 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_cep"
-              label="CEP"
-              width="16rem"
-              dados={dados}
-              setDados={setDados}
-            />
-          </div>
         </div>
       </div>
       <div className="form_dis_box_title">
@@ -336,6 +357,8 @@ function FormDis() {
               setDados={setDados}
             />
           </div>
+        </div>
+        <div className="form_dis_line">
           <div className="form_dis_input">
             <StyledInput
               type="date"
