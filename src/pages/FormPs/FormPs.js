@@ -5,15 +5,15 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import Estados from '../../Utils/Estados';
-import EstadoCivil from '../../Utils/Estado_civil';
-import Generos from '../../Utils/Generos';
-import Racas from '../../Utils/Racas';
+import States from '../../utils/states';
+import CivilStatus from '../../utils/civil_status';
+import Genres from '../../utils/genres';
+import Races from '../../utils/races';
 
-const estados = Estados;
-const estadosCivil = EstadoCivil;
-const generos = Generos;
-const racas = Racas;
+const states = States;
+const civilStatus = CivilStatus;
+const genres = Genres;
+const races = Races;
 
 function FormPs() {
   const initialState = {
@@ -67,7 +67,7 @@ function FormPs() {
     }
   };
   return (
-    <div className="Tela-ps">
+    <div className="screen-ps">
       <SiteHeader />
       <h1> Inscrição Processo Seletivo:</h1>
       <div className="form_dis_ps_box_title">
@@ -137,7 +137,7 @@ function FormPs() {
               id="candidate_civil_state"
               label="Estado Civil"
               width="16rem"
-              field={estadosCivil}
+              field={civilStatus}
               select
               dados={dados}
               setDados={setDados}
@@ -149,7 +149,7 @@ function FormPs() {
               id="candidate_race"
               label="Raça"
               width="16rem"
-              field={racas}
+              field={races}
               select
               dados={dados}
               setDados={setDados}
@@ -161,7 +161,7 @@ function FormPs() {
               id="candidate_gender"
               label="Gênero"
               width="16rem"
-              field={generos}
+              field={genres}
               select
               dados={dados}
               setDados={setDados}
@@ -310,7 +310,7 @@ function FormPs() {
               id="candidate_state"
               label="Estado"
               width="16rem"
-              field={estados}
+              field={states}
               select
               dados={dados}
               setDados={setDados}

@@ -9,7 +9,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { FaChevronCircleDown } from 'react-icons/fa';
 
-import orderElements from '../../Utils/order';
+import orderElements from '../../utils/order';
 import * as managerService from '../../services/manager/managerService';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
 

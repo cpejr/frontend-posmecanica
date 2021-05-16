@@ -1,5 +1,5 @@
-const Booleano = [
+const Boolean = [
   { label: 'SIM', value: true },
   { label: 'NÃO', value: false },
 ];
-export default Booleano;
+export default Boolean;

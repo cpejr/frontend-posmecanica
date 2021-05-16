@@ -4,17 +4,17 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import Estados from '../../Utils/Estados';
-import EstadoCivil from '../../Utils/Estado_civil';
-import Generos from '../../Utils/Generos';
-import Racas from '../../Utils/Racas';
-import Booleanos from '../../Utils/Booleanos';
+import States from '../../utils/states';
+import CivilStatus from '../../utils/civil_status';
+import Genres from '../../utils/genres';
+import Races from '../../utils/races';
+import Booleans from '../../utils/boolean';
 
-const estados = Estados;
-const estadosCivil = EstadoCivil;
-const generos = Generos;
-const racas = Racas;
-const booleanos = Booleanos;
+const states = States;
+const civilStatus = CivilStatus;
+const genres = Genres;
+const races = Races;
+const booleans = Booleans;
 
 function FormDis() {
   const initialState = {
@@ -140,7 +140,7 @@ function FormDis() {
               id="candidate_civil_state"
               label="Estado Civil"
               width="16rem"
-              field={estadosCivil}
+              field={civilStatus}
               select
               dados={dados}
               setDados={setDados}
@@ -152,7 +152,7 @@ function FormDis() {
               id="candidate_race"
               label="Raça"
               width="16rem"
-              field={racas}
+              field={races}
               select
               dados={dados}
               setDados={setDados}
@@ -164,7 +164,7 @@ function FormDis() {
               id="candidate_gender"
               label="Gênero"
               width="16rem"
-              field={generos}
+              field={genres}
               select
               dados={dados}
               setDados={setDados}
@@ -312,7 +312,7 @@ function FormDis() {
               id="candidate_state"
               label="Estado"
               width="16rem"
-              field={estados}
+              field={states}
               select
               dados={dados}
               setDados={setDados}
@@ -397,7 +397,7 @@ function FormDis() {
               id="candidate_ufmg_active_serv"
               label="Servidor ativo da UFMG?"
               width="16rem"
-              field={booleanos}
+              field={booleans}
               select
               dados={dados}
               setDados={setDados}
@@ -409,7 +409,7 @@ function FormDis() {
               id="candidate_ufmg_retired_serv"
               label="Servidor aposentado da UFMG?"
               width="16rem"
-              field={booleanos}
+              field={booleans}
               select
               dados={dados}
               setDados={setDados}
