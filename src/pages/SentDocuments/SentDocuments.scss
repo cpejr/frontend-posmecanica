@@ -1,0 +1,80 @@
+body {
+  margin: 0px;
+}
+.SD-externalDiv {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  .SD-screen{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+.SD-title{
+  font-family: Montserrat;
+  font-size: 2.0em;
+  margin:1%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.SD-personNameTitle{
+  margin: 1%;
+  margin-left: 10%;
+  font-size: 1.5em;
+}
+.SD-documentsDiv{
+  height: 30vh;
+  margin-left:10%;
+  margin-right:10%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
+  padding-top: 4%;
+  .SD-documentsDivLine{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+}
+.SD-buttons{
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  margin: 3%;
+  .SD-button-aprovar{
+    button{
+      background-color: green;
+      height: 7vh;
+      width: 15vw;
+      border: 0;
+      color: #ffffff;
+      border-radius: 0.9em;
+      text-shadow: 0.1em 0.13em 0.13em #000;
+      box-shadow: 0.2em 0.2em 0.5em #000;
+      font-size: clamp(1vw, 1em, 2vw);
+    cursor: pointer;
+  }
+  }
+  .SD-button-solicitar{
+    button{
+      padding: 1%;
+      background-color: red;
+      height: 7vh;
+      width: 15vw;
+      border: 0;
+      color: #ffffff;
+      border-radius: 0.9em;
+      text-shadow: 0.1em 0.13em 0.13em #000;
+      box-shadow: 0.2em 0.2em 0.5em #000;
+      font-size: clamp(1vw, 1em, 1.5vw);
+      cursor: pointer;
+    }
+  }
+}
