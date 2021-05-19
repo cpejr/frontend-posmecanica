@@ -29,3 +29,4 @@ export const login = (user) => httpClient.post('/login', user);
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
+export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);

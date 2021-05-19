@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/index';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import ProfessorList from './pages/ProfessorList';
+import registerDis from './pages/registerDis';
 
 const useStyles = makeStyles({
   container: {
@@ -33,6 +34,7 @@ function Routes() {
           <Route path="/formulario-disciplina-isolada" component={FormDis} />
           <Route path="/formulario-processo-seletivo" component={FormPs} />
           <Route path="/professor-list" component={ProfessorList} />
+          <Route path="/cadastro-disciplina" component={registerDis} />
         </Switch>
       </div>
     </BrowserRouter>

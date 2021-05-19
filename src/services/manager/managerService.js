@@ -66,3 +66,10 @@ export const denyCandidate = async (candidateId) => {
   const response = await requesterService.deleteCandidate(candidateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const createDiscipline = async (discipline) => {
+  // eslint-disable-next-line no-console
+  console.log(discipline);
+  const response = await requesterService.createDiscipline(discipline);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
