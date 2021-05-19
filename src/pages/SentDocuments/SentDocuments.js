@@ -4,18 +4,15 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Document from '../../components/Document';
 import DocumentModal from './DocumentModal';
-import * as managerService from '../../services/manager/managerService';
 
-function SentDocuments({ id }) {
+function SentDocuments(props) {
   const [showPostModal, setShowPostModal] = useState(false);
+  const [candidate, setCandidate] = useState('');
   const inscritoModal = async () => {
     setShowPostModal(!showPostModal);
   };
-  const [candidato, setCandidato] = useState([]);
   useEffect(async () => {
-    const candidate = await managerService.getByIdCandidate('32068f61-d55e-4662-bcac-dda91f0eae49');
-    setCandidato(candidate);
-    console.log(id);
+    setCandidate(props.location.state.candidate);
   }, []);
   return (
     <div className="SD-externalDiv">
@@ -25,7 +22,7 @@ function SentDocuments({ id }) {
           Documentos Enviados
         </div>
         <div className="SD-personNameTitle">
-          {candidato.candidate_name}
+          {candidate.candidate_name}
         </div>
         <div className="SD-documentsDiv">
           <div className="SD-documentsDivLine">

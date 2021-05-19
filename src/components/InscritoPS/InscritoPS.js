@@ -6,18 +6,15 @@ import { FaTrash } from 'react-icons/fa';
 import * as managerService from '../../services/manager/managerService';
 import Modal from './Modal';
 
-function InscritoPS({ name, id }) {
+function InscritoPS({ candidate }) {
   const [showPostModal, setShowPostModal] = useState(false);
   const [detail, setDetail] = useState();
   const handleClick = async () => {
-    await managerService.denyCandidate(id);
+    await managerService.denyCandidate(candidate.candidate_id);
   };
   const inscritoModal = async () => {
-    const candidatoAtual = await managerService.getByIdCandidate(id);
     setShowPostModal(!showPostModal);
-    setDetail(candidatoAtual);
-    console.log({ candidatoAtual });
-    console.log({ detail });
+    setDetail(candidate);
   };
   return (
     <div className="linhaInscrito">
@@ -25,13 +22,20 @@ function InscritoPS({ name, id }) {
         <BsFileEarmarkArrowDown size={40} />
       </div>
       <div aria-hidden="true" className="nomeInscrito" onClick={() => inscritoModal()}>
-        {name}
+        {candidate.candidate_name}
       </div>
       <div className="trash">
         <FaTrash onClick={() => handleClick()} size={28} />
       </div>
       <div className="linkDocumentos">
-        <Link to="/"> Ver documentos enviados </Link>
+        <Link
+          to={{
+            pathname: '/documentos-enviados',
+            state: { candidate },
+          }}
+        >
+          Ver documentos enviados
+        </Link>
       </div>
       {
       showPostModal && (

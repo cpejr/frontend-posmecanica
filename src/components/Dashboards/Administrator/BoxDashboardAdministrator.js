@@ -6,7 +6,7 @@ import * as managerService from '../../../services/manager/managerService';
 function BoxDashboardAdministrator() {
   const [candidates, setCandidates] = useState([]);
   useEffect(async () => {
-    const selectiveProcess = await managerService.getByIdSelectiveProcess('ce96ed27-7d30-4157-bc63-bc9bd2a21dc6');
+    const selectiveProcess = await managerService.getByIdSelectiveProcess('0615d76a-acfa-4231-b698-0a66ec0ce7d7');
     const totalCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcess.candidate_process_id);
     setCandidates(totalCandidates);
   }, []);
@@ -16,8 +16,8 @@ function BoxDashboardAdministrator() {
       <div className="BDAtituloSecundario"> Lista de Inscritos: </div>
       <div className="BDAaba">
         <div className="BDAinscritos">
-          {candidates.map((candidate, key) => (
-            <InscritoPS name={candidate.candidate_name} id={candidate.candidate_id} chave={key} />
+          {candidates.map((candidate) => (
+            <InscritoPS candidate={candidate} key={candidate.candidate_id} />
           ))}
         </div>
       </div>
