@@ -1,46 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 .footer {
-  background-color: #1d2d57;
-  bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    background-color: #1d2d57;
+    bottom: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
-.imagem {
-  width: 120px;
-  padding: 10px;
+.image {
+    width: 120px;
+    padding: 10px;
 }
 
-.imagemC {
-  padding-left: 60px;
-  -webkit-transform: translateY(-7px);
-          transform: translateY(-7px);
-  width: 80px;
-  padding: 10px;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+.imageC {
+    padding-left: 60px;
+    -webkit-transform: translateY(-7px);
+    transform: translateY(-7px);
+    width: 80px;
+    padding: 10px;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
 }
 
 .text {
-  color: white;
-  font: normal 10pt Montserrat;
-  size: 14pt;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    color: white;
+    font: normal 10pt Montserrat;
+    size: 14pt;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 /*# sourceMappingURL=Footer.css.map */

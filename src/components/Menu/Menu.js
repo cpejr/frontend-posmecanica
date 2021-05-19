@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
+import Header from '../Navbar';
+import Footer from '../Footer';
+import './Menu.scss';
 
-function Menu({ inputProps, RightPanelContent }) {
+function Menu({ inputProps, LeftPanelContent }) {
+  const [expandRightPanel, setExpandRightPanel] = useState(true);
+
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
-      <LeftPanel inputProps={inputProps} />
-      <RightPanel>
-        {RightPanelContent}
-      </RightPanel>
+    <div className="containerDashboard">
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+      <div className="menuDashboard">
+        <LeftPanel>
+          {LeftPanelContent}
+        </LeftPanel>
+        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+      </div>
+      <Footer />
     </div>
   );
 }

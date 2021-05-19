@@ -1,24 +1,28 @@
 .linhaInscrito {
   display: flex;
-  justify-content: center;
   flex-direction: row;
+  align-items: center;
   box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+.inscritoPSicon{
+  display: flex;
+  justify-content: center;
+  width: 14.5%;
 }
 .nomeInscrito {
-  font-family: "calibri";
-  font-size: 26px;
-  margin-top: 15px;
-  margin-left: 10px;
-}
-.dots {
-  margin-top: 17px;
-  margin-left: 10px;
+  cursor: s-resize;
+  font-family: Montserrat;
+  font-size: 18px;
+  width: 33%;
 }
 .trash {
-  margin-top: 20px;
-  margin-left: 10px;
+  cursor: pointer;
+  width: 5%;
 }
 .linkDocumentos {
-  margin-top: 25px;
-  margin-left: 60px;
+  width: 47.5%;
+  font-family: Montserrat;
+  text-align: center;
 } 

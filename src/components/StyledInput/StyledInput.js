@@ -22,15 +22,20 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  type, label, id, width, field, select,
+  dados, setDados, type, label, id, width, field, select, height,
 }) {
   const [error, setError] = useState(false);
 
-  function handleChange(e) {
+  const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
       setError(true);
+    } else {
+      setError(false);
     }
-  }
+    const { value } = e.target;
+    setDados({ ...dados, [entrada]: value });
+  };
+
   return (
     <CssTextField
       InputLabelProps={{
@@ -42,8 +47,9 @@ function StyledInput({
       InputProps={{
         style: {
           color: '#1d2d57',
+          height,
           width,
-          marginBottom: '1rem',
+          marginBottom: '4.5vh',
         },
       }}
       error={error}
@@ -54,7 +60,7 @@ function StyledInput({
       id={id}
       width={width}
       select={select}
-      onChange={(e) => handleChange(e)}
+      onChange={(e) => handleChange(e, id)}
     >
       {field
         && field.map((option) => (

@@ -1,0 +1,22 @@
+.site-header-container{
+    display: flex;
+    align-items: center;
+    background-image: url("https://ppgmec.eng.ufmg.br/wp-content/uploads/2021/04/4882066-2-scaled.jpg");
+    background-position: center;
+}
+
+.site-header-menu-icon{
+    color: #ffffff;
+    font-size: 2em;
+}
+
+.site-header-logo img{
+    height: auto;
+    width: 120px;
+    margin-left: 20px;
+}
+
+a { 
+    color: inherit; 
+    text-decoration: none;
+} 

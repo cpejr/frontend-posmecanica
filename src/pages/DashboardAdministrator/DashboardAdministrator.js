@@ -15,13 +15,11 @@ function DashboardAdministrator() {
     },
   ];
 
-  const RightPanelContent = (
+  const LeftPanelContent = (
     <BoxDashboardAdministrator />
   );
   return (
-    <div style={{ height: '100%' }}>
-      <Menu RightPanelContent={RightPanelContent} inputProps={inputProps} />
-    </div>
+    <Menu LeftPanelContent={LeftPanelContent} inputProps={inputProps} />
   );
 }
 
