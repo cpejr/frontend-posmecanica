@@ -4,14 +4,18 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Document from '../../components/Document';
 import DocumentModal from './DocumentModal';
+import * as managerService from '../../services/manager/managerService';
 
-function SentDocuments({ name }) {
+function SentDocuments({ id }) {
   const [showPostModal, setShowPostModal] = useState(false);
   const inscritoModal = async () => {
     setShowPostModal(!showPostModal);
   };
+  const [candidato, setCandidato] = useState([]);
   useEffect(async () => {
-    console.log(name);
+    const candidate = await managerService.getByIdCandidate('32068f61-d55e-4662-bcac-dda91f0eae49');
+    setCandidato(candidate);
+    console.log(id);
   }, []);
   return (
     <div className="SD-externalDiv">
@@ -21,28 +25,16 @@ function SentDocuments({ name }) {
           Documentos Enviados
         </div>
         <div className="SD-personNameTitle">
-          Gustavo Almeida Baracho
+          {candidato.candidate_name}
         </div>
         <div className="SD-documentsDiv">
           <div className="SD-documentsDivLine">
-            <Document type="Documento Oficial com Foto" />
-            <Document type="Documento Oficial com Foto" />
+            <Document type="Registro Geral (RG)" />
+            <Document type="Cadastro de Pessoa Física (CPF)" />
           </div>
           <div className="SD-documentsDivLine">
-            <Document type="Documento Oficial com Foto" />
-            <Document type="Documento Oficial com Foto" />
-          </div>
-          <div className="SD-documentsDivLine">
-            <Document type="Documento Oficial com Foto" />
-            <Document type="Documento Oficial com Foto" />
-          </div>
-          <div className="SD-documentsDivLine">
-            <Document type="Documento Oficial com Foto" />
-            <Document type="Documento Oficial com Foto" />
-          </div>
-          <div className="SD-documentsDivLine">
-            <Document type="Documento Oficial com Foto" />
-            <Document type="Documento Oficial com Foto" />
+            <Document type="Comprovante de Residência" />
+            <Document type="Diploma de Graduação" />
           </div>
         </div>
         <div className="SD-buttons">

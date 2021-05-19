@@ -6,7 +6,7 @@ function SentDocuments({ type }) {
   return (
     <div className="Document-externalDiv">
       <div className="Document-icon">
-        <HiDocument size="3em" />
+        <HiDocument size="4em" />
       </div>
       <div className="Document-type">
         {type}

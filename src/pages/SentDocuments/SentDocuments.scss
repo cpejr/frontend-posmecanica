@@ -24,19 +24,17 @@ body {
   justify-content: center;
 }
 .SD-personNameTitle{
-  margin: 1%;
-  margin-left: 10%;
+  margin: 3%;
+  margin-left: 15%;
   font-size: 1.5em;
 }
 .SD-documentsDiv{
-  height: 30vh;
-  margin-left:10%;
+  height: 20vh;
+  margin-left:22%;
   margin-right:10%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   overflow: auto;
-  padding-top: 4%;
   .SD-documentsDivLine{
     display: flex;
     justify-content: center;
@@ -47,7 +45,7 @@ body {
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
-  margin: 3%;
+  margin-top: 5%;
   .SD-button-aprovar{
     button{
       background-color: green;
@@ -76,5 +74,50 @@ body {
       font-size: clamp(1vw, 1em, 1.5vw);
       cursor: pointer;
     }
+  }
+}
+@media screen and (max-width: 850px) {
+  .SD-title{
+    margin:0;
+    margin-bottom: 8%;
+  }
+  .SD-personNameTitle{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+  }
+  .SD-documentsDiv{
+    height: 30vh;
+    .SD-documentsDivLine{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .SD-buttons{
+    margin-top: 10%;
+    .SD-button-aprovar{
+      button{
+        height: clamp(10px, 8vh, 30em);
+        padding-left: 5%;
+        padding-right: 5%;
+        width: clamp(10px, 40vw, 15em);
+        font-size: clamp(10px, 1em, 15px);
+    }
+    }
+    .SD-button-solicitar{
+      button{
+        height: clamp(10px, 8vh, 30em);
+        padding-left: 5%;
+        padding-right: 5%;
+        width: clamp(10px, 40vw, 15em);
+        font-size: clamp(10px, 1em, 15px);
+      }
+    }
+  }
+}
+@media screen and (max-width: 330px) {
+  .SD-title{
+    font-size: 1.7em;
   }
 }
