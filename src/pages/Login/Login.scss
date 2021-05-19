@@ -19,7 +19,7 @@ body {
   background-color: $corFundo;
 }
 .Login {
-  background: #fff;
+  background: $azulPadrao;
   width: 35%;
   height: 70vh;
   display: flex;
@@ -32,7 +32,7 @@ body {
     text-align: center;
     margin-bottom: 4vh;
     font-size: clamp(20px, 1em + 1vw, 40px);
-    color: 'black';
+    color: #fff;
     font-weight: normal;
   }
 }
@@ -79,7 +79,7 @@ body {
 }
 @media screen and (max-width: 1000px) {
   .Login {
-    background: #fff;
+    background: $azulPadrao;
     width: 70vh;
     height: 70vh;
     display: flex;
@@ -93,7 +93,7 @@ body {
     .Login-title {
       text-align: center;
       margin-bottom: 4vh;
-      color: black;
+      color: #fff;
       font-weight: normal;
     }
   }

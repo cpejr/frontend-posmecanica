@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss';
-import logoCpe from '../../assets/logo_cpe_amarela.svg';
+import logoCpe from '../../Assets/logo_cpe_amarela.svg';
 
 export default function Footer() {
   return (

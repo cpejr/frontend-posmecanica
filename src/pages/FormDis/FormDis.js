@@ -4,11 +4,11 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import States from '../../utils/states';
-import CivilStatus from '../../utils/civil_status';
-import Genres from '../../utils/genres';
-import Races from '../../utils/races';
-import Booleans from '../../utils/boolean';
+import States from '../../Utils/states';
+import CivilStatus from '../../Utils/civil_status';
+import Genres from '../../Utils/genres';
+import Races from '../../Utils/races';
+import Booleans from '../../Utils/boolean';
 
 const states = States;
 const civilStatus = CivilStatus;
