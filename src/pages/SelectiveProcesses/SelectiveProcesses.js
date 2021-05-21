@@ -15,7 +15,6 @@ function SelectiveProcesses() {
   };
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
-  const [selectiveProcesses, setSelectiveProcesses] = useState();
   const [processMestrado, setProcessMestrado] = useState([]);
   const [processDoutorado, setProcessDoutorado] = useState([]);
   useEffect(async () => {
@@ -27,17 +26,11 @@ function SelectiveProcesses() {
   }, [dados]);
   useEffect(async () => {
     const selectiveProcess = await managerService.getAllSelectiveProcess();
-    setSelectiveProcesses(selectiveProcess);
     let newArray = selectiveProcess.filter((process) => process.process_type === 'MESTRADO');
     setProcessMestrado(newArray);
     newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
     setProcessDoutorado(newArray);
   }, []);
-  const handleClick = async () => {
-    console.log(selectiveProcesses);
-    console.log(processMestrado);
-    console.log(processDoutorado);
-  };
 
   return (
     <div className="SP-externalDiv">
@@ -89,9 +82,6 @@ function SelectiveProcesses() {
             ))}
           </div>
         </div>
-        <button type="button" onClick={() => handleClick()}>
-          oioi
-        </button>
       </div>
       <Footer />
     </div>

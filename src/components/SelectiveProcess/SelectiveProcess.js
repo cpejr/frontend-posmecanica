@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './SelectiveProcess.scss';
 
 function SelectiveProcess({ name, type, progress }) {
   const [inCourse, setInCourse] = useState();
+
   useEffect(async () => {
     if (progress === 'Finalizado') {
       setInCourse(false);
@@ -10,11 +12,14 @@ function SelectiveProcess({ name, type, progress }) {
       setInCourse(true);
     }
   }, []);
+
   return (
     <div className="compoSP-externalDiv">
       <div className="compoSP-titles">
         <div className="compoSP-principalTitle">
-          {name}
+          <Link to="/dashboard/professor">
+            {name}
+          </Link>
         </div>
         <div className="compoSP-subtitle">
           {type}
