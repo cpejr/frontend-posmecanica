@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import './StyledInputWithIcon.scss';
@@ -25,7 +25,14 @@ const CssTextField = withStyles(() => ({
 function StyledInput({
   dados, setDados, type, label, id, width, select, height,
 }) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState();
+  useEffect(async () => {
+    if (type === 'password') {
+      setShowPassword(false);
+    } else {
+      setShowPassword(true);
+    }
+  }, []);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   const [error, setError] = useState(false);
