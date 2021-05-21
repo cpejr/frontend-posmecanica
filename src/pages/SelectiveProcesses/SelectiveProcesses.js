@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
+import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../Utils/semesters';
 
@@ -14,13 +15,30 @@ function SelectiveProcesses() {
   };
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
+  const [selectiveProcesses, setSelectiveProcesses] = useState();
+  const [processMestrado, setProcessMestrado] = useState([]);
+  const [processDoutorado, setProcessDoutorado] = useState([]);
   useEffect(async () => {
     if (dados.semester === '') {
-      setPeriod(` ${dados.semester}`);
+      setPeriod(`${dados.semester}`);
     } else {
       setPeriod(`: ${dados.semester}`);
     }
   }, [dados]);
+  useEffect(async () => {
+    const selectiveProcess = await managerService.getAllSelectiveProcess();
+    setSelectiveProcesses(selectiveProcess);
+    let newArray = selectiveProcess.filter((process) => process.process_type === 'MESTRADO');
+    setProcessMestrado(newArray);
+    newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
+    setProcessDoutorado(newArray);
+  }, []);
+  const handleClick = async () => {
+    console.log(selectiveProcesses);
+    console.log(processMestrado);
+    console.log(processDoutorado);
+  };
+
   return (
     <div className="SP-externalDiv">
       <Navbar />
@@ -53,12 +71,27 @@ function SelectiveProcesses() {
             </div>
           </div>
           <div className="SP-bottomBar">
-            <SelectiveProcess name="Processo 2021/1" type="Mestrado" progress="Em andamento" />
-            <SelectiveProcess name="Processo 2021/1" type="Doutorado" progress="Finalizado" />
-            <SelectiveProcess name="Processo 2021/1" type="Mestrado" progress="Em andamento" />
-            <SelectiveProcess name="Processo 2021/1" type="Doutorado" progress="Finalizado" />
+            {processMestrado.map((process, key) => (
+              <SelectiveProcess
+                name={process.process_name}
+                type={process.process_type}
+                progress="Em andamento"
+                chave={key}
+              />
+            ))}
+            {processDoutorado.map((process) => (
+              <SelectiveProcess
+                name={process.process_name}
+                type={process.process_type}
+                id={process.process_id}
+                progress="Finalizado"
+              />
+            ))}
           </div>
         </div>
+        <button type="button" onClick={() => handleClick()}>
+          oioi
+        </button>
       </div>
       <Footer />
     </div>
