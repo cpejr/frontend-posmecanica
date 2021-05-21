@@ -41,3 +41,15 @@
   background-color: #843125;
   cursor: default;
 }
+@media screen and (max-width: 1000px) {
+  .compoSP-externalDiv{
+    width: 90%;
+    margin-bottom: 8%;
+  }
+  .compoSP-buttonFinalizado{
+    padding: 10px;
+  }
+.compoSP-buttonAndamento{
+  padding: 10px;
+}
+}
