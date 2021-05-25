@@ -15,6 +15,9 @@ function Login() {
   };
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
+  const handleChange = (value, field) => {
+    setUser({ ...user, [field]: value });
+  };
 
   const handleClick = async (e) => {
     try {
@@ -40,7 +43,7 @@ function Login() {
               label="Email"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
             <StyledInput
               type="text"
@@ -48,7 +51,7 @@ function Login() {
               label="Senha"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
           </div>
           <div className="Login-botoes">

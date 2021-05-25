@@ -1,16 +1,15 @@
 import React from 'react';
 import './Document.scss';
-import { HiDocument } from 'react-icons/hi';
 
-function SentDocuments({ type }) {
+function SentDocuments({ children, type, handleClick }) {
   return (
     <div className="Document-externalDiv">
       <div className="Document-icon">
-        <HiDocument size="4em" />
+        {children}
       </div>
-      <div className="Document-type">
+      <button type="button" onClick={() => handleClick()} className="Document-type">
         {type}
-      </div>
+      </button>
 
     </div>
   );

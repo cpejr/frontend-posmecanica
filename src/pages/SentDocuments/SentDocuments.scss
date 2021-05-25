@@ -1,6 +1,3 @@
-body {
-  margin: 0px;
-}
 .SD-externalDiv {
   width: 100vw;
   height: 100vh;
@@ -9,115 +6,15 @@ body {
   padding: 0;
   .SD-screen{
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
 }
-.SD-title{
-  font-family: Montserrat;
-  font-size: 2.0em;
-  margin:1%;
-  font-weight: bold;
+.sentDoc-pagination {
   display: flex;
+  margin-top: 3%;
+  margin-bottom: 2%;
   justify-content: center;
-}
-.SD-personNameTitle{
-  margin: 3%;
-  margin-left: 15%;
-  font-size: 1.5em;
-}
-.SD-documentsDiv{
-  height: 20vh;
-  margin-left:22%;
-  margin-right:10%;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  .SD-documentsDivLine{
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-  }
-}
-.SD-buttons{
-  display: flex;
-  justify-content: center;
-  justify-content: space-evenly;
-  margin-top: 5%;
-  .SD-button-aprovar{
-    button{
-      background-color: green;
-      height: 7vh;
-      width: 15vw;
-      border: 0;
-      color: #ffffff;
-      border-radius: 0.9em;
-      text-shadow: 0.1em 0.13em 0.13em #000;
-      box-shadow: 0.2em 0.2em 0.5em #000;
-      font-size: clamp(1vw, 1em, 2vw);
-    cursor: pointer;
-  }
-  }
-  .SD-button-solicitar{
-    button{
-      padding: 1%;
-      background-color: red;
-      height: 7vh;
-      width: 15vw;
-      border: 0;
-      color: #ffffff;
-      border-radius: 0.9em;
-      text-shadow: 0.1em 0.13em 0.13em #000;
-      box-shadow: 0.2em 0.2em 0.5em #000;
-      font-size: clamp(1vw, 1em, 1.5vw);
-      cursor: pointer;
-    }
-  }
-}
-@media screen and (max-width: 850px) {
-  .SD-title{
-    margin:0;
-    margin-bottom: 8%;
-  }
-  .SD-personNameTitle{
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5%;
-  }
-  .SD-documentsDiv{
-    height: 30vh;
-    .SD-documentsDivLine{
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  .SD-buttons{
-    margin-top: 10%;
-    .SD-button-aprovar{
-      button{
-        height: clamp(10px, 8vh, 30em);
-        padding-left: 5%;
-        padding-right: 5%;
-        width: clamp(10px, 40vw, 15em);
-        font-size: clamp(10px, 1em, 15px);
-    }
-    }
-    .SD-button-solicitar{
-      button{
-        height: clamp(10px, 8vh, 30em);
-        padding-left: 5%;
-        padding-right: 5%;
-        width: clamp(10px, 40vw, 15em);
-        font-size: clamp(10px, 1em, 15px);
-      }
-    }
-  }
-}
-@media screen and (max-width: 330px) {
-  .SD-title{
-    font-size: 1.7em;
-  }
 }

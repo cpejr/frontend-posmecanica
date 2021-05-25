@@ -46,6 +46,10 @@ function FormPs() {
   const history = useHistory();
   const { addToast } = useToasts();
 
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
@@ -84,7 +88,7 @@ function FormPs() {
               label="Nome"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -94,7 +98,7 @@ function FormPs() {
               label="Data de Nascimento"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -104,7 +108,7 @@ function FormPs() {
               label="Nacionalidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -116,7 +120,7 @@ function FormPs() {
               label="Email"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -126,7 +130,7 @@ function FormPs() {
               label="Número do telefone"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -140,7 +144,7 @@ function FormPs() {
               field={estadosCivil}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -152,7 +156,7 @@ function FormPs() {
               field={racas}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -164,7 +168,7 @@ function FormPs() {
               field={generos}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -183,7 +187,7 @@ function FormPs() {
               label="CPF"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -195,7 +199,7 @@ function FormPs() {
               label="Identidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -205,7 +209,7 @@ function FormPs() {
               label="Orgão Expeditor"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -217,7 +221,7 @@ function FormPs() {
               label="Título de Eleitor"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -227,7 +231,7 @@ function FormPs() {
               label="Zona Eleitoral"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -237,7 +241,7 @@ function FormPs() {
               label="Sessão"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -256,7 +260,7 @@ function FormPs() {
               label="Rua"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -266,7 +270,7 @@ function FormPs() {
               label="Número residencial"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
 
@@ -279,7 +283,7 @@ function FormPs() {
               label="Bairro"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -289,7 +293,7 @@ function FormPs() {
               label="CEP"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -301,7 +305,7 @@ function FormPs() {
               label="Cidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -313,7 +317,7 @@ function FormPs() {
               field={estados}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -323,7 +327,7 @@ function FormPs() {
               label="País"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -342,7 +346,7 @@ function FormPs() {
               label="Universidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -352,7 +356,7 @@ function FormPs() {
               label="Graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
 
@@ -365,7 +369,7 @@ function FormPs() {
               label="Data início da graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -375,7 +379,7 @@ function FormPs() {
               label="Data final da graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
