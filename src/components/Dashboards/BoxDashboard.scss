@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+.BdMenu {
+  height: 100%;
+}
+.BdTitle {
+  height: 20%;
+  font-size: 35px;
+  font-family: Montserrat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.BdBox {
+  margin: 0px 50px 0px 50px;
+  height: 410px;
+  border: 1px solid #C4C4C4;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px #C4C4C4;
+  overflow: hidden;
+}
+
+.BdBoxTitle {
+  height: 20%;
+  background: #B6B9D3;
+  border-radius: 5px 5px 0px 0px;
+  font-size: 28px;
+  font-family: Montserrat;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+.BdDivGrid {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

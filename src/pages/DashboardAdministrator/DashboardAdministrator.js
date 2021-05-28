@@ -8,7 +8,7 @@ function DashboardAdministrator() {
       text: 'editar informações',
     },
     {
-      text: 'editar informações',
+      text: 'nando sonolento',
     },
     {
       text: 'redefinição de senha',

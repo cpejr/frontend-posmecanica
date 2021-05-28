@@ -23,7 +23,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  dados, setDados, type, label, id, width, select, height,
+  setDados, type, label, id, width, select, height,
 }) {
   const [showPassword, setShowPassword] = useState();
   useEffect(async () => {
@@ -43,7 +43,7 @@ function StyledInput({
       setError(false);
     }
     const { value } = e.target;
-    setDados({ ...dados, [entrada]: value });
+    setDados(value, entrada);
   };
   return (
     <div>

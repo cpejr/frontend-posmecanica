@@ -136,11 +136,11 @@ function ProfessorList() {
                               </div>
                               <div className="professor-list-desc-item">
                                 <p>Descrição: </p>
-                                {/* <span>{professor.}</span> */}
+                                <span>{professor.professor_description}</span>
                               </div>
                               <div className="professor-list-desc-item">
                                 <p>Currículo Lattes: </p>
-                                {/* <span>{professor.prof_country}</span> */}
+                                <a href={professor.professor_curriculum}>Ver Currículo</a>
                               </div>
                             </AccordionDetails>
                           </Accordion>
