@@ -11,6 +11,7 @@ import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import ProfessorList from './pages/ProfessorList';
 import SelectiveProcesses from './pages/SelectiveProcesses';
+import StylePDF from './components/StylePDF';
 
 const useStyles = makeStyles({
   container: {
@@ -35,6 +36,7 @@ function Routes() {
           <Route path="/formulario-processo-seletivo" component={FormPs} />
           <Route path="/professor-list" component={ProfessorList} />
           <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route path="/pdf" component={StylePDF} />
         </Switch>
       </div>
     </BrowserRouter>
