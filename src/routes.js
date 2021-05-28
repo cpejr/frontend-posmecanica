@@ -9,6 +9,7 @@ import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import ProfessorList from './pages/ProfessorList';
 import SentDocuments from './pages/SentDocuments';
+import SelectiveProcesses from './pages/SelectiveProcesses';
 
 const useStyles = makeStyles({
   container: {
@@ -32,6 +33,7 @@ function Routes() {
           <Route path="/formulario-processo-seletivo" component={FormPs} />
           <Route path="/professor-list" component={ProfessorList} />
           <Route path="/documentos-enviados" component={SentDocuments} />
+          <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
         </Switch>
       </div>
     </BrowserRouter>

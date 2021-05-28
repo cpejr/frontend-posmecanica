@@ -4,17 +4,17 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import Estados from '../../Utils/Estados';
-import EstadoCivil from '../../Utils/Estado_civil';
-import Generos from '../../Utils/Generos';
-import Racas from '../../Utils/Racas';
-import Booleanos from '../../Utils/Booleanos';
+import States from '../../Utils/states';
+import CivilStatus from '../../Utils/civil_status';
+import Genres from '../../Utils/genres';
+import Races from '../../Utils/races';
+import Booleans from '../../Utils/boolean';
 
-const estados = Estados;
-const estadosCivil = EstadoCivil;
-const generos = Generos;
-const racas = Racas;
-const booleanos = Booleanos;
+const states = States;
+const civilStatus = CivilStatus;
+const genres = Genres;
+const races = Races;
+const booleans = Booleans;
 
 function FormDis() {
   const initialState = {
@@ -66,7 +66,10 @@ function FormDis() {
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
-      await managerService.createCandidate(dados, '30faa94c-4855-4620-85ed-d10823469b31');
+      const selectiveProcesses = await managerService.getSelectiveProcess('process_type', 'ISOLADA');
+      await managerService.createCandidate(
+        dados, selectiveProcesses[0].process_id,
+      );
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os dados!', { appearance: 'error' });
@@ -143,7 +146,7 @@ function FormDis() {
               id="candidate_civil_state"
               label="Estado Civil"
               width="16rem"
-              field={estadosCivil}
+              field={civilStatus}
               select
               dados={dados}
               setDados={handleChange}
@@ -155,7 +158,7 @@ function FormDis() {
               id="candidate_race"
               label="Raça"
               width="16rem"
-              field={racas}
+              field={races}
               select
               dados={dados}
               setDados={handleChange}
@@ -167,7 +170,7 @@ function FormDis() {
               id="candidate_gender"
               label="Gênero"
               width="16rem"
-              field={generos}
+              field={genres}
               select
               dados={dados}
               setDados={handleChange}
@@ -315,7 +318,7 @@ function FormDis() {
               id="candidate_state"
               label="Estado"
               width="16rem"
-              field={estados}
+              field={states}
               select
               dados={dados}
               setDados={handleChange}
@@ -400,7 +403,7 @@ function FormDis() {
               id="candidate_ufmg_active_serv"
               label="Servidor ativo da UFMG?"
               width="16rem"
-              field={booleanos}
+              field={booleans}
               select
               dados={dados}
               setDados={handleChange}
@@ -412,7 +415,7 @@ function FormDis() {
               id="candidate_ufmg_retired_serv"
               label="Servidor aposentado da UFMG?"
               width="16rem"
-              field={booleanos}
+              field={booleans}
               select
               dados={dados}
               setDados={handleChange}

@@ -1,4 +1,4 @@
-const Generos = [
+const Genres = [
   { label: 'mulher cis', value: 'mulher cis' },
   { label: 'mulher trans', value: 'mulher trans' },
   { label: 'homem cis', value: 'homem cis' },
@@ -6,4 +6,4 @@ const Generos = [
   { label: 'agenero', value: 'agenero' },
   { label: 'outro', value: 'outro' },
 ];
-export default Generos;
+export default Genres;

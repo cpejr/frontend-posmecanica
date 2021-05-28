@@ -1,4 +1,4 @@
-const Estados = [
+const States = [
   { label: 'AC', value: 'Acre' },
   { label: 'AL', value: 'Alagoas' },
   { label: 'AP', value: 'Amapá' },
@@ -27,4 +27,4 @@ const Estados = [
   { label: 'SE', value: 'Sergipe' },
   { label: 'TO', value: 'Tocantins' },
 ];
-export default Estados;
+export default States;

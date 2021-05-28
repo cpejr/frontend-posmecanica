@@ -49,6 +49,12 @@ export const getByIdSelectiveProcess = async (selectiveProcessId) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+export const getAllSelectiveProcess = async () => {
+  const times = 0;
+  const response = await requesterService.getAllSelectiveProcess(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const getSearchArea = async (field, filter) => {
   const times = 0;

@@ -22,7 +22,6 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
-export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {
@@ -32,4 +31,10 @@ export const getSearchArea = (times, field, filter) => httpClient.get('/searchAr
   },
 });
 
+export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
+export const getAllSelectiveProcess = (times) => httpClient.get('/selectiveProcesses/', {
+  params: {
+    times,
+  },
+});
 export const login = (user) => httpClient.post('/login', user);
