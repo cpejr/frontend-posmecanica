@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+.isoPsListItem {
+  display: flex;
+  align-items: center;
+}
+.isoPsDivItem {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: Montserrat;
+  width: 28%;
+}
+.isoPsDivButtons {
+  display: flex;
+  align-items: center;
+  width: 39%;
+  justify-content: space-around;
+}
+.isoPsConfirmButton {
+  background: green!important;
+  color: white!important;
+}
+.isoPsDenyButton {
+  background: red!important;
+  color: white!important;
+}
+.isoPsLinkButton {
+  color: black;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat;
+}
+.isoPsIcon {
+  margin: 0px 15px 0px 15px;
+}

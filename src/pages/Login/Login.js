@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
-import StyledInput from '../../components/StyledInput';
+import StyledInputWithIcon from '../../components/StyledInputWithIcon';
 import * as managerService from '../../services/manager/managerService';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -15,6 +15,9 @@ function Login() {
   };
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
+  const handleChange = (value, field) => {
+    setUser({ ...user, [field]: value });
+  };
 
   const handleClick = async (e) => {
     try {
@@ -34,21 +37,21 @@ function Login() {
             Login
           </div>
           <div className="Login-inputs">
-            <StyledInput
+            <StyledInputWithIcon
               type="text"
               id="email"
               label="Email"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
-            <StyledInput
-              type="text"
+            <StyledInputWithIcon
+              type="password"
               id="password"
               label="Senha"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
           </div>
           <div className="Login-botoes">

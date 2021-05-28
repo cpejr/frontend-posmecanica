@@ -47,6 +47,9 @@ function FormDis() {
     candidate_ufmg_retired_serv: '',
   };
   const [dados, setDados] = useState(initialState);
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
   const { addToast } = useToasts();
 
   const handleClick = async (e) => {
@@ -63,7 +66,10 @@ function FormDis() {
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
-      await managerService.createCandidate(dados, '30faa94c-4855-4620-85ed-d10823469b31');
+      const selectiveProcesses = await managerService.getSelectiveProcess('process_type', 'ISOLADA');
+      await managerService.createCandidate(
+        dados, selectiveProcesses[0].process_id,
+      );
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os dados!', { appearance: 'error' });
@@ -87,7 +93,7 @@ function FormDis() {
               label="Nome"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -97,7 +103,7 @@ function FormDis() {
               label="Data de Nascimento"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -107,7 +113,7 @@ function FormDis() {
               label="Nacionalidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -119,7 +125,7 @@ function FormDis() {
               label="Email"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -129,7 +135,7 @@ function FormDis() {
               label="Número do telefone"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -143,7 +149,7 @@ function FormDis() {
               field={civilStatus}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -155,7 +161,7 @@ function FormDis() {
               field={races}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -167,7 +173,7 @@ function FormDis() {
               field={genres}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -186,7 +192,7 @@ function FormDis() {
               label="CPF"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -198,7 +204,7 @@ function FormDis() {
               label="Identidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -208,7 +214,7 @@ function FormDis() {
               label="Orgão Expeditor"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -220,7 +226,7 @@ function FormDis() {
               label="Título de Eleitor"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -230,7 +236,7 @@ function FormDis() {
               label="Zona Eleitoral"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -240,7 +246,7 @@ function FormDis() {
               label="Sessão"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -259,7 +265,7 @@ function FormDis() {
               label="Rua"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -269,7 +275,7 @@ function FormDis() {
               label="Número residencial"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -281,7 +287,7 @@ function FormDis() {
               label="Bairro"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -291,7 +297,7 @@ function FormDis() {
               label="CEP"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -303,7 +309,7 @@ function FormDis() {
               label="Cidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -315,7 +321,7 @@ function FormDis() {
               field={states}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -325,7 +331,7 @@ function FormDis() {
               label="País"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -344,7 +350,7 @@ function FormDis() {
               label="Universidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -354,7 +360,7 @@ function FormDis() {
               label="Graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -366,7 +372,7 @@ function FormDis() {
               label="Data início da graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -376,7 +382,7 @@ function FormDis() {
               label="Data final da graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -388,7 +394,7 @@ function FormDis() {
               label="Universidade da Pós Graduação"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -400,7 +406,7 @@ function FormDis() {
               field={booleans}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_input">
@@ -412,7 +418,7 @@ function FormDis() {
               field={booleans}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>

@@ -1,0 +1,34 @@
+.Document-externalDiv{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+.Document-type{
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: Montserrat;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  background: none;
+  border: none;
+}
+.Document-type:hover{
+  cursor: pointer;
+  border-bottom: 2px solid;
+}
+@media screen and (max-width: 1000px) {
+  .Document-externalDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 0;
+  }
+  .Document-type{
+    font-size: 1em;
+    font-weight: bold;
+    font-family: Montserrat;
+    display: flex;
+    align-items: center;
+  }
+}

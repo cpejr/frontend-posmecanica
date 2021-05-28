@@ -1,0 +1,20 @@
+.SD-externalDiv {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  .SD-screen{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+.sentDoc-pagination {
+  display: flex;
+  margin-top: 3%;
+  margin-bottom: 2%;
+  justify-content: center;
+}
