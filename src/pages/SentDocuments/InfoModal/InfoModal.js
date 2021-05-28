@@ -5,7 +5,7 @@ import { FiX } from 'react-icons/fi';
 function InfoModal({ close, conteudo }) {
   return (
     <div className="modal">
-      <div className="container">
+      <div className="infoModalcontainer">
         <button type="button" className="close" onClick={close}>
           <FiX size={23} className="modalCloseIcon" color="#FFF" />
           Fechar
