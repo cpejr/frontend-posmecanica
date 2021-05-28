@@ -66,12 +66,30 @@ export const getSearchArea = async (field, filter) => {
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+  const usuario = response.data.user;
+  const fields = Object.keys(usuario).find((field) => field.includes('id'));
+  const id = usuario[fields];
   const userStorage = {
     name: response.data.user.name,
     email: response.data.user.email,
     type: response.data.user.type,
     acessToken: response.data.accessToken,
+    id,
   };
+
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
+};
+
+export const forgetPass = async (user, id) => {
+  const newSenha = { adm_defaultPassword: user };
+  const response = await requesterService.Forgetpass(newSenha, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  window.location.href = '/login';
+};
+export const createDiscipline = async (discipline) => {
+  // eslint-disable-next-line no-console
+  console.log(discipline);
+  const response = await requesterService.createDiscipline(discipline);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };

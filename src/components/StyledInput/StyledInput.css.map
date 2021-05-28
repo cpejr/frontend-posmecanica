@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,mBAAmB,CAAC,sBAAsB,CAAC;EACzC,KAAK,EAAE,WAAW;CACnB",
+    "sources": [
+        "StyledInput.scss"
+    ],
+    "names": [],
+    "file": "StyledInput.css"
+}

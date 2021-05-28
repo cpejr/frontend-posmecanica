@@ -31,6 +31,8 @@ export const getSearchArea = (times, field, filter) => httpClient.get('/searchAr
   },
 });
 
+export const Forgetpass = (newSenha, id) => httpClient.put(`/adms/${id}`, newSenha);
+
 export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
 export const getAllSelectiveProcess = (times) => httpClient.get('/selectiveProcesses/', {
   params: {
@@ -38,3 +40,4 @@ export const getAllSelectiveProcess = (times) => httpClient.get('/selectiveProce
   },
 });
 export const login = (user) => httpClient.post('/login', user);
+export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
