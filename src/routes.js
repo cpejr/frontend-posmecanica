@@ -26,16 +26,16 @@ function Routes() {
     <BrowserRouter>
       <div className={classes.container}>
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/dashboard/professor" component={DashboardProfessor} />
-          <Route path="/dashboard/administrator" component={DashboardAdministrator} />
-          <Route path="/esqueciSenha" component={forgetPass} />
-          <Route path="/formulario-disciplina-isolada" component={FormDis} />
-          <Route path="/formulario-processo-seletivo" component={FormPs} />
-          <Route path="/professor-list" component={ProfessorList} />
-          <Route path="/cadastro-disciplina" component={registerDis} />
-          <Route path="/documentos-enviados" component={SentDocuments} />
-          <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route exact path="/dashboard/professor" component={DashboardProfessor} />
+          <Route exact path="/dashboard/administrator" component={DashboardAdministrator} />
+          <Route exact path="/esqueciSenha" component={forgetPass} />
+          <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
+          <Route exact path="/formulario-processo-seletivo" component={FormPs} />
+          <Route exact path="/professor-list" component={ProfessorList} />
+          <Route exact path="/cadastro-disciplina" component={registerDis} />
+          <Route exact path="/documentos-enviados" component={SentDocuments} />
+          <Route exact path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route path="/" component={Login} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -76,9 +76,8 @@ export const login = async (user) => {
     acessToken: response.data.accessToken,
     id,
   };
-
   localStorage.setItem('user', JSON.stringify(userStorage));
-  window.location.href = '/';
+  window.location.href = `/dashboard/${response.data.user.type}`;
 };
 
 export const forgetPass = async (user, id) => {
@@ -88,8 +87,6 @@ export const forgetPass = async (user, id) => {
   window.location.href = '/login';
 };
 export const createDiscipline = async (discipline) => {
-  // eslint-disable-next-line no-console
-  console.log(discipline);
   const response = await requesterService.createDiscipline(discipline);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
