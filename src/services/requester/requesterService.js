@@ -9,10 +9,13 @@ export const getCandidates = (times, field, filter) => httpClient.get('/candidat
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
-export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
+
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
-export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
+export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
+export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
+
+export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
 
 export const getSelectiveProcess = (times, field, filter) => httpClient.get('/selectiveProcesses', {
   params: {
@@ -40,4 +43,5 @@ export const getAllSelectiveProcess = (times) => httpClient.get('/selectiveProce
   },
 });
 export const login = (user) => httpClient.post('/login', user);
-export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
+
+export const createProfessor = (professor) => httpClient.post('/professors', professor);

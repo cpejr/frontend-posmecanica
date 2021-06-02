@@ -22,7 +22,8 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height,
+  setDados, type, label, id, width, field, select, height, multiline = false,
+
 }) {
   const [error, setError] = useState(false);
 
@@ -50,8 +51,10 @@ function StyledInput({
           height,
           width,
           marginBottom: '4.5vh',
+          alignItems: 'flex-start',
         },
       }}
+      multiline={multiline}
       error={error}
       type={type}
       min="0"
