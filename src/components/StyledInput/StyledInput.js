@@ -22,7 +22,8 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  dados, setDados, type, label, id, width, field, select, height, multiline = false,
+  setDados, type, label, id, width, field, select, height, multiline = false,
+
 }) {
   const [error, setError] = useState(false);
 
@@ -33,7 +34,7 @@ function StyledInput({
       setError(false);
     }
     const { value } = e.target;
-    setDados({ ...dados, [entrada]: value });
+    setDados(value, entrada);
   };
 
   return (

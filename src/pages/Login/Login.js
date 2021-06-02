@@ -11,10 +11,13 @@ function Login() {
   const initialUser = {
     email: '',
     password: '',
-    type: 'administrator',
   };
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
+  const handleChange = (value, field) => {
+    setUser({ ...user, [field]: value });
+  };
+
   const handleClick = async (e) => {
     try {
       e.preventDefault();
@@ -39,7 +42,7 @@ function Login() {
               label="Email"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
             <StyledInputWithIcon
               type="password"
@@ -47,7 +50,7 @@ function Login() {
               label="Senha"
               width="35vh"
               dados={user}
-              setDados={setUser}
+              setDados={handleChange}
             />
           </div>
           <div className="Login-botoes">
@@ -55,10 +58,7 @@ function Login() {
               <button type="button" onClick={handleClick}>Entrar</button>
             </div>
             <div className="Login-link">
-              <Link to="login"> Esqueceu a senha? </Link>
-            </div>
-            <div className="Login-button2">
-              <button type="button">Cadastrar-se</button>
+              <Link to="esqueciSenha"> Esqueceu a senha? </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
@@ -6,11 +5,12 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
-import Navbar from './components/Navbar/index';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import FormProf from './pages/FormProf';
 import ProfessorList from './pages/ProfessorList';
+import registerDis from './pages/registerDis';
+import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
 import StylePDF from './components/StylePDF';
 
@@ -28,18 +28,18 @@ function Routes() {
     <BrowserRouter>
       <div className={classes.container}>
         <Switch>
-          <Route exact from="/" render={(props) => <Navbar {...props} />} />
-          <Route path="/login" component={Login} />
-          <Route path="/dashboard/professor" component={DashboardProfessor} />
-          <Route path="/dashboard/administrator" component={DashboardAdministrator} />
-          <Route path="/esqueciSenha" component={forgetPass} />
-          <Route path="/formulario-disciplina-isolada" component={FormDis} />
-          <Route path="/formulario-processo-seletivo" component={FormPs} />
-          <Route path="/formulario-professores" component={FormProf} />
-          <Route path="/professor-list" component={ProfessorList} />
-          <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
-          <Route path="/pdf" component={StylePDF} />
-
+          <Route exact path="/dashboard/professor" component={DashboardProfessor} />
+          <Route exact path="/dashboard/administrator" component={DashboardAdministrator} />
+          <Route exact path="/esqueciSenha" component={forgetPass} />
+          <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
+          <Route exact path="/formulario-processo-seletivo" component={FormPs} />
+          <Route exact path="/formulario-professores" component={FormProf} />
+          <Route exact path="/professor-list" component={ProfessorList} />
+          <Route exact path="/cadastro-disciplina" component={registerDis} />
+          <Route exact path="/documentos-enviados" component={SentDocuments} />
+          <Route exact path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route exact path="/pdf" component={StylePDF} />
+          <Route path="/" component={Login} />
         </Switch>
       </div>
     </BrowserRouter>
