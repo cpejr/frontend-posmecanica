@@ -21,8 +21,8 @@ function FormProf() {
   const initialState = {
     prof_name: '',
     prof_email: '',
-    professor_description: '',
-    professor_curriculum: '',
+    prof_description: '',
+    prof_curriculum: '',
     prof_gender: '',
     prof_active: '',
     prof_birth: '',
@@ -43,10 +43,13 @@ function FormProf() {
   // const history = useHistory();
   const { addToast } = useToasts();
 
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (1) {
-      console.log(dados);
       await managerService.createProfessor(dados);
       // history.push('/');
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
@@ -72,7 +75,7 @@ function FormProf() {
               label="Nome"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -82,7 +85,7 @@ function FormProf() {
               label="Data de Nascimento"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -92,7 +95,7 @@ function FormProf() {
               label="CPF"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -104,7 +107,7 @@ function FormProf() {
               label="Email"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -116,7 +119,7 @@ function FormProf() {
               field={genres}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -135,7 +138,7 @@ function FormProf() {
               label="Cidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -147,7 +150,7 @@ function FormProf() {
               field={states}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -157,7 +160,7 @@ function FormProf() {
               label="País"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -177,17 +180,17 @@ function FormProf() {
               label="Universidade"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
             <StyledInput
               type="text"
-              id="professor_curriculum"
+              id="prof_curriculum"
               label="Currículo"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -199,7 +202,7 @@ function FormProf() {
               select
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -213,7 +216,7 @@ function FormProf() {
               select
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -225,7 +228,7 @@ function FormProf() {
               select
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -235,7 +238,7 @@ function FormProf() {
               label="Curso"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -249,7 +252,7 @@ function FormProf() {
               select
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -259,7 +262,7 @@ function FormProf() {
               label="Data do título"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
           <div className="form_dis_ps_input">
@@ -269,7 +272,7 @@ function FormProf() {
               label="Como gostaria de ser chamado?"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -281,7 +284,7 @@ function FormProf() {
               label="Local de trabalho"
               width="16rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>
@@ -297,12 +300,12 @@ function FormProf() {
             <StyledInput
               multiline
               type="text"
-              id="professor_description"
+              id="prof_description"
               label=""
               width="70rem"
               height="30rem"
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>

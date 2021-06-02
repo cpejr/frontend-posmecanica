@@ -13,6 +13,8 @@ export const getCandidates = (times, field, filter) => httpClient.get('/candidat
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
+export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
+
 export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
 
 export const getSelectiveProcess = (times, field, filter) => httpClient.get('/selectiveProcesses', {
