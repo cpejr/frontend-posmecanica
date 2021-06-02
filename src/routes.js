@@ -9,6 +9,7 @@ import DashboardAdministrator from './pages/DashboardAdministrator';
 import Navbar from './components/Navbar/index';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
+import FormProf from './pages/FormProf';
 import ProfessorList from './pages/ProfessorList';
 import SelectiveProcesses from './pages/SelectiveProcesses';
 import StylePDF from './components/StylePDF';
@@ -34,9 +35,11 @@ function Routes() {
           <Route path="/esqueciSenha" component={forgetPass} />
           <Route path="/formulario-disciplina-isolada" component={FormDis} />
           <Route path="/formulario-processo-seletivo" component={FormPs} />
+          <Route path="/formulario-professores" component={FormProf} />
           <Route path="/professor-list" component={ProfessorList} />
           <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
           <Route path="/pdf" component={StylePDF} />
+
         </Switch>
       </div>
     </BrowserRouter>
