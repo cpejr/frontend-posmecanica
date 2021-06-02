@@ -11,7 +11,6 @@ function Login() {
   const initialUser = {
     email: '',
     password: '',
-    type: 'administrator',
   };
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
@@ -59,10 +58,7 @@ function Login() {
               <button type="button" onClick={handleClick}>Entrar</button>
             </div>
             <div className="Login-link">
-              <Link to="login"> Esqueceu a senha? </Link>
-            </div>
-            <div className="Login-button2">
-              <button type="button">Cadastrar-se</button>
+              <Link to="esqueciSenha"> Esqueceu a senha? </Link>
             </div>
           </div>
         </div>

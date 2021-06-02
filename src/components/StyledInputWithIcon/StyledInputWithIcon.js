@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import './StyledInputWithIcon.scss';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Visibility from '@material-ui/icons/Visibility';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
 const CssTextField = withStyles(() => ({
   root: {
@@ -56,7 +54,8 @@ function StyledInput({
         }}
         InputProps={{
           style: {
-            color: '#1d2d57',
+            color: 'black',
+            padding: '0',
             height,
             width,
             marginBottom: '4.5vh',
@@ -72,7 +71,7 @@ function StyledInput({
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      { showPassword ? <Visibility /> : <VisibilityOff />}
+                      { showPassword ? <MdVisibility /> : <MdVisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ) : <div />}
