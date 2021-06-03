@@ -140,7 +140,7 @@ function ProfessorList() {
                               </div>
                               <div className="professor-list-desc-item">
                                 <p>Currículo Lattes: </p>
-                                <a href={professor.prof_curriculum}>Ver Currículo</a>
+                                <a href={professor.prof_curriculum} target="_blank" rel="noreferrer">Ver Currículo</a>
                               </div>
                             </AccordionDetails>
                           </Accordion>
