@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../Utils/semesters';
+import SiteHeader from '../../components/SiteHeader';
 
 const semeters = Semeters;
 
@@ -34,7 +34,7 @@ function SelectiveProcesses() {
 
   return (
     <div className="SP-externalDiv">
-      <Navbar />
+      <SiteHeader />
       <div className="SP-screen">
         <div className="SP-title">
           Processos Seletivos

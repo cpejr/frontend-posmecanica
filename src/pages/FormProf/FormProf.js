@@ -40,7 +40,6 @@ function FormProf() {
     prof_workplace: '',
   };
   const [dados, setDados] = useState(initialState);
-  // const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -51,7 +50,6 @@ function FormProf() {
     e.preventDefault();
     if (1) {
       await managerService.createProfessor(dados);
-      // history.push('/');
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
@@ -187,7 +185,7 @@ function FormProf() {
             <StyledInput
               type="text"
               id="prof_curriculum"
-              label="Currículo"
+              label="Currículo Lattes"
               width="16rem"
               dados={dados}
               setDados={handleChange}
@@ -259,7 +257,7 @@ function FormProf() {
             <StyledInput
               type="number"
               id="prof_title_year"
-              label="Data do título"
+              label="Ano do título"
               width="16rem"
               dados={dados}
               setDados={handleChange}
