@@ -35,7 +35,6 @@ function registerDis() {
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
     }
-    console.log(dados);
   };
   return (
     <div className="screen-ps">

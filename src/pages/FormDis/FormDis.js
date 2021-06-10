@@ -2,19 +2,9 @@ import React, { useState } from 'react';
 import './FormDis.scss';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
-import StyledInput from '../../components/StyledInput';
+import Forms from '../../components/Forms';
 import * as managerService from '../../services/manager/managerService';
-import States from '../../Utils/states';
-import CivilStatus from '../../Utils/civil_status';
-import Genres from '../../Utils/genres';
-import Races from '../../Utils/races';
-import Booleans from '../../Utils/boolean';
-
-const states = States;
-const civilStatus = CivilStatus;
-const genres = Genres;
-const races = Races;
-const booleans = Booleans;
+import formsInput from '../../Utils/formsIsoDis';
 
 function FormDis() {
   const initialState = {
@@ -46,13 +36,11 @@ function FormDis() {
     candidate_ufmg_active_serv: '',
     candidate_ufmg_retired_serv: '',
   };
-  const [dados, setDados] = useState(initialState);
-  const handleChange = (value, field) => {
-    setDados({ ...dados, [field]: value });
-  };
+  const [files, setFiles] = useState([]);
+
   const { addToast } = useToasts();
 
-  const handleClick = async (e) => {
+  const handleClick = async (e, dados) => {
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
       && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
@@ -65,367 +53,34 @@ function FormDis() {
       && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
-      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3) {
+      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3
+      && files.length === 4) {
       const selectiveProcesses = await managerService.getSelectiveProcess('process_type', 'ISOLADA');
-      await managerService.createCandidate(
+      const id = await managerService.createCandidate(
         dados, selectiveProcesses[0].process_id,
       );
+      files.forEach(async (file) => {
+        const data = new FormData();
+        data.append('file', file.file);
+        await managerService.uploadFile(data, id, file.name);
+      });
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os dados!', { appearance: 'error' });
     }
   };
+
   return (
     <div className="form_dis_screen">
       <SiteHeader />
       <h1> Inscrição:</h1>
-      <div className="form_dis_box_title">
-        <div className="form_dis_title">
-          Dados Pessoais
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_name"
-              label="Nome"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="date"
-              id="candidate_birth"
-              label="Data de Nascimento"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_nationality"
-              label="Nacionalidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="email"
-              id="candidate_email"
-              label="Email"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_phone_number"
-              label="Número do telefone"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_civil_state"
-              label="Estado Civil"
-              width="16rem"
-              field={civilStatus}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_race"
-              label="Raça"
-              width="16rem"
-              field={races}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_gender"
-              label="Gênero"
-              width="16rem"
-              field={genres}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_box_title">
-        <div className="form_dis_title">
-          Documentação
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_cpf"
-              label="CPF"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_identity"
-              label="Identidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_expedition"
-              label="Orgão Expeditor"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="texte"
-              id="candidate_voter_title"
-              label="Título de Eleitor"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="number"
-              id="candidate_zone_title"
-              label="Zona Eleitoral"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="number"
-              id="candidate_section_title"
-              label="Sessão"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_box_title">
-        <div className="form_dis_title">
-          Endereço
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_street"
-              label="Rua"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="number"
-              id="candidate_adress_num"
-              label="Número residencial"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_district"
-              label="Bairro"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_cep"
-              label="CEP"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_city"
-              label="Cidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_state"
-              label="Estado"
-              width="16rem"
-              field={states}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_country"
-              label="País"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_box_title">
-        <div className="form_dis_title">
-          Graduação
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_university"
-              label="Universidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_graduation"
-              label="Graduação"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="date"
-              id="candidate_grade_date_begin"
-              label="Data início da graduação"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="date"
-              id="candidate_grade_date_end"
-              label="Data final da graduação"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_line">
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_pGraduate_university"
-              label="Universidade da Pós Graduação"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type=""
-              id="candidate_ufmg_active_serv"
-              label="Servidor ativo da UFMG?"
-              width="16rem"
-              field={booleans}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_input">
-            <StyledInput
-              type="text"
-              id="candidate_ufmg_retired_serv"
-              label="Servidor aposentado da UFMG?"
-              width="16rem"
-              field={booleans}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_divButton">
-        <button type="submit" onClick={handleClick}> Cadastre-se</button>
-      </div>
+      <Forms
+        initialState={initialState}
+        formsInput={formsInput}
+        files={files}
+        setFiles={setFiles}
+        handleClick={handleClick}
+      />
     </div>
   );
 }
