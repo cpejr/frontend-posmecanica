@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Pos Mecanica - Frontend
+### Estrutura de Diretórios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    -> src
+	    -> components
+      -> hooks
+      -> pages
+      -> providers
+      -> services
+        -> manager
+        -> requester
+      -> Utils
 
-## Available Scripts
+**-> src**
+* Pasta onde ficará código criado por nós, sendo ele dividido da seguinte forma:
+	**-> components**
+	* Pasta em que ficarão os components da aplicação frontend, ou seja, tudo aquilo que a gente definiu como conteúdos das nossas páginas que de alguma forma possam ser reaproveitadas e consigam nos ajudar quanto à produtividade e organização. Exemplo de componentes são botões e caixas de texto que são usadas em mais de uma página, ajudando-nos assim a gerar um padrão.
+	
+	**-> hooks**
+	* Pasta em que é configurada a comunicação do nosso frontend com o backend, fazendo com que toda essa parte consiga ficar concentrada em um único arquivo.
 
-In the project directory, you can run:
+  **-> pages**
+  * Pasta onde ficam todas as páginas do nossos sistema, sendo que cada pasta corresponde a uma página. Normalmente, dentro de cada pasta desta, encontram-se o código JavaScript da página, o arquivo de estilização específico deste primeiro e o arquivo **index.js** de exportação desta página para uso em outras partes do código.  
+  
+  **-> providers**
+  * Pasta onde fica a configuração dos React Context, configurando neste os dados a serem usados de forma mais genérica, independendo da conversação unilateral dos arquivos.
+  
+	**-> services**
+  * Pasta em que intermediam a conversa do backend e do frontend, deixando tal de forma mais organizada. Tal processo é realizado com o auxílio das seguintes pastas:
+	             **-> manager**
+	             * Pasta onde fica toda a parte de contato com o backend que poderia ficar no código da própria função, mas que não fica para deixar o código principal da forma mais sintetizada possível. Tal forma de estrutura também ajuda para caso algum dia queiramos mudar a ferramenta com que temo.s esse contato com o backend, não iremos precisar acessar muitas páginas para concluir tal modificação
+	             **-> requester**
+	             * Pasta que possui a última etapa da requisição do backend.
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+	**-> Utils**
+	* Pasta onde ficam arquivos utilitários dentro do sistema, como por exemplo códigos que contém de forma componentizazda os gêneros, estados e capitais do Brasil, raças, ...
+	
+### Ferramentas utilizadas
+* [ReacjJS](https://firebase.google.com/docs/ "ReacjJS") -> Biblioteca JavaScript de código aberto que usamos para criação de interfaces de usuário em páginas web.
+* [SCSS](http://knexjs.org/ "SCSS") -> Ferramenta de estilização que usamos que traz algumas funcionalidades que o CSS puro não conseguiria.
+* [ESLint](https://eslint.org/docs/user-guide/getting-started "ESLint") -> Ferramenta utilizada para padronização do código e do estilo aplicados.
+* [Material UI](https://www.npmjs.com/package/dotenv "Material UI") -> Biblioteca de componentes React para um desenvolvimento ágil e fácil de interfaces.
+* [React toast notifications](https://nodemailer.com/about/ "React toast notifications") -> Ferramenta utilizada para envio de notificações na interface quando feitas certas requisições.

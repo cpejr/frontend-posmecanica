@@ -97,3 +97,8 @@ export const createDiscipline = async (discipline) => {
   const response = await requesterService.createDiscipline(discipline);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const createProfessor = async (professor) => {
+  const response = await requesterService.createProfessor(professor);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

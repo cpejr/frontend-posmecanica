@@ -53,7 +53,7 @@ function Login() {
               setDados={handleChange}
             />
           </div>
-          <div className="Login-botoes">
+          <div className="Login-buttons">
             <div className="Login-button1">
               <button type="button" onClick={handleClick}>Entrar</button>
             </div>

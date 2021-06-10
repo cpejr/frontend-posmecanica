@@ -7,10 +7,12 @@ import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
+import FormProf from './pages/FormProf';
 import ProfessorList from './pages/ProfessorList';
 import registerDis from './pages/registerDis';
 import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
+import StylePDF from './components/StylePDF';
 
 const useStyles = makeStyles({
   container: {
@@ -31,10 +33,12 @@ function Routes() {
           <Route exact path="/esqueciSenha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
+          <Route exact path="/formulario-professores" component={FormProf} />
           <Route exact path="/professor-list" component={ProfessorList} />
           <Route exact path="/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route exact path="/pdf" component={StylePDF} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
