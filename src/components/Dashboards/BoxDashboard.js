@@ -8,7 +8,7 @@ import './BoxDashboard.scss';
 const titleType = TitleType;
 
 function BoxDashboard({
-  title, subtitle, list, type, isoCandidates, setIsoCandidates,
+  title, subtitle, list, type, isoCandidates, setIsoCandidates, processes,
 }) {
   const initialState = {
     type: '',
@@ -23,8 +23,16 @@ function BoxDashboard({
 
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
-    console.log(list);
   };
+  // Função para contar número de candidato dos ps. É usada na linha 49
+  function count() {
+    let processCount = 0;
+    processes.forEach((element) => {
+      processCount += element.count_candidates;
+    });
+    return processCount;
+  }
+
   return (
     <div className="BdMenu">
       <div className="BdTitle">
@@ -33,7 +41,18 @@ function BoxDashboard({
       <div>
         <div className="BdBox">
           <div className="BdBoxTitle">
-            {subtitle}
+            <div className="BdTitleNumber">
+              {subtitle}
+              <div className="BdNumberInscrition">
+                {processes.map((process) => {
+                  if (process.process_type === dados.type) {
+                    console.log(count());
+                    return process.count_candidates;
+                  }
+                  return <div />;
+                })}
+              </div>
+            </div>
             <div className={showInput ? 'BdInputReal' : 'BdInput'}>
               <StyledInput
                 type="text"
@@ -42,6 +61,7 @@ function BoxDashboard({
                 width="16rem"
                 field={titleType}
                 select
+                background="transparent"
                 dados={dados}
                 setDados={handleChange}
               />

@@ -27,8 +27,18 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   padding-left: 24px;
 }
+.BdTitleNumber{
+  display: flex;
+  width: 50%;
+}
+.BdNumberInscrition{
+  width: 5%;
+  margin-left: 5%;
+}
+
 .BdDivGrid {
   padding: 10px;
   display: flex;
@@ -39,4 +49,5 @@
   display: none;
 }
 .BdInputReal{
+  margin-top: 3%;
 }
