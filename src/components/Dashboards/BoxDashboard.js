@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BoxAdm from '../Inscritos/InscritosPS';
 import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
@@ -13,6 +13,12 @@ function BoxDashboard({
   const initialState = {
     type: '',
   };
+  const [showInput, setShowInput] = useState(false);
+  useEffect(async () => {
+    if (type === 'adm') {
+      setShowInput(true);
+    }
+  }, []);
   const [dados, setDados] = useState(initialState);
 
   const handleChange = (value, field) => {
@@ -28,7 +34,7 @@ function BoxDashboard({
         <div className="BdBox">
           <div className="BdBoxTitle">
             {subtitle}
-            <div>
+            <div className={showInput ? 'BdInputReal' : 'BdInput'}>
               <StyledInput
                 type="text"
                 id="type"
