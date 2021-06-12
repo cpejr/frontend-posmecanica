@@ -20,7 +20,6 @@ function BoxDashboard({
     }
   }, []);
   const [dados, setDados] = useState(initialState);
-
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
@@ -28,7 +27,7 @@ function BoxDashboard({
   function count() {
     let processCount = 0;
     processes.forEach((element) => {
-      processCount += element.count_candidates;
+      if (element.process_type === 'DOUTORADO' || element.process_type === 'MESTRADO') { processCount += element.count_candidates; }
     });
     return processCount;
   }
@@ -44,13 +43,14 @@ function BoxDashboard({
             <div className="BdTitleNumber">
               {subtitle}
               <div className="BdNumberInscrition">
-                {processes.map((process) => {
-                  if (process.process_type === dados.type) {
-                    console.log(count());
-                    return process.count_candidates;
-                  }
-                  return <div />;
-                })}
+                {dados.type !== ''
+                  ? (
+                    processes.map((process) => {
+                      if (process.process_type === dados.type) {
+                        return process.count_candidates;
+                      }
+                      return <div />;
+                    })) : count()}
               </div>
             </div>
             <div className={showInput ? 'BdInputReal' : 'BdInput'}>
