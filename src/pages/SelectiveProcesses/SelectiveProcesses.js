@@ -31,6 +31,9 @@ function SelectiveProcesses() {
     newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
     setProcessDoutorado(newArray);
   }, []);
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
 
   return (
     <div className="SP-externalDiv">
@@ -52,7 +55,7 @@ function SelectiveProcesses() {
               field={semeters}
               select
               dados={dados}
-              setDados={setDados}
+              setDados={handleChange}
             />
           </div>
         </div>

@@ -27,11 +27,27 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   padding-left: 24px;
 }
+.BdTitleNumber{
+  display: flex;
+  width: 50%;
+}
+.BdSubTitle{
+  width: 100%;
+
+}
+
 .BdDivGrid {
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.BdInput{
+  display: none;
+}
+.BdInputReal{
+  margin-top: 3%;
 }
