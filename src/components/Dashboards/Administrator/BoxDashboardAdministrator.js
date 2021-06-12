@@ -13,7 +13,7 @@ function BoxDashboardAdministrator() {
   }, []);
 
   return (
-    <Box title="Processo Seletivo" subtitle="Lista de Inscritos:" list={candidates} processes={processsSelective} type="adm" />
+    <Box title="Processo Seletivo" subtitle="Lista de Inscritos: " list={candidates} processes={processsSelective} type="adm" />
   );
 }
 

@@ -41,8 +41,8 @@ function BoxDashboard({
         <div className="BdBox">
           <div className="BdBoxTitle">
             <div className="BdTitleNumber">
-              {subtitle}
-              <div className="BdNumberInscrition">
+              <div className="BdSubTitle">
+                {subtitle}
                 {dados.type !== ''
                   ? (
                     processes.map((process) => {
