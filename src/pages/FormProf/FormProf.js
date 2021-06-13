@@ -48,25 +48,26 @@ function FormProf() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    if (1) {
+    try {
       await managerService.createProfessor(dados);
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
-    } else {
+    } catch {
+      console.log(dados);
       addToast('Preencha todos os campos!', { appearance: 'error' });
     }
   };
   return (
-    <div className="screen-ps">
+    <div className="screen-form-prof">
       <SiteHeader />
-      <h1> Inscrição Processo Seletivo:</h1>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <h1> Inscrição de Professor</h1>
+      <div className="form_prof_box_title">
+        <div className="form_prof_title">
           Dados Pessoais
         </div>
       </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+      <div className="form_prof_requerente">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_name"
@@ -76,7 +77,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="date"
               id="prof_birth"
@@ -86,7 +87,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_cpf"
@@ -97,8 +98,8 @@ function FormProf() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="email"
               id="prof_email"
@@ -108,7 +109,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_gender"
@@ -122,14 +123,14 @@ function FormProf() {
           </div>
         </div>
       </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_prof_box_title">
+        <div className="form_prof_title">
           Endereço
         </div>
       </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+      <div className="form_prof_requerente">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_city"
@@ -139,7 +140,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_state"
@@ -151,7 +152,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_country"
@@ -164,14 +165,14 @@ function FormProf() {
         </div>
       </div>
 
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_prof_box_title">
+        <div className="form_prof_title">
           Acadêmico
         </div>
       </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+      <div className="form_prof_requerente">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_university"
@@ -181,7 +182,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_curriculum"
@@ -191,7 +192,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_active"
@@ -204,8 +205,8 @@ function FormProf() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_type"
@@ -217,7 +218,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_credential"
@@ -229,7 +230,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_course"
@@ -240,8 +241,8 @@ function FormProf() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_title"
@@ -253,7 +254,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="number"
               id="prof_title_year"
@@ -263,7 +264,7 @@ function FormProf() {
               setDados={handleChange}
             />
           </div>
-          <div className="form_dis_ps_input">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_treatment"
@@ -274,8 +275,8 @@ function FormProf() {
             />
           </div>
         </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               type="text"
               id="prof_workplace"
@@ -287,28 +288,28 @@ function FormProf() {
           </div>
         </div>
       </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_prof_box_title">
+        <div className="form_prof_title">
           Descrição
         </div>
       </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
+      <div className="form_prof_requerente">
+        <div className="form_prof_line">
+          <div className="form_prof_input">
             <StyledInput
               multiline
               type="text"
               id="prof_description"
               label=""
-              width="70rem"
-              height="30rem"
+              width="80vw"
+              height="15rem"
               dados={dados}
               setDados={handleChange}
             />
           </div>
         </div>
       </div>
-      <div className="divButton-ps">
+      <div className="divButton-prof">
         <button type="submit" onClick={handleClick}> Cadastre-se</button>
       </div>
     </div>
