@@ -11,6 +11,8 @@ import ProfessorList from './pages/ProfessorList';
 import registerDis from './pages/registerDis';
 import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
+import SelectiveProcessDisIsolated from './pages/SelectiveProcessDisIsolated/SelectiveProcessDisIsolated';
+import AdmEdit from './pages/AdmEdit/AdmEdit';
 
 const useStyles = makeStyles({
   container: {
@@ -36,6 +38,8 @@ function Routes() {
           <Route path="/cadastro-disciplina" component={registerDis} />
           <Route path="/documentos-enviados" component={SentDocuments} />
           <Route path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route path="/processo-disciplina-isolada" component={SelectiveProcessDisIsolated} />
+          <Route path="/pagina de edição" component={AdmEdit} />
         </Switch>
       </div>
     </BrowserRouter>

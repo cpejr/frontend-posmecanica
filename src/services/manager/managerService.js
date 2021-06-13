@@ -80,6 +80,17 @@ export const login = async (user) => {
   localStorage.setItem('user', JSON.stringify(userStorage));
   window.location.href = '/';
 };
+export const getByIdDisciplineId = async (disciplineId) => {
+  const response = await requesterService.getByIdDisciplineId(disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+export const getAllDisciplines = async () => {
+  const times = 0;
+  const response = await requesterService.getAllDisciplines(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
 
 export const forgetPass = async (user, id) => {
   const newSenha = { adm_defaultPassword: user };

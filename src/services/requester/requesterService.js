@@ -41,3 +41,10 @@ export const getAllSelectiveProcess = (times) => httpClient.get('/selectiveProce
 });
 export const login = (user) => httpClient.post('/login', user);
 export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
+
+export const getByIdDisciplineId = (disciplineId) => httpClient.get(`/disciplines/${disciplineId}`);
+export const getAllDisciplines = (times) => httpClient.get('/disciplines/', {
+  params: {
+    times,
+  },
+});
