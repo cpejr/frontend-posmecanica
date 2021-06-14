@@ -27,7 +27,7 @@ function BoxDashboard({
   function count() {
     let processCount = 0;
     processes.forEach((element) => {
-      if (element.process_type === 'DOUTORADO' || element.process_type === 'MESTRADO') { processCount += element.count_candidates; }
+      if (element.process_type === '' || element.process_type === 'DOUTORADO' || element.process_type === 'MESTRADO') { processCount += element.count_candidates; }
     });
     return processCount;
   }
