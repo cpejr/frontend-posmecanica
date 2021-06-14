@@ -19,6 +19,7 @@ export const createCandidate = async (candidate, selectiveProcessId) => {
   candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data.id;
 };
 
 export const updateCandidate = async (candidate, id) => {
@@ -28,6 +29,11 @@ export const updateCandidate = async (candidate, id) => {
 
 export const denyCandidate = async (candidateId) => {
   const response = await requesterService.deleteCandidate(candidateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const uploadFile = async (file, candidateId, fileName) => {
+  const response = await requesterService.uploadFile(file, candidateId, fileName);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
@@ -86,6 +92,7 @@ export const forgetPass = async (user, id) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   window.location.href = '/login';
 };
+
 export const createDiscipline = async (discipline) => {
   const response = await requesterService.createDiscipline(discipline);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

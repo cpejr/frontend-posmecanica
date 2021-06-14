@@ -5,11 +5,11 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import States from '../../Utils/states';
-import Genres from '../../Utils/genres';
-import Boolean from '../../Utils/boolean';
-import Types from '../../Utils/types';
-import Titles from '../../Utils/titles';
+import States from '../../utils/states';
+import Genres from '../../utils/genres';
+import Boolean from '../../utils/boolean';
+import Types from '../../utils/types';
+import Titles from '../../utils/titles';
 
 const states = States;
 const genres = Genres;

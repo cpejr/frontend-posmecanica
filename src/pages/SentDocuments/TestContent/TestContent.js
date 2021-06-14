@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StyledInput from '../../../components/StyledInput';
-import Modal from '../../../Utils/GenericModal';
+import Modal from '../../../utils/GenericModal';
 import * as managerService from '../../../services/manager/managerService';
 import './TestContent.scss';
 

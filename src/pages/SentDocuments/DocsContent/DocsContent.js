@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Document from '../../../components/Document';
-import infos from '../../../Utils/CandidateDocuments';
-import Modal from '../../../Utils/GenericModal';
+import infos from '../../../utils/CandidateDocuments';
+import Modal from '../../../utils/GenericModal';
 import * as managerService from '../../../services/manager/managerService';
 import './DocsContent.scss';
 
