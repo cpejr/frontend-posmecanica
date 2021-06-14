@@ -4,7 +4,7 @@ import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
-import Semeters from '../../Utils/semesters';
+import Semeters from '../../utils/semesters';
 import SiteHeader from '../../components/SiteHeader';
 
 const semeters = Semeters;

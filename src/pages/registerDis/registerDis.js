@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
-import enumm from '../../Utils/enum';
-import boolean from '../../Utils/boolean';
-import semester from '../../Utils/semester';
+import enumm from '../../utils/enum';
+import boolean from '../../utils/boolean';
+import semester from '../../utils/semester';
 import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;

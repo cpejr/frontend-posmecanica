@@ -4,7 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import Forms from '../../components/Forms';
 import * as managerService from '../../services/manager/managerService';
-import formsInput from '../../Utils/formsIsoDis';
+import formsInput from '../../utils/formsIsoDis';
 
 function FormDis() {
   const initialState = {
