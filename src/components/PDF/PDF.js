@@ -1,67 +1,52 @@
-import React from 'react';
-import Pdf from 'react-to-pdf';
+/* eslint-disable import/no-unresolved */
+import React, { Component } from 'react';
+import JsPDF from 'jspdf';
+import ContentsPDF from '../ContentsPDF';
 import './PDF.scss';
 
-const ref = React.createRef();
+export default class pdfGenerator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.jsPdfGenerator = () => {
+      // Nova página
+      const doc = new JsPDF();
+      // Cor do texto
+      doc.setTextColor(10);
+      // Tentar implementar essafunçao que pega div e trasnforma em pdf
+      // doc.html(document.getElementById('pdf'));
+      // doc.save('teste.pdf');
 
-function PDF() {
-  return (
-    <div>
-      <div className="pdf-external-div" ref={ref}>
-        <div className="pdf-header">
-          <div className="pdf-image">
-            <img
-              src="/Images/logoufmg.png"
-              alt="logotipo Universidade FEderal de Minas Gerais"
-            />
-          </div>
-          <div className="pdf-header-text">
-            <p>UNIVERSIDADE FEDERAL DE MINAS GERAIS</p>
-            <p>PROGRAMA DE PÓS-GRADUAÇÃO EM</p>
-            <p> ENGENHARIA MECÂNICA</p>
-            <p>Av. Antônio Carlos, 6627 - Campus Universitário</p>
-            <p>31270-901 – Belo Horizonte – MG</p>
-            <p>Tel.:+55 31 3409.5145</p>
-            <p>E-mail: cpgmec@demec.ufmg.br</p>
-          </div>
-        </div>
-        <div className="pdf-text">
-          <div className="pdf-title">DECLARAÇÃO</div>
-          <p className="pdf-dedicate">
-            Declaro, para os devidos fins, que ANDERSON JÚNIOR DOS SANTOS,
-            matrícula nº 2018700680, é aluno regularmente matriculado no Programa
-            de Pós-Graduação em Engenharia Mecânica, nível Doutorado, da
-            Universidade Federal de Minas Gerais, frequentando regularmente as
-            atividades desde março de 2018. Declaro, ainda, que o referido aluno é
-            bolsista do Conselho Nacional de Desenvolvimento Científico e
-            Tecnológico (CNPq), recebendo, mensalmente, a quantia correspondente a
-            01 (uma) bolsa de doutorado, no valor de R$ 1500 (um mil, quinhentos
-            reais), de acordo com a legislação vigente.
-          </p>
-          <p className="pdf-date">Belo Horizonte, 13 de maio de 2021</p>
-          <div className="pdf-coordinator">
-            <p>Prof. Dr. Marco Túlio Corrêa de Faria</p>
-            <p>Coordenador do Programa de Pós-Graduação</p>
-            <p>em Engenharia Mecânica da UFMG</p>
-          </div>
-          <p className="pdf-observation">
-            OBS: Sugiro que os dados a serem preenchidos
-            pela secretaria fossem os de destaque.
-            Se possível o campo permitir a digitação de mais dados caso necessário.
-            Os demais itens serão gerados automáticos correto?
-          </p>
-        </div>
+      // Fonte do documento
+      doc.setFont('inter');
+
+      // Adiciona imagem
+      doc.addImage('/Images/logoufmg.png', 'PNG', 20, 20, 24, 24);
+      // Posicao do texto. Prieiro argumento espaçamento lateral esquerdo,
+      // segundo espaçamento superior
+      doc.text(50, 26, 'UNIVERSIDADE FEDERAL DE MINAS GERAIS');
+      doc.text(53, 32, 'PROGRAMA DE PÓS-GRADUAÇÃO EM');
+      doc.text(55, 38, ' ENGENHARIA MECÂNICA');
+      doc.text(60, 44, 'Av. Antônio Carlos, 6627 - Campus Universitário');
+      doc.text(55, 50, '31270-901 – Belo Horizonte – MG');
+      doc.text(57, 56, 'Tel.:+55 31 3409.5145');
+      doc.text(57, 62, 'E-mail: cpgmec@demec.ufmg.br');
+
+      doc.getTextDimensions(500, 90, 'Esse e o sub texto');
+      // Salva o documento
+      doc.save('NandoGostosoMeDaUmaChance.pdf');
+    };
+  }
+
+  // renderiza a funcao
+  render() {
+    return (
+      <div className="PDF">
+        <ContentsPDF />
+        <button type="button" className="btn" onClick={this.jsPdfGenerator}>
+          BAIXAR
+        </button>
       </div>
-
-      <Pdf targetRef={ref} filename="documento.pdf">
-        {({ toPdf }) => (
-          <button type="button" onClick={toPdf}>
-            BAIXAR
-          </button>
-        )}
-      </Pdf>
-    </div>
-  );
+    );
+  }
 }
-
-export default PDF;

@@ -12,7 +12,7 @@ import ProfessorList from './pages/ProfessorList';
 import registerDis from './pages/registerDis';
 import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
-import StylePDF from './components/StylePDF';
+import PDF from './components/PDF/PDF';
 
 const useStyles = makeStyles({
   container: {
@@ -38,7 +38,7 @@ function Routes() {
           <Route exact path="/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/SelectiveProcesses" component={SelectiveProcesses} />
-          <Route exact path="/pdf" component={StylePDF} />
+          <Route exact path="/pdf" component={PDF} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
