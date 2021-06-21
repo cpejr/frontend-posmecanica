@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import BoxAdm from '../Inscritos/InscritosPS';
 import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
-import TitleType from '../../Utils/titleTypes';
+import { TitleTypes } from '../../utils/titleTypes';
 import './BoxDashboard.scss';
-
-const titleType = TitleType;
 
 function BoxDashboard({
   title, subtitle, list, type, isoCandidates, setIsoCandidates, processes,
@@ -59,7 +57,7 @@ function BoxDashboard({
                 id="type"
                 label="Título"
                 width="16rem"
-                field={titleType}
+                field={TitleTypes}
                 select
                 background="transparent"
                 dados={dados}
