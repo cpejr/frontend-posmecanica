@@ -15,6 +15,11 @@ export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${c
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
+export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/candidates/upload/${candidateId}/${fileName}`, file, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
 
 export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
 
