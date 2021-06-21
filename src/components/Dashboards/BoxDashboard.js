@@ -23,11 +23,11 @@ function BoxDashboard({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  // Função para contar número de candidato dos ps. É usada na linha 49
+
   function count() {
     let processCount = 0;
     processes.forEach((element) => {
-      if (element.process_type === '' || element.process_type === 'DOUTORADO' || element.process_type === 'MESTRADO') { processCount += element.count_candidates; }
+      processCount += element.count_candidates;
     });
     return processCount;
   }

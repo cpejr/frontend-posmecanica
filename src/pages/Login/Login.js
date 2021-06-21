@@ -58,7 +58,7 @@ function Login() {
               <button type="button" onClick={handleClick}>Entrar</button>
             </div>
             <div className="Login-link">
-              <Link to="esqueciSenha"> Esqueceu a senha? </Link>
+              <Link to="esqueci-senha"> Esqueceu a senha? </Link>
             </div>
           </div>
         </div>

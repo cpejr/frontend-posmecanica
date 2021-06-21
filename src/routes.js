@@ -12,6 +12,7 @@ import ProfessorList from './pages/ProfessorList';
 import registerDis from './pages/registerDis';
 import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
+import StudentList from './pages/StudentsList';
 import StylePDF from './components/StylePDF';
 
 const useStyles = makeStyles({
@@ -28,16 +29,17 @@ function Routes() {
     <BrowserRouter>
       <div className={classes.container}>
         <Switch>
-          <Route exact path="/dashboard/professor" component={DashboardProfessor} />
-          <Route exact path="/dashboard/administrator" component={DashboardAdministrator} />
-          <Route exact path="/esqueciSenha" component={forgetPass} />
+          <Route exact path="/painel/professor" component={DashboardProfessor} />
+          <Route exact path="/painel/administrator" component={DashboardAdministrator} />
+          <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
+          <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
           <Route exact path="/formulario-professores" component={FormProf} />
-          <Route exact path="/professor-list" component={ProfessorList} />
+          <Route exact path="/lista-professores" component={ProfessorList} />
           <Route exact path="/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
-          <Route exact path="/SelectiveProcesses" component={SelectiveProcesses} />
+          <Route exact path="/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/pdf" component={StylePDF} />
           <Route path="/" component={Login} />
         </Switch>

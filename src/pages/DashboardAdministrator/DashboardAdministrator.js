@@ -5,13 +5,16 @@ import BoxDashboardAdministrator from '../../components/Dashboards/Administrator
 function DashboardAdministrator() {
   const inputProps = [
     {
-      text: 'editar informações',
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
     },
     {
       text: 'nando sonolento',
+      path: '/',
     },
     {
       text: 'redefinição de senha',
+      path: '/',
     },
   ];
 

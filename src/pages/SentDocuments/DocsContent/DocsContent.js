@@ -5,7 +5,7 @@ import Modal from '../../../Utils/GenericModal';
 import * as managerService from '../../../services/manager/managerService';
 import './DocsContent.scss';
 
-function DocsContent({ setShowInfoModal, id }) {
+function DocsContent({ setShowInfoModal, candidate }) {
   const [action, setAction] = useState();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -21,13 +21,11 @@ function DocsContent({ setShowInfoModal, id }) {
     if (action.toLowerCase() === 'aprovar') {
       await managerService.updateCandidate({
         candidate_form_approval: true,
-        candidate_curriculum_approval: true,
-      }, id);
+      }, candidate.candidate_id);
     } else {
       await managerService.updateCandidate({
         candidate_form_approval: false,
-        candidate_curriculum_approval: false,
-      }, id);
+      }, candidate.candidate_id);
     }
     setShowConfirmModal(false);
   };
@@ -76,22 +74,24 @@ function DocsContent({ setShowInfoModal, id }) {
       <div className="DC-documentsDiv">
         {infos.map((info) => renderInfo(info))}
       </div>
-      <div className="DC-buttons">
-        <div className="DC-button-aprovar">
-          <button type="button" onClick={handleButtonsClick}>
-            Aprovar
-          </button>
+      {candidate.candidate_form_approval === null && (
+        <div className="DC-buttons">
+          <div className="DC-button-aprovar">
+            <button type="button" onClick={handleButtonsClick}>
+              Aprovar
+            </button>
+          </div>
+          <div className="DC-button-solicitar">
+            <button type="button" onClick={handleButtonsClick}>
+              Reprovar
+            </button>
+          </div>
         </div>
-        <div className="DC-button-solicitar">
-          <button type="button" onClick={handleButtonsClick}>
-            Reprovar
-          </button>
-        </div>
-      </div>
-      { showConfirmModal && (
-      <Modal handleCloseClick={handleCloseClick} handleConfirmClick={handleConfirmClick}>
-        {`Deseja ${action.toLowerCase()} os doumentos do candidato?`}
-      </Modal>
+      )}
+      {showConfirmModal && (
+        <Modal handleCloseClick={handleCloseClick} handleConfirmClick={handleConfirmClick}>
+          {`Deseja ${action.toLowerCase()} os doumentos do candidato?`}
+        </Modal>
       )}
     </div>
   );

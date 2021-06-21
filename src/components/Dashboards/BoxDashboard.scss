@@ -27,8 +27,9 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-left: 24px;
+  padding-right: 24px;
 }
 .BdTitleNumber{
   display: flex;
@@ -36,7 +37,7 @@
 }
 .BdSubTitle{
   width: 100%;
-
+  display: flex;
 }
 
 .BdDivGrid {
