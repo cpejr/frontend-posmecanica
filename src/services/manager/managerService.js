@@ -84,6 +84,13 @@ export const getSearchArea = async (field, filter) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const getAllSearchAreas = async () => {
+  const times = 0;
+  const response = await requesterService.getSearchArea(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getActualSelectiveProcess = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getSelectiveProcess(times, field, filter);
