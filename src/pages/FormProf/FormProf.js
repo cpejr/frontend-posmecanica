@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './FormProf.scss';
-// import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';

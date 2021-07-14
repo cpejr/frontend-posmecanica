@@ -4,7 +4,12 @@
 }
 .studentList-Content {
   height: 72.5%;
+  display: flex;
+  justify-content: space-between;
+}
+.studentList-LeftContainer {
   padding: 50px;
+  width: 100%;
 }
 .studentList-Filters {
   display: flex;

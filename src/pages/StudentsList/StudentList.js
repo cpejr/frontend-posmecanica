@@ -1,15 +1,15 @@
-/* eslint-disable no-debugger */
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
+import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 import { AllTitleTypes } from '../../utils/titleTypes';
 import './StudentList.scss';
 
 function StudentList() {
-  const [allCandidates, setAllCandidates] = useState([]);
-  const [filterCandidates, setFilterCandidates] = useState([]);
+  const [allStudents, setAllStudents] = useState([]);
+  const [filterStudents, setFilterStudents] = useState([]);
   const [years, setYears] = useState([]);
   const [filterName, setFilterName] = useState();
   const [filterYear, setFilterYear] = useState();
@@ -17,40 +17,38 @@ function StudentList() {
   const [expandRightPanel, setExpandRightPanel] = useState(true);
 
   useEffect(async () => {
-    const candidates = await managerService.getCandidates();
+    const students = await managerService.getStudents();
     let yearsFilters = [{ label: 'Nenhum filtro', value: '' }];
-    let existentYears = candidates.map((candidate) => {
-      const parseDate = new Date(candidate.selective_process.process_date_end).getUTCFullYear();
+    let existentYears = students.map((student) => {
+      const parseDate = new Date(student.created_at).getUTCFullYear();
       const parseDateObj = { label: `${parseDate}`, value: `${parseDate}` };
       return parseDateObj;
     });
     existentYears = [...new Map(existentYears.map((item) => [item.label, item])).values()];
     yearsFilters = yearsFilters.concat(existentYears);
-    setAllCandidates(candidates);
-    setFilterCandidates(candidates);
+    setAllStudents(students);
+    setFilterStudents(students);
     setYears(yearsFilters);
   }, []);
 
   useEffect(() => {
-    let initialCandidates = allCandidates;
+    let initialStudents = allStudents;
     if (filterName) {
-      initialCandidates = initialCandidates.filter(
-        (candidate) => candidate.candidate_name.toLowerCase().includes(filterName.toLowerCase()),
+      initialStudents = initialStudents.filter(
+        (student) => student.candidate_name.toLowerCase().includes(filterName.toLowerCase()),
       );
     }
     if (filterYear) {
-      initialCandidates = initialCandidates.filter((candidate) => (
-        new Date(candidate.selective_process.process_date_end)
-          .getUTCFullYear()
-          .toString() === filterYear
+      initialStudents = initialStudents.filter((student) => (
+        new Date(student.created_at).getUTCFullYear().toString() === filterYear
       ));
     }
     if (filterGraduation) {
-      initialCandidates = initialCandidates.filter((candidate) => (
-        candidate.selective_process.process_type.toLowerCase() === filterGraduation.toLowerCase()
+      initialStudents = initialStudents.filter((student) => (
+        student.process_type.toLowerCase() === filterGraduation.toLowerCase()
       ));
     }
-    setFilterCandidates(initialCandidates);
+    setFilterStudents(initialStudents);
   }, [filterName, filterYear, filterGraduation]);
 
   const handleFilterNameChange = (value) => {
@@ -63,41 +61,59 @@ function StudentList() {
     setFilterGraduation(value);
   };
 
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
+    {
+      text: 'nando sonolento',
+      path: '',
+    },
+    {
+      text: 'redefinição de senha',
+      path: '',
+    },
+  ];
+
   return (
     <div className="studentList-Root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="studentList-Content">
-        <div className="studentList-Filters">
-          <StyledInput
-            type="text"
-            id="filter-name"
-            label="Nome"
-            width="16rem"
-            dados={filterName}
-            setDados={handleFilterNameChange}
-          />
-          <StyledInput
-            type="number"
-            id="filter-year"
-            label="Ano"
-            width="16rem"
-            field={years}
-            select
-            dados={filterYear}
-            setDados={handleFilterYearChange}
-          />
-          <StyledInput
-            type="text"
-            id="filter-graduation"
-            label="Graduação"
-            width="16rem"
-            field={AllTitleTypes}
-            select
-            dados={filterGraduation}
-            setDados={handleFilterGraduationChange}
-          />
+        <div className="studentList-LeftContainer">
+          <div className="studentList-Filters">
+            <StyledInput
+              type="text"
+              id="filter-name"
+              label="Nome"
+              width="16rem"
+              dados={filterName}
+              setDados={handleFilterNameChange}
+            />
+            <StyledInput
+              type="number"
+              id="filter-year"
+              label="Ano"
+              width="16rem"
+              field={years}
+              select
+              dados={filterYear}
+              setDados={handleFilterYearChange}
+            />
+            <StyledInput
+              type="text"
+              id="filter-graduation"
+              label="Graduação"
+              width="16rem"
+              field={AllTitleTypes}
+              select
+              dados={filterGraduation}
+              setDados={handleFilterGraduationChange}
+            />
+          </div>
+          {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
         </div>
-        {filterCandidates.map((candidate) => <div>{candidate.candidate_name}</div>)}
+        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>
       <Footer />
     </div>

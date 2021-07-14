@@ -29,7 +29,7 @@ function ProfessorList() {
   const [searchAreas, setSearchAreas] = useState([]);
   const searchAreaOrder = 'search_area_name';
   const profOrder = 'prof_name';
-  const [inputText, setInputText] = useState(); // quando apaga o input tá crashando a página
+  const [inputText, setInputText] = useState();
 
   useEffect(async () => {
     const getSearchArea = await managerService

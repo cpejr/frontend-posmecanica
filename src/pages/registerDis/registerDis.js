@@ -23,7 +23,6 @@ function registerDis() {
   const history = useHistory();
   const { addToast } = useToasts();
 
-  // eslint-disable-next-line no-unused-vars
   const handleClick = async (e) => {
     e.preventDefault();
     if (dados.discipline_name.length > 3

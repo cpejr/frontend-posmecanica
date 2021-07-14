@@ -44,3 +44,12 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
+
+export const getStudents = (times, field, filter) => httpClient.get('/students', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});

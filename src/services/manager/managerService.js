@@ -10,10 +10,16 @@ export const forgetPass = async (user, id) => {
 };
 
 export const getCandidates = async (field, filter) => {
-  const times = 0;
-  const response = await requesterService.getCandidates(times, field, filter);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
+  let times = 0;
+  let response;
+  let allCandidates = [];
+  do {
+    response = await requesterService.getCandidates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCandidates = allCandidates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allCandidates;
 };
 
 export const getByIdCandidate = async (candidateId) => {
@@ -92,15 +98,28 @@ export const getActualSelectiveProcess = async (field, filter) => {
   return filteredProcess;
 };
 
+export const getAllSelectiveProcess = async () => {
+  const times = 0;
+  const response = await requesterService.getSelectiveProcess(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getByIdSelectiveProcess = async (selectiveProcessId) => {
   const response = await requesterService.getByIdSelectiveProcess(selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
 
-export const getAllSelectiveProcess = async () => {
-  const times = 0;
-  const response = await requesterService.getSelectiveProcess(times);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
+export const getStudents = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allStudents = [];
+  do {
+    response = await requesterService.getStudents(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allStudents = allStudents.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allStudents;
 };
