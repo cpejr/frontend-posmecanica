@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -28,14 +29,16 @@ function RightPanel({ inputProps, expandRightPanel }) {
       <List>
         {HeaderPanel}
         {inputProps.map((item) => (
-          <ListItem button key={item.text}>
-            <IconContext.Provider value={{ size: 30 }}>
-              {item.icon}
-            </IconContext.Provider>
-            <ListItemText className={clsx('userPanelInfos', { hide: !expandRightPanel })}>
-              {item.text}
-            </ListItemText>
-          </ListItem>
+          <Link to={{ pathname: `/painel/administrator/${item.path}` }}>
+            <ListItem button key={item.text}>
+              <IconContext.Provider value={{ size: 30 }}>
+                {item.icon}
+              </IconContext.Provider>
+              <ListItemText className={clsx('userPanelInfos', { hide: !expandRightPanel })}>
+                {item.text}
+              </ListItemText>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </div>

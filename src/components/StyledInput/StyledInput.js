@@ -8,13 +8,13 @@ const CssTextField = withStyles(() => ({
   root: {
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#1d2d57', // bordar normal
+        borderColor: '#1d2d57',
       },
       '&:hover fieldset': {
-        borderColor: '#c7d1dc', // borda quando passa o mouse
+        borderColor: '#c7d1dc',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#1d2d57', // borda quando digita
+        borderColor: '#1d2d57',
       },
       valueStyle: 'color: red',
     },

@@ -11,13 +11,13 @@ function orderElements(data, ordemBy) {
         return -1;
       }
       return 0;
-    }// função que ordena itens de um array
+    }
 
     return (
       sortOrdem(a, b)
     );
   });
   return data;
-}// logica da ordenação (alfabetica ou inversa)
+}
 
 export default orderElements;

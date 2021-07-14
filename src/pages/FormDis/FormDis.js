@@ -55,7 +55,7 @@ function FormDis() {
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3
       && files.length === 4) {
-      const selectiveProcesses = await managerService.getSelectiveProcess('process_type', 'ISOLADA');
+      const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
       const id = await managerService.createCandidate(
         dados, selectiveProcesses[0].process_id,
       );

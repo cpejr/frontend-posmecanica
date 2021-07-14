@@ -17,7 +17,7 @@ function SelectiveProcess({ name, type, progress }) {
     <div className="compoSP-externalDiv">
       <div className="compoSP-titles">
         <div className="compoSP-principalTitle">
-          <Link to="/dashboard/professor">
+          <Link to="/painel/professor">
             {name}
           </Link>
         </div>

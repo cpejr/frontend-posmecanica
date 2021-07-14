@@ -24,10 +24,12 @@ function SentDocuments({ location }) {
       <Navbar />
       <div className="SD-screen">
         {page === 1 && (
-          <DocsContent setShowInfoModal={setShowInfoModal} id={candidate.candidate_id} />
+          <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
         )}
         {page === 2 && <TestContent id={candidate.candidate_id} />}
-        <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
+        {candidate.candidate_rating === null && (
+          <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
+        )}
         {showInfoModal && <InfoModal conteudo={candidate} close={handleClickClose} />}
       </div>
       <Footer />
