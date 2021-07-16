@@ -38,12 +38,12 @@ function esqueciSenha() {
 
         <div className="coluna">
           <div className="text1">
-            <h1>Crie Uma nova Senha</h1>
+            <h1>Crie uma nova senha</h1>
             <h2>Digite o código de acesso que enviamos para o seu e-mail.</h2>
           </div>
           <TextField
             className="campinho"
-            label="senha"
+            label="Digite a nova senha"
             id="outlined-size-small"
             variant="outlined"
             size="small"
@@ -51,7 +51,7 @@ function esqueciSenha() {
           />
           <TextField
             className="campinho"
-            label="confirmar Senha"
+            label="Confirmar nova Senha"
             id="outlined-size-small"
             variant="outlined"
             size="small"
