@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
+import * as managerService from '../../services/manager/managerService';
 import './Forms.scss';
 
 function Forms({
@@ -11,6 +12,12 @@ function Forms({
     setDados({ ...dados, [field]: value });
   };
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
+  const formsIsolatedDiscipline = ['Primeira opção', 'Segunda opção', 'Terceira opção'];
+  const [disciplines, setDisciplines] = useState([]);
+  useEffect(async () => {
+    const disciplinas = await managerService.getDisciplines('discipline_is_isolated', true);
+    setDisciplines(disciplinas);
+  }, []);
 
   return (
     <div>
@@ -29,7 +36,7 @@ function Forms({
                     type={item.type}
                     id={item.id}
                     label={item.label}
-                    width="16rem"
+                    width="21rem"
                     field={item.field}
                     select={item.select}
                     dados={dados}
@@ -41,6 +48,27 @@ function Forms({
           ))}
         </div>
       ))}
+      <div className="forms_box_title">
+        <div className="forms_title">
+          Escolha de disciplinas isoladas
+        </div>
+      </div>
+      <div className="forms_line">
+        {formsIsolatedDiscipline.map((disc) => (
+          <div className="forms_input">
+            <StyledInput
+              type={disc.type}
+              id={disc.id}
+              label={disc}
+              width="21rem"
+              field={disciplines}
+              select={1}
+              dados={dados}
+              setDados={handleChange}
+            />
+          </div>
+        ))}
+      </div>
       <div className="forms_box_title">
         <div className="forms_title">
           Arquivos
@@ -55,7 +83,7 @@ function Forms({
         ))}
       </div>
       <div className="forms_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}> Cadastre-se</button>
+        <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
       </div>
     </div>
   );
