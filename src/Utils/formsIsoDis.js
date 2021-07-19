@@ -3,7 +3,6 @@ import states from './states';
 import booleans from './boolean';
 import genres from './genres';
 import races from './races';
-import isolatedDisc from './isolatedDisc';
 
 const formsInput = [
   {
@@ -261,36 +260,6 @@ const formsInput = [
             label: 'Universidade da Pós Graduação',
             field: null,
             select: false,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Escolha de disciplinas isoladas',
-    lines: [
-      {
-        items: [
-          {
-            type: 'text',
-            id: 'isolated_discipline1',
-            label: 'Primeira opção',
-            field: isolatedDisc,
-            select: true,
-          },
-          {
-            type: 'text',
-            id: 'isolated_discipline2',
-            label: 'Segunda opção',
-            field: isolatedDisc,
-            select: true,
-          },
-          {
-            type: 'text',
-            id: 'isolated_discipline3',
-            label: 'Terceira opção',
-            field: isolatedDisc,
-            select: true,
           },
         ],
       },

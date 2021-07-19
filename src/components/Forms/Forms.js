@@ -14,9 +14,23 @@ function Forms({
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
   const formsIsolatedDiscipline = ['Primeira opção', 'Segunda opção', 'Terceira opção'];
   const [disciplines, setDisciplines] = useState([]);
+  // useEffect(async () => {
+  //   const disciplinas = await managerService.getDisciplines('discipline_is_isolated', true);
+  //   const aux = [];
+  //   disciplinas.forEach((object) => {
+  //     aux.push({ label: object.discipline_name, value: object.discipline_name });
+  //   });
+  //   setDisciplines(aux);
+  // }, []);
+
   useEffect(async () => {
-    const disciplinas = await managerService.getDisciplines('discipline_is_isolated', true);
-    setDisciplines(disciplinas);
+    managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
+      const aux = [];
+      resp.forEach((object) => {
+        aux.push({ label: object.discipline_name, value: object.discipline_name });
+      });
+      setDisciplines(aux);
+    });
   }, []);
 
   return (
@@ -36,7 +50,7 @@ function Forms({
                     type={item.type}
                     id={item.id}
                     label={item.label}
-                    width="21rem"
+                    width="22rem"
                     field={item.field}
                     select={item.select}
                     dados={dados}
