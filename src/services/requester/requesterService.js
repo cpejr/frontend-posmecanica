@@ -1,7 +1,6 @@
 import qs from 'querystring';
 import httpClient from '../../hooks/httpClient';
 
-export const Forgetpass = (newSenha, id) => httpClient.put(`/adms/${id}`, newSenha);
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
 
 export const getCandidates = (times, field, filter) => httpClient.get('/candidates', {

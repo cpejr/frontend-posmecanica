@@ -3,13 +3,6 @@ import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
 
-export const forgetPass = async (user, id) => {
-  const newSenha = { adm_defaultPassword: user };
-  const response = await requesterService.Forgetpass(newSenha, id);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  window.location.href = '/login';
-};
-
 export const getCandidates = async (field, filter) => {
   let times = 0;
   let response;
@@ -59,6 +52,8 @@ export const createDiscipline = async (discipline) => {
 export const sendResetEmail = async (email) => {
   const teste = JSON.parse(email);
   const response = await requesterService.sendResetEmail(teste);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  window.location.href = '/login';
   return response;
 };
 

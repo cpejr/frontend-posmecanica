@@ -1,38 +1,30 @@
-import { Button, TextField } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import { Button, TextField, InputAdornment } from '@material-ui/core';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import { useToasts } from 'react-toast-notifications';
+import React, { useState } from 'react';
 import '../../components/CampoText/campotxt';
 import './forgetPass.scss';
+import * as managerService from '../../services/manager/managerService';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import * as managerService from '../../services/manager/managerService';
-import { useAuth } from '../../providers/auth';
 
 function esqueciSenha() {
-  const [senha, setSenha] = useState();
-  const [confirmar, setConfirmada] = useState();
-  const [disabled, setDesabled] = useState(true);
   const [email, setEmail] = useState('');
-  const { user } = useAuth();
-  function novasenha(e) {
-    setSenha(e.target.value);
-  }
+  const { addToast } = useToasts();
   function confirmarEmail(e) {
     setEmail(e.target.value);
   }
-  useEffect(() => {
-    if (senha === confirmar) {
-      setDesabled(false);
-    } else {
-      setDesabled(true);
+  const sendEmail = {
+    email,
+  };
+  const JSONtoSend = JSON.stringify(sendEmail);
+  const handleClick = async (e) => {
+    try {
+      e.preventDefault();
+      await managerService.sendResetEmail(JSONtoSend);
+    } catch {
+      addToast('Email não cadastrado!', { appearance: 'error' });
     }
-  }, [senha, confirmar]);
-
-  const handleClick = async () => {
-    const sendEmail = {
-      email,
-    };
-    const JSONtoSend = JSON.stringify(sendEmail);
-    await managerService.sendResetEmail(JSONtoSend);
   };
 
   return (
@@ -43,27 +35,27 @@ function esqueciSenha() {
 
         <div className="coluna">
           <div className="text1">
-            <h1>Crie uma nova senha</h1>
-            <h2>Digite o código de acesso que enviamos para o seu e-mail.</h2>
+            <h1>Informe seu email cadastrado</h1>
+            <h2>Enviaremos para seu email um link para realizar a alteração da sua senha.</h2>
+            <h3>Após feito isso, realize login novamente.</h3>
           </div>
-          {/* <TextField
-            className="campinho"
-            label="Digite a nova senha"
-            id="outlined-size-small"
-            variant="outlined"
-            size="small"
-            onChange={(e) => novasenha(e)}
-          /> */}
           <TextField
             className="campinho"
-            label="Confirmar o email"
-            id="outlined-size-small"
-            variant="outlined"
+            label="Informe seu email"
+            id="input-with-icon-textfield"
+            variant="filled"
             size="small"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MailOutlineIcon />
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) => confirmarEmail(e)}
           />
           <div>
-            <Button variant="contained" color="primary" disabled={disabled} onClick={handleClick}>
+            <Button variant="contained" color="primary" onClick={handleClick}>
               Continuar
             </Button>
           </div>

@@ -25,7 +25,7 @@ h1 {
 h2 {
   color: #FFFF;
   font-family: "Roboto", sans-serif;
-  font: normal 12pt Montserrat;
+  font: normal 10pt Montserrat;
   align-items: center;
 
   display: flex;
@@ -34,8 +34,26 @@ h2 {
   justify-content: center;
   text-align: center;
   margin: 5vh;
-  font-weight: 100;
+  margin-bottom: 0;
+  font-weight: normal;
 }
+
+h3{
+  color: #FFFF;
+  font-family: "Roboto", sans-serif;
+  font: normal 10pt Montserrat;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 5vh;
+  margin-top: 0;
+  font-weight: normal;
+}
+
 .outlined-basic {
   align-items: center;
 
@@ -73,7 +91,7 @@ h2 {
 }
 .MuiFormControl-root.MuiTextField-root.campinho {
   margin-bottom: 25px;
-  width: 80%;
+  width: 85%;
   background-color: #DEDE;
   border: 1px solid #808080;
   box-sizing: border-box;
