@@ -11,12 +11,13 @@ function esqueciSenha() {
   const [senha, setSenha] = useState();
   const [confirmar, setConfirmada] = useState();
   const [disabled, setDesabled] = useState(true);
+  const [email, setEmail] = useState('');
   const { user } = useAuth();
   function novasenha(e) {
     setSenha(e.target.value);
   }
-  function confirmarSenha(e) {
-    setConfirmada(e.target.value);
+  function confirmarEmail(e) {
+    setEmail(e.target.value);
   }
   useEffect(() => {
     if (senha === confirmar) {
@@ -27,7 +28,11 @@ function esqueciSenha() {
   }, [senha, confirmar]);
 
   const handleClick = async () => {
-    await managerService.forgetPass(senha, user.id);
+    const sendEmail = {
+      email,
+    };
+    const JSONtoSend = JSON.stringify(sendEmail);
+    await managerService.sendResetEmail(JSONtoSend);
   };
 
   return (
@@ -41,21 +46,21 @@ function esqueciSenha() {
             <h1>Crie uma nova senha</h1>
             <h2>Digite o código de acesso que enviamos para o seu e-mail.</h2>
           </div>
-          <TextField
+          {/* <TextField
             className="campinho"
             label="Digite a nova senha"
             id="outlined-size-small"
             variant="outlined"
             size="small"
             onChange={(e) => novasenha(e)}
-          />
+          /> */}
           <TextField
             className="campinho"
-            label="Confirmar nova Senha"
+            label="Confirmar o email"
             id="outlined-size-small"
             variant="outlined"
             size="small"
-            onChange={(e) => confirmarSenha(e)}
+            onChange={(e) => confirmarEmail(e)}
           />
           <div>
             <Button variant="contained" color="primary" disabled={disabled} onClick={handleClick}>
