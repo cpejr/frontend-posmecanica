@@ -19,13 +19,19 @@ function DocsContent({ setShowInfoModal, candidate }) {
 
   const handleConfirmClick = async () => {
     if (action.toLowerCase() === 'aprovar') {
-      await managerService.updateCandidate({
-        candidate_form_approval: true,
-      }, candidate.candidate_id);
+      await managerService.updateCandidate(
+        {
+          candidate_form_approval: true,
+        },
+        candidate.candidate_id,
+      );
     } else {
-      await managerService.updateCandidate({
-        candidate_form_approval: false,
-      }, candidate.candidate_id);
+      await managerService.updateCandidate(
+        {
+          candidate_form_approval: false,
+        },
+        candidate.candidate_id,
+      );
     }
     setShowConfirmModal(false);
   };
@@ -47,30 +53,22 @@ function DocsContent({ setShowInfoModal, candidate }) {
     }
     return (
       <div key={docs.types[1]} className="DC-documentsDivLine">
-        <Document type={docs.types[0]}>
-          {docs.icons[0]}
-        </Document>
-        <Document type={docs.types[1]}>
-          {docs.icons[1]}
-        </Document>
+        <Document type={docs.types[0]}>{docs.icons[0]}</Document>
+        <Document type={docs.types[1]}>{docs.icons[1]}</Document>
       </div>
     );
   };
 
   const renderInfo = (info) => (
     <div key={info.text} className="DC-infoContainer">
-      <div className="DC-personNameTitle">
-        {info.text}
-      </div>
+      <div className="DC-personNameTitle">{info.text}</div>
       {info.docs.map((line) => renderLine(line))}
     </div>
   );
 
   return (
     <div>
-      <div className="DC-title">
-        Documentos Enviados
-      </div>
+      <div className="DC-title">Documentos Enviados</div>
       <div className="DC-documentsDiv">
         {infos.map((info) => renderInfo(info))}
       </div>
@@ -89,7 +87,10 @@ function DocsContent({ setShowInfoModal, candidate }) {
         </div>
       )}
       {showConfirmModal && (
-        <Modal handleCloseClick={handleCloseClick} handleConfirmClick={handleConfirmClick}>
+        <Modal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleConfirmClick}
+        >
           {`Deseja ${action.toLowerCase()} os doumentos do candidato?`}
         </Modal>
       )}
