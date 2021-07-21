@@ -22,7 +22,21 @@ $azulPadrao: #1d2d57;
   margin-right: 2.5%;
   margin-bottom: 1%;
 }
+.forms_line_files{
+  background-color: #ffff;
+  display: flex;
+  justify-content: center;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  margin-bottom: 1%;
+}
 .forms_input{
+  margin-right: 5%;
+  text-align: center;
+  font-weight: 600;
+  font-family: Montserrat;
+}
+.forms_input_file{
   margin-right: 5%;
   text-align: center;
   font-weight: 600;
@@ -60,6 +74,11 @@ $azulPadrao: #1d2d57;
 @media screen and (max-width: 1000px) {
   .forms_line{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forms_line_files{
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -77,10 +96,15 @@ $azulPadrao: #1d2d57;
 .forms_input{
   margin-right: 0;
 }
+.forms_input_file {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-right: 0;
+}
 .forms_divButton {
   display: flex;
   justify-content: center;
-  margin-top: 0.2em;
+  margin-top: 6.5%;
   margin-bottom: 20px;
   button {
     height: 3rem;

@@ -30,14 +30,6 @@ function Forms({
     },
   ];
   const [disciplines, setDisciplines] = useState([]);
-  // useEffect(async () => {
-  //   const disciplinas = await managerService.getDisciplines('discipline_is_isolated', true);
-  //   const aux = [];
-  //   disciplinas.forEach((object) => {
-  //     aux.push({ label: object.discipline_name, value: object.discipline_name });
-  //   });
-  //   setDisciplines(aux);
-  // }, []);
 
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
@@ -90,7 +82,7 @@ function Forms({
               type={disc.type}
               id={disc.id}
               label={disc.label}
-              width="22rem"
+              width="19em"
               field={disciplines}
               select={1}
               dados={dados}
@@ -104,9 +96,9 @@ function Forms({
           Arquivos
         </div>
       </div>
-      <div className="forms_line">
+      <div className="forms_line_files">
         {formsFile.map((file) => (
-          <div className="forms_input">
+          <div className="forms_input_file">
             <div className="forms_upload_text">{file}</div>
             <UploadInput files={files} setFiles={setFiles} fileName={file} />
           </div>
