@@ -1,9 +1,10 @@
 const Genres = [
-  { label: 'mulher cis', value: 'mulher cis' },
-  { label: 'mulher trans', value: 'mulher trans' },
-  { label: 'homem cis', value: 'homem cis' },
-  { label: 'nao-binario', value: 'nao-binario' },
-  { label: 'agenero', value: 'agenero' },
-  { label: 'outro', value: 'outro' },
+  { label: 'Mulher cis', value: 'mulher cis' },
+  { label: 'Mulher trans', value: 'mulher trans' },
+  { label: 'Homem cis', value: 'homem cis' },
+  { label: 'Homem trans', value: 'homem cis' },
+  { label: 'Não-binário', value: 'nao-binario' },
+  { label: 'Agênero', value: 'agenero' },
+  { label: 'Outro', value: 'outro' },
 ];
 export default Genres;

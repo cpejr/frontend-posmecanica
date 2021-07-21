@@ -1,8 +1,8 @@
 const CivilStatus = [
-  { label: 'casado(a)', value: 'casado(a)' },
-  { label: 'divorciado(a)', value: 'divorciado(a)' },
-  { label: 'namorando', value: 'namorando' },
-  { label: 'solteiro(a)', value: 'solteiro(a)' },
-  { label: 'viúvo(a)', value: 'viúvo(a)' },
+  { label: 'Casado(a)', value: 'casado(a)' },
+  { label: 'Divorciado(a)', value: 'divorciado(a)' },
+  { label: 'Namorando', value: 'namorando' },
+  { label: 'Solteiro(a)', value: 'solteiro(a)' },
+  { label: 'Viúvo(a)', value: 'viúvo(a)' },
 ];
 export default CivilStatus;

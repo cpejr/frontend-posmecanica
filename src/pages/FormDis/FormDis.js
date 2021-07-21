@@ -35,6 +35,9 @@ function FormDis() {
     candidate_pGraduate_university: '',
     candidate_ufmg_active_serv: '',
     candidate_ufmg_retired_serv: '',
+    first_discipline_isolated: '',
+    second_discipline_isolated: '',
+    third_discipline_isolated: '',
   };
   const [files, setFiles] = useState([]);
 
@@ -54,7 +57,11 @@ function FormDis() {
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3
-      && files.length === 4) {
+      && files.length === 4 && dados.first_discipline_isolated !== ''
+      && dados.second_discipline_isolated !== '' && dados.third_discipline_isolated !== ''
+      && dados.first_discipline_isolated !== dados.second_discipline_isolated
+      && dados.first_discipline_isolated !== dados.third_discipline_isolated
+      && dados.second_discipline_isolated !== dados.third_discipline_isolated) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
       const id = await managerService.createCandidate(
         dados, selectiveProcesses[0].process_id,
@@ -65,6 +72,13 @@ function FormDis() {
         await managerService.uploadFile(data, id, file.name);
       });
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+    } else if (dados.first_discipline_isolated !== ''
+    && dados.second_discipline_isolated !== ''
+    && dados.third_discipline_isolated !== ''
+    && (dados.first_discipline_isolated === dados.second_discipline_isolated
+    || dados.first_discipline_isolated === dados.third_discipline_isolated
+    || dados.second_discipline_isolated === dados.third_discipline_isolated)) {
+      addToast('Preencha com disciplinas diferentes!', { appearance: 'error' });
     } else {
       addToast('Preencha todos os dados!', { appearance: 'error' });
     }

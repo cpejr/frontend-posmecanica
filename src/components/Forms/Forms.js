@@ -12,7 +12,23 @@ function Forms({
     setDados({ ...dados, [field]: value });
   };
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
-  const formsIsolatedDiscipline = ['Primeira opção', 'Segunda opção', 'Terceira opção'];
+  const formsIsolatedDiscipline = [
+    {
+      type: 'text',
+      id: 'first_discipline_isolated',
+      label: 'Primeira opção',
+    },
+    {
+      type: 'text',
+      id: 'second_discipline_isolated',
+      label: 'Segunda opção',
+    },
+    {
+      type: 'text',
+      id: 'third_discipline_isolated',
+      label: 'Terceira opção',
+    },
+  ];
   const [disciplines, setDisciplines] = useState([]);
   // useEffect(async () => {
   //   const disciplinas = await managerService.getDisciplines('discipline_is_isolated', true);
@@ -25,11 +41,11 @@ function Forms({
 
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
-      const aux = [];
+      const disciplinas = [];
       resp.forEach((object) => {
-        aux.push({ label: object.discipline_name, value: object.discipline_name });
+        disciplinas.push({ label: object.discipline_name, value: object.discipline_name });
       });
-      setDisciplines(aux);
+      setDisciplines(disciplinas);
     });
   }, []);
 
@@ -73,8 +89,8 @@ function Forms({
             <StyledInput
               type={disc.type}
               id={disc.id}
-              label={disc}
-              width="21rem"
+              label={disc.label}
+              width="22rem"
               field={disciplines}
               select={1}
               dados={dados}
