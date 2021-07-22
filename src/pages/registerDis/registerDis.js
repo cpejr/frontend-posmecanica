@@ -39,85 +39,82 @@ function registerDis() {
     <div className="screen-ps">
       <SiteHeader />
       <h1> Cadastro de Disciplinas:</h1>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
+      <div className="form_dis_cad_box_title">
+        <div className="form_dis_cad_title">
           Dados da Disciplina
         </div>
       </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_line">
+      <div className="form_dis_cad_requerente">
+        <div className="form_dis_cad_line">
+          <div className="form_dis_cad_line">
             <div className="input-content">
-
-              <div className="form_dis_ps_input">
+              <div className="form_dis_cad_input">
                 <StyledInput
                   type="text"
                   id="discipline_name"
                   label="Nome"
-                  width="16rem"
+                  width="22.5rem"
                   dados={dados}
                   setDados={setDados}
                 />
               </div>
-              <div className="form_dis_ps_input" />
+              <div className="form_dis_cad_input" />
               <StyledInput
                 type="text"
                 id="discipline_code"
                 label="Código da Disciplina"
-                width="16rem"
+                width="22.5rem"
                 dados={dados}
                 setDados={setDados}
               />
             </div>
-            <div className="form_dis_ps_line">
-              <div className="form_dis_ps_input">
+            <div className="form_dis_cad_line">
+              <div className="form_dis_cad_input">
                 <StyledInput
                   type="text"
                   id="discipline_semester"
                   label="Período Ofertado"
-                  width="16rem"
+                  width="22.5rem"
                   select
                   field={semester}
                   dados={dados}
                   setDados={setDados}
                 />
               </div>
-
-              <div className="form_dis_ps_input">
+              <div className="form_dis_cad_input">
                 <StyledInput
                   type="text"
                   id="discipline_is_isolated"
                   label="Disciplina Isolada"
-                  width="16rem"
+                  width="22.5rem"
                   field={booleans}
                   select
                   dados={dados}
                   setDados={setDados}
                 />
-
-                <div className="form_dis_ps_input" />
+                <div className="form_dis_cad_input" />
                 <StyledInput
                   type="text"
                   id="discipline_type"
                   label="Conteúdo"
                   field={enumm}
                   select
-                  width="16rem"
+                  width="22.5rem"
                   dados={dados}
                   setDados={setDados}
                 />
               </div>
-              <div className="form_dis_ps_input" />
+              <div className="form_dis_cad_input" />
               <StyledInput
                 type="text"
                 id="discipline_content"
                 label="Conteúdo"
-                width="16rem"
+                width="22.5rem"
                 dados={dados}
                 setDados={setDados}
               />
             </div>
-            <div className="divButton-ps">
+            <div className="divButton-cad">
               <button type="submit" onClick={handleClick}> Cadastrar </button>
             </div>
           </div>

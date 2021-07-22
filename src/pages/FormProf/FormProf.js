@@ -4,17 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import States from '../../utils/states';
-import Genres from '../../utils/genres';
-import Boolean from '../../utils/boolean';
-import Types from '../../utils/types';
-import Titles from '../../utils/titles';
-
-const states = States;
-const genres = Genres;
-const boolean = Boolean;
-const types = Types;
-const titles = Titles;
+import formsInput from '../../utils/formsProf';
 
 function FormProf() {
   const initialState = {
@@ -58,257 +48,35 @@ function FormProf() {
     <div className="screen-ps">
       <SiteHeader />
       <h1> Inscrição Processo Seletivo:</h1>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
-          Dados Pessoais
+      {formsInput.map((topic) => (
+        <div key={topic.title}>
+          <div className="form_dis_prof_box_title">
+            <div className="form_dis_prof_title">
+              {topic.title}
+            </div>
+          </div>
+          {topic.lines.map((line) => (
+            <div className="form_dis_prof_line">
+              {line.items.map((item) => (
+                <div className="form_dis_prof_input">
+                  <StyledInput
+                    type={item.type}
+                    id={item.id}
+                    label={item.label}
+                    width="18rem"
+                    field={item.field}
+                    select={item.select}
+                    dados={dados}
+                    setDados={handleChange}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_name"
-              label="Nome"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="date"
-              id="prof_birth"
-              label="Data de Nascimento"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_cpf"
-              label="CPF"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="email"
-              id="prof_email"
-              label="Email"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_gender"
-              label="Gênero"
-              width="16rem"
-              field={genres}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
-          Endereço
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_city"
-              label="Cidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_state"
-              label="Estado"
-              width="16rem"
-              field={states}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_country"
-              label="País"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
-          Acadêmico
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_university"
-              label="Universidade"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_curriculum"
-              label="Currículo Lattes"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_active"
-              label="Professor ativo no programa?"
-              field={boolean}
-              select
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_type"
-              label="Tipo de professor?"
-              field={types}
-              select
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_credential"
-              label="Possui credencial?"
-              field={boolean}
-              select
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_course"
-              label="Curso"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_title"
-              label="Qual seu título?"
-              field={titles}
-              select
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="number"
-              id="prof_title_year"
-              label="Ano do título"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_treatment"
-              label="Como gostaria de ser chamado?"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              type="text"
-              id="prof_workplace"
-              label="Local de trabalho"
-              width="16rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="form_dis_ps_box_title">
-        <div className="form_dis_ps_title">
-          Descrição
-        </div>
-      </div>
-      <div className="form_dis_ps_requerente">
-        <div className="form_dis_ps_line">
-          <div className="form_dis_ps_input">
-            <StyledInput
-              multiline
-              type="text"
-              id="prof_description"
-              label=""
-              width="70rem"
-              height="30rem"
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="divButton-ps">
-        <button type="submit" onClick={handleClick}> Cadastre-se</button>
+      ))}
+      <div className="divButton-psprof">
+        <button className="Button-psprof" type="submit" onClick={handleClick}> Cadastre-se</button>
       </div>
     </div>
   );
