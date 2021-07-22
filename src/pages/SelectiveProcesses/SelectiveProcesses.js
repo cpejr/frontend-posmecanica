@@ -42,6 +42,7 @@ function SelectiveProcesses() {
         <div className="SP-title">
           Processos Seletivos
         </div>
+        <div className="subTitle-line" />
         <div className="SP-filter">
           <div className="SP-subtitle">
             Filtrar por tempo
