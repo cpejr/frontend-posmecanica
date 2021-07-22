@@ -48,10 +48,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_civil_state',
@@ -59,6 +55,10 @@ const formsInput = [
             field: civilStatus,
             select: true,
           },
+        ],
+      },
+      {
+        items: [
           {
             type: 'text',
             id: 'candidate_race',
@@ -89,10 +89,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_identity',
@@ -155,10 +151,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_district',
@@ -166,6 +158,10 @@ const formsInput = [
             field: null,
             select: false,
           },
+        ],
+      },
+      {
+        items: [
           {
             type: 'text',
             id: 'candidate_cep',
@@ -173,10 +169,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_city',
@@ -191,6 +183,10 @@ const formsInput = [
             field: states,
             select: true,
           },
+        ],
+      },
+      {
+        items: [
           {
             type: 'text',
             id: 'candidate_country',
@@ -221,10 +217,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'date',
             id: 'candidate_grade_date_begin',
@@ -232,6 +224,10 @@ const formsInput = [
             field: null,
             select: false,
           },
+        ],
+      },
+      {
+        items: [
           {
             type: 'date',
             id: 'candidate_grade_date_end',

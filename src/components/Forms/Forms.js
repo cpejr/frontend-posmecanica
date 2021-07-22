@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
-import * as managerService from '../../services/manager/managerService';
 import './Forms.scss';
 
 function Forms({
@@ -12,34 +11,6 @@ function Forms({
     setDados({ ...dados, [field]: value });
   };
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
-  const formsIsolatedDiscipline = [
-    {
-      type: 'text',
-      id: 'first_discipline_isolated',
-      label: 'Primeira opção',
-    },
-    {
-      type: 'text',
-      id: 'second_discipline_isolated',
-      label: 'Segunda opção',
-    },
-    {
-      type: 'text',
-      id: 'third_discipline_isolated',
-      label: 'Terceira opção',
-    },
-  ];
-  const [disciplines, setDisciplines] = useState([]);
-
-  useEffect(async () => {
-    managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
-      const disciplinas = [];
-      resp.forEach((object) => {
-        disciplinas.push({ label: object.discipline_name, value: object.discipline_name });
-      });
-      setDisciplines(disciplinas);
-    });
-  }, []);
 
   return (
     <div>
@@ -70,27 +41,6 @@ function Forms({
           ))}
         </div>
       ))}
-      <div className="forms_box_title">
-        <div className="forms_title">
-          Escolha de disciplinas isoladas
-        </div>
-      </div>
-      <div className="forms_line">
-        {formsIsolatedDiscipline.map((disc) => (
-          <div className="forms_input">
-            <StyledInput
-              type={disc.type}
-              id={disc.id}
-              label={disc.label}
-              width="19em"
-              field={disciplines}
-              select={1}
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
-        ))}
-      </div>
       <div className="forms_box_title">
         <div className="forms_title">
           Arquivos

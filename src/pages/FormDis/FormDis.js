@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './FormDis.scss';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
-import Forms from '../../components/Forms';
+import Forms from '../../components/FormsDI';
 import * as managerService from '../../services/manager/managerService';
 import formsInput from '../../utils/formsIsoDis';
 
