@@ -14,13 +14,26 @@ $azulPadrao: #1d2d57;
   font-family: Montserrat;
   font-size: 2em;
 }
+.form_dis_cad_box{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .form_dis_cad_line{
-  background-color: #ffff;
+  background-color: #E0D7D7;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 65%;
+  min-height: 710px;
   align-items: center;
+  border: 1px solid black;
+  box-shadow: 0.8px 0.8px 3.6px rgb(68, 58, 58);
+  border-radius: 12px;
+  margin-bottom: 100px;
+}
+.MuiInputBase-root {
+  background-color: white;
 }
 .input-content{
   align-items: center;
@@ -30,16 +43,15 @@ $azulPadrao: #1d2d57;
   flex-direction: column;
 }
 .divButton-cad{
-  background-color: #ffff;
+  background-color: #E0D7D7;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   width: 80%;
   button {
     height: 3rem;
     width: 35%;
-    min-width: 450px;
+    min-width: 350px;
     border: 0;
     border-radius: 7px;
     background-color: $azulPadrao;
@@ -48,16 +60,14 @@ $azulPadrao: #1d2d57;
     font-size: 25px;
     text-shadow: 0em 0.3em 0.3em #000;
     box-shadow: 1px 1px 5px #000;
-    margin-bottom: 3rem;
     cursor: pointer;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .divButton-cad{
-    margin-top: 40px;
     button {
-      min-width: 360px;
+      min-width: 340px;
     }
   }
 }

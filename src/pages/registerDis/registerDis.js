@@ -45,7 +45,7 @@ function registerDis() {
         </div>
       </div>
       <div className="form_dis_cad_requerente">
-        <div className="form_dis_cad_line">
+        <div className="form_dis_cad_box">
           <div className="form_dis_cad_line">
             <div className="input-content">
               <div className="form_dis_cad_input">
@@ -58,6 +58,8 @@ function registerDis() {
                   setDados={setDados}
                 />
               </div>
+            </div>
+            <div className="input-content">
               <div className="form_dis_cad_input" />
               <StyledInput
                 type="text"
@@ -68,7 +70,7 @@ function registerDis() {
                 setDados={setDados}
               />
             </div>
-            <div className="form_dis_cad_line">
+            <div className="form_dis_cad_line2">
               <div className="form_dis_cad_input">
                 <StyledInput
                   type="text"
