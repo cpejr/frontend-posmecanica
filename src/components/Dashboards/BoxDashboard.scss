@@ -8,7 +8,10 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+  color: #061744;
+  margin: 0px 50px 0px 50px;
+  ;
 }
 .BdBox {
   margin: 0px 50px 0px 50px;
@@ -30,6 +33,7 @@
   justify-content: space-between;
   padding-left: 24px;
   padding-right: 24px;
+  background-color: #061744;
 }
 .BdTitleNumber{
   display: flex;
@@ -38,6 +42,7 @@
 .BdSubTitle{
   width: 100%;
   display: flex;
+  color: white;
 }
 
 .BdDivGrid {
