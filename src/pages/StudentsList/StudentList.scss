@@ -11,6 +11,30 @@
   padding: 50px;
   width: 100%;
 }
+
+.studentList-Info{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.studentList-Info-Name{
+  width: 33%;
+  
+}
+
+.studentList-Info-Year{
+  width: 33%;
+  display: flex;
+  justify-content: center;
+}
+
+.studentList-Info-Type{
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .studentList-Filters {
   display: flex;
   justify-content: space-between;

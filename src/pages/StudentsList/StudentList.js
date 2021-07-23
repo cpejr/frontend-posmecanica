@@ -111,7 +111,16 @@ function StudentList() {
               setDados={handleFilterGraduationChange}
             />
           </div>
-          {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+
+          {filterStudents.map((student) => (
+            <div className="studentList-Info">
+              <div className="studentList-Info-Name">{student.candidate_name}</div>
+              <div className="studentList-Info-Year">{new Date(student.created_at).getUTCFullYear().toString()}</div>
+              <div className="studentList-Info-Type">{student.process_type}</div>
+              {/* new Date(student.created_at).getUTCFullYear().toString() === filterYear */}
+            </div>
+          ))}
+
         </div>
         <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>

@@ -9,6 +9,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { FaChevronCircleDown } from 'react-icons/fa';
 
+import { IconContext } from 'react-icons/lib';
+import { BiUserCircle } from 'react-icons/bi';
 import orderElements from '../../utils/order';
 import * as managerService from '../../services/manager/managerService';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
@@ -111,6 +113,9 @@ function ProfessorList() {
                           >
                             <Typography className={classes.heading}>
                               <div className="accordingSecondaryTitle">
+                                <IconContext.Provider value={{ size: 50 }}>
+                                  <BiUserCircle className="isoPsIcon" />
+                                </IconContext.Provider>
                                 {professor.prof_name}
                               </div>
                             </Typography>

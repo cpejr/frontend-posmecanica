@@ -59,8 +59,9 @@ function BoxDashboard({
                 width="16rem"
                 field={TitleTypes}
                 select
-                background="transparent"
+                background="red"
                 dados={dados}
+                color2="white"
                 setDados={handleChange}
               />
             </div>
