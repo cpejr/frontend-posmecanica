@@ -51,6 +51,8 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+          text-justify: center;
+          text-align: center;
 }
 
 .outlined-basic {
@@ -78,7 +80,7 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 82%;
+
 }
 
 .coluna {
@@ -96,6 +98,7 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+         
 }
 
 .text1 {
@@ -110,6 +113,7 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 8vh;
+  
 }
 
 .MuiFormControl-root.MuiTextField-root.campinho {
