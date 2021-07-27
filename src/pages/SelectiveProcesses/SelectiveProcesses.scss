@@ -7,18 +7,24 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding-left: 0;
+
 }
 .SP-screen{
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 5%;
+  background-color: rgba($color: #b6b3b3, $alpha: 0.23)
 }
 .SP-title{
   display:flex;
   justify-content: center;
   font-family: montserrat;
   font-size: 3em;
-  margin: 1%;
+  color: #061744;
+}
+.subTitle-line{
+  background-color:#061744;
+  height: 3px;
 }
 .SP-filter{
   display: flex;
@@ -45,10 +51,11 @@ body {
     border-top-left-radius: 5px;
      justify-content: center;
     height: 20%;
-    background-color: #ccc;
+    background-color: #061744;
     border-bottom: 10px;
     .SP-barTitle{
       font-size: 2em;
+      color: white;
     }
   }
   .SP-bottomBar{

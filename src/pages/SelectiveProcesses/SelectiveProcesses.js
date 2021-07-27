@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
@@ -42,6 +43,7 @@ function SelectiveProcesses() {
         <div className="SP-title">
           Processos Seletivos
         </div>
+        <div className="subTitle-line" />
         <div className="SP-filter">
           <div className="SP-subtitle">
             Filtrar por tempo

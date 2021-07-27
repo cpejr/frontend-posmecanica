@@ -18,7 +18,7 @@ function BoxDashboardProfesssor() {
 
   return (
     <Box
-      title="Matrículas Isoladas Realizadas"
+      title="Matrículas Realizadas:"
       subtitle="Alunos:"
       list={filteredStudents}
       isoCandidates={candidates}
