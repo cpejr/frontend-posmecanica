@@ -1,13 +1,13 @@
-import React from 'react';
-import Pdf from 'react-to-pdf';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import './PDF.scss';
+import { FiPrinter } from 'react-icons/fi';
 
-const ref = React.createRef();
-
-function PDF() {
-  return (
-    <div>
-      <div className="pdf-external-div" ref={ref}>
+// eslint-disable-next-line react/prefer-stateless-function
+class ComponentToPrint extends React.Component {
+  render() {
+    return (
+      <div className="pdf-external-div">
         <div className="pdf-header">
           <div className="pdf-image">
             <img
@@ -29,14 +29,14 @@ function PDF() {
           <div className="pdf-title">DECLARAÇÃO</div>
           <p className="pdf-dedicate">
             Declaro, para os devidos fins, que ANDERSON JÚNIOR DOS SANTOS,
-            matrícula nº 2018700680, é aluno regularmente matriculado no Programa
-            de Pós-Graduação em Engenharia Mecânica, nível Doutorado, da
-            Universidade Federal de Minas Gerais, frequentando regularmente as
-            atividades desde março de 2018. Declaro, ainda, que o referido aluno é
-            bolsista do Conselho Nacional de Desenvolvimento Científico e
-            Tecnológico (CNPq), recebendo, mensalmente, a quantia correspondente a
-            01 (uma) bolsa de doutorado, no valor de R$ 1500 (um mil, quinhentos
-            reais), de acordo com a legislação vigente.
+            matrícula nº 2018700680, é aluno regularmente matriculado no
+            Programa de Pós-Graduação em Engenharia Mecânica, nível Doutorado,
+            da Universidade Federal de Minas Gerais, frequentando regularmente
+            as atividades desde março de 2018. Declaro, ainda, que o referido
+            aluno é bolsista do Conselho Nacional de Desenvolvimento Científico
+            e Tecnológico (CNPq), recebendo, mensalmente, a quantia
+            correspondente a 01 (uma) bolsa de doutorado, no valor de R$ 1500
+            (um mil, quinhentos reais), de acordo com a legislação vigente.
           </p>
           <p className="pdf-date">Belo Horizonte, 13 de maio de 2021</p>
           <div className="pdf-coordinator">
@@ -45,23 +45,34 @@ function PDF() {
             <p>em Engenharia Mecânica da UFMG</p>
           </div>
           <p className="pdf-observation">
-            OBS: Sugiro que os dados a serem preenchidos
-            pela secretaria fossem os de destaque.
-            Se possível o campo permitir a digitação de mais dados caso necessário.
-            Os demais itens serão gerados automáticos correto?
+            OBS: Sugiro que os dados a serem preenchidos pela secretaria fossem
+            os de destaque. Se possível o campo permitir a digitação de mais
+            dados caso necessário. Os demais itens serão gerados automáticos
+            correto?
           </p>
         </div>
       </div>
-
-      <Pdf targetRef={ref} filename="documento.pdf">
-        {({ toPdf }) => (
-          <button type="button" onClick={toPdf}>
-            BAIXAR
-          </button>
-        )}
-      </Pdf>
-    </div>
-  );
+    );
+  }
 }
 
-export default PDF;
+const PDFPage = () => {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
+  return (
+    <div>
+      <div className="print-button" role="button" tabIndex="0" onClick={handlePrint} onKeyDown={handlePrint}>
+        <div className="print-button-text">
+          <FiPrinter className="print-icon" size={25} />
+          Imprimir
+        </div>
+      </div>
+      <ComponentToPrint ref={componentRef} />
+    </div>
+  );
+};
+
+export default PDFPage;
