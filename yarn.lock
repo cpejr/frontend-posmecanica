@@ -1555,6 +1555,13 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
+"@material-ui/icons@^4.11.2":
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz#b3a7353266519cd743b6461ae9fdfcb1b25eb4c5"
+  integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+
 "@material-ui/lab@^4.0.0-alpha.57":
   version "4.0.0-alpha.58"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.58.tgz#c7ebb66f49863c5acbb20817163737caa299fafc"
@@ -10062,6 +10069,13 @@ react-to-pdf@^0.0.14:
   dependencies:
     html2canvas "1.0.0-alpha.12"
     jspdf "^2.3.1"
+
+react-to-print@^2.12.6:
+  version "2.12.6"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.12.6.tgz#ac4537e12528ce865a1a652dcdfb19c5b20c9cce"
+  integrity sha512-O4hpQZX8pOd3W910n+WkT9Jvpd3tFcEWqTFHrm69bCGI/Nh5g2CoLrzaXObQW9BA9mK1K4+3qG88Q6DAJs+oWg==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-toast-notifications@^2.4.4:
   version "2.4.4"
