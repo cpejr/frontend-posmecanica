@@ -1,7 +1,7 @@
 const Races = [
-  { label: 'branco', value: 'branco' },
-  { label: 'indígena', value: 'indígena' },
-  { label: 'negro', value: 'negro' },
-  { label: 'pardo', value: 'pardo' },
+  { label: 'Branco', value: 'branco' },
+  { label: 'Indígena', value: 'indígena' },
+  { label: 'Negro', value: 'negro' },
+  { label: 'Pardo', value: 'pardo' },
 ];
 export default Races;

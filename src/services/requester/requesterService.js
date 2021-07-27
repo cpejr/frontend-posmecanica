@@ -53,3 +53,12 @@ export const getStudents = (times, field, filter) => httpClient.get('/students',
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+
+export const getDisciplines = (times, field, filter) => httpClient.get('/disciplines', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});

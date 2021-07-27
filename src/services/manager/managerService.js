@@ -57,6 +57,19 @@ export const sendResetEmail = async (email) => {
   return response;
 };
 
+export const getDisciplines = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allDisciplines = [];
+  do {
+    response = await requesterService.getDisciplines(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allDisciplines = allDisciplines.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allDisciplines;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

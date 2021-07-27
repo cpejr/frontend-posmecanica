@@ -1,20 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 $corFundo: #c7d1dc;
 $azulPadrao: #1d2d57;
-.forms_box_title{
+.formsDI_box_title{
   display: flex;
   align-items: center;
   background-image: linear-gradient(to right, $azulPadrao,#1037a1);
   margin:2%;
   height: 8%;
 }
-.forms_title{
+.formsDI_title{
   color: white;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 2.0em;
 }
-.forms_line{
+.formsDI_line{
   background-color: #ffff;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ $azulPadrao: #1d2d57;
   margin-right: 2.5%;
   margin-bottom: 1%;
 }
-.forms_line_files{
+.formsDI_line_files{
   background-color: #ffff;
   display: flex;
   justify-content: center;
@@ -30,19 +30,19 @@ $azulPadrao: #1d2d57;
   margin-right: 2.5%;
   margin-bottom: 1%;
 }
-.forms_input{
+.formsDI_input{
   margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
-.forms_input_file{
+.formsDI_input_file{
   margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
-.forms_divButton {
+.formsDI_divButton {
   display: flex;
   justify-content: center;
   margin-top: 5em;
@@ -62,27 +62,27 @@ $azulPadrao: #1d2d57;
   cursor: pointer;
 }
 }
-.forms_title{
+.formsDI_title{
   color: white;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 2.0em;
 }
-.forms_upload_text {
+.formsDI_upload_text {
   margin-bottom: 10px;
 }
 @media screen and (max-width: 1000px) {
-  .forms_line{
+  .formsDI_line{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.forms_line_files{
+.formsDI_line_files{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.forms_box_title{
+.formsDI_box_title{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,15 +93,15 @@ $azulPadrao: #1d2d57;
   margin-bottom: 5%;
   height: 7%;
 }
-.forms_input{
+.formsDI_input{
   margin-right: 0;
 }
-.forms_input_file {
+.formsDI_input_file {
   margin-top: 0px;
   margin-bottom: 20px;
   margin-right: 0;
 }
-.forms_divButton {
+.formsDI_divButton {
   display: flex;
   justify-content: center;
   margin-top: 6.5%;

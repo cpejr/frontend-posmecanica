@@ -49,10 +49,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_civil_state',
@@ -60,6 +56,10 @@ const formsInput = [
             field: civilStatus,
             select: true,
           },
+        ],
+      },
+      {
+        items: [
           {
             type: 'text',
             id: 'candidate_race',
@@ -90,10 +90,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_identity',
@@ -156,21 +152,10 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'text',
             id: 'candidate_district',
             label: 'Bairro',
-            field: null,
-            select: false,
-          },
-          {
-            type: 'text',
-            id: 'candidate_cep',
-            label: 'CEP',
             field: null,
             select: false,
           },
@@ -192,6 +177,17 @@ const formsInput = [
             field: states,
             select: true,
           },
+          {
+            type: 'text',
+            id: 'candidate_cep',
+            label: 'CEP',
+            field: null,
+            select: false,
+          },
+        ],
+      },
+      {
+        items: [
           {
             type: 'text',
             id: 'candidate_country',
@@ -222,10 +218,6 @@ const formsInput = [
             field: null,
             select: false,
           },
-        ],
-      },
-      {
-        items: [
           {
             type: 'date',
             id: 'candidate_grade_date_begin',
@@ -233,21 +225,14 @@ const formsInput = [
             field: null,
             select: false,
           },
-          {
-            type: 'date',
-            id: 'candidate_grade_date_end',
-            label: 'Data final da graduação',
-            field: null,
-            select: false,
-          },
         ],
       },
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_pGraduate_university',
-            label: 'Universidade da Pós Graduação',
+            type: 'date',
+            id: 'candidate_grade_date_end',
+            label: 'Data final da graduação',
             field: null,
             select: false,
           },
@@ -264,6 +249,17 @@ const formsInput = [
             label: 'Servidor aposentado da UFMG?',
             field: booleans,
             select: true,
+          },
+        ],
+      },
+      {
+        items: [
+          {
+            type: 'text',
+            id: 'candidate_pGraduate_university',
+            label: 'Universidade da Pós Graduação',
+            field: null,
+            select: false,
           },
         ],
       },

@@ -29,7 +29,7 @@ function Forms({
                     type={item.type}
                     id={item.id}
                     label={item.label}
-                    width="16rem"
+                    width="22rem"
                     field={item.field}
                     select={item.select}
                     dados={dados}
@@ -46,16 +46,16 @@ function Forms({
           Arquivos
         </div>
       </div>
-      <div className="forms_line">
+      <div className="forms_line_files">
         {formsFile.map((file) => (
-          <div className="forms_input">
+          <div className="forms_input_file">
             <div className="forms_upload_text">{file}</div>
             <UploadInput files={files} setFiles={setFiles} fileName={file} />
           </div>
         ))}
       </div>
       <div className="forms_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}> Cadastre-se</button>
+        <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
       </div>
     </div>
   );
