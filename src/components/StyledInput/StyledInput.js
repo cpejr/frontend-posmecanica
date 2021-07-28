@@ -22,7 +22,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height, multiline = false, background = 'white',
+  setDados, type, label, id, width, field, select, height, shrink, multiline = false, background = 'white',
 
 }) {
   const [error, setError] = useState(false);
@@ -44,6 +44,7 @@ function StyledInput({
           color: 'black',
           background: { background },
         },
+        shrink,
       }}
       InputProps={{
         style: {

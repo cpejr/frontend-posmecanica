@@ -72,7 +72,7 @@ function SelectiveProcesses() {
             {processMestrado.map((process, key) => (
               <SelectiveProcess
                 name={process.process_name}
-                type={process.process_type}
+                // type={process.process_type}
                 progress="Em andamento"
                 chave={key}
               />
@@ -80,7 +80,7 @@ function SelectiveProcesses() {
             {processDoutorado.map((process) => (
               <SelectiveProcess
                 name={process.process_name}
-                type={process.process_type}
+                // type={process.process_type}
                 id={process.process_id}
                 progress="Finalizado"
               />

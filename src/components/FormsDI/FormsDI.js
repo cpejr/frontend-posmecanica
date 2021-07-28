@@ -54,6 +54,7 @@ function Forms({
             <div className="formsDI_line">
               {line.items.map((item) => (
                 <div className="formsDI_input">
+                  {console.log(item, dados, item.type === 'date')}
                   <StyledInput
                     type={item.type}
                     id={item.id}
@@ -61,7 +62,8 @@ function Forms({
                     width="22rem"
                     field={item.field}
                     select={item.select}
-                    dados={dados}
+                    shrink={item.type === 'date'}
+                    // dados={dados}
                     setDados={handleChange}
                   />
                 </div>
@@ -105,7 +107,7 @@ function Forms({
         ))}
       </div>
       <div className="formsDI_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
+        <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
       </div>
     </div>
   );
