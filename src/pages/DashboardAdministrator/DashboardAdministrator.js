@@ -13,10 +13,6 @@ function DashboardAdministrator() {
       path: '/',
     },
     {
-      text: 'Redefinição de senha',
-      path: 'esqueci-senha',
-    },
-    {
       text: 'Postagens de teses',
       path: '/',
     },
@@ -27,6 +23,10 @@ function DashboardAdministrator() {
     {
       text: 'Cadastro de disciplina isolada',
       path: 'cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
 
