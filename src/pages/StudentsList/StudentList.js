@@ -67,11 +67,11 @@ function StudentList() {
       path: '',
     },
     {
-      text: 'nando sonolento',
+      text: 'Requisições',
       path: '',
     },
     {
-      text: 'redefinição de senha',
+      text: 'Redefinição de senha',
       path: '',
     },
   ];

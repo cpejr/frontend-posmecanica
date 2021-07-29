@@ -9,12 +9,24 @@ function DashboardAdministrator() {
       path: 'lista-estudantes',
     },
     {
-      text: 'nando sonolento',
+      text: 'Criar processo seletivo',
       path: '/',
     },
     {
-      text: 'redefinição de senha',
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
+    },
+    {
+      text: 'Postagens de teses',
       path: '/',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: '/',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
     },
   ];
 
