@@ -9,7 +9,8 @@
   .infoModalcontainer{
     position: fixed;
     max-width: 800px;
-    top: 12%;
+    top: 3%;
+    bottom: 3%;
     left:0;
     right: 0;
     margin: auto;
@@ -18,7 +19,7 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
   }
   .container{
-    height: auto;
+    height: 50;
   }
   h2{
     margin-top: 1.2em;

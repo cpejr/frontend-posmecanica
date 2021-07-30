@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SentDocuments.scss';
 import Pagination from '@material-ui/lab/Pagination';
-import Navbar from '../../components/Navbar';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import InfoModal from './InfoModal';
 import DocsContent from './DocsContent';
@@ -11,6 +11,7 @@ import TestContent from './TestContent';
 function SentDocuments({ location }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [page, setPage] = useState(1);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   const history = useHistory();
   let candidate;
   if (location.state && location.state.candidate) {
@@ -28,7 +29,7 @@ function SentDocuments({ location }) {
 
   return (
     <div className="SD-externalDiv">
-      <Navbar />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SD-screen">
         {candidate && page === 1 && (
           <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
