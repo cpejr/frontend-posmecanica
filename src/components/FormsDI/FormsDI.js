@@ -54,16 +54,15 @@ function Forms({
             <div className="formsDI_line">
               {line.items.map((item) => (
                 <div className="formsDI_input">
-                  {console.log(item, dados, item.type === 'date')}
                   <StyledInput
                     type={item.type}
+                    shrink={item.type === 'date' ? true : undefined}
                     id={item.id}
                     label={item.label}
                     width="22rem"
                     field={item.field}
                     select={item.select}
-                    shrink={item.type === 'date'}
-                    // dados={dados}
+                    dados={dados}
                     setDados={handleChange}
                   />
                 </div>

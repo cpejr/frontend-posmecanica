@@ -8,7 +8,7 @@
   font-family: Montserrat;
 }
 .hide {
-  display: none;
+  display: flex;
 }
 .userPanelText {
   font-family: Montserrat;
@@ -17,10 +17,45 @@
   font-size: 12px;
 }
 .divNavbar {
+  display: flex;
   border-left: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: 1px 0px 4px 0px rgb(0 0 0 / 75%);
-  width: 20%;
+  width: auto;
 }
 .retract {
-  width: 4%;
+  display: none;
+}
+
+.MuiList-root.MuiList-padding{
+  display: flex;
+  flex-direction: column;
+  width: min-content
+  
+}
+
+
+@media (max-width: 680px){
+  .divNavbar{
+    flex-direction: row;
+    width: 100%;
+    height: min-content;
+    background-repeat: no-repeat;
+    background-position:top;
+    z-index: 1000;
+    transform: translateX(-100%);
+    background-color: white;
+    height: 100%;
+    display: none;
+  }
+
+  .MuiList-root.MuiList-padding{
+    display: flex;
+    width: 100%;
+    height: min-content;
+  }
+
+  .retract{
+    display: block;
+  }
+
 }

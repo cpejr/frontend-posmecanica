@@ -14,7 +14,7 @@ function StudentList() {
   const [filterName, setFilterName] = useState();
   const [filterYear, setFilterYear] = useState();
   const [filterGraduation, setFilterGraduation] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   useEffect(async () => {
     const students = await managerService.getStudents();
@@ -67,11 +67,11 @@ function StudentList() {
       path: '',
     },
     {
-      text: 'nando sonolento',
+      text: 'Requisições',
       path: '',
     },
     {
-      text: 'redefinição de senha',
+      text: 'Redefinição de senha',
       path: '',
     },
   ];
