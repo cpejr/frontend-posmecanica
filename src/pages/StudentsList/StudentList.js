@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -5,6 +6,7 @@ import StyledInput from '../../components/StyledInput';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 import { AllTitleTypes } from '../../utils/titleTypes';
+import StudentEdit from '../../components/StudentEdit';
 import './StudentList.scss';
 
 function StudentList() {
@@ -111,7 +113,7 @@ function StudentList() {
               setDados={handleFilterGraduationChange}
             />
           </div>
-          {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+          {filterStudents.map((student) => <StudentEdit estudante={student} />)}
         </div>
         <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>
