@@ -41,44 +41,44 @@ function EditStudentInfo() {
   return (
     <div className="screen-ps">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      <h1> Atualização Cadastral:</h1>
-      <div>
-        {StudEdit.map((topic) => (
-          <div key={topic.title}>
-            <div className="formsDI_box_title">
-              <div className="formsDI_title">
-                {topic.title}
+      <div className="atualizationContent">
+        <div className="campsContent">
+          <h1> Atualização Cadastral:</h1>
+          {StudEdit.map((topic) => (
+            <div key={topic.title}>
+              <div className="formsDI_box_title">
+                <div className="formsDI_title">
+                  {topic.title}
+                </div>
               </div>
+              {topic.lines.map((line) => (
+                <div className="formsDI_line">
+                  {line.items.map((item) => (
+                    <div className="formsDI_input">
+                      <StyledInput
+                        type={item.type}
+                        shrink={item.type === 'date' ? true : undefined}
+                        id={item.id}
+                        label={item.label}
+                        width="22rem"
+                        field={item.field}
+                        select={item.select}
+                        dados={dados}
+                        setDados={handleChange}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
-            {topic.lines.map((line) => (
-              <div className="formsDI_line">
-                {line.items.map((item) => (
-                  <div className="formsDI_input">
-                    <StyledInput
-                      type={item.type}
-                      shrink={item.type === 'date' ? true : undefined}
-                      id={item.id}
-                      label={item.label}
-                      width="22rem"
-                      field={item.field}
-                      select={item.select}
-                      dados={dados}
-                      setDados={handleChange}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
+          ))}
+          <div className="Login-button1">
+            <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
-        ))}
+        </div>
+        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>
-      <div className="Login-button1">
-        <button type="submit" onClick={handleClick}>Atualizar</button>
-      </div>
-      <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

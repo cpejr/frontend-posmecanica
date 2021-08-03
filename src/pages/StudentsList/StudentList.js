@@ -1,12 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+// import { ListItemText } from '@material-ui/core';
+// import { Link } from 'react-router-dom';
+// import { BiUserCircle } from 'react-icons/bi';
+// import { IconContext } from 'react-icons/lib';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 import { AllTitleTypes } from '../../utils/titleTypes';
-import StudentEdit from '../../components/StudentEdit';
 import './StudentList.scss';
 
 function StudentList() {
@@ -16,7 +18,8 @@ function StudentList() {
   const [filterName, setFilterName] = useState();
   const [filterYear, setFilterYear] = useState();
   const [filterGraduation, setFilterGraduation] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  // const [stylesProcessType, setstylesProcessType] = useState(false);
 
   useEffect(async () => {
     const students = await managerService.getStudents();
@@ -62,7 +65,16 @@ function StudentList() {
   const handleFilterGraduationChange = (value) => {
     setFilterGraduation(value);
   };
-
+  // useEffect(async () => {
+  //   setstylesProcessType(student.process_type);
+  //   if (student.process_type === 'DOUTORADO') {
+  //     setProcesstype('Doutorado');
+  //     setstylesProcessType(false);
+  //   } else {
+  //     setProcesstype('Mestrado');
+  //     setstylesProcessType(true);
+  //   }
+  // }, []);
   const inputProps = [
     {
       text: 'Página principal',
@@ -113,7 +125,39 @@ function StudentList() {
               setDados={handleFilterGraduationChange}
             />
           </div>
-          {filterStudents.map((student) => <StudentEdit estudante={student} />)}
+          <div className="gridAll">
+            <div className="gridStudents">
+              <div className="gridName">
+                {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+              </div>
+              <div className="gridGraduation">
+                {filterStudents.map((student) => <div>{student.process_type}</div>)}
+              </div>
+              <div className="gridEdit">
+                {filterStudents.map(() => <a href="/painel/administrator/editar/aluno">Editar Informações</a>)}
+              </div>
+            </div>
+          </div>
+          {/* <div className="gridStudents">
+            <div className="gridName">
+              {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+            </div>
+            <div className="gridGraduation">
+              <div>
+                {filterStudents.map((student) => <div>{student.process_type}</div>)}
+              </div>
+            </div>
+            <div className="gridEdit">
+              <Link
+                to={{
+                  pathname: '/documentos-enviados',
+                  state: { allStudents },
+                }}
+              >
+                Editar informações
+              </Link>
+            </div>
+          </div> */}
         </div>
         <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>
