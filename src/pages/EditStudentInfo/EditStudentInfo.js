@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import './EditStudentInfo.scss';
 import { useToasts } from 'react-toast-notifications';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
+import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import StudEdit from '../../utils/StudentEdit_ByAdmin';
@@ -10,6 +11,21 @@ import Footer from '../../components/Footer/Footer';
 
 function EditStudentInfo() {
   const [dados, setDados] = useState();
+  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
+    {
+      text: 'Requisições',
+      path: '',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '',
+    },
+  ];
   const handleClick = async (e) => {
     try {
       e.preventDefault();
@@ -24,7 +40,7 @@ function EditStudentInfo() {
   };
   return (
     <div className="screen-ps">
-      <SiteHeader />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <h1> Atualização Cadastral:</h1>
       <div>
         {StudEdit.map((topic) => (
@@ -59,6 +75,7 @@ function EditStudentInfo() {
       <div className="Login-button1">
         <button type="submit" onClick={handleClick}>Atualizar</button>
       </div>
+      <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       <div>
         <Footer />
       </div>
