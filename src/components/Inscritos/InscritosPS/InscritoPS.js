@@ -7,6 +7,8 @@ import './InscritoPS.scss';
 function InscritoPS({ candidate, boolean }) {
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
+  const [buttonText, setButtonText] = useState();
+  const [link, setLink] = useState();
   useEffect(async () => {
     console.log(candidate);
     if (boolean === 'true') {
@@ -18,6 +20,8 @@ function InscritoPS({ candidate, boolean }) {
         setProcesstype('Mestrado');
         setstylesProcessType(true);
       }
+      setButtonText('Editar informações');
+      setLink('/painel/administrator/editar/aluno');
     } else {
       setProcesstype(candidate.selective_process.process_type);
       if (candidate.selective_process.process_type === 'DOUTORADO') {
@@ -27,6 +31,8 @@ function InscritoPS({ candidate, boolean }) {
         setProcesstype('Mestrado');
         setstylesProcessType(true);
       }
+      setButtonText('Ver informações do candidato');
+      setLink('/documentos-enviados');
     }
   }, []);
   return (
@@ -45,11 +51,11 @@ function InscritoPS({ candidate, boolean }) {
       <div className="linkDocumentos">
         <Link
           to={{
-            pathname: '/documentos-enviados',
+            pathname: link,
             state: { candidate },
           }}
         >
-          Ver informações do candidato
+          {buttonText}
         </Link>
       </div>
     </div>
