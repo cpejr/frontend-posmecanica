@@ -1,0 +1,53 @@
+.student-Root{
+    width: 100%;
+    height: 100%;
+}
+.studentContent{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.studentGrid{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px;
+}
+.studentTitulo{
+    font-family: "Montserrat", sans-serif;
+    font: normal 25pt Montserrat;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color:black;
+
+}
+.icones{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.MuiButton-root.buttonIcon{
+    display: flex;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+.linhaTempo{
+    h2{
+        font-family: "Montserrat", sans-serif;
+        font: normal 20pt Montserrat;
+        display: contents;
+        color:black;
+    }
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+@media (max-width: 650px){
+    .icones{
+        flex-direction: column;
+    }
+}
