@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './EditStudentInfo.scss';
-import { useToasts } from 'react-toast-notifications';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
@@ -14,16 +12,28 @@ function EditStudentInfo() {
   const [expandRightPanel, setExpandRightPanel] = useState(true);
   const inputProps = [
     {
-      text: 'Página principal',
-      path: '',
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
     },
     {
-      text: 'Requisições',
-      path: '',
+      text: 'Criar processo seletivo',
+      path: '/',
+    },
+    {
+      text: 'Postagens de teses',
+      path: '/',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: '',
+      path: 'esqueci-senha',
     },
   ];
   const handleClick = async (e) => {

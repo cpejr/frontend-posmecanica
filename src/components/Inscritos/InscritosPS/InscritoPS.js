@@ -4,17 +4,29 @@ import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import './InscritoPS.scss';
 
-function InscritoPS({ candidate }) {
+function InscritoPS({ candidate, boolean }) {
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   useEffect(async () => {
-    setProcesstype(candidate.selective_process.process_type);
-    if (candidate.selective_process.process_type === 'DOUTORADO') {
-      setProcesstype('Doutorado');
-      setstylesProcessType(false);
+    console.log(candidate);
+    if (boolean === 'true') {
+      setProcesstype(candidate.process_type);
+      if (candidate.process_type === 'DOUTORADO') {
+        setProcesstype('Doutorado');
+        setstylesProcessType(false);
+      } else {
+        setProcesstype('Mestrado');
+        setstylesProcessType(true);
+      }
     } else {
-      setProcesstype('Mestrado');
-      setstylesProcessType(true);
+      setProcesstype(candidate.selective_process.process_type);
+      if (candidate.selective_process.process_type === 'DOUTORADO') {
+        setProcesstype('Doutorado');
+        setstylesProcessType(false);
+      } else {
+        setProcesstype('Mestrado');
+        setstylesProcessType(true);
+      }
     }
   }, []);
   return (

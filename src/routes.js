@@ -34,6 +34,7 @@ function Routes() {
           <Route exact path="/painel/administrator" component={DashboardAdministrator} />
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
+          <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />

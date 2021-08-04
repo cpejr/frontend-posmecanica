@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
+import InscritoPS from '../../components/Inscritos/InscritosPS/InscritoPS';
 import { AllTitleTypes } from '../../utils/titleTypes';
 import './StudentList.scss';
 
@@ -62,18 +64,34 @@ function StudentList() {
   };
   const inputProps = [
     {
-      text: 'Página principal',
-      path: '',
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
     },
     {
-      text: 'Requisições',
-      path: '',
+      text: 'Criar processo seletivo',
+      path: '/',
+    },
+    {
+      text: 'Postagens de teses',
+      path: '/',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: '',
+      path: 'esqueci-senha',
     },
   ];
+  const Json = {
+    candidate_name: 'Malaquias',
+    process_type: 'mestrado',
+  };
 
   return (
     <div className="studentList-Root">
@@ -111,17 +129,14 @@ function StudentList() {
             />
           </div>
           <div className="gridAll">
-            <div className="gridStudents">
-              <div className="gridName">
-                {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+            {filterStudents.map((student) => (
+              <div className="formsDI_input">
+                <InscritoPS
+                  candidate={student}
+                  boolean="true"
+                />
               </div>
-              <div className="gridGraduation">
-                {filterStudents.map((student) => <div>{student.process_type}</div>)}
-              </div>
-              <div className="gridEdit">
-                {filterStudents.map(() => <a href="/painel/administrator/editar/aluno">Editar Informações</a>)}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
