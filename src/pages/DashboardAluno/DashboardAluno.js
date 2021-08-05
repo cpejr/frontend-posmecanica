@@ -28,7 +28,11 @@ function DashboardAluno() {
       path: '/',
     },
     {
-      text: 'Editar Indormações',
+      text: 'Editar Informações',
+      path: '/',
+    },
+    {
+      text: 'Dúvidas',
       path: '/',
     },
     {
