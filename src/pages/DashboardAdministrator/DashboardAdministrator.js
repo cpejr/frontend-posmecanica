@@ -18,7 +18,7 @@ function DashboardAdministrator() {
     },
     {
       text: 'Cadastro de professores',
-      path: '/',
+      path: 'formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
