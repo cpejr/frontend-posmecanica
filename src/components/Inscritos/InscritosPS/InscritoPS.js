@@ -10,7 +10,6 @@ function InscritoPS({ candidate, boolean }) {
   const [buttonText, setButtonText] = useState();
   const [link, setLink] = useState();
   useEffect(async () => {
-    console.log(candidate);
     if (boolean === 'true') {
       setProcesstype(candidate.process_type);
       if (candidate.process_type === 'DOUTORADO') {

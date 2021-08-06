@@ -64,3 +64,4 @@ export const getDisciplines = (times, field, filter) => httpClient.get('/discipl
 });
 
 export const updateStudent = (student, studentId) => httpClient.put(`/students/${studentId}`, student);
+export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);

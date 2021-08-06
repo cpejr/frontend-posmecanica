@@ -10,6 +10,14 @@
 .studentList-LeftContainer {
   padding: 50px;
   width: 100%;
+  h1 {
+    text-align: center;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+    color: #1d2d57;
+    font-weight: 500;
+    font-size: 50px;
+  }
 }
 .studentList-Filters {
   display: flex;
@@ -36,6 +44,11 @@
 .gridEdit{
   display: flex;
   flex-direction: column;
+}
+.studentList-Filters {
+  background-color: #1d2d57;
+  justify-content: space-around;
+  border-radius: 6px;
 }
 
 @media (max-width:680px){

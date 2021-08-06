@@ -148,3 +148,9 @@ export const updateStudent = async (student, id) => {
   const response = await requesterService.updateStudent(student, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
+
+export const getByIdStudent = async (studentId) => {
+  const response = await requesterService.getByIdStudent(studentId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};

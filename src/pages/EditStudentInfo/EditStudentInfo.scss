@@ -34,3 +34,11 @@ $azulPadrao: #1d2d57;
   padding: 50px;
   width: 100%;
 }
+
+@media (max-width: 450px){
+  .Login-button1 {
+    button {
+      font-size: small;
+  }
+}
+}

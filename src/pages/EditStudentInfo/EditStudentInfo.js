@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './EditStudentInfo.scss';
+import { useToasts } from 'react-toast-notifications';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
@@ -7,9 +8,11 @@ import * as managerService from '../../services/manager/managerService';
 import StudEdit from '../../utils/StudentEdit_ByAdmin';
 import Footer from '../../components/Footer/Footer';
 
-function EditStudentInfo() {
+function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(true);
+  // eslint-disable-next-line camelcase
+  const { stud_id } = location.state.candidate;
   const inputProps = [
     {
       text: 'Lista de estudantes',
@@ -36,13 +39,14 @@ function EditStudentInfo() {
       path: 'esqueci-senha',
     },
   ];
+  const { addToast } = useToasts();
   const handleClick = async (e) => {
     try {
       e.preventDefault();
-      console.log(dados);
-      await managerService.updateStudent(dados, '88dc004d-fc2d-4c51-9a74-c7a3ff4f209d');
+      await managerService.updateStudent(dados, stud_id);
+      addToast('Cadastro atualizado com sucesso!', { appearance: 'success' });
     } catch {
-      console.log('hello');
+      addToast('Falha em atualizar o cadastro!', { appearance: 'error' });
     }
   };
   const handleChange = (value, field) => {
