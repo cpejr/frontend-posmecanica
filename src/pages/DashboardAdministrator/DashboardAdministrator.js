@@ -14,7 +14,7 @@ function DashboardAdministrator() {
     },
     {
       text: 'Postagens de teses',
-      path: '/',
+      path: 'postagem-teses',
     },
     {
       text: 'Cadastro de professores',
