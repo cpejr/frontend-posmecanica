@@ -113,7 +113,11 @@ function StudentList() {
           </div>
           {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>
