@@ -22,7 +22,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height, shrink, multiline = false, background = 'white',
+  setDados, type, label, id, width, field, select, height, shrink, multiline = false,
 
 }) {
   const [error, setError] = useState(false);
@@ -42,7 +42,9 @@ function StyledInput({
       InputLabelProps={{
         style: {
           color: 'black',
-          background: { background },
+          background: 'white',
+          alignItems: 'center',
+          justifyContent: 'center',
         },
         shrink,
       }}
@@ -51,8 +53,10 @@ function StyledInput({
           color: '#1d2d57',
           height,
           width,
-          marginBottom: '4.5vh',
+          marginBottom: '1.5vh',
+          marginTop: '1.5vh',
           alignItems: 'flex-start',
+          background: 'white',
         },
       }}
       multiline={multiline}
@@ -60,7 +64,7 @@ function StyledInput({
       type={type}
       min="0"
       label={label}
-      variant="outlined"
+      variant="filled"
       id={id}
       width={width}
       select={select}

@@ -95,6 +95,7 @@ function StudentList() {
           <h1>Lista de estudantes</h1>
           <div className="studentList-Filters">
             <StyledInput
+              styled={{ marginTop: '20px' }}
               type="text"
               id="filter-name"
               label="Nome"
