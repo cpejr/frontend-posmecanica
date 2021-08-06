@@ -10,6 +10,7 @@
 .studentGrid{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
     padding: 50px;
 }
@@ -33,20 +34,8 @@
     font-family: 'Montserrat';
     font-size: 15px;
 }
-.linhaTempo{
-    h2{
-        font-family: "Montserrat", sans-serif;
-        font: normal 20pt Montserrat;
-        display: contents;
-        color:black;
-    }
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-top: 50px;
-}
 
-@media (max-width: 650px){
+@media (max-width: 750px){
     .icones{
         flex-direction: column;
     }

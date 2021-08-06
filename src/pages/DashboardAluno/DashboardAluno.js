@@ -66,9 +66,6 @@ function DashboardAluno() {
               Editar Informações
             </StyledButton>
           </div>
-          <div className="linhaTempo">
-            <h2> Linha do tempo</h2>
-          </div>
         </div>
       </div>
       <Footer />
