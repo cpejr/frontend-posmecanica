@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { InputAdornment, TextField } from '@material-ui/core';
+import {
+  Button,
+  InputAdornment,
+  TextField,
+  withStyles,
+} from '@material-ui/core';
 import SchoolIcon from '@material-ui/icons/School';
 import UploadInput from '../../components/UploadInput';
 import Header from '../../components/Navbar';
@@ -25,7 +30,13 @@ function ThesesPost() {
     });
     await managerService.getStudents(studentName);
   };
-
+  const StyledButton = withStyles({
+    root: {
+      backgroundColor: 'rgb(76, 76, 167)',
+      width: '50%',
+      justifyContent: 'center',
+    },
+  })(Button);
   const inputProps = [
     {
       text: 'Página principal',
@@ -57,7 +68,6 @@ function ThesesPost() {
     <div className="thesesPost-root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="thesesPost-content">
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
         <div className="thesesPost-grid">
           <h5>Teses</h5>
           <div className="post-Content">
@@ -69,28 +79,29 @@ function ThesesPost() {
                 </div>
               ))}
             </div>
-          </div>
-          <div className="studentName-grid">
-            <TextField
-              className="studentName"
-              label="Aluno"
-              id="input-with-icon-textfield"
-              variant="filled"
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SchoolIcon />
-                  </InputAdornment>
-                ),
-              }}
-              onChange={(e) => StudentName(e)}
-            />
-          </div>
-          <div className="forms_divButton">
-            <button type="submit" onClick={(e) => handleClick(e)}>Postar</button>
+            <div className="studentName-grid">
+              <TextField
+                className="studentName"
+                label="Aluno"
+                id="input-with-icon-textfield"
+                variant="filled"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SchoolIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={(e) => StudentName(e)}
+              />
+              <div className="postButton">
+                <StyledButton type="submit" onClick={(e) => handleClick(e)}>Postar</StyledButton>
+              </div>
+            </div>
           </div>
         </div>
+        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
       </div>
       <Footer />
     </div>
