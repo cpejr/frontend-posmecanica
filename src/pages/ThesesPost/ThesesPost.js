@@ -20,7 +20,7 @@ function ThesesPost() {
   function StudentName(e) {
     setStudentName(e.target.value);
   }
-  const formsFile = ['Insira o arquivo aqui'];
+  const formsFile = ['Tese'];
   const handleClick = async (e) => {
     e.preventDefault();
     files.forEach(async (file) => {
@@ -33,7 +33,7 @@ function ThesesPost() {
   const StyledButton = withStyles({
     root: {
       backgroundColor: 'rgb(76, 76, 167)',
-      width: '50%',
+      width: '40%',
       justifyContent: 'center',
     },
   })(Button);
@@ -96,7 +96,7 @@ function ThesesPost() {
                 onChange={(e) => StudentName(e)}
               />
               <div className="postButton">
-                <StyledButton type="submit" onClick={(e) => handleClick(e)}>Postar</StyledButton>
+                <StyledButton variant="contained" color="primary" type="submit" onClick={(e) => handleClick(e)}>Postar</StyledButton>
               </div>
             </div>
           </div>
