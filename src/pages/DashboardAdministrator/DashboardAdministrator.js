@@ -13,20 +13,20 @@ function DashboardAdministrator() {
       path: '/',
     },
     {
-      text: 'Redefinição de senha',
-      path: 'esqueci-senha',
-    },
-    {
       text: 'Postagens de teses',
       path: '/',
     },
     {
       text: 'Cadastro de professores',
-      path: '/',
+      path: 'formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
       path: 'cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
 

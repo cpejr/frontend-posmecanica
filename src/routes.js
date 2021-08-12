@@ -34,11 +34,12 @@ function Routes() {
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
+          <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
-          <Route exact path="/formulario-professores" component={FormProf} />
+          <Route exact path="/painel/administrator/formulario-professores" component={FormProf} />
           <Route exact path="/lista-professores" component={ProfessorList} />
-          <Route exact path="/cadastro-disciplina" component={registerDis} />
+          <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/pdf" component={StylePDF} />
