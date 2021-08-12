@@ -14,7 +14,7 @@ function StudentList() {
   const [filterName, setFilterName] = useState();
   const [filterYear, setFilterYear] = useState();
   const [filterGraduation, setFilterGraduation] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   useEffect(async () => {
     const students = await managerService.getStudents();
@@ -113,7 +113,11 @@ function StudentList() {
           </div>
           {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

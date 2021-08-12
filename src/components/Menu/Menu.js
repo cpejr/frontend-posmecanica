@@ -6,7 +6,7 @@ import Footer from '../Footer';
 import './Menu.scss';
 
 function Menu({ inputProps, LeftPanelContent }) {
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   return (
     <div className="containerDashboard">
@@ -15,7 +15,11 @@ function Menu({ inputProps, LeftPanelContent }) {
         <LeftPanel>
           {LeftPanelContent}
         </LeftPanel>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

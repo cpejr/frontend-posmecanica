@@ -6,10 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
+import Drawer from '@material-ui/core/Drawer';
 import { useAuth } from '../../../providers/auth';
 import './RightPanel.scss';
 
-function RightPanel({ inputProps, expandRightPanel }) {
+function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
   const { user } = useAuth();
 
   const HeaderPanel = (
@@ -17,7 +18,7 @@ function RightPanel({ inputProps, expandRightPanel }) {
       <IconContext.Provider value={{ size: 40 }}>
         <BiUserCircle />
       </IconContext.Provider>
-      <ListItemText className={clsx('userPanelInfos', { hide: !expandRightPanel })}>
+      <ListItemText>
         <div className="userPanelText">{user.name}</div>
         <div className={clsx('userPanelText', 'mail')}>{user.email}</div>
       </ListItemText>
@@ -25,7 +26,7 @@ function RightPanel({ inputProps, expandRightPanel }) {
   );
 
   return (
-    <div className={clsx('divNavbar', { retract: !expandRightPanel })}>
+    <Drawer anchor="right" open={expandRightPanel} onClose={() => setExpandRightPanel(false)}>
       <List>
         {HeaderPanel}
         {inputProps.map((item) => (
@@ -34,14 +35,14 @@ function RightPanel({ inputProps, expandRightPanel }) {
               <IconContext.Provider value={{ size: 30 }}>
                 {item.icon}
               </IconContext.Provider>
-              <ListItemText className={clsx('userPanelInfos', { hide: !expandRightPanel })}>
+              <ListItemText>
                 {item.text}
               </ListItemText>
             </ListItem>
           </Link>
         ))}
       </List>
-    </div>
+    </Drawer>
   );
 }
 

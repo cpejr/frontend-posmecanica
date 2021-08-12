@@ -1,5 +1,5 @@
 import { Button, TextField, InputAdornment } from '@material-ui/core';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import { FiMail } from 'react-icons/fi';
 import { useToasts } from 'react-toast-notifications';
 import React, { useState } from 'react';
 import '../../components/CampoText/campotxt';
@@ -48,7 +48,7 @@ function esqueciSenha() {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <MailOutlineIcon />
+                  <FiMail />
                 </InputAdornment>
               ),
             }}
