@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
+import DashboardAluno from './pages/DashboardAluno';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import FormProf from './pages/FormProf';
@@ -31,6 +32,7 @@ function Routes() {
       <div className={classes.container}>
         <Switch>
           <Route exact path="/painel/professor" component={DashboardProfessor} />
+          <Route exact path="/painel/aluno" component={DashboardAluno} />
           <Route exact path="/painel/administrator" component={DashboardAdministrator} />
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />

@@ -63,7 +63,7 @@ function StudentList() {
   };
   const inputProps = [
     {
-      text: 'Lista de estudantes',
+      text: 'Página principal',
       path: 'lista-estudantes',
     },
     {

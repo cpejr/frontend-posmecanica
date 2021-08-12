@@ -24,6 +24,13 @@
   justify-content: space-between;
 }
 
+.gridAll{
+  border: 1px solid #C4C4C4;
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px #C4C4C4;
+  overflow: hidden;
+}
+
 .gridStudents{
   display: flex;
   flex-direction: row;
