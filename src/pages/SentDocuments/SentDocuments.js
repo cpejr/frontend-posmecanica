@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './SentDocuments.scss';
 import Pagination from '@material-ui/lab/Pagination';
-import Navbar from '../../components/Navbar';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import InfoModal from './InfoModal';
 import DocsContent from './DocsContent';
@@ -10,7 +11,14 @@ import TestContent from './TestContent';
 function SentDocuments({ location }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [page, setPage] = useState(1);
-  const { candidate } = location.state;
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const history = useHistory();
+  let candidate;
+  if (location.state && location.state.candidate) {
+    candidate = location.state.candidate;
+  } else {
+    history.push('/');
+  }
 
   const handleClickClose = () => {
     setShowInfoModal(false);
@@ -21,16 +29,16 @@ function SentDocuments({ location }) {
 
   return (
     <div className="SD-externalDiv">
-      <Navbar />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SD-screen">
-        {page === 1 && (
+        {candidate && page === 1 && (
           <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
         )}
-        {page === 2 && <TestContent id={candidate.candidate_id} />}
-        {candidate.candidate_rating === null && (
+        {candidate && page === 2 && <TestContent id={candidate.candidate_id} />}
+        {candidate && candidate.candidate_rating === null && (
           <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
         )}
-        {showInfoModal && <InfoModal conteudo={candidate} close={handleClickClose} />}
+        {candidate && showInfoModal && <InfoModal conteudo={candidate} close={handleClickClose} />}
       </div>
       <Footer />
     </div>

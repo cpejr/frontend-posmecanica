@@ -67,6 +67,7 @@ function FormProf() {
                     field={item.field}
                     select={item.select}
                     dados={dados}
+                    shrink={item.type === 'date'}
                     setDados={handleChange}
                   />
                 </div>

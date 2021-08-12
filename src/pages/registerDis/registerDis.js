@@ -17,19 +17,26 @@ function registerDis() {
     discipline_is_isolated: '',
     discipline_semester: '',
     discipline_type: '',
-
+    discipline_content: '',
   };
   const [dados, setDados] = useState(initialState);
   const history = useHistory();
   const { addToast } = useToasts();
 
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (dados.discipline_name.length > 3
-        && dados.discipline_code.length > 3
-        && dados.discipline_semester.length > 3) {
+      && dados.discipline_code.length > 3
+      && dados.discipline_semester.length > 3
+      && dados.discipline_is_isolated !== ''
+      && dados.discipline_type.length !== ''
+      && dados.discipline_content.length > 3) {
       await managerService.createDiscipline(dados, '8c81278b-691e-4221-b87f-b1901cecda1d');
-      history.push('/');
+      history.push('/painel/administrator/');
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
@@ -55,7 +62,7 @@ function registerDis() {
                   label="Nome"
                   width="22.5rem"
                   dados={dados}
-                  setDados={setDados}
+                  setDados={handleChange}
                 />
               </div>
             </div>
@@ -67,7 +74,7 @@ function registerDis() {
                 label="Código da Disciplina"
                 width="22.5rem"
                 dados={dados}
-                setDados={setDados}
+                setDados={handleChange}
               />
             </div>
             <div className="form_dis_cad_line2">
@@ -80,7 +87,7 @@ function registerDis() {
                   select
                   field={semester}
                   dados={dados}
-                  setDados={setDados}
+                  setDados={handleChange}
                 />
               </div>
               <div className="form_dis_cad_input">
@@ -92,7 +99,7 @@ function registerDis() {
                   field={booleans}
                   select
                   dados={dados}
-                  setDados={setDados}
+                  setDados={handleChange}
                 />
                 <div className="form_dis_cad_input" />
                 <StyledInput
@@ -103,7 +110,7 @@ function registerDis() {
                   select
                   width="22.5rem"
                   dados={dados}
-                  setDados={setDados}
+                  setDados={handleChange}
                 />
               </div>
               <div className="form_dis_cad_input" />
@@ -113,7 +120,7 @@ function registerDis() {
                 label="Conteúdo"
                 width="22.5rem"
                 dados={dados}
-                setDados={setDados}
+                setDados={handleChange}
               />
             </div>
             <div className="divButton-cad">

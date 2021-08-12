@@ -32,6 +32,7 @@ function Forms({
                     width="22rem"
                     field={item.field}
                     select={item.select}
+                    shrink={item.type}
                     dados={dados}
                     setDados={handleChange}
                   />
