@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
+import InscritoPS from '../../components/Inscritos/InscritosPS/InscritoPS';
 import { AllTitleTypes } from '../../utils/titleTypes';
 import './StudentList.scss';
 
@@ -60,29 +61,41 @@ function StudentList() {
   const handleFilterGraduationChange = (value) => {
     setFilterGraduation(value);
   };
-
   const inputProps = [
     {
-      text: 'Página principal',
-      path: '',
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
     },
     {
-      text: 'Requisições',
-      path: '',
+      text: 'Criar processo seletivo',
+      path: '/',
+    },
+    {
+      text: 'Postagens de teses',
+      path: '/',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: '',
+      path: 'esqueci-senha',
     },
   ];
-
   return (
     <div className="studentList-Root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="studentList-Content">
         <div className="studentList-LeftContainer">
+          <h1>Lista de estudantes</h1>
           <div className="studentList-Filters">
             <StyledInput
+              styled={{ marginTop: '20px' }}
               type="text"
               id="filter-name"
               label="Nome"
@@ -111,7 +124,16 @@ function StudentList() {
               setDados={handleFilterGraduationChange}
             />
           </div>
-          {filterStudents.map((student) => <div>{student.candidate_name}</div>)}
+          <div className="gridAll">
+            {filterStudents.map((student) => (
+              <div className="formsDI_input">
+                <InscritoPS
+                  candidate={student}
+                  boolean="true"
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <RightPanel
           inputProps={inputProps}
