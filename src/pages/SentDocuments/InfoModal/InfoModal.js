@@ -96,6 +96,27 @@ function InfoModal({ close, conteudo }) {
               {` ${conteudo?.candidate_cep}`}
             </div>
           </div>
+          {conteudo?.first_discipline_isolated
+          && conteudo?.second_discipline_isolated
+          && (
+          <div className="rowGrid">
+            <div>
+              <b>Primeira Disciplina Isolada:</b>
+              {` ${conteudo?.first_discipline_isolated} `}
+            </div>
+            <div>
+              <b>Segunda Disciplina Isolada:</b>
+              {` ${conteudo?.second_discipline_isolated}`}
+            </div>
+          </div>
+          )}
+          {conteudo?.third_discipline_isolated
+          && (
+          <div className="row">
+            <b>Terceira Disciplina Isolada:</b>
+            {` ${conteudo?.third_discipline_isolated}`}
+          </div>
+          )}
           <div className="row">
             <b>Data de Nascimento:</b>
             {` ${conteudo && new Date(conteudo.candidate_birth).toUTCString()}`}
