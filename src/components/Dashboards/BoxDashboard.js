@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BoxAdm from '../Inscritos/InscritosPS';
 import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
-import { TitleTypes } from '../../utils/titleTypes';
+import { TitleTypes, AllTitleTypes } from '../../utils/titleTypes';
 import './BoxDashboard.scss';
 
 function BoxDashboard({
@@ -13,7 +13,7 @@ function BoxDashboard({
   };
   const [showInput, setShowInput] = useState(false);
   useEffect(async () => {
-    if (type === 'adm') {
+    if (type === 'adm' || type === 'prof') {
       setShowInput(true);
     }
   }, []);
@@ -57,7 +57,7 @@ function BoxDashboard({
                 id="type"
                 label="Título"
                 width="16rem"
-                field={TitleTypes}
+                field={type === 'prof' ? AllTitleTypes : TitleTypes}
                 select
                 background="transparent"
                 dados={dados}
@@ -76,14 +76,30 @@ function BoxDashboard({
                 }
                 return <div />;
               }
-              return (
-                <BoxProf
-                  candidate={listItem}
-                  isoCandidates={isoCandidates}
-                  setIsoCandidates={setIsoCandidates}
-                  key={listItem.candidate_id}
-                />
-              );
+              if (type === 'prof') {
+                if (dados.type === listItem.selective_process.process_type) {
+                  return (
+                    <BoxProf
+                      candidate={listItem}
+                      isoCandidates={isoCandidates}
+                      setIsoCandidates={setIsoCandidates}
+                      key={listItem.candidate_id}
+                    />
+                  );
+                }
+                if (dados.type === '') {
+                  return (
+                    <BoxProf
+                      candidate={listItem}
+                      isoCandidates={isoCandidates}
+                      setIsoCandidates={setIsoCandidates}
+                      key={listItem.candidate_id}
+                    />
+                  );
+                }
+                return <div />;
+              }
+              return <div />;
             })}
           </div>
         </div>

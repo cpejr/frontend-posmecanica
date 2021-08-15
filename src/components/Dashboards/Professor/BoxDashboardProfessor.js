@@ -7,13 +7,13 @@ function BoxDashboardProfesssor() {
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [processsSelective, setProcesssSelective] = useState([]);
   useEffect(async () => {
-    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
+    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type');
     const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses.map((selectiveProcess) => selectiveProcess.process_id));
     setProcesssSelective(selectiveProcesses);
     setCandidates(isolatedCandidates);
   }, []);
   useEffect(() => {
-    setFilteredStudents(candidates.slice(0, 5));
+    setFilteredStudents(candidates.slice(0, 6));
   }, [candidates]);
 
   return (

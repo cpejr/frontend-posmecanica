@@ -9,7 +9,6 @@ import './InscritosIsoPS.scss';
 function InscritosIsoPS({
   isoCandidates, setIsoCandidates, candidate,
 }) {
-// console.log('🚀 ~ file: InscritosIsoPS.js ~ line 10 ~ InscritosIsoPS ~ location', location.state);
   const [showInfoModal, setShowInfoModal] = useState(false);
 
   const handleClickClose = () => {
@@ -19,7 +18,13 @@ function InscritosIsoPS({
   const handleClick = async (e) => {
     const buttonName = e.currentTarget.id;
     if (buttonName === 'Deferir') {
-      // await managerService.approveCandidate();
+      if (candidate.first_discipline_isolated
+        && candidate.second_discipline_isolated
+        && candidate.third_discipline_isolated) {
+        await managerService.createCandidate(candidate, candidate.candidate_process_id); // TO DO
+      } else {
+        await managerService.createCandidate(candidate, candidate.candidate_process_id);
+      }
     } else {
       await managerService.denyCandidate(candidate.candidate_id);
       const removeCandidate = isoCandidates.filter(
