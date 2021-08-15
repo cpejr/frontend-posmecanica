@@ -35,36 +35,37 @@ function BoxDashboard({
       <div className="BdTitle">
         {title}
       </div>
-      <div>
-        <div className="BdBox">
-          <div className="BdBoxTitle">
-            <div className="BdTitleNumber">
-              <div className="BdSubTitle">
-                {subtitle}
-                {dados.type !== ''
-                  ? (
-                    processes.map((process) => {
-                      if (process.process_type === dados.type) {
-                        return process.count_candidates;
-                      }
-                      return <div />;
-                    })) : count()}
-              </div>
-            </div>
-            <div className={showInput ? 'BdInputReal' : 'BdInput'}>
-              <StyledInput
-                type="text"
-                id="type"
-                label="Título"
-                width="16rem"
-                field={type === 'prof' ? AllTitleTypes : TitleTypes}
-                select
-                background="transparent"
-                dados={dados}
-                setDados={handleChange}
-              />
+      <div className="BdBoxFather">
+        <div className="BdBoxTitle">
+          <div className="BdTitleNumber">
+            <div className="BdSubTitle">
+              {subtitle}
+              {dados.type !== ''
+                ? (
+                  processes.map((process) => {
+                    if (process.process_type === dados.type) {
+                      return process.count_candidates;
+                    }
+                    return <div />;
+                  })) : count()}
             </div>
           </div>
+          <div className={showInput ? 'BdInputReal' : 'BdInput'}>
+            <StyledInput
+              type="text"
+              id="type"
+              label="Título"
+              width="16rem"
+              field={type === 'prof' ? AllTitleTypes : TitleTypes}
+              select
+              background="transparent"
+              dados={dados}
+              setDados={handleChange}
+            />
+          </div>
+        </div>
+        <div className="BdBox">
+
           <div className="BdDivGrid">
             {list.map((listItem) => {
               if (type === 'adm') {
@@ -101,6 +102,7 @@ function BoxDashboard({
               }
               return <div />;
             })}
+
           </div>
         </div>
       </div>

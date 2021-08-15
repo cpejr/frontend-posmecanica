@@ -13,7 +13,8 @@ function BoxDashboardProfesssor() {
     setCandidates(isolatedCandidates);
   }, []);
   useEffect(() => {
-    setFilteredStudents(candidates.slice(0, 6));
+    setFilteredStudents(candidates);
+    // setFilteredStudents(candidates.slice(0, 8));
   }, [candidates]);
 
   return (
