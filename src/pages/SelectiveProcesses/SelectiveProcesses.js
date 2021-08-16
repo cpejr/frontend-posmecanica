@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
+import SPInfoModal from '../SentDocuments/SPInfoModal';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../utils/semesters';
@@ -11,15 +13,24 @@ import SiteHeader from '../../components/SiteHeader';
 const semeters = Semeters;
 
 function SelectiveProcesses() {
+  const history = useHistory();
   const initialState = {
     semester: '',
   };
+  const [showSPInfoModal, setShowSPInfoModal] = useState(true);
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
   const [allProcessMestrado, setAllProcessMestrado] = useState([]);
   const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
   const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
+
+  const handleClickClose = () => {
+    setShowSPInfoModal(false);
+  };
+  const handleClickRedirect = () => {
+    history.push('painel/professor');
+  };
   useEffect(async () => {
     if (dados.semester === '') {
       setPeriod(`${dados.semester}`);
@@ -105,6 +116,16 @@ function SelectiveProcesses() {
               />
             ))}
           </div>
+          {showSPInfoModal && (
+            <SPInfoModal
+              conteudo={process}
+              close={handleClickClose}
+              redirect={handleClickRedirect}
+              className="isoPsLinkButton"
+            >
+              Ver situação do aluno
+            </SPInfoModal>
+          )}
         </div>
       </div>
       <Footer />

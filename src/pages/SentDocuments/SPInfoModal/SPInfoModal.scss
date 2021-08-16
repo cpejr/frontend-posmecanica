@@ -1,0 +1,72 @@
+.SPmodal{
+  position: fixed;
+  top: 0;
+  bottom:0;
+  right:0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 99;
+  .SPinfoModalcontainer{
+    position: fixed;
+    max-width: 600px;
+    top: 3%;
+    bottom: 3%;
+    left:0;
+    right: 0;
+    margin: auto;
+    padding:  4em 2rem;
+    background-color: #FFF;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  }
+  .container{
+    height: 50;
+  }
+  h2{
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+    font-size: 1.5em;
+    color: #121212;
+  }
+  p{
+    white-space: pre-wrap;
+  }
+}
+.divSPredirect{
+  display: flex;
+  justify-content: center;
+  margin-top: 55%;
+}
+.SPredirect {
+  background-color: green;
+  border: none;
+  width: 50%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+.SPclose{
+  background-color: #000;
+  border: 0;
+  color: #FFF;
+  position: absolute;
+  top:15px;
+  left:15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 15px;
+  border-radius: 5px;
+  .svg{
+    margin-right: 5px;
+  }
+}
+.SPclose:hover {
+ cursor: pointer;
+}
+.SProw{
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+.SPmodalCloseIcon {
+  margin-right: 5px;
+}

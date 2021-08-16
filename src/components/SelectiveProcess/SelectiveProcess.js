@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './SelectiveProcess.scss';
 
 function SelectiveProcess({ name, type, progress }) {
@@ -17,9 +16,12 @@ function SelectiveProcess({ name, type, progress }) {
     <div className="compoSP-externalDiv">
       <div className="compoSP-titles">
         <div className="compoSP-principalTitle">
-          <Link to="/painel/professor">
+          <button
+            type="button"
+            className="buttonInfoSPname"
+          >
             {name}
-          </Link>
+          </button>
         </div>
         <div className="compoSP-subtitle">
           {type}
