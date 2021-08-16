@@ -96,8 +96,8 @@ function InfoModal({ close, conteudo }) {
               {` ${conteudo?.candidate_cep}`}
             </div>
           </div>
-          {conteudo?.first_discipline_isolated
-          && conteudo?.second_discipline_isolated
+          {conteudo?.first_discipline_isolated !== 'none'
+          && conteudo?.second_discipline_isolated !== 'none'
           && (
           <div className="rowGrid">
             <div>
@@ -110,7 +110,7 @@ function InfoModal({ close, conteudo }) {
             </div>
           </div>
           )}
-          {conteudo?.third_discipline_isolated
+          {conteudo?.third_discipline_isolated !== 'none'
           && (
           <div className="row">
             <b>Terceira Disciplina Isolada:</b>

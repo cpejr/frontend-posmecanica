@@ -23,6 +23,9 @@ function InscritosIsoPS({
         && candidate.third_discipline_isolated) {
         await managerService.createCandidate(candidate, candidate.candidate_process_id); // TO DO
       } else {
+        candidate.first_discipline_isolated = 'none';
+        candidate.second_discipline_isolated = 'none';
+        candidate.third_discipline_isolated = 'none';
         await managerService.createCandidate(candidate, candidate.candidate_process_id);
       }
     } else {
