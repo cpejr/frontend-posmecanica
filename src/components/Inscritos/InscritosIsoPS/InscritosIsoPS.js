@@ -18,15 +18,15 @@ function InscritosIsoPS({
   const handleClick = async (e) => {
     const buttonName = e.currentTarget.id;
     if (buttonName === 'Deferir') {
+      candidate.stud_scholarship = false;
       if (candidate.first_discipline_isolated !== 'none'
         && candidate.second_discipline_isolated !== 'none'
         && candidate.third_discipline_isolated !== 'none') {
-        await managerService.createCandidate(candidate, candidate.candidate_process_id); // TO DO
+        await managerService.createStudent(candidate, candidate.candidate_process_id);
       } else {
         candidate.first_discipline_isolated = 'none';
         candidate.second_discipline_isolated = 'none';
         candidate.third_discipline_isolated = 'none';
-        candidate.stud_scholarship = false;
         await managerService.createStudent(candidate);
       }
     } else {

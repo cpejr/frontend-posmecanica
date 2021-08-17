@@ -13,6 +13,7 @@ export const getCandidates = (times, field, filter) => httpClient.get('/candidat
 });
 export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
+export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(`/connect/candidate_dis/${id}`, { cd_dis_ids: disciplineIds });
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
 export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/candidates/upload/${candidateId}/${fileName}`, file, {
@@ -66,3 +67,4 @@ export const getDisciplines = (times, field, filter) => httpClient.get('/discipl
 export const updateStudent = (student, studentId) => httpClient.put(`/students/${studentId}`, student);
 export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);
 export const createStudent = (student, studScholarship) => httpClient.post(`/students/${student.candidate_id}`, { stud_scholarship: studScholarship });
+export const createStudentDiscipline = (id, disciplines) => httpClient.post(`/connect/student_dis/${id}`, { sd_dis_ids: disciplines });

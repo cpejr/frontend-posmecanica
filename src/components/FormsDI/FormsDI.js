@@ -35,7 +35,7 @@ function Forms({
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
       const disciplinas = [];
       resp.forEach((object) => {
-        disciplinas.push({ label: object.discipline_name, value: object.discipline_name });
+        disciplinas.push({ label: object.discipline_name, value: object.discipline_id });
       });
       setDisciplines(disciplinas);
     });
