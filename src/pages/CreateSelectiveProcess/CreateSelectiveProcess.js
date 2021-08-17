@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './CreateSelectiveProcess.scss';
-import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import processType from '../../utils/processType';
 import SiteHeader from '../../components/SiteHeader';
@@ -15,7 +14,6 @@ function registerDis() {
     process_date_end: '',
   };
   const [dados, setDados] = useState(initialState);
-  const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -28,8 +26,7 @@ function registerDis() {
       && dados.process_name.length > 3
       && dados.process_date_begin !== ''
       && dados.process_date_end !== '') {
-      await managerService.createDiscipline(dados, '8c81278b-691e-4221-b87f-b1901cecda1d');
-      history.push('/painel/administrator/');
+      await managerService.createSelectiveProcess(dados);
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
