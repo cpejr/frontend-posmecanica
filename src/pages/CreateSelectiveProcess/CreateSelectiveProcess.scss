@@ -1,0 +1,71 @@
+$azulPadrao: #1d2d57;
+
+.form_SP_cad_box_title{
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(to right, $azulPadrao, #1037a1);
+  margin: 2%;
+  height: 7%;
+  margin-bottom: 5%;
+}
+.form_SP_cad_title {
+  color: white;
+  margin-left: 1%;
+  font-family: Montserrat;
+  font-size: 2em;
+}
+.form_SP_cad_requerente{
+  margin-bottom: 50px;
+}
+.form_SP_cad_box{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.form_SP_cad_line{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  min-height: 500px;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #E0D7D7;
+}
+.MuiInputBase-root {
+  background-color: white;
+}
+.input-SPcontent{
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+}
+.divButton-createSP{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  button {
+    height: 3rem;
+    width: 40%;
+    min-width: 350px;
+    border: 0;
+    border-radius: 7px;
+    background-color: $azulPadrao;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 25px;
+    box-shadow: 1px 1px 5px #000;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .divButton-createSP{
+    button {
+      min-width: 340px;
+    }
+  }
+}

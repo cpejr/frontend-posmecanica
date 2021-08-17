@@ -17,13 +17,14 @@ function SelectiveProcesses() {
   const initialState = {
     semester: '',
   };
-  const [showSPInfoModal, setShowSPInfoModal] = useState(true);
+  const [showSPInfoModal, setShowSPInfoModal] = useState(false);
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
   const [allProcessMestrado, setAllProcessMestrado] = useState([]);
   const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
   const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
+  const [infoPS, setInfoPS] = useState([]);
 
   const handleClickClose = () => {
     setShowSPInfoModal(false);
@@ -101,16 +102,14 @@ function SelectiveProcesses() {
           <div className="SP-bottomBar">
             {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
-                name={process.process_name}
-                // type={process.process_type}
+                infoPS={process}
                 progress="Em andamento"
                 chave={key}
               />
             ))}
             {filterProcessDoutorado.map((process) => (
               <SelectiveProcess
-                name={process.process_name}
-                // type={process.process_type}
+                infoPS={process}
                 id={process.process_id}
                 progress="Finalizado"
               />
