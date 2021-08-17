@@ -150,7 +150,9 @@ export const updateStudent = async (student, id) => {
 };
 
 export const createStudent = async (student) => {
-  const response = await requesterService.createStudent(student);
+  const { stud_scholarship: studScholarship } = student;
+
+  const response = await requesterService.createStudent(student, studScholarship);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 

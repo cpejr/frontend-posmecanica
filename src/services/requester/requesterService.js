@@ -65,4 +65,4 @@ export const getDisciplines = (times, field, filter) => httpClient.get('/discipl
 
 export const updateStudent = (student, studentId) => httpClient.put(`/students/${studentId}`, student);
 export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);
-export const createStudent = (student) => httpClient.post(`/students/${student.stud_candidate_id}`, student);
+export const createStudent = (student, studScholarship) => httpClient.post(`/students/${student.candidate_id}`, { stud_scholarship: studScholarship });
