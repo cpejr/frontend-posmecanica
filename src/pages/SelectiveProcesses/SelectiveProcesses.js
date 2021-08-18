@@ -24,14 +24,27 @@ function SelectiveProcesses() {
   const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
   const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
+  const [allProcessIsolada, setAllProcessIsolada] = useState([]);
+  const [filterProcessIsolada, setFilterProcessIsolada] = useState([]);
   const [infoPS, setInfoPS] = useState([]);
 
-  const handleClickClose = () => {
-    setShowSPInfoModal(false);
-  };
-  const handleClickRedirect = () => {
-    history.push('painel/professor');
-  };
+  // const handleClickClose = () => {
+  //   setShowSPInfoModal(false);
+  // };
+  // const handleClickRedirect = () => {
+  //   history.push('painel/professor');
+  // };
+
+  function verificationIsOpen(process) {
+    const beginDate = new Date(process.process_date_begin);
+    const endDate = new Date(process.process_date_end);
+    const currentDate = new Date();
+    if (currentDate >= beginDate && currentDate <= endDate) {
+      return 'Em andamento';
+    }
+    return 'Finalizado';
+  }
+
   useEffect(async () => {
     if (dados.semester === '') {
       setPeriod(`${dados.semester}`);
@@ -47,6 +60,9 @@ function SelectiveProcesses() {
     newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
     setAllProcessDoutorado(newArray);
     setFilterProcessDoutorado(newArray);
+    newArray = selectiveProcess.filter((process) => process.process_type === 'ISOLADA');
+    setAllProcessIsolada(newArray);
+    setFilterProcessIsolada(newArray);
   }, []);
 
   useEffect(() => {
@@ -103,7 +119,7 @@ function SelectiveProcesses() {
             {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
                 infoPS={process}
-                progress="Em andamento"
+                progress={verificationIsOpen(process)}
                 chave={key}
               />
             ))}
@@ -111,11 +127,18 @@ function SelectiveProcesses() {
               <SelectiveProcess
                 infoPS={process}
                 id={process.process_id}
-                progress="Finalizado"
+                progress={verificationIsOpen(process)}
+              />
+            ))}
+            {filterProcessIsolada.map((process) => (
+              <SelectiveProcess
+                infoPS={process}
+                id={process.process_id}
+                progress={verificationIsOpen(process)}
               />
             ))}
           </div>
-          {showSPInfoModal && (
+          {/* {showSPInfoModal && (
             <SPInfoModal
               conteudo={process}
               close={handleClickClose}
@@ -124,7 +147,7 @@ function SelectiveProcesses() {
             >
               Ver situação do aluno
             </SPInfoModal>
-          )}
+          )} */}
         </div>
       </div>
       <Footer />

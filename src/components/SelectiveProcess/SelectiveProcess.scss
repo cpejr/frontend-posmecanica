@@ -46,6 +46,8 @@
   cursor: default;
 }
 .buttonInfoSPname{
+  display: flex;
+  justify-content: flex-start;
   background-color: transparent;
   border: none;
   font-size: 0.95em;

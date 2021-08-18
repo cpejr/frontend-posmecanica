@@ -50,7 +50,7 @@ function registerDis() {
                   type="text"
                   id="process_type"
                   label="Tipo de processo"
-                  width="22.5rem"
+                  width="100%"
                   select
                   field={processType}
                   dados={dados}
@@ -59,42 +59,45 @@ function registerDis() {
               </div>
             </div>
             <div className="input-SPcontent">
-              <div className="form_SP_cad_input" />
-              <StyledInput
-                type="text"
-                id="process_name"
-                label="Nome do processo"
-                width="22.5rem"
-                dados={dados}
-                setDados={handleChange}
-              />
+              <div className="form_SP_cad_input">
+                <StyledInput
+                  type="text"
+                  id="process_name"
+                  label="Nome do processo"
+                  width="100%"
+                  dados={dados}
+                  setDados={handleChange}
+                />
+              </div>
             </div>
-            <div className="form_SP_cad_line2">
+            <div className="input-SPcontent">
               <div className="form_SP_cad_input">
                 <StyledInput
                   type="date"
                   shrink
                   id="process_date_begin"
                   label="Data de início"
-                  width="22.5rem"
+                  width="100%"
                   dados={dados}
                   setDados={handleChange}
                 />
               </div>
+            </div>
+            <div className="input-SPcontent">
               <div className="form_SP_cad_input">
                 <StyledInput
                   type="date"
                   shrink
                   id="process_date_end"
                   label="Data de término"
-                  width="22.5rem"
+                  width="100%"
                   dados={dados}
                   setDados={handleChange}
                 />
               </div>
-              <div className="divButton-createSP">
-                <button type="submit" onClick={handleClick}> Criar Processo Seletivo </button>
-              </div>
+            </div>
+            <div className="divButton-createSP">
+              <button type="submit" onClick={handleClick}> Criar Processo Seletivo </button>
             </div>
           </div>
         </div>

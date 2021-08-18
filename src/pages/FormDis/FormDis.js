@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FormDis.scss';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import Forms from '../../components/FormsDI';
@@ -40,8 +41,15 @@ function FormDis() {
     third_discipline_isolated: '',
   };
   const [files, setFiles] = useState([]);
-
+  const history = useHistory();
   const { addToast } = useToasts();
+
+  useEffect(async () => {
+    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
+    if (selectiveProcesses.length === 0) {
+      history.push('login');
+    }
+  }, []);
 
   const handleClick = async (e, dados) => {
     e.preventDefault();

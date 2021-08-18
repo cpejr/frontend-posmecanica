@@ -26,7 +26,7 @@ $azulPadrao: #1d2d57;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 65%;
+  width: 60%;
   min-height: 500px;
   align-items: center;
   border-radius: 12px;
@@ -39,8 +39,16 @@ $azulPadrao: #1d2d57;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
   flex-direction: column;
+}
+.form_SP_cad_input{
+  display: flex;
+  justify-content: center;
+}
+.MuiFormControl-root {
+  width: 350px;
 }
 .divButton-createSP{
   display: flex;
@@ -67,5 +75,24 @@ $azulPadrao: #1d2d57;
     button {
       min-width: 340px;
     }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .MuiFormControl-root {
+    min-width: 150px;
+    width: 250px;
+  }
+  .divButton-createSP{
+    button {
+      min-width: 200px;
+      height: 75px;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .MuiFormControl-root {
+    width: 190px;
   }
 }
