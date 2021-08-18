@@ -2,6 +2,7 @@ import civilStatus from './civil_status';
 import states from './states';
 import genres from './genres';
 import races from './races';
+import { TitleTypes } from './titleTypes';
 
 const formsInput = [
   {
@@ -234,6 +235,13 @@ const formsInput = [
             label: 'Data final da graduação',
             field: null,
             select: false,
+          },
+          {
+            type: 'text',
+            id: 'candidate_grade',
+            label: 'Tipo do Processo',
+            field: TitleTypes,
+            select: true,
           },
         ],
       },

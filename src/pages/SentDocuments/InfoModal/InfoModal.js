@@ -3,6 +3,15 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({ close, conteudo }) {
+  function formatedDate(date) {
+    const data = new Date(date);
+    const day = data.getDate().toString();
+    const responseDay = day.length === 1 ? `0${day}` : day;
+    const month = (data.getMonth() + 1).toString(); // +1 pois no getMonth Janeiro começa com zero.
+    const responseMonth = month.length === 1 ? `0${month}` : month;
+    const year = data.getFullYear();
+    return `${responseDay}/${responseMonth}/${year}`;
+  }
   return (
     <div className="modal">
       <div className="infoModalcontainer">
@@ -14,7 +23,8 @@ function InfoModal({ close, conteudo }) {
           <h2>Detalhes do Candidato:</h2>
           <div className="row">
             <b>Data de Inscrição:</b>
-            {` ${conteudo && new Date(conteudo.candidate_date_inscrition).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
+            {/* {` ${conteudo && new Date(conteudo.candidate_date_inscrition).toUTCString()}`} */}
           </div>
           <div className="rowGrid">
             <div>
@@ -119,7 +129,8 @@ function InfoModal({ close, conteudo }) {
           )}
           <div className="row">
             <b>Data de Nascimento:</b>
-            {` ${conteudo && new Date(conteudo.candidate_birth).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
+            {/* {` ${conteudo && new Date(conteudo.candidate_birth).toUTCString()}`} */}
           </div>
           <div className="row">
             <b>Endereço:</b>

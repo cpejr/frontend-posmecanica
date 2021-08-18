@@ -44,6 +44,7 @@ function FormDis() {
   const { addToast } = useToasts();
 
   const handleClick = async (e, dados) => {
+    dados.candidate_grade = 'NENHUMA DAS OPÇÕES';
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
       && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
