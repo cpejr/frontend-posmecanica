@@ -102,11 +102,11 @@ function InfoModal({ close, conteudo }) {
           <div className="rowGrid">
             <div>
               <b>Primeira Disciplina Isolada:</b>
-              {` ${conteudo?.first_discipline_isolated} `}
+              {` ${conteudo?.disciplines[0].discipline_name} `}
             </div>
             <div>
               <b>Segunda Disciplina Isolada:</b>
-              {` ${conteudo?.second_discipline_isolated}`}
+              {` ${conteudo?.disciplines[1].discipline_name}`}
             </div>
           </div>
           )}
@@ -114,7 +114,7 @@ function InfoModal({ close, conteudo }) {
           && (
           <div className="row">
             <b>Terceira Disciplina Isolada:</b>
-            {` ${conteudo?.third_discipline_isolated}`}
+            {` ${conteudo?.disciplines[2].discipline_name}`}
           </div>
           )}
           <div className="row">
