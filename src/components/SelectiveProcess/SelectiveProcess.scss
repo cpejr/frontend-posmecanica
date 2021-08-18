@@ -52,6 +52,13 @@
   border: none;
   font-size: 0.95em;
 }
+.PSLinkButton {
+  color: black;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat;
+}
 
 @media screen and (max-width: 1500px){
   .compoSP-principalTitle{

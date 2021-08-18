@@ -52,10 +52,8 @@ function SelectiveProcess({ infoPS, progress }) {
         conteudo={infoPS}
         close={handleClickClose}
         redirect={handleClickRedirect}
-        className="isoPsLinkButton"
-      >
-        Ver situação do aluno
-      </SPInfoModal>
+        className="PSLinkButton"
+      />
       )}
     </div>
   );

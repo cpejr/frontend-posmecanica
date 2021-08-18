@@ -3,6 +3,15 @@ import './SPInfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({ close, conteudo, redirect }) {
+  function formatedDate(date) {
+    const data = new Date(date);
+    const day = data.getDate().toString();
+    const responseDay = day.length === 1 ? `0${day}` : day;
+    const month = (data.getMonth() + 1).toString(); // +1 pois no getMonth Janeiro começa com zero.
+    const responseMonth = month.length === 1 ? `0${month}` : month;
+    const year = data.getFullYear();
+    return `${responseDay}/${responseMonth}/${year}`;
+  }
   return (
     <div className="SPmodal">
       <div className="SPinfoModalcontainer">
@@ -22,11 +31,11 @@ function InfoModal({ close, conteudo, redirect }) {
           </div>
           <div className="SProw">
             <b>Data de início:</b>
-            {` ${conteudo && new Date(conteudo.process_date_begin).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.process_date_begin)}`}
           </div>
           <div className="SProw">
             <b>Data de término:</b>
-            {` ${conteudo && new Date(conteudo.process_date_end).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.process_date_end)}`}
           </div>
         </div>
         <div className="divSPredirect">
