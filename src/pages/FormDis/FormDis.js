@@ -64,7 +64,7 @@ function FormDis() {
       && dados.first_discipline_isolated !== dados.third_discipline_isolated
       && dados.second_discipline_isolated !== dados.third_discipline_isolated) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
-      const id = await managerService.createCandidate(
+      const id = await managerService.createCandidateISO(
         dados, selectiveProcesses[0].process_id,
       );
       files.forEach(async (file) => {

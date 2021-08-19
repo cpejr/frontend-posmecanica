@@ -52,7 +52,8 @@ function FormPs() {
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
       && files.length === 4) {
-      const id = await managerService.createCandidate(dados, '0615d76a-acfa-4231-b698-0a66ec0ce7d7');
+      dados.candidate_date_inscrition = new Date();
+      const id = await managerService.createCandidate(dados, 'ea23951d-c884-4e27-bbcf-536f1642bed5');
       files.forEach(async (file) => {
         const data = new FormData();
         data.append('file', file.file);
