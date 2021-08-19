@@ -11,6 +11,12 @@ import Semeters from '../../utils/semesters';
 import SiteHeader from '../../components/SiteHeader';
 
 const semeters = Semeters;
+const initialStateData = {
+  process_type: '',
+  process_name: '',
+  process_date_begin: '',
+  process_date_end: '',
+};
 
 function SelectiveProcesses() {
   const history = useHistory();
@@ -26,14 +32,7 @@ function SelectiveProcesses() {
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
   const [allProcessIsolada, setAllProcessIsolada] = useState([]);
   const [filterProcessIsolada, setFilterProcessIsolada] = useState([]);
-  const [infoPS, setInfoPS] = useState([]);
-
-  // const handleClickClose = () => {
-  //   setShowSPInfoModal(false);
-  // };
-  // const handleClickRedirect = () => {
-  //   history.push('painel/professor');
-  // };
+  const [data, setData] = useState(initialStateData);
 
   function verificationIsOpen(process) {
     const beginDate = new Date(process.process_date_begin);
@@ -44,6 +43,19 @@ function SelectiveProcesses() {
     }
     return 'Finalizado';
   }
+  const handleClickClose = () => {
+    setShowSPInfoModal(false);
+  };
+  const handleClickOpen = () => {
+    if (showSPInfoModal === true) {
+      setShowSPInfoModal(false);
+    } else {
+      setShowSPInfoModal(true);
+    }
+  };
+  const handleClickRedirect = () => {
+    history.push('painel/professor');
+  };
 
   useEffect(async () => {
     if (dados.semester === '') {
@@ -119,7 +131,10 @@ function SelectiveProcesses() {
             {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
                 infoPS={process}
+                id={process.process_id}
                 progress={verificationIsOpen(process)}
+                setData={setData}
+                handleClickOpen={handleClickOpen}
                 chave={key}
               />
             ))}
@@ -127,6 +142,8 @@ function SelectiveProcesses() {
               <SelectiveProcess
                 infoPS={process}
                 id={process.process_id}
+                setData={setData}
+                handleClickOpen={handleClickOpen}
                 progress={verificationIsOpen(process)}
               />
             ))}
@@ -134,20 +151,20 @@ function SelectiveProcesses() {
               <SelectiveProcess
                 infoPS={process}
                 id={process.process_id}
+                setData={setData}
+                handleClickOpen={handleClickOpen}
                 progress={verificationIsOpen(process)}
               />
             ))}
           </div>
-          {/* {showSPInfoModal && (
-            <SPInfoModal
-              conteudo={process}
-              close={handleClickClose}
-              redirect={handleClickRedirect}
-              className="isoPsLinkButton"
-            >
-              Ver situação do aluno
-            </SPInfoModal>
-          )} */}
+          {showSPInfoModal && (
+          <SPInfoModal
+            conteudo={data}
+            close={handleClickClose}
+            redirect={handleClickRedirect}
+            className="PSLinkButton"
+          />
+          )}
         </div>
       </div>
       <Footer />

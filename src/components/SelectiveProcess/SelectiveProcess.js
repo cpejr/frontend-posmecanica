@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import SPInfoModal from '../../pages/SentDocuments/SPInfoModal';
 
 import './SelectiveProcess.scss';
 
-function SelectiveProcess({ infoPS, progress }) {
-  const history = useHistory();
+function SelectiveProcess({
+  infoPS, progress, handleClickOpen, setData,
+}) {
   const [inCourse, setInCourse] = useState();
-  const [showSPInfoModal, setShowSPInfoModal] = useState(false);
 
-  const handleClickClose = () => {
-    setShowSPInfoModal(false);
-  };
-  const handleClickOpen = () => {
-    if (showSPInfoModal === true) {
-      setShowSPInfoModal(false);
-    } else {
-      setShowSPInfoModal(true);
-    }
-  };
-  const handleClickRedirect = () => {
-    history.push('painel/professor');
+  const storeData = () => {
+    const data = {};
+    data.process_type = infoPS.process_type;
+    data.process_name = infoPS.process_name;
+    data.process_date_begin = infoPS.process_date_begin;
+    data.process_date_end = infoPS.process_date_end;
+    setData(data);
+    handleClickOpen();
   };
 
   useEffect(async () => {
@@ -38,7 +32,7 @@ function SelectiveProcess({ infoPS, progress }) {
           <button
             type="button"
             className="buttonInfoSPname"
-            onClick={handleClickOpen}
+            onClick={storeData}
           >
             {infoPS.process_name}
           </button>
@@ -47,14 +41,6 @@ function SelectiveProcess({ infoPS, progress }) {
       <div className={inCourse ? 'compoSP-buttonAndamento' : 'compoSP-buttonFinalizado'}>
         {progress}
       </div>
-      {showSPInfoModal && (
-      <SPInfoModal
-        conteudo={infoPS}
-        close={handleClickClose}
-        redirect={handleClickRedirect}
-        className="PSLinkButton"
-      />
-      )}
     </div>
   );
 }

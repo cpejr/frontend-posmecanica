@@ -7,7 +7,8 @@
   background: rgba(0,0,0,0.2);
   z-index: 999;
   .SPinfoModalcontainer{
-    position: fixed;
+    position: absolute;
+    height: 500px;
     max-width: 600px;
     top: 3%;
     bottom: 3%;
@@ -34,7 +35,7 @@
 .divSPredirect{
   display: flex;
   justify-content: center;
-  margin-top: 55%;
+  margin-top: 25%;
 }
 .SPredirect {
   background-color: green;
