@@ -54,10 +54,10 @@ function FormDis() {
       && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
       && dados.candidate_street.length !== '' && dados.candidate_pGraduate_university.length !== ''
       && dados.candidate_ufmg_active_serv.length !== '' && dados.candidate_ufmg_retired_serv.length !== ''
-      && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
-      && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
+      && dados.candidate_city.length !== '' && dados.candidate_state.length !== ''
+      && dados.candidate_country.length >= 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
-      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3
+      && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
       && files.length === 4 && dados.first_discipline_isolated !== ''
       && dados.second_discipline_isolated !== '' && dados.third_discipline_isolated !== ''
       && dados.first_discipline_isolated !== dados.second_discipline_isolated

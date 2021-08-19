@@ -24,7 +24,6 @@ function InfoModal({ close, conteudo }) {
           <div className="row">
             <b>Data de Inscrição:</b>
             {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
-            {/* {` ${conteudo && new Date(conteudo.candidate_date_inscrition).toUTCString()}`} */}
           </div>
           <div className="rowGrid">
             <div>
@@ -112,11 +111,11 @@ function InfoModal({ close, conteudo }) {
           <div className="rowGrid">
             <div>
               <b>Primeira Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[0].discipline_name} `}
+              {` ${conteudo?.disciplines[0]?.discipline_name} `}
             </div>
             <div>
               <b>Segunda Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[1].discipline_name}`}
+              {` ${conteudo?.disciplines[1]?.discipline_name}`}
             </div>
           </div>
           )}
@@ -124,13 +123,12 @@ function InfoModal({ close, conteudo }) {
           && (
           <div className="row">
             <b>Terceira Disciplina Isolada:</b>
-            {` ${conteudo?.disciplines[2].discipline_name}`}
+            {` ${conteudo?.disciplines[2]?.discipline_name}`}
           </div>
           )}
           <div className="row">
             <b>Data de Nascimento:</b>
             {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
-            {/* {` ${conteudo && new Date(conteudo.candidate_birth).toUTCString()}`} */}
           </div>
           <div className="row">
             <b>Endereço:</b>
