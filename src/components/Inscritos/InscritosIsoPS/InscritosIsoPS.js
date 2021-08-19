@@ -3,6 +3,7 @@ import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Button from '@material-ui/core/Button';
 import InfoModal from '../../../pages/SentDocuments/InfoModal';
+import DeferirModal from '../../../utils/DeferirModal';
 import * as managerService from '../../../services/manager/managerService';
 import './InscritosIsoPS.scss';
 
@@ -10,13 +11,16 @@ function InscritosIsoPS({
   isoCandidates, setIsoCandidates, candidate,
 }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
+  const [buttonName, setButtonName] = useState();
+  const [label, setLabel] = useState();
 
   const handleClickClose = () => {
     setShowInfoModal(false);
+    setShowConfirmModalCandidate(false);
   };
 
-  const handleClick = async (e) => {
-    const buttonName = e.currentTarget.id;
+  const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
       candidate.stud_scholarship = false;
       if (candidate.first_discipline_isolated !== 'none'
@@ -33,6 +37,18 @@ function InscritosIsoPS({
       );
       setIsoCandidates(removeCandidate);
     }
+    setShowConfirmModalCandidate(false);
+  };
+
+  const handleClick = async (e) => {
+    if (e.currentTarget.id === 'Deferir') {
+      setButtonName('Deferir');
+      setLabel('Deseja deferir esse candidato?');
+    } else {
+      setButtonName('Indeferir');
+      setLabel('Deseja indeferir esse candidato?');
+    }
+    setShowConfirmModalCandidate(true);
   };
 
   return (
@@ -55,11 +71,16 @@ function InscritosIsoPS({
         conteudo={candidate}
         close={handleClickClose}
         className="isoPsLinkButton"
-      >
-        Ver situação do aluno
-      </InfoModal>
+      />
       )}
-
+      {showConfirmModalCandidate && (
+      <DeferirModal
+        label={label}
+        handleCloseClick={handleClickClose}
+        handleConfirmClick={handleClickConfirmClick}
+        className="confirmCandidateButton"
+      />
+      )}
     </div>
   );
 }
