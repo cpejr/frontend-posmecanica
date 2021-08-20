@@ -39,7 +39,7 @@ $azulPadrao: #1d2d57;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width: 350px;
   justify-content: center;
   flex-direction: column;
 }
@@ -48,7 +48,7 @@ $azulPadrao: #1d2d57;
   justify-content: center;
 }
 .MuiFormControl-root {
-  width: 350px;
+  width: 100%;
 }
 .divButton-createSP{
   display: flex;
@@ -79,8 +79,7 @@ $azulPadrao: #1d2d57;
 }
 
 @media screen and (max-width: 700px) {
-  .MuiFormControl-root {
-    min-width: 150px;
+  .input-SPcontent {
     width: 250px;
   }
   .divButton-createSP{
@@ -92,7 +91,7 @@ $azulPadrao: #1d2d57;
 }
 
 @media screen and (max-width: 460px) {
-  .MuiFormControl-root {
+  .input-SPcontent {
     width: 190px;
   }
 }

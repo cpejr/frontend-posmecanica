@@ -3,6 +3,7 @@ import './CreateSelectiveProcess.scss';
 import { useToasts } from 'react-toast-notifications';
 import processType from '../../utils/processType';
 import SiteHeader from '../../components/SiteHeader';
+import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 
@@ -102,6 +103,7 @@ function registerDis() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
