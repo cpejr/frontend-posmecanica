@@ -44,16 +44,16 @@ function FormPs() {
       && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
       && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
       && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
-      && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
+      && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length !== ''
       && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
       && dados.candidate_street.length !== ''
-      && dados.candidate_city.length !== '' && dados.candidate_state.length >= 3
-      && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
+      && dados.candidate_city.length !== '' && dados.candidate_state.length !== ''
+      && dados.candidate_country.length !== '' && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
       && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
       && files.length === 4) {
       dados.candidate_date_inscrition = new Date();
-      const id = await managerService.createCandidate(dados, 'ea23951d-c884-4e27-bbcf-536f1642bed5');
+      const id = await managerService.createCandidate(dados, 'a486abf0-9f32-4a29-b240-8581901a4864');
       files.forEach(async (file) => {
         const data = new FormData();
         data.append('file', file.file);

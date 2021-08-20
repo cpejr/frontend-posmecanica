@@ -29,9 +29,11 @@ function InscritosIsoPS({
         && candidate.second_discipline_isolated !== 'none'
         && candidate.third_discipline_isolated !== 'none') {
         await managerService.createStudent(candidate, candidate.candidate_process_id);
+        candidate.candidate_deferment = true;
         addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       } else {
         await managerService.createStudent(candidate);
+        candidate.candidate_deferment = true;
         addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       }
     } else {
@@ -65,8 +67,9 @@ function InscritosIsoPS({
         {candidate.candidate_name}
       </div>
       <div className="isoPsDivButtons">
-        <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
-        <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
+        {candidate.candidate_deferment === false && <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>}
+        {candidate.candidate_deferment === false && <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>}
+
       </div>
       <div className="divButtonSituationStudent">
         <button type="button" className="buttonSituationStudent" onClick={() => setShowInfoModal(true)}>Ver situação do aluno</button>
