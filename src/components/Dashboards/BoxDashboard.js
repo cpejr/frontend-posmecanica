@@ -97,7 +97,6 @@ function BoxDashboard({
             )}
             {type === 'adm' && (
               <div className="BdSubTitle">
-                {console.log('ENTREI ADM')}
                 {subtitle}
                 {(dados.type !== '' && type === 'adm') ? (
                   processes.map((process) => {
