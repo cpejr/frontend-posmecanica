@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Button from '@material-ui/core/Button';
+import { useToasts } from 'react-toast-notifications';
 import InfoModal from '../../../pages/SentDocuments/InfoModal';
 import DeferirModal from '../../../utils/DeferirModal';
 import * as managerService from '../../../services/manager/managerService';
@@ -14,6 +15,7 @@ function InscritosIsoPS({
   const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
   const [buttonName, setButtonName] = useState();
   const [label, setLabel] = useState();
+  const { addToast } = useToasts();
 
   const handleClickClose = () => {
     setShowInfoModal(false);
@@ -27,8 +29,10 @@ function InscritosIsoPS({
         && candidate.second_discipline_isolated !== 'none'
         && candidate.third_discipline_isolated !== 'none') {
         await managerService.createStudent(candidate, candidate.candidate_process_id);
+        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       } else {
         await managerService.createStudent(candidate);
+        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       }
     } else {
       await managerService.denyCandidate(candidate.candidate_id);
@@ -36,6 +40,7 @@ function InscritosIsoPS({
         (person) => person.candidate_id !== candidate.candidate_id,
       );
       setIsoCandidates(removeCandidate);
+      addToast('Candidato indeferido com sucesso!', { appearance: 'error' });
     }
     setShowConfirmModalCandidate(false);
   };
