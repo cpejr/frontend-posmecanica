@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
-import './FormProf.scss';
-import { useToasts } from 'react-toast-notifications';
-import SiteHeader from '../../components/SiteHeader';
-import StyledInput from '../../components/StyledInput';
-import * as managerService from '../../services/manager/managerService';
-import formsInput from '../../utils/formsProf';
+/* eslint-disable */
+
+import React, { useState } from "react";
+import "./FormProf.scss";
+import { useToasts } from "react-toast-notifications";
+import SiteHeader from "../../components/SiteHeader";
+import StyledInput from "../../components/StyledInput";
+import * as managerService from "../../services/manager/managerService";
+import formsInput from "../../utils/formsProf";
 
 function FormProf() {
   const initialState = {
-    prof_name: '',
-    prof_email: '',
-    prof_description: '',
-    prof_curriculum: '',
-    prof_gender: '',
-    prof_active: '',
-    prof_birth: '',
-    prof_cpf: '',
-    prof_credential: '',
-    prof_type: '',
-    prof_title: '',
-    prof_title_year: '',
-    prof_university: '',
-    prof_city: '',
-    prof_state: '',
-    prof_country: '',
-    prof_course: '',
-    prof_treatment: '',
-    prof_workplace: '',
+    prof_name: "",
+    prof_email: "",
+    prof_description: "",
+    prof_curriculum: "",
+    prof_gender: "",
+    prof_active: "",
+    prof_birth: "",
+    prof_cpf: "",
+    prof_credential: "",
+    prof_type: "",
+    prof_title: "",
+    prof_title_year: "",
+    prof_university: "",
+    prof_city: "",
+    prof_state: "",
+    prof_country: "",
+    prof_course: "",
+    prof_treatment: "",
+    prof_workplace: "",
   };
   const [dados, setDados] = useState(initialState);
   const { addToast } = useToasts();
@@ -39,9 +41,9 @@ function FormProf() {
     e.preventDefault();
     if (1) {
       await managerService.createProfessor(dados);
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+      addToast("Cadastro realizado com sucesso!", { appearance: "success" });
     } else {
-      addToast('Preencha todos os campos!', { appearance: 'error' });
+      addToast("Preencha todos os campos!", { appearance: "error" });
     }
   };
   return (
@@ -51,9 +53,7 @@ function FormProf() {
       {formsInput.map((topic) => (
         <div key={topic.title}>
           <div className="form_dis_prof_box_title">
-            <div className="form_dis_prof_title">
-              {topic.title}
-            </div>
+            <div className="form_dis_prof_title">{topic.title}</div>
           </div>
           {topic.lines.map((line) => (
             <div className="form_dis_prof_line">
@@ -67,7 +67,7 @@ function FormProf() {
                     field={item.field}
                     select={item.select}
                     dados={dados}
-                    shrink={item.type === 'date'}
+                    shrink={item.type === "date"}
                     setDados={handleChange}
                   />
                 </div>
@@ -77,7 +77,10 @@ function FormProf() {
         </div>
       ))}
       <div className="divButton-psprof">
-        <button className="Button-psprof" type="submit" onClick={handleClick}> Cadastre-se</button>
+        <button className="Button-psprof" type="submit" onClick={handleClick}>
+          {" "}
+          Cadastre-se
+        </button>
       </div>
     </div>
   );
