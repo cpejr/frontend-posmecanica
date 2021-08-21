@@ -22,6 +22,7 @@ function FormDis() {
     candidate_zone_title: '',
     candidate_section_title: '',
     candidate_street: '',
+    candidate_district: '',
     candidate_adress_num: '',
     candidate_city: '',
     candidate_state: '',
@@ -46,21 +47,23 @@ function FormDis() {
   const { addToast } = useToasts();
 
   const handleClick = async (e, dados) => {
-    console.log('🚀 ~ file: FormDis.js ~ line 49 ~ handleClick ~ dados', dados);
     dados.candidate_grade = 'NENHUMA DAS OPÇÕES';
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
-      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
+      && dados.candidate_identity.length > 3 && dados.candidate_expedition !== ''
       && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
       && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
       && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
-      && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
-      && dados.candidate_street.length !== '' && dados.candidate_pGraduate_university.length !== ''
-      && dados.candidate_ufmg_active_serv.length !== '' && dados.candidate_ufmg_retired_serv.length !== ''
-      && dados.candidate_city.length !== '' && dados.candidate_state.length !== ''
-      && dados.candidate_country.length >= 3 && dados.candidate_cep.length > 3
-      && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
-      && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
+      && dados.candidate_zone_title !== '' && dados.candidate_section_title !== ''
+      && dados.candidate_street !== '' && dados.candidate_pGraduate_university !== ''
+      && dados.candidate_ufmg_active_serv !== '' && dados.candidate_ufmg_retired_serv !== ''
+      && dados.candidate_city !== '' && dados.candidate_state !== ''
+      && dados.candidate_district !== '' && dados.candidate_state !== ''
+      && dados.candidate_adress_num !== '' && dados.candidate_country.length >= 3
+      && dados.candidate_cep.length > 3 && dados.candidate_grade_date_begin.lenght > 3
+      && dados.candidate_grade_date_end.lenght > 3 && dados.candidate_email.length > 3
+      && dados.candidate_phone_number.length > 3 && dados.candidate_university !== ''
+      && dados.candidate_graduation.length > 3
       && files.length === 4 && dados.first_discipline_isolated !== ''
       && dados.second_discipline_isolated !== '' && dados.third_discipline_isolated !== ''
       && dados.first_discipline_isolated !== dados.second_discipline_isolated
