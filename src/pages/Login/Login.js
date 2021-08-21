@@ -4,7 +4,7 @@ import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
 import StyledInputWithIcon from '../../components/StyledInputWithIcon';
 import * as managerService from '../../services/manager/managerService';
-import Navbar from '../../components/Navbar';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 function Login() {
@@ -14,6 +14,7 @@ function Login() {
   };
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   const handleChange = (value, field) => {
     setUser({ ...user, [field]: value });
   };
@@ -29,7 +30,7 @@ function Login() {
 
   return (
     <div className="Login-externalDiv">
-      <Navbar />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="Login-screen">
         <div className="Login">
           <div className="Login-title">

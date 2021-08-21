@@ -19,7 +19,8 @@ function DashboardProfessor() {
     },
     {
       icon: <BiBeer />,
-      text: 'Drafts',
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
 

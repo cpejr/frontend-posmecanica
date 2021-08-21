@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
+import DashboardAluno from './pages/DashboardAluno';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
 import FormProf from './pages/FormProf';
@@ -14,6 +15,7 @@ import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
 import StudentList from './pages/StudentsList';
 import StylePDF from './components/StylePDF';
+import EditStudentInfo from './pages/EditStudentInfo';
 
 const useStyles = makeStyles({
   container: {
@@ -30,14 +32,19 @@ function Routes() {
       <div className={classes.container}>
         <Switch>
           <Route exact path="/painel/professor" component={DashboardProfessor} />
+          <Route exact path="/painel/aluno" component={DashboardAluno} />
           <Route exact path="/painel/administrator" component={DashboardAdministrator} />
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
+          <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
+          <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
+          <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
+          <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
-          <Route exact path="/formulario-professores" component={FormProf} />
+          <Route exact path="/painel/administrator/formulario-professores" component={FormProf} />
           <Route exact path="/lista-professores" component={ProfessorList} />
-          <Route exact path="/cadastro-disciplina" component={registerDis} />
+          <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/pdf" component={StylePDF} />

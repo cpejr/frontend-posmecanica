@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 .BdMenu {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 .BdTitle {
@@ -14,7 +16,7 @@
   ;
 }
 .BdBox {
-  margin: 0px 50px 0px 50px;
+  margin: 0px 50px 30px 50px;
   height: 410px;
   border: 1px solid #C4C4C4;
   border-radius: 8px;
@@ -57,4 +59,35 @@
 .BdInputReal{
   margin-top: 3%;
   color: white;
+}
+
+@media (max-width: 769px){
+
+  .BdBox{
+    margin: 0px;
+  }
+
+  .BdDivGrid{
+    padding: 10px;
+  }
+
+  .BdBoxTitle{
+    font-size: 15px;
+  }
+
+  .BdInputReal{
+    width: auto;
+  }
+
+  .isoPsIcon{
+    display: none;
+  }
+
+  .BdSubTitle{
+    width: max-content;
+  }
+
+  .BdTitle{
+    font-size: 28px;
+  }
 }

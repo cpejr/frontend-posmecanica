@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
+import InscritoPS from '../../components/Inscritos/InscritosPS/InscritoPS';
 import { AllTitleTypes } from '../../utils/titleTypes';
 import './StudentList.scss';
 
@@ -14,7 +15,7 @@ function StudentList() {
   const [filterName, setFilterName] = useState();
   const [filterYear, setFilterYear] = useState();
   const [filterGraduation, setFilterGraduation] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   useEffect(async () => {
     const students = await managerService.getStudents();
@@ -60,29 +61,41 @@ function StudentList() {
   const handleFilterGraduationChange = (value) => {
     setFilterGraduation(value);
   };
-
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'lista-estudantes',
     },
     {
-      text: 'nando sonolento',
-      path: '',
+      text: 'Criar processo seletivo',
+      path: '/',
     },
     {
-      text: 'redefinição de senha',
-      path: '',
+      text: 'Postagens de teses',
+      path: '/',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
-
   return (
     <div className="studentList-Root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="studentList-Content">
         <div className="studentList-LeftContainer">
+          <h1>Lista de estudantes</h1>
           <div className="studentList-Filters">
             <StyledInput
+              styled={{ marginTop: '20px' }}
               type="text"
               id="filter-name"
               label="Nome"
@@ -111,18 +124,22 @@ function StudentList() {
               setDados={handleFilterGraduationChange}
             />
           </div>
-
-          {filterStudents.map((student) => (
-            <div className="studentList-Info">
-              <div className="studentList-Info-Name">{student.candidate_name}</div>
-              <div className="studentList-Info-Year">{new Date(student.created_at).getUTCFullYear().toString()}</div>
-              <div className="studentList-Info-Type">{student.process_type}</div>
-              {/* new Date(student.created_at).getUTCFullYear().toString() === filterYear */}
-            </div>
-          ))}
-
+          <div className="gridAll">
+            {filterStudents.map((student) => (
+              <div className="formsDI_input">
+                <InscritoPS
+                  candidate={student}
+                  boolean="true"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

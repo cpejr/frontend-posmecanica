@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
@@ -143,4 +142,15 @@ export const getStudents = async (field, filter) => {
     times += 1;
   } while (response.data.length > 0);
   return allStudents;
+};
+
+export const updateStudent = async (student, id) => {
+  const response = await requesterService.updateStudent(student, id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getByIdStudent = async (studentId) => {
+  const response = await requesterService.getByIdStudent(studentId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };

@@ -16,8 +16,10 @@ function SelectiveProcesses() {
   };
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
-  const [processMestrado, setProcessMestrado] = useState([]);
-  const [processDoutorado, setProcessDoutorado] = useState([]);
+  const [allProcessMestrado, setAllProcessMestrado] = useState([]);
+  const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
+  const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
+  const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
   useEffect(async () => {
     if (dados.semester === '') {
       setPeriod(`${dados.semester}`);
@@ -28,10 +30,27 @@ function SelectiveProcesses() {
   useEffect(async () => {
     const selectiveProcess = await managerService.getAllSelectiveProcess();
     let newArray = selectiveProcess.filter((process) => process.process_type === 'MESTRADO');
-    setProcessMestrado(newArray);
+    setAllProcessMestrado(newArray);
+    setFilterProcessMestrado(newArray);
     newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
-    setProcessDoutorado(newArray);
+    setAllProcessDoutorado(newArray);
+    setFilterProcessDoutorado(newArray);
   }, []);
+
+  useEffect(() => {
+    let initialProcessMestrado = allProcessMestrado;
+    let initialProcessDoutorado = allProcessDoutorado;
+    if (period !== '') {
+      initialProcessMestrado = initialProcessMestrado.filter((semester) => (
+        semester.process_date_begin === period
+      ));
+      initialProcessDoutorado = initialProcessDoutorado.filter((semester) => (
+        semester.process_date_begin === period
+      ));
+    }
+    setFilterProcessMestrado(initialProcessMestrado);
+    setFilterProcessDoutorado(initialProcessDoutorado);
+  }, [period]);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
@@ -53,7 +72,7 @@ function SelectiveProcesses() {
               type="text"
               id="semester"
               label="Semestre"
-              width="16rem"
+              width="20em"
               field={semeters}
               select
               dados={dados}
@@ -69,18 +88,18 @@ function SelectiveProcesses() {
             </div>
           </div>
           <div className="SP-bottomBar">
-            {processMestrado.map((process, key) => (
+            {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
                 name={process.process_name}
-                type={process.process_type}
+                // type={process.process_type}
                 progress="Em andamento"
                 chave={key}
               />
             ))}
-            {processDoutorado.map((process) => (
+            {filterProcessDoutorado.map((process) => (
               <SelectiveProcess
                 name={process.process_name}
-                type={process.process_type}
+                // type={process.process_type}
                 id={process.process_id}
                 progress="Finalizado"
               />

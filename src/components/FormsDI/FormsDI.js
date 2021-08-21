@@ -56,6 +56,7 @@ function Forms({
                 <div className="formsDI_input">
                   <StyledInput
                     type={item.type}
+                    shrink={item.type === 'date' ? true : undefined}
                     id={item.id}
                     label={item.label}
                     width="22rem"
@@ -105,7 +106,7 @@ function Forms({
         ))}
       </div>
       <div className="formsDI_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
+        <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
       </div>
     </div>
   );
