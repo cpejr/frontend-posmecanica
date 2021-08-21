@@ -29,10 +29,16 @@ function InscritosIsoPS({
         && candidate.second_discipline_isolated !== 'none'
         && candidate.third_discipline_isolated !== 'none') {
         await managerService.createStudent(candidate, candidate.candidate_process_id);
+        await managerService.updateCandidate({
+          candidate_deferment: true,
+        }, candidate.candidate_id);
         candidate.candidate_deferment = true;
         addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       } else {
         await managerService.createStudent(candidate);
+        await managerService.updateCandidate({
+          candidate_deferment: true,
+        }, candidate.candidate_id);
         candidate.candidate_deferment = true;
         addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       }
@@ -42,7 +48,7 @@ function InscritosIsoPS({
         (person) => person.candidate_id !== candidate.candidate_id,
       );
       setIsoCandidates(removeCandidate);
-      addToast('Candidato indeferido com sucesso!', { appearance: 'error' });
+      addToast('Candidato indeferido com sucesso!', { appearance: 'success' });
     }
     setShowConfirmModalCandidate(false);
   };

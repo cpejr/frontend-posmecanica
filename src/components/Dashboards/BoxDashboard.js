@@ -68,27 +68,31 @@ function BoxDashboard({
                       if (process.process_type === dados.type) {
                         if (position === 'first') {
                           list.forEach((e) => {
-                            if (e.candidate_deferment === true) {
+                            if (e.candidate_deferment === true
+                              && e.selective_process.process_type === dados.type) {
                               processCount += 1;
                             }
                           });
                           if (process.count_candidates === 0) {
                             return 0;
+                          }
+                          if (process.count_candidates === processCount) {
+                            return process.count_candidates;
                           }
                           finalCount = process.count_candidates - processCount;
                           return finalCount;
                         }
                         if (position === 'second') {
                           listDefer.forEach((e) => {
-                            if (e.candidate_deferment === false) {
+                            if (e.candidate_deferment === true
+                              && e.selective_process.process_type === dados.type) {
                               processCount += 1;
                             }
                           });
                           if (process.count_candidates === 0) {
                             return 0;
                           }
-                          finalCount = process.count_candidates - processCount;
-                          return finalCount;
+                          return processCount;
                         }
                       }
                       return <div />;
