@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormDis.scss';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import Forms from '../../components/FormsDI';
@@ -40,10 +41,12 @@ function FormDis() {
     third_discipline_isolated: '',
   };
   const [files, setFiles] = useState([]);
+  const history = useHistory();
 
   const { addToast } = useToasts();
 
   const handleClick = async (e, dados) => {
+    console.log('🚀 ~ file: FormDis.js ~ line 49 ~ handleClick ~ dados', dados);
     dados.candidate_grade = 'NENHUMA DAS OPÇÕES';
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
@@ -64,15 +67,20 @@ function FormDis() {
       && dados.first_discipline_isolated !== dados.third_discipline_isolated
       && dados.second_discipline_isolated !== dados.third_discipline_isolated) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
-      const id = await managerService.createCandidateISO(
-        dados, selectiveProcesses[0].process_id,
-      );
-      files.forEach(async (file) => {
-        const data = new FormData();
-        data.append('file', file.file);
-        await managerService.uploadFile(data, id, file.name);
-      });
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+      if (selectiveProcesses.length !== 0) {
+        const id = await managerService.createCandidateISO(
+          dados, selectiveProcesses[0].process_id,
+        );
+        files.forEach(async (file) => {
+          const data = new FormData();
+          data.append('file', file.file);
+          await managerService.uploadFile(data, id, file.name);
+        });
+        history.push('/');
+        addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+      } else {
+        addToast('O processo seletivo selecionado não está aberto!', { appearance: 'error' });
+      }
     } else if (dados.first_discipline_isolated !== ''
     && dados.second_discipline_isolated !== ''
     && dados.third_discipline_isolated !== ''
