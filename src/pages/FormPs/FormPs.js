@@ -41,25 +41,32 @@ function FormPs() {
   const handleClick = async (e, dados) => {
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
-      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length > 3
+      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
       && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
       && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
       && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
       && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
-      && dados.candidate_street.length !== ''
-      && dados.candidate_city.length > 3 && dados.candidate_state.length > 3
+      && dados.candidate_street.length !== '' && dados.candidate_grade !== ''
+      && dados.candidate_city.length !== '' && dados.candidate_state.length !== ''
+      && dados.candidate_adress_num !== '' && dados.candidate_district !== ''
+      && dados.candidate_grade_date_begin > 3 && dados.candidate_grade_date_end > 3
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
-      && dados.candidate_university.length > 3 && dados.candidate_graduation.length > 3
+      && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
       && files.length === 4) {
-      const id = await managerService.createCandidate(dados, '0615d76a-acfa-4231-b698-0a66ec0ce7d7');
-      files.forEach(async (file) => {
-        const data = new FormData();
-        data.append('file', file.file);
-        await managerService.uploadFile(data, id, file.name);
-      });
-      history.push('/');
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+      const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', dados.candidate_grade);
+      if (selectiveProcesses.length !== 0) {
+        const id = await managerService.createCandidate(dados, selectiveProcesses[0].process_id);
+        files.forEach(async (file) => {
+          const data = new FormData();
+          data.append('file', file.file);
+          await managerService.uploadFile(data, id, file.name);
+        });
+        history.push('/');
+        addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+      } else {
+        addToast('Processo seletivo não encontrado!', { appearance: 'error' });
+      }
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
     }
