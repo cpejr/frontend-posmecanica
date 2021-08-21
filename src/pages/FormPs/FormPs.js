@@ -41,18 +41,18 @@ function FormPs() {
   const handleClick = async (e, dados) => {
     e.preventDefault();
     if (dados.candidate_name.length > 3 && dados.candidate_cpf.length > 3
-      && dados.candidate_identity.length > 3 && dados.candidate_expedition.length !== ''
+      && dados.candidate_identity.length > 3 && dados.candidate_expedition !== ''
       && dados.candidate_nationality.length > 3 && dados.candidate_civil_state.length > 3
       && dados.candidate_birth.length > 3 && dados.candidate_race.length > 3
       && dados.candidate_gender.length > 3 && dados.candidate_voter_title.length > 3
-      && dados.candidate_zone_title.length !== '' && dados.candidate_section_title.length !== ''
-      && dados.candidate_street.length !== '' && dados.candidate_grade !== ''
-      && dados.candidate_city.length !== '' && dados.candidate_state.length !== ''
+      && dados.candidate_zone_title !== '' && dados.candidate_section_title !== ''
+      && dados.candidate_street !== '' && dados.candidate_grade !== ''
+      && dados.candidate_city !== '' && dados.candidate_state !== ''
       && dados.candidate_adress_num !== '' && dados.candidate_district !== ''
       && dados.candidate_grade_date_begin > 3 && dados.candidate_grade_date_end > 3
       && dados.candidate_country.length > 3 && dados.candidate_cep.length > 3
       && dados.candidate_email.length > 3 && dados.candidate_phone_number.length > 3
-      && dados.candidate_university.length !== '' && dados.candidate_graduation.length > 3
+      && dados.candidate_university !== '' && dados.candidate_graduation.length > 3
       && files.length === 4) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', dados.candidate_grade);
       if (selectiveProcesses.length !== 0) {
