@@ -20,8 +20,8 @@ body {
 }
 .Login {
   background: $azulPadrao;
-  width: 25%;
-  height: 60%;
+  width: 35%;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,6 @@ body {
     font-size: clamp(20px, 1em + 1vw, 40px);
     color: #fff;
     font-weight: normal;
-    font-family: Montserrat;
   }
 }
 .Login-buttons {
@@ -45,15 +44,14 @@ body {
   .Login-button1 {
     button {
       height: 7vh;
-      width: 12vw;
+      width: 22vw;
       border: 0;
-      background-color: #1F3C88;
+      background-color: #b00910;
       color: #ffffff;
       border-radius: 12px;
       text-shadow: 0em 0.3em 0.3em #000;
       box-shadow: 2px 3px 10px #000;
     cursor: pointer;
-    font-size:2vh;
   }
   }
 }
@@ -69,8 +67,8 @@ body {
 @media screen and (max-width: 1400px) {
   .Login {
     background: $azulPadrao;
-    width: 45%;
-    height: 60%;
+    width: 70vh;
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,9 +94,9 @@ body {
     .Login-button1 {
       button {
         height: 7vh;
-        width: 10%;
+        width: 35vh;
         border: 0;
-        background-color: #1F3C88;
+        background-color: #b00910;
         color: #ffffff;
         border-radius: 12px;
         text-shadow: 0em 0.3em 0.3em #000;
