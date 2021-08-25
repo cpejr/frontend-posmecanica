@@ -82,7 +82,7 @@ function ThesesPost() {
             <div className="studentName-grid">
               <TextField
                 className="studentName"
-                label="Aluno"
+                label="Autor"
                 id="input-with-icon-textfield"
                 variant="filled"
                 size="small"
