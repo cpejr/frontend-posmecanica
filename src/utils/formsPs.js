@@ -1,33 +1,34 @@
-import civilStatus from './civil_status';
-import states from './states';
-import genres from './genres';
-import races from './races';
-import { TitleTypes } from './titleTypes';
+/*eslint-disable*/
+import civilStatus from "./civil_status";
+import states from "./states";
+import genres from "./genres";
+import races from "./races";
+import { TitleTypes } from "./titleTypes";
 
 const formsInput = [
   {
-    title: 'Dados Pessoais',
+    title: "Dados Pessoais",
     lines: [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_name',
-            label: 'Nome',
+            type: "text",
+            id: "candidate_name",
+            label: "Nome",
             field: null,
             select: false,
           },
           {
-            type: 'date',
-            id: 'candidate_birth',
-            label: 'Data de Nascimento',
+            type: "date",
+            id: "candidate_birth",
+            label: "Data de Nascimento",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_nationality',
-            label: 'Nacionalidade',
+            type: "text",
+            id: "candidate_nationality",
+            label: "Nacionalidade",
             field: null,
             select: false,
           },
@@ -36,23 +37,23 @@ const formsInput = [
       {
         items: [
           {
-            type: 'email',
-            id: 'candidate_email',
-            label: 'Email',
+            type: "email",
+            id: "candidate_email",
+            label: "Email",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_phone_number',
-            label: 'Número do telefone',
+            type: "text",
+            id: "candidate_phone_number",
+            label: "Número do telefone",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_civil_state',
-            label: 'Estado Civil',
+            type: "text",
+            id: "candidate_civil_state",
+            label: "Estado Civil",
             field: civilStatus,
             select: true,
           },
@@ -61,16 +62,16 @@ const formsInput = [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_race',
-            label: 'Raça',
+            type: "text",
+            id: "candidate_race",
+            label: "Raça",
             field: races,
             select: true,
           },
           {
-            type: 'text',
-            id: 'candidate_gender',
-            label: 'Gênero',
+            type: "text",
+            id: "candidate_gender",
+            label: "Gênero",
             field: genres,
             select: true,
           },
@@ -79,28 +80,28 @@ const formsInput = [
     ],
   },
   {
-    title: 'Documentação',
+    title: "Documentação",
     lines: [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_cpf',
-            label: 'CPF',
+            type: "text",
+            id: "candidate_cpf",
+            label: "CPF",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_identity',
-            label: 'Identidade',
+            type: "text",
+            id: "candidate_identity",
+            label: "Identidade",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_expedition',
-            label: 'Orgão Expedidor',
+            type: "text",
+            id: "candidate_expedition",
+            label: "Orgão Expedidor",
             field: null,
             select: false,
           },
@@ -109,23 +110,23 @@ const formsInput = [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_voter_title',
-            label: 'Título de Eleitor',
+            type: "text",
+            id: "candidate_voter_title",
+            label: "Título de Eleitor",
             field: null,
             select: false,
           },
           {
-            type: 'number',
-            id: 'candidate_zone_title',
-            label: 'Zona Eleitoral',
+            type: "number",
+            id: "candidate_zone_title",
+            label: "Zona Eleitoral",
             field: null,
             select: false,
           },
           {
-            type: 'number',
-            id: 'candidate_section_title',
-            label: 'Sessão',
+            type: "number",
+            id: "candidate_section_title",
+            label: "Sessão",
             field: null,
             select: false,
           },
@@ -134,28 +135,28 @@ const formsInput = [
     ],
   },
   {
-    title: 'Endereço',
+    title: "Endereço",
     lines: [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_street',
-            label: 'Rua',
+            type: "text",
+            id: "candidate_street",
+            label: "Rua",
             field: null,
             select: false,
           },
           {
-            type: 'number',
-            id: 'candidate_adress_num',
-            label: 'Número residencial',
+            type: "number",
+            id: "candidate_adress_num",
+            label: "Número residencial",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_district',
-            label: 'Bairro',
+            type: "text",
+            id: "candidate_district",
+            label: "Bairro",
             field: null,
             select: false,
           },
@@ -164,23 +165,23 @@ const formsInput = [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_cep',
-            label: 'CEP',
+            type: "text",
+            id: "candidate_cep",
+            label: "CEP",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_city',
-            label: 'Cidade',
+            type: "text",
+            id: "candidate_city",
+            label: "Cidade",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_state',
-            label: 'Estado',
+            type: "text",
+            id: "candidate_state",
+            label: "Estado",
             field: states,
             select: true,
           },
@@ -189,9 +190,9 @@ const formsInput = [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_country',
-            label: 'País',
+            type: "text",
+            id: "candidate_country",
+            label: "País",
             field: null,
             select: false,
           },
@@ -200,28 +201,28 @@ const formsInput = [
     ],
   },
   {
-    title: 'Graduação',
+    title: "Graduação",
     lines: [
       {
         items: [
           {
-            type: 'text',
-            id: 'candidate_university',
-            label: 'Universidade',
+            type: "text",
+            id: "candidate_university",
+            label: "Universidade",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_graduation',
-            label: 'Graduação',
+            type: "text",
+            id: "candidate_graduation",
+            label: "Graduação",
             field: null,
             select: false,
           },
           {
-            type: 'date',
-            id: 'candidate_grade_date_begin',
-            label: 'Data início da graduação',
+            type: "date",
+            id: "candidate_grade_date_begin",
+            label: "Data início da graduação",
             field: null,
             select: false,
           },
@@ -230,16 +231,16 @@ const formsInput = [
       {
         items: [
           {
-            type: 'date',
-            id: 'candidate_grade_date_end',
-            label: 'Data final da graduação',
+            type: "date",
+            id: "candidate_grade_date_end",
+            label: "Data final da graduação",
             field: null,
             select: false,
           },
           {
-            type: 'text',
-            id: 'candidate_grade',
-            label: 'Tipo do Processo',
+            type: "text",
+            id: "candidate_grade",
+            label: "Tipo de processo",
             field: TitleTypes,
             select: true,
           },
