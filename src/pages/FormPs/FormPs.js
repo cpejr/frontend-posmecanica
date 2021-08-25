@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FormPs.scss';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
@@ -37,6 +37,14 @@ function FormPs() {
   const [files, setFiles] = useState([]);
   const history = useHistory();
   const { addToast } = useToasts();
+
+  useEffect(async () => {
+    const selectiveProcessesMestrado = await managerService.getActualSelectiveProcess('process_type', 'MESTRADO');
+    const selectiveProcessesDoutorado = await managerService.getActualSelectiveProcess('process_type', 'DOUTORADO');
+    if (selectiveProcessesMestrado.length === 0 && selectiveProcessesDoutorado.length === 0) {
+      history.push('login');
+    }
+  }, []);
 
   const handleClick = async (e, dados) => {
     e.preventDefault();

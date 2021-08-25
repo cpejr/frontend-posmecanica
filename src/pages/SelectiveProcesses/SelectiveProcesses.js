@@ -1,25 +1,62 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
+import SPInfoModal from '../SentDocuments/SPInfoModal';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../utils/semesters';
 import SiteHeader from '../../components/SiteHeader';
 
 const semeters = Semeters;
+const initialStateData = {
+  process_type: '',
+  process_name: '',
+  process_date_begin: '',
+  process_date_end: '',
+};
 
 function SelectiveProcesses() {
+  const history = useHistory();
   const initialState = {
     semester: '',
   };
+  const [showSPInfoModal, setShowSPInfoModal] = useState(false);
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
   const [allProcessMestrado, setAllProcessMestrado] = useState([]);
   const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
   const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
+  const [allProcessIsolada, setAllProcessIsolada] = useState([]);
+  const [filterProcessIsolada, setFilterProcessIsolada] = useState([]);
+  const [data, setData] = useState(initialStateData);
+
+  function verificationIsOpen(process) {
+    const beginDate = new Date(process.process_date_begin);
+    const endDate = new Date(process.process_date_end);
+    const currentDate = new Date();
+    if (currentDate >= beginDate && currentDate <= endDate) {
+      return 'Em andamento';
+    }
+    return 'Finalizado';
+  }
+  const handleClickClose = () => {
+    setShowSPInfoModal(false);
+  };
+  const handleClickOpen = () => {
+    if (showSPInfoModal === true) {
+      setShowSPInfoModal(false);
+    } else {
+      setShowSPInfoModal(true);
+    }
+  };
+  const handleClickRedirect = () => {
+    history.push('painel/professor');
+  };
+
   useEffect(async () => {
     if (dados.semester === '') {
       setPeriod(`${dados.semester}`);
@@ -35,6 +72,9 @@ function SelectiveProcesses() {
     newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
     setAllProcessDoutorado(newArray);
     setFilterProcessDoutorado(newArray);
+    newArray = selectiveProcess.filter((process) => process.process_type === 'ISOLADA');
+    setAllProcessIsolada(newArray);
+    setFilterProcessIsolada(newArray);
   }, []);
 
   useEffect(() => {
@@ -90,21 +130,41 @@ function SelectiveProcesses() {
           <div className="SP-bottomBar">
             {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
-                name={process.process_name}
-                // type={process.process_type}
-                progress="Em andamento"
+                infoPS={process}
+                id={process.process_id}
+                progress={verificationIsOpen(process)}
+                setData={setData}
+                handleClickOpen={handleClickOpen}
                 chave={key}
               />
             ))}
             {filterProcessDoutorado.map((process) => (
               <SelectiveProcess
-                name={process.process_name}
-                // type={process.process_type}
+                infoPS={process}
                 id={process.process_id}
-                progress="Finalizado"
+                setData={setData}
+                handleClickOpen={handleClickOpen}
+                progress={verificationIsOpen(process)}
+              />
+            ))}
+            {filterProcessIsolada.map((process) => (
+              <SelectiveProcess
+                infoPS={process}
+                id={process.process_id}
+                setData={setData}
+                handleClickOpen={handleClickOpen}
+                progress={verificationIsOpen(process)}
               />
             ))}
           </div>
+          {showSPInfoModal && (
+          <SPInfoModal
+            conteudo={data}
+            close={handleClickClose}
+            redirect={handleClickRedirect}
+            className="PSLinkButton"
+          />
+          )}
         </div>
       </div>
       <Footer />

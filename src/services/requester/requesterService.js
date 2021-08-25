@@ -35,6 +35,7 @@ export const getSearchArea = (times, field, filter) => httpClient.get('/searchAr
   },
 });
 
+export const createSelectiveProcess = (selectiveProcess) => httpClient.post('/selectiveProcesses', selectiveProcess);
 export const getSelectiveProcess = (times, field, filter) => httpClient.get('/selectiveProcesses', {
   params: {
     times,
