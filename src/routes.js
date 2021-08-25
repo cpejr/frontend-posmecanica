@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
+import CreateSelectiveProcess from './pages/CreateSelectiveProcess';
 import DashboardAluno from './pages/DashboardAluno';
 import FormDis from './pages/FormDis';
 import FormPs from './pages/FormPs';
@@ -37,6 +38,7 @@ function Routes() {
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
           <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
+          <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />

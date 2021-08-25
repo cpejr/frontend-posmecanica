@@ -120,6 +120,11 @@ export const getAllSearchAreas = async () => {
   return response.data;
 };
 
+export const createSelectiveProcess = async (selectiveProcess) => {
+  const response = await requesterService.createSelectiveProcess(selectiveProcess);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getActualSelectiveProcess = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getSelectiveProcess(times, field, filter);
