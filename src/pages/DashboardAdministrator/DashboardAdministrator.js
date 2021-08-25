@@ -10,7 +10,7 @@ function DashboardAdministrator() {
     },
     {
       text: 'Criar processo seletivo',
-      path: '/',
+      path: 'criar-processo-seletivo',
     },
     {
       text: 'Postagens de teses',

@@ -18,7 +18,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
   };
 
   const handleConfirmClick = async () => {
-    if (action.toLowerCase() === 'aprovar') {
+    if (action.toLowerCase() === 'homologar') {
       await managerService.updateCandidate({
         candidate_form_approval: true,
       }, candidate.candidate_id);
@@ -78,12 +78,12 @@ function DocsContent({ setShowInfoModal, candidate }) {
         <div className="DC-buttons">
           <div className="DC-button-aprovar">
             <button type="button" onClick={handleButtonsClick}>
-              Aprovar
+              Homologar
             </button>
           </div>
           <div className="DC-button-solicitar">
             <button type="button" onClick={handleButtonsClick}>
-              Reprovar
+              Não homologar
             </button>
           </div>
         </div>

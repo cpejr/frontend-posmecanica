@@ -10,17 +10,21 @@ import Footer from '../../components/Footer/Footer';
 
 function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   // eslint-disable-next-line camelcase
   const { stud_id } = location.state.candidate;
   const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
     {
       text: 'Lista de estudantes',
       path: 'lista-estudantes',
     },
     {
       text: 'Criar processo seletivo',
-      path: '/',
+      path: 'criar-processo-seletivo',
     },
     {
       text: 'Postagens de teses',
@@ -90,7 +94,11 @@ function EditStudentInfo({ location }) {
             <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

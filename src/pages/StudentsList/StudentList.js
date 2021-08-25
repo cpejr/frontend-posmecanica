@@ -64,11 +64,11 @@ function StudentList() {
   const inputProps = [
     {
       text: 'Página principal',
-      path: 'lista-estudantes',
+      path: '',
     },
     {
       text: 'Criar processo seletivo',
-      path: '/',
+      path: 'criar-processo-seletivo',
     },
     {
       text: 'Postagens de teses',
