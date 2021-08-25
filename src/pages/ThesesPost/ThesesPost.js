@@ -5,7 +5,7 @@ import {
   TextField,
   withStyles,
 } from '@material-ui/core';
-import SchoolIcon from '@material-ui/icons/School';
+import { IoMdSchool } from 'react-icons/io';
 import UploadInput from '../../components/UploadInput';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -69,7 +69,7 @@ function ThesesPost() {
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="thesesPost-content">
         <div className="thesesPost-grid">
-          <h5>Teses</h5>
+          <h5>Postagem de Teses</h5>
           <div className="post-Content">
             <div className="forms_line_files">
               {formsFile.map((file) => (
@@ -89,7 +89,7 @@ function ThesesPost() {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SchoolIcon />
+                      <IoMdSchool size="25" />
                     </InputAdornment>
                   ),
                 }}
