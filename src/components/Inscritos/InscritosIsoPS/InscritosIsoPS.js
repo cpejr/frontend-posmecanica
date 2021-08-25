@@ -72,11 +72,21 @@ function InscritosIsoPS({
         </IconContext.Provider>
         {candidate.candidate_name}
       </div>
-      <div className="isoPsDivButtons">
-        {candidate.candidate_deferment === false && <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>}
-        {candidate.candidate_deferment === false && <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>}
-
-      </div>
+      {candidate.candidate_deferment === false
+        && (
+        <div className="isoPsDivButtons">
+          <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
+          <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
+        </div>
+        )}
+      {candidate.candidate_deferment === true
+        && (
+        <div className="isoPsDivButtons">
+          <div className="isoPsDivButtonsDeferido">
+            <Button className="isoPsDefermentStatus" id="Deferido" variant="contained">Deferido</Button>
+          </div>
+        </div>
+        )}
       <div className="divButtonSituationStudent">
         <button type="button" className="buttonSituationStudent" onClick={() => setShowInfoModal(true)}>Ver situação do aluno</button>
       </div>
