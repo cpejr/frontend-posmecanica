@@ -233,7 +233,7 @@ const formsInput = [
           {
             type: "date",
             id: "candidate_grade_date_end",
-            label: "Data final da graduação",
+            label: "Data da colação na graduação",
             field: null,
             select: false,
           },
