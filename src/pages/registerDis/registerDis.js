@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './registerDis.scss';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
 import StyledInput from '../../components/StyledInput';
 import enumm from '../../utils/enum';
 import boolean from '../../utils/boolean';
 import semester from '../../utils/semester';
+import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;
@@ -42,9 +43,36 @@ function registerDis() {
       addToast('Preencha todos os campos!', { appearance: 'error' });
     }
   };
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'criar-processo-seletivo',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'formulario-professores',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
+    },
+  ];
   return (
     <div className="screen-ps">
-      <SiteHeader />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <h1> Cadastro de Disciplinas:</h1>
       <div className="form_dis_cad_box_title">
         <div className="form_dis_cad_title">
@@ -129,7 +157,11 @@ function registerDis() {
           </div>
         </div>
       </div>
-
+      <RightPanel
+        inputProps={inputProps}
+        expandRightPanel={expandRightPanel}
+        setExpandRightPanel={setExpandRightPanel}
+      />
     </div>
   );
 }

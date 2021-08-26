@@ -27,12 +27,12 @@ function EditStudentInfo({ location }) {
       path: 'criar-processo-seletivo',
     },
     {
-      text: 'Postagens de teses',
-      path: '/',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',
-      path: 'lista-professores',
+      path: 'formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',

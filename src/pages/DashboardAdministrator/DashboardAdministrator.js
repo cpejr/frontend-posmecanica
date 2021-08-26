@@ -13,8 +13,8 @@ function DashboardAdministrator() {
       path: 'criar-processo-seletivo',
     },
     {
-      text: 'Postagens de teses',
-      path: '/',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',

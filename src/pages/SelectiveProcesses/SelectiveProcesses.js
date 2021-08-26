@@ -8,7 +8,8 @@ import SPInfoModal from '../SentDocuments/SPInfoModal';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../utils/semesters';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
+import RightPanel from '../../components/Menu/RightPanel';
 
 const semeters = Semeters;
 const initialStateData = {
@@ -94,10 +95,36 @@ function SelectiveProcesses() {
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'criar-processo-seletivo',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
+    },
+  ];
   return (
     <div className="SP-externalDiv">
-      <SiteHeader />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SP-screen">
         <div className="SP-title">
           Processos Seletivos
@@ -166,6 +193,11 @@ function SelectiveProcesses() {
           />
           )}
         </div>
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

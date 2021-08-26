@@ -48,7 +48,7 @@ function Routes() {
           <Route exact path="/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
-          <Route exact path="/processos-seletivos" component={SelectiveProcesses} />
+          <Route exact path="/painel/administrator/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/pdf" component={StylePDF} />
           <Route path="/" component={Login} />
         </Switch>
