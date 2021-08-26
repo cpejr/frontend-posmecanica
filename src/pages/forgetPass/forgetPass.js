@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import '../../components/CampoText/campotxt';
 import './forgetPass.scss';
 import * as managerService from '../../services/manager/managerService';
-import Navbar from '../../components/Navbar';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 function esqueciSenha() {
@@ -26,11 +26,11 @@ function esqueciSenha() {
       addToast('Email não cadastrado!', { appearance: 'error' });
     }
   };
-
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   return (
 
     <div className="container">
-      <Navbar />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="campos">
 
         <div className="coluna">

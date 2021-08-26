@@ -40,8 +40,6 @@ function Routes() {
           <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
-          {/* <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
-          <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} /> */}
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
           <Route exact path="/painel/administrator/formulario-professores" component={FormProf} />

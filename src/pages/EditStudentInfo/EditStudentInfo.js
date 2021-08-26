@@ -6,7 +6,7 @@ import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import StudEdit from '../../utils/StudentEdit_ByAdmin';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/Footer';
 
 function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
