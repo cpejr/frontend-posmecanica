@@ -42,6 +42,13 @@ $azulPadrao: #1d2d57;
   font-weight: 600;
   font-family: Montserrat;
 }
+.formsDI_TextInputDiv{
+  display: flex;
+  justify-content: center;
+}
+.formsDI_TextInput{
+  width: 85%;
+}
 .formsDI_divButton {
   display: flex;
   justify-content: center;

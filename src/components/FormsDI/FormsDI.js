@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TextField from '@material-ui/core/TextField';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
@@ -104,6 +105,22 @@ function Forms({
             <UploadInput files={files} setFiles={setFiles} fileName={file} />
           </div>
         ))}
+      </div>
+      <div className="formsDI_box_title">
+        <div className="formsDI_title">
+          Justificativa
+        </div>
+      </div>
+      <div className="formsDI_TextInputDiv">
+        <div className="formsDI_TextInput">
+          <TextField
+            id="outlined-multiline-staticDI"
+            label="Insira aqui sua justificativa"
+            multiline
+            rows={5}
+            variant="outlined"
+          />
+        </div>
       </div>
       <div className="formsDI_divButton">
         <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
