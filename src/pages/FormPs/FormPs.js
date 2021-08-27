@@ -35,6 +35,8 @@ function FormPs() {
     candidate_graduation: "",
     candidate_grade_date_begin: "",
     candidate_grade_date_end: "",
+    candidate_mother_name: "",
+    candidate_father_name: "",
   };
   const [files, setFiles] = useState([]);
   const history = useHistory();
@@ -66,6 +68,8 @@ function FormPs() {
       dados.candidate_cpf.length > 3 &&
       dados.candidate_identity.length > 3 &&
       dados.candidate_expedition !== "" &&
+      dados.candidate_mother_name !== "" &&
+      dados.candidate_father_name !== "" &&
       dados.candidate_nationality.length > 3 &&
       dados.candidate_civil_state.length > 3 &&
       dados.candidate_birth.length > 3 &&

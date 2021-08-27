@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
@@ -28,6 +28,11 @@ function Forms({
       type: 'text',
       id: 'third_discipline_isolated',
       label: 'Terceira opção',
+    },
+    {
+      type: 'text',
+      id: 'fourth_discipline_isolated',
+      label: 'Quarta opção',
     },
   ];
   const [disciplines, setDisciplines] = useState([]);
@@ -113,12 +118,22 @@ function Forms({
       </div>
       <div className="formsDI_TextInputDiv">
         <div className="formsDI_TextInput">
-          <TextField
-            id="outlined-multiline-staticDI"
+          {/* <TextField
+            id="candidate_justify"
             label="Insira aqui sua justificativa"
             multiline
             rows={5}
             variant="outlined"
+            dados={dados}
+            setDados={handleChange}
+          /> */}
+          <StyledInput
+            type="text"
+            id="candidate_justify"
+            label="Insira aqui sua justificativa"
+            multiline
+            dados={dados}
+            setDados={handleChange}
           />
         </div>
       </div>

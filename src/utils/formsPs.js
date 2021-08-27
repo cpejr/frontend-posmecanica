@@ -75,6 +75,24 @@ const formsInput = [
             field: genres,
             select: true,
           },
+          {
+            type: 'text',
+            id: 'candidate_mother_name',
+            label: 'Nome da mãe',
+            field: null,
+            select: false,
+          },
+        ],
+      },
+      {
+        items: [
+          {
+            type: 'text',
+            id: 'candidate_father_name',
+            label: 'Nome do pai',
+            field: null,
+            select: false,
+          },
         ],
       },
     ],
