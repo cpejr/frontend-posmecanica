@@ -54,3 +54,12 @@
   background-color: transparent;
   border: none;
 }
+
+@media (max-width: 680px){
+  .isoPsListItem{
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+}

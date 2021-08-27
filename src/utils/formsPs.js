@@ -87,7 +87,7 @@ const formsInput = [
           {
             type: "text",
             id: "candidate_cpf",
-            label: "CPF",
+            label: "CPF/Passaporte",
             field: null,
             select: false,
           },
