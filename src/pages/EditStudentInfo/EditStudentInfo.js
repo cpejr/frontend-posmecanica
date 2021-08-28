@@ -11,8 +11,10 @@ import Footer from '../../components/Footer';
 function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
-  // eslint-disable-next-line camelcase
-  const { stud_id } = location.state.candidate;
+  if (location.state == null) {
+    window.location = '/login';
+  }
+  const { stud_id } = location.state.candidate; // eslint-disable-line
   const inputProps = [
     {
       text: 'Página principal',
