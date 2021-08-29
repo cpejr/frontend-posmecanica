@@ -55,6 +55,28 @@ function Forms({
           </div>
         ))}
       </div>
+      <div className="forms_line_files">
+        <div className="forms_input_file">
+          <div className="forms_upload_text">GRU</div>
+          <UploadInput files={files} setFiles={setFiles} fileName="GRU" />
+        </div>
+        <div className="forms_input_file">
+          <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
+          <UploadInput files={files} setFiles={setFiles} fileName="proficiency" />
+        </div>
+        { dados.candidate_grade === 'DOUTORADO' && (
+        <>
+          <div className="forms_input_file">
+            <div className="forms_upload_text">Plano de Doutorado</div>
+            <UploadInput files={files} setFiles={setFiles} fileName="plano_doutorado" />
+          </div>
+          <div className="forms_input_file">
+            <div className="forms_upload_text">Comprovante de Mestrado</div>
+            <UploadInput files={files} setFiles={setFiles} fileName="comprovante_mestrado" />
+          </div>
+        </>
+        )}
+      </div>
       <div className="forms_divButton">
         <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
       </div>

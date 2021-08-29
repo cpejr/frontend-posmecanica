@@ -111,6 +111,12 @@ function Forms({
           </div>
         ))}
       </div>
+      <div className="forms_line_files">
+        <div className="forms_input_file">
+          <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
+          <UploadInput files={files} setFiles={setFiles} fileName="comprovante_proficiencia" />
+        </div>
+      </div>
       <div className="formsDI_box_title">
         <div className="formsDI_title">
           Justificativa
@@ -118,15 +124,6 @@ function Forms({
       </div>
       <div className="formsDI_TextInputDiv">
         <div className="formsDI_TextInput">
-          {/* <TextField
-            id="candidate_justify"
-            label="Insira aqui sua justificativa"
-            multiline
-            rows={5}
-            variant="outlined"
-            dados={dados}
-            setDados={handleChange}
-          /> */}
           <StyledInput
             type="text"
             id="candidate_justify"

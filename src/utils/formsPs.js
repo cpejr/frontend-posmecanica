@@ -2,6 +2,7 @@
 import civilStatus from "./civil_status";
 import states from "./states";
 import genres from "./genres";
+import booleans from './boolean';
 import races from "./races";
 import { TitleTypes } from "./titleTypes";
 
@@ -238,9 +239,9 @@ const formsInput = [
             select: false,
           },
           {
-            type: "date",
-            id: "candidate_grade_date_begin",
-            label: "Data início da graduação",
+            type: "text",
+            id: "candidate_grade_obtained",
+            label: "Grau obtido",
             field: null,
             select: false,
           },
@@ -248,6 +249,13 @@ const formsInput = [
       },
       {
         items: [
+          {
+            type: "date",
+            id: "candidate_grade_date_begin",
+            label: "Data início da graduação",
+            field: null,
+            select: false,
+          },
           {
             type: "date",
             id: "candidate_grade_date_end",
@@ -260,6 +268,47 @@ const formsInput = [
             id: "candidate_grade",
             label: "Tipo de processo",
             field: TitleTypes,
+            select: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Informações Complementares",
+    lines: [
+      {
+        items: [
+          {
+            type: "text",
+            id: "candidate_study_regimen",
+            label: "Regime de estudo",
+            field: null,
+            select: false,
+          },
+          {
+            type: "text",
+            id: "candidate_scholarship",
+            label: "Deseja candidatar-se a bolsa?",
+            field: booleans,
+            select: true,
+          },
+          {
+            type: "text",
+            id: "candidate_concentration_area",
+            label: "Área de concentração",
+            field: null,
+            select: false,
+          },
+        ],
+      },
+      {
+        items: [
+          {
+            type: "text",
+            id: "candidate_PcD",
+            label: "Possui alguma deficiência física?",
+            field: booleans,
             select: true,
           },
         ],

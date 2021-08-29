@@ -35,8 +35,14 @@ function FormPs() {
     candidate_graduation: "",
     candidate_grade_date_begin: "",
     candidate_grade_date_end: "",
+    candidate_grade: "",
     candidate_mother_name: "",
     candidate_father_name: "",
+    candidate_grade_obtained: "",
+    candidate_study_regimen: "",
+    candidate_scholarship: "",
+    candidate_concentration_area: "",
+    candidate_PcD: "",
   };
   const [files, setFiles] = useState([]);
   const history = useHistory();
@@ -91,8 +97,12 @@ function FormPs() {
       dados.candidate_email.length > 3 &&
       dados.candidate_phone_number.length > 3 &&
       dados.candidate_university !== "" &&
-      dados.candidate_graduation.length > 3 &&
-      files.length === 4
+      dados.candidate_grade_obtained !== "" &&
+      dados.candidate_study_regimen !== "" &&
+      dados.candidate_scholarship !== "" &&
+      dados.candidate_concentration_area.length !== "" &&
+      dados.candidate_PcD !== "" &&
+      files.length >= 6
     ) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",

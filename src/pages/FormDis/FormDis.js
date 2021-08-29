@@ -98,7 +98,7 @@ function FormDis() {
       dados.candidate_phone_number.length > 3 &&
       dados.candidate_university !== "" &&
       dados.candidate_graduation.length > 3 &&
-      files.length === 4 &&
+      files.length === 5 &&
       dados.first_discipline_isolated !== "" &&
       dados.second_discipline_isolated !== "" &&
       dados.third_discipline_isolated !== "" &&
