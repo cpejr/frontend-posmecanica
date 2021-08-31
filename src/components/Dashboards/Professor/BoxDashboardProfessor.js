@@ -8,8 +8,8 @@ function BoxDashboardProfesssor() {
   const [processsSelective, setProcesssSelective] = useState([]);
 
   useEffect(async () => {
-    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type');
-    const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses.map((selectiveProcess) => selectiveProcess.process_id));
+    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
+    const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses.process_id);
     setProcesssSelective(selectiveProcesses);
     setCandidates(isolatedCandidates);
   }, []);
@@ -32,7 +32,7 @@ function BoxDashboardProfesssor() {
       />
       <Box
         subtitle="Candidatos deferidos: "
-        listDefer={filteredStudents}
+        list={filteredStudents}
         isoCandidates={candidates}
         setIsoCandidates={setCandidates}
         position="second"
