@@ -146,7 +146,6 @@ function FormDis() {
     ) {
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
     } else {
-      console.log(dados);
       addToast("Preencha todos os dados!", { appearance: "error" });
     }
   };

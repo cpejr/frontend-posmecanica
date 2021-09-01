@@ -89,7 +89,7 @@ function Forms({
               type={disc.type}
               id={disc.id}
               label={disc.label}
-              width="19em"
+              width="18em"
               field={disciplines}
               select={1}
               dados={dados}
