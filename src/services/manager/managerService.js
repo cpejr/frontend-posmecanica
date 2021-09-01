@@ -107,6 +107,13 @@ export const createProfessor = async (professor) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const getAllProfessors = async () => {
+  const times = 0;
+  const response = await requesterService.getProfessor(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getSearchArea = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getSearchArea(times, field, filter);

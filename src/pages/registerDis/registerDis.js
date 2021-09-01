@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './registerDis.scss';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
@@ -10,15 +10,18 @@ import semester from '../../utils/semester';
 import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;
+const initialState = {
+
+  discipline_name: '',
+  discipline_code: '',
+  discipline_is_isolated: '',
+  discipline_semester: '',
+  discipline_type: '',
+  discipline_content: '',
+};
+
 function registerDis() {
-  const initialState = {
-    discipline_name: '',
-    discipline_code: '',
-    discipline_is_isolated: '',
-    discipline_semester: '',
-    discipline_type: '',
-    discipline_content: '',
-  };
+  const [professorsList, setProfessorsList] = useState([]);
   const [dados, setDados] = useState(initialState);
   const history = useHistory();
   const { addToast } = useToasts();
@@ -26,6 +29,16 @@ function registerDis() {
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
+
+  useEffect(async () => {
+    managerService.getAllProfessors().then((response) => {
+      const professors = [];
+      response.forEach((object) => {
+        professors.push({ label: object.prof_name, value: object.prof_id });
+      });
+      setProfessorsList(professors);
+    });
+  }, []);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -60,6 +73,20 @@ function registerDis() {
                   type="text"
                   id="discipline_name"
                   label="Nome"
+                  width="22.5rem"
+                  dados={dados}
+                  setDados={handleChange}
+                />
+              </div>
+            </div>
+            <div className="input-content">
+              <div className="form_dis_cad_input">
+                <StyledInput
+                  type="text"
+                  id="discipline_name"
+                  label="Professor Responsável"
+                  select
+                  field={professorsList}
                   width="22.5rem"
                   dados={dados}
                   setDados={handleChange}
