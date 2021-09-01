@@ -1,6 +1,7 @@
 .defenseContent{
     width: 100%;
     height: 100%;
+    display: grid;
 }
 
 .defenseContainer{
@@ -39,7 +40,6 @@
     background-color: #F1F1F1;
     justify-content: center;
     align-content: center;
-    align-items: center;
     padding: 10px;
     margin-bottom: 25px;
     button {
@@ -58,8 +58,36 @@
     }
 }
 
+.divButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_SP_input{
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.form_SP1_input{
+    width: 43rem;
+    margin-left: 8px;
+}
+
+
 @media (max-width: 680px){
+    .defenseBlock{
+        width: max-content;
+    }
     .defenseGrid{
         flex-direction: column;
+    }
+    
+    .form_SP1_input{
+        width: initial;
+    }
+    
+    .defenseBlock button{
+        width: 100%;
     }
 }

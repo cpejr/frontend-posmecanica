@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import './ThesisDefense.scss';
 import StyledInput from '../../components/StyledInputWithIcon';
 
+const initialState = {
+  nome: '',
+  tese: '',
+  orientador: '',
+  horario: '',
+  local: '',
+  data: '',
+  banca: '',
+};
+
 function ThesisDefense() {
+  const [dados, setDados] = useState(initialState);
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
   return (
     <div className="defenseContent">
       <Header />
@@ -15,74 +29,77 @@ function ThesisDefense() {
           <div className="defenseGrid">
             <div className="leftDefenseGrid">
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="text"
                     label="Aluno"
-                    width="20rem"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="text"
                     label="Título da Tese"
-                    width="20rem"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="text"
                     label="Orientador"
-                    width="20rem"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
             </div>
             <div className="rightDefenseGrid">
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="text"
                     label="Horário"
-                    width="20rem"
+                    shrink="true"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="text"
                     label="Local"
-                    width="20rem"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
-                <div className="form_SP_cad_input">
+                <div className="form_SP_input">
                   <StyledInput
                     type="date"
                     shrink
                     label="Data"
-                    width="20rem"
+                    setDados={handleChange}
                   />
                 </div>
               </div>
             </div>
           </div>
           <div className="input-SPcontent">
-            <div className="form_SP_cad_input">
+            <div className="form_SP1_input">
               <StyledInput
                 type="text"
                 label="Banca Examinadora"
-                width="42rem"
+                setDados={handleChange}
               />
             </div>
           </div>
-          <button type="submit"> GERAR DIVULGAÇÃO</button>
+          <div className="divButton">
+            <button type="submit" className="buttonDivulgar">GERAR DIVULGAÇÃO</button>
+          </div>
         </div>
       </div>
       <Footer />
