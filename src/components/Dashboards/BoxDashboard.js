@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BoxAdm from '../Inscritos/InscritosPS';
 import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
-import { TitleTypes, AllTitleTypes } from '../../utils/titleTypes';
+import { AllTitleTypes } from '../../utils/titleTypes';
 import './BoxDashboard.scss';
 
 function BoxDashboard({
@@ -118,7 +118,7 @@ function BoxDashboard({
               id="type"
               label="Título"
               width="16rem"
-              field={type === 'prof' ? AllTitleTypes : TitleTypes}
+              field={AllTitleTypes}
               select
               background="transparent"
               dados={dados}
