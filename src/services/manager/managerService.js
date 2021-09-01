@@ -59,8 +59,13 @@ export const uploadFile = async (file, candidateId, fileName) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const createDiscipline = async (discipline) => {
+export const createDiscipline = async (discipline, profId) => {
   const response = await requesterService.createDiscipline(discipline);
+  const disciplineId = { pd_dis_ids: response.data.id };
+
+  const { prof_id: professorId } = profId;
+  // const professorId = [{ pd_professor_id: profId }];
+  await requesterService.createProfessorDiscipline(professorId, disciplineId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

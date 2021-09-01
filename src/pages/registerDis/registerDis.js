@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './registerDis.scss';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
@@ -11,7 +11,6 @@ import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;
 const initialState = {
-
   discipline_name: '',
   discipline_code: '',
   discipline_is_isolated: '',
@@ -23,11 +22,15 @@ const initialState = {
 function registerDis() {
   const [professorsList, setProfessorsList] = useState([]);
   const [dados, setDados] = useState(initialState);
-  const history = useHistory();
+  const [prof, setProf] = useState();
+  // const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
+  };
+  const handleChangeProfessor = (value, field) => {
+    setProf({ ...prof, [field]: value });
   };
 
   useEffect(async () => {
@@ -48,8 +51,8 @@ function registerDis() {
       && dados.discipline_is_isolated !== ''
       && dados.discipline_type.length !== ''
       && dados.discipline_content.length > 3) {
-      await managerService.createDiscipline(dados, '8c81278b-691e-4221-b87f-b1901cecda1d');
-      history.push('/painel/administrator/');
+      await managerService.createDiscipline(dados, prof);
+      // history.push('/painel/administrator/');
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
@@ -83,13 +86,13 @@ function registerDis() {
               <div className="form_dis_cad_input">
                 <StyledInput
                   type="text"
-                  id="discipline_name"
+                  id="prof_id"
                   label="Professor Responsável"
                   select
                   field={professorsList}
                   width="22.5rem"
-                  dados={dados}
-                  setDados={handleChange}
+                  dados={prof}
+                  setDados={handleChangeProfessor}
                 />
               </div>
             </div>
