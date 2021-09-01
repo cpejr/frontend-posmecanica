@@ -5,6 +5,7 @@ import { FaFileCode } from 'react-icons/fa';
 import { IoMdNotifications } from 'react-icons/io';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
@@ -12,6 +13,7 @@ import './DashboardAluno.scss';
 
 function DashboardAluno() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const history = useHistory();
   const StyledButton = withStyles({
     label: {
       display: 'flex',
@@ -53,7 +55,7 @@ function DashboardAluno() {
               <GoBook style={{ fontSize: 50 }} />
               Teses
             </StyledButton>
-            <StyledButton className="buttonIcon">
+            <StyledButton className="buttonIcon" onClick={() => history.push('/')}>
               <FaFileCode style={{ fontSize: 50 }} />
               Meus Documentos
             </StyledButton>
