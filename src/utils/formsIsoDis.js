@@ -288,7 +288,7 @@ const formsInput = [
           },
           {
             type: 'text',
-            id: 'candidate_pGraduation_curse',
+            id: 'candidate_pGraduation_course',
             label: 'Curso da Pós Graduação',
             field: null,
             select: false,

@@ -38,7 +38,7 @@ function FormDis() {
     candidate_grade_date_begin: "",
     candidate_grade_date_end: "",
     candidate_pGraduate_university: "",
-    candidate_pGraduation_curse: "",
+    candidate_pGraduation_course: "",
     candidate_ufmg_active_serv: "",
     candidate_ufmg_retired_serv: "",
     first_discipline_isolated: "",
@@ -82,7 +82,7 @@ function FormDis() {
       dados.candidate_section_title !== "" &&
       dados.candidate_street !== "" &&
       dados.candidate_pGraduate_university !== "" &&
-      dados.candidate_pGraduation_curse !== "" &&
+      dados.candidate_pGraduation_course !== "" &&
       dados.candidate_ufmg_active_serv !== "" &&
       dados.candidate_ufmg_retired_serv !== "" &&
       dados.candidate_city !== "" &&
