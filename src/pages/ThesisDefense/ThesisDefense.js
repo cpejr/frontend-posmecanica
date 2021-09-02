@@ -3,6 +3,7 @@ import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import './ThesisDefense.scss';
 import StyledInput from '../../components/StyledInputWithIcon';
+import RightPanel from '../../components/Menu/RightPanel';
 
 const initialState = {
   nome: '',
@@ -15,13 +16,40 @@ const initialState = {
 };
 
 function ThesisDefense() {
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: '',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'lista-estudantes',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'criar-processo-seletivo',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
+    },
+  ];
   return (
     <div className="defenseContent">
-      <Header />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="defenseContainer">
         <h2 className="defenseTitle">Divulgação de Defesa de Tese</h2>
         <div className="subTitle-line" />
@@ -101,6 +129,11 @@ function ThesisDefense() {
             <button type="submit" className="buttonDivulgar">GERAR DIVULGAÇÃO</button>
           </div>
         </div>
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>
