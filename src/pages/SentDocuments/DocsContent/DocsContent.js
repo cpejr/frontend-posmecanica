@@ -9,8 +9,9 @@ function DocsContent({ setShowInfoModal, candidate }) {
   const [action, setAction] = useState();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const handleClickInfoModal = () => {
+  const handleClickInfoModal = async () => {
     setShowInfoModal(true);
+    await managerService.getUrlFile(candidate.candidate_id);
   };
 
   const handleCloseClick = () => {

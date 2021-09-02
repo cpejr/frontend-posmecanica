@@ -3,6 +3,8 @@ import httpClient from '../../hooks/httpClient';
 
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
 
+export const getUrlFile = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
+
 export const getCandidates = (times, field, filter) => httpClient.get('/candidates', {
   params: {
     times,

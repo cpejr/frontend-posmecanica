@@ -21,6 +21,12 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
+export const getUrlFile = async (candidateId) => {
+  const response = await requesterService.getUrlFile(candidateId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createCandidate = async (candidate, selectiveProcessId) => {
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
