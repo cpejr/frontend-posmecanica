@@ -22,6 +22,7 @@ export const getByIdCandidate = async (candidateId) => {
 };
 
 export const createCandidate = async (candidate, selectiveProcessId) => {
+  candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data.id;

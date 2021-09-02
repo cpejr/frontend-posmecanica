@@ -68,6 +68,18 @@ function FormPs() {
   }, []);
 
   const handleClick = async (e, dados) => {
+  // console.log("🚀 ~ file: FormPs.js ~ line 71 ~ handleClick ~ dados", dados);
+  console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_PcD.length > 3", dados.candidate_PcD !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_concentration_area !== ", dados.candidate_concentration_area !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~  dados.candidate_scholarship.length > 3",  dados.candidate_scholarship !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~  dados.candidate_study_regimen !== ",  dados.candidate_study_regimen !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_grade_obtained !== ", dados.candidate_grade_obtained !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_university !== ", dados.candidate_university !== "")
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_phone_number.length > 3", dados.candidate_phone_number.length > 3)
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_email.length > 3", dados.candidate_email.length > 3)
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~ dados.candidate_cep.length > 3", dados.candidate_cep.length > 3)
+      console.log("🚀 ~ file: FormPs.js ~ line 115 ~ handleClick ~  dados.candidate_country.length > 3",  dados.candidate_country.length > 3)
+
     e.preventDefault();
     if (
       dados.candidate_name.length > 3 &&
@@ -90,8 +102,8 @@ function FormPs() {
       dados.candidate_state !== "" &&
       dados.candidate_adress_num !== "" &&
       dados.candidate_district !== "" &&
-      dados.candidate_grade_date_begin > 3 &&
-      dados.candidate_grade_date_end > 3 &&
+      dados.candidate_grade_date_begin !== "" &&
+      dados.candidate_grade_date_end !== "" &&
       dados.candidate_country.length > 3 &&
       dados.candidate_cep.length > 3 &&
       dados.candidate_email.length > 3 &&
@@ -100,7 +112,7 @@ function FormPs() {
       dados.candidate_grade_obtained !== "" &&
       dados.candidate_study_regimen !== "" &&
       dados.candidate_scholarship !== "" &&
-      dados.candidate_concentration_area.length !== "" &&
+      dados.candidate_concentration_area !== "" &&
       dados.candidate_PcD !== "" &&
       files.length >= 6
     ) {
