@@ -92,6 +92,7 @@ function InscritosIsoPS({
       </div>
       {showInfoModal && (
       <InfoModal
+        painelADM={0}
         conteudo={candidate}
         close={handleClickClose}
         className="isoPsLinkButton"
