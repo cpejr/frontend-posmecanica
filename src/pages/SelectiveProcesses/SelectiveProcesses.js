@@ -110,6 +110,10 @@ function SelectiveProcesses() {
       path: 'criar-processo-seletivo',
     },
     {
+      text: 'Divulgar Defesa de Tese',
+      path: 'defesa-de-teses',
+    },
+    {
       text: 'Cadastro de professores',
       path: 'formulario-professores',
     },

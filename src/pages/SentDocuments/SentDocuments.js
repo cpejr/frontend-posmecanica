@@ -45,6 +45,10 @@ function SentDocuments({ location }) {
       path: 'processos-seletivos',
     },
     {
+      text: 'Divulgar Defesa de Tese',
+      path: 'defesa-de-teses',
+    },
+    {
       text: 'Cadastro de professores',
       path: 'formulario-professores',
     },
