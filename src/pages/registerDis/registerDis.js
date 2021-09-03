@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './registerDis.scss';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import SiteHeader from '../../components/SiteHeader';
 import StyledInput from '../../components/StyledInput';
@@ -23,7 +23,7 @@ function registerDis() {
   const [professorsList, setProfessorsList] = useState([]);
   const [dados, setDados] = useState(initialState);
   const [prof, setProf] = useState();
-  // const history = useHistory();
+  const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -52,7 +52,7 @@ function registerDis() {
       && dados.discipline_type.length !== ''
       && dados.discipline_content.length > 3) {
       await managerService.createDiscipline(dados, prof);
-      // history.push('/painel/administrator/');
+      history.push('/painel/administrator/');
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });

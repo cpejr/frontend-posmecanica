@@ -36,6 +36,14 @@ export const getProfessor = (times, field, filter) => httpClient.get('/professor
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const createProfessorDiscipline = (id, disciplineIds) => httpClient.post(`/connect/professor_discipline/${id}`, { pd_dis_ids: disciplineIds });
+export const getProfessorDiscipline = (times, field, filter) => httpClient.get('/getAll/professor_discipline', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {

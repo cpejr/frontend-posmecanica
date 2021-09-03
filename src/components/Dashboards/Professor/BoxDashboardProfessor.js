@@ -8,14 +8,31 @@ function BoxDashboardProfesssor() {
   const [processsSelective, setProcesssSelective] = useState([]);
 
   useEffect(async () => {
+    const data = localStorage.getItem('user');
+    const user = JSON.parse(data);
     const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
-    const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses.process_id);
+    const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses[0].process_id);
+    await managerService.getAllProfessorDiscipline('pd_professor_id', user.id).then((resp) => {
+      const disciplineProfessor = [];
+      resp.forEach((response) => {
+        disciplineProfessor.push(response.pd_dis_id);
+      });
+
+      disciplineProfessor.forEach((id) => {
+        isolatedCandidates.forEach((candidato) => {
+          if (candidato.first_discipline_isolated === id
+            || candidato.second_discipline_isolated === id
+            || candidato.third_discipline_isolated === id
+            || candidato.fourth_discipline_isolated === id) {
+            setCandidates(candidato);
+          }
+        });
+      });
+    });
     setProcesssSelective(selectiveProcesses);
-    setCandidates(isolatedCandidates);
   }, []);
   useEffect(() => {
     setFilteredStudents(candidates);
-    // setFilteredStudents(candidates.slice(0, 8));
   }, [candidates]);
 
   return (
