@@ -9,13 +9,16 @@ function DocsContent({ setShowInfoModal, candidate }) {
   const [action, setAction] = useState();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const handleClickInfoModal = async () => {
+  const handleClickInfoModal = () => {
     setShowInfoModal(true);
-    await managerService.getUrlFile(candidate.candidate_id);
   };
 
   const handleCloseClick = () => {
     setShowConfirmModal(false);
+  };
+
+  const handleClickShowDoc = async (candidateId, type) => {
+    await managerService.getUserFiles(candidateId, type);
   };
 
   const handleConfirmClick = async () => {
@@ -48,10 +51,16 @@ function DocsContent({ setShowInfoModal, candidate }) {
     }
     return (
       <div key={docs.types[1]} className="DC-documentsDivLine">
-        <Document type={docs.types[0]}>
+        <Document
+          type={docs.types[0]}
+          handleClick={handleClickShowDoc}
+        >
           {docs.icons[0]}
         </Document>
-        <Document type={docs.types[1]}>
+        <Document
+          type={docs.types[1]}
+          handleClick={handleClickShowDoc}
+        >
           {docs.icons[1]}
         </Document>
       </div>

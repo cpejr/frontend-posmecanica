@@ -15,7 +15,7 @@ const infos = [
     text: 'Documentos do candidato:',
     docs: [
       {
-        types: ['Registro Geral (RG)', 'Cadastro de Pessoa Física (CPF)'],
+        types: ['Identidade', 'CPF'],
         icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
       {
