@@ -30,21 +30,40 @@
   text-align: center;
 } 
 .mestrado{
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  background-color: #e72929;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  min-width: 70px;
 }
 .doutorado{
-  background-color: green;
+  display: flex;
+  justify-content: center;
+  background-color: #29e729;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  min-width: 70px;
+}
+.isolada{
+  display: flex;
+  justify-content: center;
+  background-color: #020896;
+  color:white;
+  min-width: 70px;
+  padding: 4px;
+  border-radius: 4px;
 }
 .divButtonInfoIsolatedCandidate {
   display: flex;
   justify-content: center;
-  width: 35%;
+  width: 47.5%;
 }
 .buttonInfoIsolatedCandidate {
   background-color: transparent;
+  font-family: Montserrat;
+  font-size: 14px;
   border: none;
 }

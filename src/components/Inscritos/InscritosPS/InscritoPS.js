@@ -79,7 +79,7 @@ function InscritoPS({ candidate, boolean }) {
             {candidate.candidate_name}
           </div>
           <div className="tipo">
-            <div className={stylesProcessType ? 'mestrado' : 'doutorado'}>
+            <div className="isolada">
               {processType}
             </div>
           </div>
