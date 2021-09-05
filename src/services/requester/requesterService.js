@@ -12,6 +12,14 @@ export const getCandidates = (times, field, filter) => httpClient.get('/candidat
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
+export const getCandidateDiscipline = (times, field, filter) => httpClient.get('/getAll/candidate_dis', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(`/connect/candidate_dis/${id}`, { cd_dis_ids: disciplineIds });
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);

@@ -2,7 +2,9 @@ import React from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
-function InfoModal({ close, conteudo, painelADM }) {
+function InfoModal({
+  close, conteudo, painelADM, disciplina,
+}) {
   function formatedDate(date) {
     const data = new Date(date);
     const day = data.getDate().toString();
@@ -11,6 +13,16 @@ function InfoModal({ close, conteudo, painelADM }) {
     const responseMonth = month.length === 1 ? `0${month}` : month;
     const year = data.getFullYear();
     return `${responseDay}/${responseMonth}/${year}`;
+  }
+  function disciplineSituation(discipline) {
+    if (discipline === false) {
+      return 'Indeferida';
+    }
+    if (discipline === true) {
+      return 'Deferida';
+    }
+
+    return 'Pendente';
   }
   return (
     <>
@@ -168,7 +180,7 @@ function InfoModal({ close, conteudo, painelADM }) {
                 </div>
                 <div>
                   <b>Situação:</b>
-                  {` ${conteudo?.disciplines[1]?.discipline_name}`}
+                  {` ${disciplina && disciplineSituation(disciplina[0][0].cd_dis_deferment)}`}
                 </div>
                 <div>
                   <b>Professor responsável:</b>
@@ -182,7 +194,7 @@ function InfoModal({ close, conteudo, painelADM }) {
                 </div>
                 <div>
                   <b>Situação:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                  {` ${disciplina && disciplineSituation(disciplina[0][1].cd_dis_deferment)}`}
                 </div>
                 <div>
                   <b>Professor responsável:</b>
@@ -196,7 +208,7 @@ function InfoModal({ close, conteudo, painelADM }) {
                 </div>
                 <div>
                   <b>Situação:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                  {` ${disciplina && disciplineSituation(disciplina[0][2].cd_dis_deferment)}`}
                 </div>
                 <div>
                   <b>Professor responsável:</b>
@@ -210,7 +222,7 @@ function InfoModal({ close, conteudo, painelADM }) {
                 </div>
                 <div>
                   <b>Situação:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                  {` ${disciplina && disciplineSituation(disciplina[0][3].cd_dis_deferment)}`}
                 </div>
                 <div>
                   <b>Professor responsável:</b>

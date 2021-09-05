@@ -4,6 +4,7 @@ import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import InfoModal from '../../../pages/SentDocuments/InfoModal';
 import './InscritoPS.scss';
+import * as managerService from '../../../services/manager/managerService';
 
 function InscritoPS({ candidate, boolean }) {
   const [processType, setProcesstype] = useState();
@@ -11,12 +12,25 @@ function InscritoPS({ candidate, boolean }) {
   const [buttonText, setButtonText] = useState();
   const [link, setLink] = useState();
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [disciplinas, setDisciplinas] = useState([]);
 
   const handleClickClose = () => {
     setShowInfoModal(false);
   };
 
   useEffect(async () => {
+    // console.log('🚀 ~ file: InscritoPS.js ~ line 9 ~ InscritoPS ~ candidate', candidate);
+    if (candidate.selective_process.process_type === 'ISOLADA') {
+      await managerService.getAllCandidateDiscipline('cd_candidate_id', candidate.candidate_id).then((response) => {
+        setDisciplinas([response]);
+      });
+    }
+    // candidate.disciplines.forEach((n) => {
+
+    // });
+    // const teste = await managerService.getAllProfessors();
+    // console.log('🚀 ~ file: InscritoPS.js ~ line 26 ~ useEffect ~ teste', teste);
+
     if (boolean === 'true') {
       setProcesstype(candidate.process_type);
       if (candidate.process_type === 'DOUTORADO') {
@@ -91,6 +105,7 @@ function InscritoPS({ candidate, boolean }) {
       {showInfoModal && (
       <InfoModal
         painelADM={1}
+        disciplina={disciplinas}
         conteudo={candidate}
         close={handleClickClose}
         className="isoPsLinkButton"
