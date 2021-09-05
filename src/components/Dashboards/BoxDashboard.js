@@ -8,7 +8,7 @@ import './BoxDashboard.scss';
 function BoxDashboard({
   title, subtitle, list,
   type, isoCandidates, setIsoCandidates,
-  processes, listDefer, position,
+  processes, position,
 }) {
   const initialState = {
     type: '',
@@ -42,7 +42,7 @@ function BoxDashboard({
       });
     }
     if (position === 'second') {
-      listDefer.forEach((e) => {
+      list.forEach((e) => {
         if (e.candidate_deferment === true) {
           processCount += 1;
         }
@@ -62,41 +62,40 @@ function BoxDashboard({
             {type === 'prof' && (
               <div className="BdSubTitle">
                 {subtitle}
-                {(dados.type !== '')
-                  ? (
-                    processes.map((process) => {
-                      if (process.process_type === dados.type) {
-                        if (position === 'first') {
-                          list.forEach((e) => {
-                            if (e.candidate_deferment === true
-                              && e.selective_process.process_type === dados.type) {
-                              processCount += 1;
-                            }
-                          });
-                          if (process.count_candidates === 0) {
-                            return 0;
-                          }
-                          if (process.count_candidates === processCount) {
-                            return process.count_candidates;
-                          }
-                          finalCount = process.count_candidates - processCount;
-                          return finalCount;
+                {processes.map((process) => {
+                  if (position === 'first') {
+                    if (list.length === 0) {
+                      return 0;
+                    }
+                    if (process.count_candidates === 0) {
+                      return 0;
+                    }
+                    if (list.length !== 0) {
+                      list.forEach((e) => {
+                        if (e.candidate_deferment === true) {
+                          processCount += 1;
                         }
-                        if (position === 'second') {
-                          listDefer.forEach((e) => {
-                            if (e.candidate_deferment === true
-                              && e.selective_process.process_type === dados.type) {
-                              processCount += 1;
-                            }
-                          });
-                          if (process.count_candidates === 0) {
-                            return 0;
-                          }
-                          return processCount;
-                        }
+                      });
+                    }
+                    if (list.length === processCount) {
+                      return list.length;
+                    }
+                    finalCount = list.length - processCount;
+                    return finalCount;
+                  }
+                  if (position === 'second') {
+                    if (list.length === 0) {
+                      return 0;
+                    }
+                    list.forEach((e) => {
+                      if (e.candidate_deferment === true) {
+                        processCount += 1;
                       }
-                      return <div />;
-                    })) : count()}
+                    });
+                    return processCount;
+                  }
+                  return <div />;
+                })}
               </div>
             )}
             {type === 'adm' && (
@@ -112,6 +111,7 @@ function BoxDashboard({
               </div>
             )}
           </div>
+          {type === 'adm' && (
           <div className={showInput ? 'BdInputReal' : 'BdInput'}>
             <StyledInput
               type="text"
@@ -125,6 +125,7 @@ function BoxDashboard({
               setDados={handleChange}
             />
           </div>
+          )}
         </div>
         <div className="BdBox">
           {position === 'first' && (
@@ -141,26 +142,14 @@ function BoxDashboard({
               }
               if (type === 'prof') {
                 if (listItem.candidate_deferment === false) {
-                  if (dados.type === listItem.selective_process.process_type) {
-                    return (
-                      <BoxProf
-                        candidate={listItem}
-                        isoCandidates={isoCandidates}
-                        setIsoCandidates={setIsoCandidates}
-                        key={listItem.candidate_id}
-                      />
-                    );
-                  }
-                  if (dados.type === '') {
-                    return (
-                      <BoxProf
-                        candidate={listItem}
-                        isoCandidates={isoCandidates}
-                        setIsoCandidates={setIsoCandidates}
-                        key={listItem.candidate_id}
-                      />
-                    );
-                  }
+                  return (
+                    <BoxProf
+                      candidate={listItem}
+                      isoCandidates={isoCandidates}
+                      setIsoCandidates={setIsoCandidates}
+                      key={listItem.candidate_id}
+                    />
+                  );
                 }
                 return <div />;
               }
@@ -170,29 +159,16 @@ function BoxDashboard({
           )}
           {position === 'second' && (
           <div className="BdDivGrid">
-            {listDefer.map((listDeferItem) => {
+            {list.map((listDeferItem) => {
               if (listDeferItem.candidate_deferment === true) {
-                if (dados.type === listDeferItem.selective_process.process_type) {
-                  return (
-                    <BoxProf
-                      candidate={listDeferItem}
-                      isoCandidates={isoCandidates}
-                      setIsoCandidates={setIsoCandidates}
-                      key={listDeferItem.candidate_id}
-                    />
-                  );
-                }
-                if (dados.type === '') {
-                  return (
-                    <BoxProf
-                      candidate={listDeferItem}
-                      isoCandidates={isoCandidates}
-                      setIsoCandidates={setIsoCandidates}
-                      key={listDeferItem.candidate_id}
-                    />
-                  );
-                }
-                return <div />;
+                return (
+                  <BoxProf
+                    candidate={listDeferItem}
+                    isoCandidates={isoCandidates}
+                    setIsoCandidates={setIsoCandidates}
+                    key={listDeferItem.candidate_id}
+                  />
+                );
               }
               return <div />;
             })}
