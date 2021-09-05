@@ -64,29 +64,34 @@ function BoxDashboard({
                 {subtitle}
                 {processes.map((process) => {
                   if (position === 'first') {
-                    list.forEach((e) => {
-                      if (e.candidate_deferment === true) {
-                        processCount += 1;
-                      }
-                    });
+                    if (list.length === 0) {
+                      return 0;
+                    }
                     if (process.count_candidates === 0) {
                       return 0;
                     }
-                    if (process.count_candidates === processCount) {
-                      return process.count_candidates;
+                    if (list.length !== 0) {
+                      list.forEach((e) => {
+                        if (e.candidate_deferment === true) {
+                          processCount += 1;
+                        }
+                      });
                     }
-                    finalCount = process.count_candidates - processCount;
+                    if (list.length === processCount) {
+                      return list.length;
+                    }
+                    finalCount = list.length - processCount;
                     return finalCount;
                   }
                   if (position === 'second') {
+                    if (list.length === 0) {
+                      return 0;
+                    }
                     list.forEach((e) => {
                       if (e.candidate_deferment === true) {
                         processCount += 1;
                       }
                     });
-                    if (process.count_candidates === 0) {
-                      return 0;
-                    }
                     return processCount;
                   }
                   return <div />;

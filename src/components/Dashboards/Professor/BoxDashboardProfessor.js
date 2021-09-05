@@ -24,7 +24,7 @@ function BoxDashboardProfesssor() {
             || candidato.second_discipline_isolated === id
             || candidato.third_discipline_isolated === id
             || candidato.fourth_discipline_isolated === id) {
-            setCandidates(candidato);
+            setCandidates([candidato]);
           }
         });
       });
