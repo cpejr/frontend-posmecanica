@@ -68,6 +68,16 @@ function DocsContent({ setShowInfoModal, candidate }) {
         >
           {docs.icons[2]}
         </Document>
+        {candidate.candidate_grade === 'DOUTORADO'
+        && (
+        <Document
+          type={docs.types[3]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[3]}
+        </Document>
+        )}
       </div>
     );
   };
