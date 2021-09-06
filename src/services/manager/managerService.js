@@ -117,6 +117,12 @@ export const createProfessor = async (professor) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const getProfByDisciplineId = async (disciplineId) => {
+  const response = await requesterService.getProfByDisciplineId(disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getAllProfessors = async () => {
   const times = 0;
   const response = await requesterService.getProfessor(times);

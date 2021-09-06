@@ -35,6 +35,7 @@ export const createDiscipline = (discipline) => httpClient.post('/disciplines', 
 export const login = (user) => httpClient.post('/login', user);
 
 export const createProfessor = (professor) => httpClient.post('/professors', professor);
+export const getProfByDisciplineId = (disciplineId) => httpClient.get(`/professors/discipline/${disciplineId}`);
 export const getProfessor = (times, field, filter) => httpClient.get('/professors', {
   params: {
     times,
