@@ -62,17 +62,17 @@ function Forms({
         </div>
         <div className="forms_input_file">
           <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
-          <UploadInput files={files} setFiles={setFiles} fileName="proficiency" />
+          <UploadInput files={files} setFiles={setFiles} fileName="Proficiência" />
         </div>
         { dados.candidate_grade === 'DOUTORADO' && (
         <>
           <div className="forms_input_file">
             <div className="forms_upload_text">Plano de Doutorado</div>
-            <UploadInput files={files} setFiles={setFiles} fileName="plano_doutorado" />
+            <UploadInput files={files} setFiles={setFiles} fileName="Plano de Doutorado" />
           </div>
           <div className="forms_input_file">
             <div className="forms_upload_text">Comprovante de Mestrado</div>
-            <UploadInput files={files} setFiles={setFiles} fileName="comprovante_mestrado" />
+            <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Mestrado" />
           </div>
         </>
         )}
