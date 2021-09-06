@@ -37,7 +37,7 @@ function Routes() {
           <Route exact path="/painel/administrator" component={DashboardAdministrator} />
           <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
-          <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
+          <Route exact path="/painel/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
@@ -46,7 +46,7 @@ function Routes() {
           <Route exact path="/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
-          <Route exact path="/painel/administrator/processos-seletivos" component={SelectiveProcesses} />
+          <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/pdf" component={StylePDF} />
           <Route path="/" component={Login} />
         </Switch>

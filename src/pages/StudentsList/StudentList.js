@@ -64,11 +64,11 @@ function StudentList() {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Criar processo seletivo',
-      path: 'criar-processo-seletivo',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Visualizar Processos Seletivos',
@@ -76,19 +76,19 @@ function StudentList() {
     },
     {
       text: 'Divulgar Defesa de Tese',
-      path: 'defesa-de-teses',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Cadastro de professores',
-      path: 'formulario-professores',
+      path: 'administrator/formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      path: 'administrator/cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
   return (

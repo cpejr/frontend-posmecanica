@@ -30,7 +30,7 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
       <List>
         {HeaderPanel}
         {inputProps.map((item) => (
-          <Link to={{ pathname: `/painel/administrator/${item.path}` }}>
+          <Link to={{ pathname: `/painel/${item.path}` }}>
             <ListItem button key={item.text}>
               <IconContext.Provider value={{ size: 30 }}>
                 {item.icon}

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BiBeer } from 'react-icons/bi';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -10,6 +11,7 @@ import './SelectiveProcesses.scss';
 import Semeters from '../../utils/semesters';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
+import { useAuth } from '../../providers/auth';
 
 const semeters = Semeters;
 const initialStateData = {
@@ -20,6 +22,7 @@ const initialStateData = {
 };
 
 function SelectiveProcesses() {
+  const { user } = useAuth();
   const history = useHistory();
   const initialState = {
     semester: '',
@@ -55,7 +58,7 @@ function SelectiveProcesses() {
     }
   };
   const handleClickRedirect = () => {
-    history.push('painel/professor');
+    history.push('professor');
   };
 
   useEffect(async () => {
@@ -99,11 +102,11 @@ function SelectiveProcesses() {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Lista de estudantes',
-      path: 'lista-estudantes',
+      path: 'administrator/lista-estudantes',
     },
     {
       text: 'Criar processo seletivo',
@@ -111,19 +114,36 @@ function SelectiveProcesses() {
     },
     {
       text: 'Divulgar Defesa de Tese',
-      path: 'defesa-de-teses',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Cadastro de professores',
-      path: 'formulario-professores',
+      path: 'administrator/formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      path: 'administrator/cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
+    },
+  ];
+  const inputPropsProfessor = [
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Página principal',
+      path: 'professor',
+    },
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
     },
   ];
   return (
@@ -197,11 +217,22 @@ function SelectiveProcesses() {
           />
           )}
         </div>
+        {user.type === 'administrator'
+        && (
         <RightPanel
           inputProps={inputProps}
           expandRightPanel={expandRightPanel}
           setExpandRightPanel={setExpandRightPanel}
         />
+        )}
+        {user.type === 'professor'
+        && (
+        <RightPanel
+          inputProps={inputPropsProfessor}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
+        )}
       </div>
       <Footer />
     </div>

@@ -21,8 +21,8 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
-export const getUserFiles = (candidateId, fileName) => {
-  const response = requesterService.getUserFiles(candidateId, fileName);
+export const getUserFiles = async (candidateId, fileName) => {
+  const response = await requesterService.getUserFiles(candidateId, fileName);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };

@@ -17,10 +17,6 @@ function DocsContent({ setShowInfoModal, candidate }) {
     setShowConfirmModal(false);
   };
 
-  const handleClickShowDoc = async (candidateId, type) => {
-    await managerService.getUserFiles(candidateId, type);
-  };
-
   const handleConfirmClick = async () => {
     if (action.toLowerCase() === 'homologar') {
       await managerService.updateCandidate({
@@ -43,7 +39,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
     if (docs.types.length === 1) {
       return (
         <div key={docs.types[0]} className="DC-documentsDivLine">
-          <Document handleClick={handleClickInfoModal} type={docs.types[0]}>
+          <Document handleClick={handleClickInfoModal} type={docs.types[0]} text={docs.text[0]}>
             {docs.icons[0]}
           </Document>
         </div>
@@ -53,13 +49,15 @@ function DocsContent({ setShowInfoModal, candidate }) {
       <div key={docs.types[1]} className="DC-documentsDivLine">
         <Document
           type={docs.types[0]}
-          handleClick={handleClickShowDoc}
+          candidate={candidate.candidate_id}
+          text={docs.text}
         >
           {docs.icons[0]}
         </Document>
         <Document
           type={docs.types[1]}
-          handleClick={handleClickShowDoc}
+          candidate={candidate.candidate_id}
+          text={docs.text}
         >
           {docs.icons[1]}
         </Document>

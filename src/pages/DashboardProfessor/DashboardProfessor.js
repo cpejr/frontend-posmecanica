@@ -18,7 +18,7 @@ function DashboardProfessor() {
     {
       icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
 
