@@ -9,13 +9,38 @@
   font-size: 18px;
   font-family: Montserrat;
   width: 28%;
+
+  @media (max-width: 650px){
+    width: 20%;
+    font-size: 12pt;
+  }
 }
 .isoPsDivButtons {
   display: flex;
   align-items: center;
   width: 39%;
   justify-content: space-around;
+  
+  @media (max-width: 650px){
+    width: 50%;
+    justify-content: space-between;
+  }
 }
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.isoPsDenyButton{
+  @media (max-width: 650px){
+    font-size: 8pt;
+    width: 50px;
+  }
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.isoPsConfirmButton{
+  @media (max-width: 650px){
+    font-size: 8pt;
+    width: 50px;
+  }
+}
+
 .isoPsConfirmButton {
   background: green!important;
   color: white!important;
@@ -48,6 +73,10 @@
   display: flex;
   justify-content: center;
   width: 35%;
+
+  @media (max-width: 650px){
+    justify-content: flex-end;
+  }
 }
 
 .buttonSituationStudent {

@@ -117,7 +117,6 @@ function BoxDashboard({
               type="text"
               id="type"
               label="Título"
-              width="16rem"
               field={AllTitleTypes}
               select
               background="transparent"

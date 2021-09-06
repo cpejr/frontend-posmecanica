@@ -15,17 +15,21 @@
   margin: 0px 50px 0px 50px;
   margin-top: 25px;
   margin-bottom: 15px;
+
+  @media(max-width: 650px){
+    justify-content: center;
+  }
 }
 .BdBoxFather {
   margin: 0px 50px 30px 50px;
-  height: 410px;
+  height: 420px;
   border: 1px solid #C4C4C4;
   border-radius: 8px;
   box-shadow: 0px 3px 5px 0px #C4C4C4;
 }
 .BdBox {
   max-height: 307px!important;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .BdBoxTitle {
@@ -55,13 +59,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: auto;
 }
 .BdInput{
   display: none;
 }
 .BdInputReal{
   display: flex;
+  width: 16rem;
   align-items: center;
 }
 
@@ -69,6 +73,10 @@
 
   .BdBox{
     margin: 0px;
+  }
+
+  .BdBoxFather{
+    margin: 0px 0px 20px 0px;
   }
 
   .BdDivGrid{
@@ -80,7 +88,11 @@
   }
 
   .BdInputReal{
-    width: auto;
+    width: 50%;
+  }
+
+  .MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-formControl.BdInputReal{
+    width: 10rem;
   }
 
   .isoPsIcon{
