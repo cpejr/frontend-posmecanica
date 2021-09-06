@@ -37,6 +37,10 @@ function EditStudentInfo({ location }) {
       path: 'administrator/defesa-de-teses',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Cadastro de professores',
       path: 'administrator/formulario-professores',
     },

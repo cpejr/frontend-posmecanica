@@ -110,7 +110,7 @@ function SelectiveProcesses() {
     },
     {
       text: 'Criar processo seletivo',
-      path: 'criar-processo-seletivo',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Divulgar Defesa de Tese',

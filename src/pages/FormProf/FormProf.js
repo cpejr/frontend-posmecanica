@@ -58,6 +58,10 @@ function FormProf() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
