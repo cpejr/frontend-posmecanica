@@ -22,7 +22,7 @@ const infos = [
       },
       {
         text: 'Docs',
-        types: ['GRU', 'proficiency', 'Comprovante de Endereço', 'Comprovante de Mestrado'],
+        types: ['GRU', 'Proficiência', 'Comprovante de Endereço', 'Comprovante de Mestrado'],
         icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
     ],
