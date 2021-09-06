@@ -61,6 +61,13 @@ function DocsContent({ setShowInfoModal, candidate }) {
         >
           {docs.icons[1]}
         </Document>
+        <Document
+          type={docs.types[2]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[2]}
+        </Document>
       </div>
     );
   };

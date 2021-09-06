@@ -17,13 +17,13 @@ const infos = [
     docs: [
       {
         text: 'Docs',
-        types: ['Identidade', 'CPF'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        types: ['Identidade', 'CPF', 'Diploma de Graduação'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
       {
         text: 'Docs',
-        types: ['Comprovante de Residência', 'Diploma de Graduação'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        types: ['GRU', 'proficiency', 'Comprovante de Endereço'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
     ],
   },

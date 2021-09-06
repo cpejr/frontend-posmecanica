@@ -11,7 +11,7 @@ function SentDocuments({
 }) {
   const handleClickShowDocs = async () => {
     const url = await managerService.getUserFiles(candidate, type);
-    window.open(`/${url[0].url}`);
+    window.open(`${url[0].url}`);
   };
   return (
     <div className="Document-externalDiv">
