@@ -6,26 +6,40 @@ function BoxDashboardProfesssor() {
   const [candidates, setCandidates] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [processsSelective, setProcesssSelective] = useState([]);
+
   useEffect(async () => {
-    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
+    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type');
     const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses.map((selectiveProcess) => selectiveProcess.process_id));
     setProcesssSelective(selectiveProcesses);
     setCandidates(isolatedCandidates);
   }, []);
   useEffect(() => {
-    setFilteredStudents(candidates.slice(0, 5));
+    setFilteredStudents(candidates);
+    // setFilteredStudents(candidates.slice(0, 8));
   }, [candidates]);
 
   return (
-    <Box
-      title="Matrículas Realizadas:"
-      subtitle="Alunos:"
-      list={filteredStudents}
-      isoCandidates={candidates}
-      setIsoCandidates={setCandidates}
-      type="prof"
-      processes={processsSelective}
-    />
+    <div>
+      <Box
+        title="Matrículas Realizadas: "
+        subtitle="Candidatos: "
+        list={filteredStudents}
+        isoCandidates={candidates}
+        setIsoCandidates={setCandidates}
+        position="first"
+        type="prof"
+        processes={processsSelective}
+      />
+      <Box
+        subtitle="Candidatos deferidos: "
+        listDefer={filteredStudents}
+        isoCandidates={candidates}
+        setIsoCandidates={setCandidates}
+        position="second"
+        type="prof"
+        processes={processsSelective}
+      />
+    </div>
   );
 }
 

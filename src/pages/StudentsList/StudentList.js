@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -88,18 +87,15 @@ function StudentList() {
       path: 'esqueci-senha',
     },
   ];
-  const Json = {
-    candidate_name: 'Malaquias',
-    process_type: 'mestrado',
-  };
-
   return (
     <div className="studentList-Root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="studentList-Content">
         <div className="studentList-LeftContainer">
+          <h1>Lista de estudantes</h1>
           <div className="studentList-Filters">
             <StyledInput
+              styled={{ marginTop: '20px' }}
               type="text"
               id="filter-name"
               label="Nome"
@@ -139,7 +135,11 @@ function StudentList() {
             ))}
           </div>
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

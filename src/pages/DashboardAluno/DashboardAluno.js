@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import BorderColorIcon from '@material-ui/icons/BorderColor';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import { GoBook } from 'react-icons/go';
+import { MdBorderColor } from 'react-icons/md';
+import { FaFileCode } from 'react-icons/fa';
+import { IoMdNotifications } from 'react-icons/io';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Footer from '../../components/Footer/Footer';
@@ -28,7 +28,11 @@ function DashboardAluno() {
       path: '/',
     },
     {
-      text: 'Editar Indormações',
+      text: 'Editar Informações',
+      path: '/',
+    },
+    {
+      text: 'Dúvidas',
       path: '/',
     },
     {
@@ -46,24 +50,21 @@ function DashboardAluno() {
           <h1 className="studentTitulo">Aluno</h1>
           <div className="icones">
             <StyledButton className="buttonIcon" classes={{ label: 'my' }}>
-              <MenuBookIcon style={{ fontSize: 50 }} />
+              <GoBook style={{ fontSize: 50 }} />
               Teses
             </StyledButton>
             <StyledButton className="buttonIcon">
-              <FileCopyIcon style={{ fontSize: 50 }} />
+              <FaFileCode style={{ fontSize: 50 }} />
               Meus Documentos
             </StyledButton>
             <StyledButton className="buttonIcon">
-              <NotificationsIcon style={{ fontSize: 50 }} />
+              <IoMdNotifications style={{ fontSize: 50 }} />
               Notificações
             </StyledButton>
             <StyledButton className="buttonIcon">
-              <BorderColorIcon style={{ fontSize: 50 }} />
+              <MdBorderColor style={{ fontSize: 50 }} />
               Editar Informações
             </StyledButton>
-          </div>
-          <div className="linhaTempo">
-            <h2> Linha do tempo</h2>
           </div>
         </div>
       </div>

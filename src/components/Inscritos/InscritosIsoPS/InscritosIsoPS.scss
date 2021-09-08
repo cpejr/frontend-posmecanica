@@ -24,6 +24,15 @@
   background: red!important;
   color: white!important;
 }
+.isoPsDivButtonsDeferido {
+  display: flex;
+  align-items: center;
+  margin-right: 50%;
+}
+.isoPsDefermentStatus {
+  background: #020896!important;
+  color: white!important;
+}
 .isoPsLinkButton {
   color: black;
   width: 33%;
@@ -33,4 +42,15 @@
 }
 .isoPsIcon {
   margin: 0px 15px 0px 15px;
+}
+
+.divButtonSituationStudent {
+  display: flex;
+  justify-content: center;
+  width: 35%;
+}
+
+.buttonSituationStudent {
+  background-color: transparent;
+  border: none;
 }

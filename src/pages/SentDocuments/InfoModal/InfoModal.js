@@ -3,6 +3,15 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({ close, conteudo }) {
+  function formatedDate(date) {
+    const data = new Date(date);
+    const day = data.getDate().toString();
+    const responseDay = day.length === 1 ? `0${day}` : day;
+    const month = (data.getMonth() + 1).toString(); // +1 pois no getMonth Janeiro começa com zero.
+    const responseMonth = month.length === 1 ? `0${month}` : month;
+    const year = data.getFullYear();
+    return `${responseDay}/${responseMonth}/${year}`;
+  }
   return (
     <div className="modal">
       <div className="infoModalcontainer">
@@ -14,7 +23,7 @@ function InfoModal({ close, conteudo }) {
           <h2>Detalhes do Candidato:</h2>
           <div className="row">
             <b>Data de Inscrição:</b>
-            {` ${conteudo && new Date(conteudo.candidate_date_inscrition).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
           </div>
           <div className="rowGrid">
             <div>
@@ -96,9 +105,30 @@ function InfoModal({ close, conteudo }) {
               {` ${conteudo?.candidate_cep}`}
             </div>
           </div>
+          {conteudo?.first_discipline_isolated !== 'none'
+          && conteudo?.second_discipline_isolated !== 'none'
+          && (
+          <div className="rowGrid">
+            <div>
+              <b>Primeira Disciplina Isolada:</b>
+              {` ${conteudo?.disciplines[0]?.discipline_name} `}
+            </div>
+            <div>
+              <b>Segunda Disciplina Isolada:</b>
+              {` ${conteudo?.disciplines[1]?.discipline_name}`}
+            </div>
+          </div>
+          )}
+          {conteudo?.third_discipline_isolated !== 'none'
+          && (
+          <div className="row">
+            <b>Terceira Disciplina Isolada:</b>
+            {` ${conteudo?.disciplines[2]?.discipline_name}`}
+          </div>
+          )}
           <div className="row">
             <b>Data de Nascimento:</b>
-            {` ${conteudo && new Date(conteudo.candidate_birth).toUTCString()}`}
+            {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
           </div>
           <div className="row">
             <b>Endereço:</b>

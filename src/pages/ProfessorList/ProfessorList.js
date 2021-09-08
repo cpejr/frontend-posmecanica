@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from "react";
 import {
   InputBase,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { FaChevronCircleDown } from 'react-icons/fa';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { FaChevronCircleDown } from "react-icons/fa";
 
-import orderElements from '../../utils/order';
-import * as managerService from '../../services/manager/managerService';
-import SiteHeader from '../../components/SiteHeader/SiteHeader';
+import orderElements from "../../utils/order.js";
+import * as managerService from "../../services/manager/managerService";
+import SiteHeader from "../../components/SiteHeader/SiteHeader";
 
-import './ProfessorList.scss';
+import "./ProfessorList.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    width: "100%",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -27,15 +28,17 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfessorList() {
   const [searchAreas, setSearchAreas] = useState([]);
-  const searchAreaOrder = 'search_area_name';
-  const profOrder = 'prof_name';
-  const [inputText, setInputText] = useState('');
+  const searchAreaOrder = "search_area_name";
+  const profOrder = "prof_name";
+  const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
     const getSearchArea = await managerService.getAllSearchAreas();
-    const filteredSearchAreas = getSearchArea.filter((searchArea) => searchArea.search_area_name
-      .toLowerCase()
-      .includes(inputText.toLowerCase()));
+    const filteredSearchAreas = getSearchArea.filter((searchArea) =>
+      searchArea.search_area_name
+        .toLowerCase()
+        .includes(inputText.toLowerCase())
+    );
     setSearchAreas(filteredSearchAreas);
   }, [inputText]);
 
@@ -77,7 +80,7 @@ function ProfessorList() {
         <div>
           <h4 className="header-content-searchby">
             Resultados de:
-            {'\t'}
+            {"\t"}
             {inputText}
           </h4>
         </div>
@@ -148,7 +151,7 @@ function ProfessorList() {
                             </div>
                           </AccordionDetails>
                         </Accordion>
-                      ),
+                      )
                     )}
                   </div>
                 </AccordionDetails>

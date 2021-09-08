@@ -1,22 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Button from '@material-ui/core/Button';
+import { useToasts } from 'react-toast-notifications';
+import InfoModal from '../../../pages/SentDocuments/InfoModal';
+import DeferirModal from '../../../utils/DeferirModal';
 import * as managerService from '../../../services/manager/managerService';
 import './InscritosIsoPS.scss';
 
-function InscritosIsoPS({ isoCandidates, setIsoCandidates, candidate }) {
-  const handleClick = async (e) => {
-    const buttonName = e.currentTarget.id;
+function InscritosIsoPS({
+  isoCandidates, setIsoCandidates, candidate,
+}) {
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
+  const [buttonName, setButtonName] = useState();
+  const [label, setLabel] = useState();
+  const { addToast } = useToasts();
+
+  const handleClickClose = () => {
+    setShowInfoModal(false);
+    setShowConfirmModalCandidate(false);
+  };
+
+  const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
-      // await managerService.approveCandidate();
+      candidate.stud_scholarship = false;
+      if (candidate.first_discipline_isolated !== 'none'
+        && candidate.second_discipline_isolated !== 'none'
+        && candidate.third_discipline_isolated !== 'none') {
+        await managerService.createStudent(candidate, candidate.candidate_process_id);
+        await managerService.updateCandidate({
+          candidate_deferment: true,
+        }, candidate.candidate_id);
+        candidate.candidate_deferment = true;
+        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
+      } else {
+        await managerService.createStudent(candidate);
+        await managerService.updateCandidate({
+          candidate_deferment: true,
+        }, candidate.candidate_id);
+        candidate.candidate_deferment = true;
+        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
+      }
     } else {
       await managerService.denyCandidate(candidate.candidate_id);
       const removeCandidate = isoCandidates.filter(
         (person) => person.candidate_id !== candidate.candidate_id,
       );
       setIsoCandidates(removeCandidate);
+      addToast('Candidato indeferido com sucesso!', { appearance: 'success' });
     }
+    setShowConfirmModalCandidate(false);
+  };
+
+  const handleClick = async (e) => {
+    if (e.currentTarget.id === 'Deferir') {
+      setButtonName('Deferir');
+      setLabel('Deseja deferir esse candidato?');
+    } else {
+      setButtonName('Indeferir');
+      setLabel('Deseja indeferir esse candidato?');
+    }
+    setShowConfirmModalCandidate(true);
   };
 
   return (
@@ -27,18 +72,39 @@ function InscritosIsoPS({ isoCandidates, setIsoCandidates, candidate }) {
         </IconContext.Provider>
         {candidate.candidate_name}
       </div>
-      <div className="isoPsDivButtons">
-        <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
-        <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
+      {candidate.candidate_deferment === false
+        && (
+        <div className="isoPsDivButtons">
+          <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
+          <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
+        </div>
+        )}
+      {candidate.candidate_deferment === true
+        && (
+        <div className="isoPsDivButtons">
+          <div className="isoPsDivButtonsDeferido">
+            <Button className="isoPsDefermentStatus" id="Deferido" variant="contained">Deferido</Button>
+          </div>
+        </div>
+        )}
+      <div className="divButtonSituationStudent">
+        <button type="button" className="buttonSituationStudent" onClick={() => setShowInfoModal(true)}>Ver situação do aluno</button>
       </div>
-      <a
-        href="https://www.google.com"
-        target="_blank"
-        rel="noreferrer"
+      {showInfoModal && (
+      <InfoModal
+        conteudo={candidate}
+        close={handleClickClose}
         className="isoPsLinkButton"
-      >
-        Ver situação do aluno
-      </a>
+      />
+      )}
+      {showConfirmModalCandidate && (
+      <DeferirModal
+        label={label}
+        handleCloseClick={handleClickClose}
+        handleConfirmClick={handleClickConfirmClick}
+        className="confirmCandidateButton"
+      />
+      )}
     </div>
   );
 }

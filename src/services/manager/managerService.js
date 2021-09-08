@@ -22,8 +22,24 @@ export const getByIdCandidate = async (candidateId) => {
 };
 
 export const createCandidate = async (candidate, selectiveProcessId) => {
+  const response = await requesterService.createCandidate(candidate, selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data.id;
+};
+
+export const createCandidateISO = async (candidate, selectiveProcessId) => {
   candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
+  const {
+    first_discipline_isolated: firstDisciplineIsolated,
+    second_discipline_isolated: secondDisciplineIsolated,
+    third_discipline_isolated: thirdDisciplineIsolated,
+  } = candidate;
+  const disciplines = [{ cd_dis_id: firstDisciplineIsolated },
+    { cd_dis_id: secondDisciplineIsolated },
+    { cd_dis_id: thirdDisciplineIsolated }];
+  await requesterService
+    .createCandidateDiscipline(response.data.id, disciplines);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data.id;
 };
@@ -104,6 +120,11 @@ export const getAllSearchAreas = async () => {
   return response.data;
 };
 
+export const createSelectiveProcess = async (selectiveProcess) => {
+  const response = await requesterService.createSelectiveProcess(selectiveProcess);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getActualSelectiveProcess = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getSelectiveProcess(times, field, filter);
@@ -147,4 +168,20 @@ export const getStudents = async (field, filter) => {
 export const updateStudent = async (student, id) => {
   const response = await requesterService.updateStudent(student, id);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const createStudent = async (student) => {
+  const { disciplines } = student;
+  const sdId = disciplines.map((sd) => ({ sd_dis_id: sd.discipline_id }));
+  const { stud_scholarship: studScholarship } = student;
+
+  const response = await requesterService.createStudent(student, studScholarship);
+  await requesterService.createStudentDiscipline(response.data.id, sdId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getByIdStudent = async (studentId) => {
+  const response = await requesterService.getByIdStudent(studentId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };
