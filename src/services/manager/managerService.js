@@ -95,6 +95,12 @@ export const getDisciplines = async (field, filter) => {
   return allDisciplines;
 };
 
+export const getByIdDiscipline = async (disciplineId) => {
+  const response = await requesterService.getByIdDiscipline(disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

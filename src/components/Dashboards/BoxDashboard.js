@@ -8,7 +8,7 @@ import './BoxDashboard.scss';
 function BoxDashboard({
   title, subtitle, list,
   type, isoCandidates, setIsoCandidates,
-  processes, position,
+  processes, position, disciplineFilter,
 }) {
   const initialState = {
     type: '',
@@ -18,6 +18,7 @@ function BoxDashboard({
     if (type === 'adm' || type === 'prof') {
       setShowInput(true);
     }
+    console.log('🚀 ~ file: BoxDashboard.js ~ line 13 ~ disciplineFilter', disciplineFilter);
   }, []);
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -111,20 +112,18 @@ function BoxDashboard({
               </div>
             )}
           </div>
-          {type === 'adm' && (
           <div className={showInput ? 'BdInputReal' : 'BdInput'}>
             <StyledInput
               type="text"
               id="type"
               label="Título"
-              field={AllTitleTypes}
+              field={type === 'prof' ? disciplineFilter : AllTitleTypes}
               select
               background="transparent"
               dados={dados}
               setDados={handleChange}
             />
           </div>
-          )}
         </div>
         <div className="BdBox">
           {position === 'first' && (
