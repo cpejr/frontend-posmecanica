@@ -7,29 +7,50 @@ import './InscritoPS.scss';
 import * as managerService from '../../../services/manager/managerService';
 
 function InscritoPS({ candidate, boolean }) {
+  // eslint-disable-next-line prefer-const
+  let disciplines = [];
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   const [buttonText, setButtonText] = useState();
   const [link, setLink] = useState();
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [disciplinas, setDisciplinas] = useState([]);
+  const [disciplineName, setDisciplineName] = useState([]);
+  const [professorName, setProfessorName] = useState([]);
 
   const handleClickClose = () => {
     setShowInfoModal(false);
   };
 
+  const getDisciplineNames = async (disciplineId) => {
+    await managerService.getByIdDiscipline(disciplineId).then((response) => {
+      disciplines.push({ name: response.discipline_name });
+    });
+  };
+
   useEffect(async () => {
-    // console.log('🚀 ~ file: InscritoPS.js ~ line 9 ~ InscritoPS ~ candidate', candidate);
+    // console.log('🚀 ~ file: InscritoPS.js ~ line 10 ~ InscritoPS ~ candidate', candidate);
+
     if (candidate.selective_process.process_type === 'ISOLADA') {
+      getDisciplineNames(candidate.first_discipline_isolated);
+      getDisciplineNames(candidate.second_discipline_isolated);
+      getDisciplineNames(candidate.third_discipline_isolated);
+      getDisciplineNames(candidate.fourth_discipline_isolated);
+      setDisciplineName(disciplines);
+      console.log('🚀 ~ file: InscritoPS.js ~ line 44 ~ useEffect ~ disciplines', disciplineName);
+
+      // console.log('🚀 ~ file: InscritoPS.js ~ line 12 ~ InscritoPS ~ object', object);
+
       await managerService.getAllCandidateDiscipline('cd_candidate_id', candidate.candidate_id).then((response) => {
         setDisciplinas([response]);
+        response.forEach((resp) => {
+          managerService.getProfByDisciplineId(resp.cd_dis_id).then((name) => {
+            setProfessorName([name]);
+            console.log('🚀 ~ file: InscritoPS.js ~ line 20 ~ InscritoPS ~ professorName', professorName);
+          });
+        });
       });
     }
-    // candidate.disciplines.forEach((n) => {
-
-    // });
-    // const teste = await managerService.getAllProfessors();
-    // console.log('🚀 ~ file: InscritoPS.js ~ line 26 ~ useEffect ~ teste', teste);
 
     if (boolean === 'true') {
       setProcesstype(candidate.process_type);
