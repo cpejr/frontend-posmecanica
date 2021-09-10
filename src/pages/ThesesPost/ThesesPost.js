@@ -14,11 +14,15 @@ import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 
 function ThesesPost() {
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [files, setFiles] = useState([]);
-  const [studentName, setStudentName] = useState('');
-  function StudentName(e) {
-    setStudentName(e.target.value);
+  const [studentCPF, setStudentCPF] = useState('');
+  const [thesisName, setThesisName] = useState('');
+  function StudentCPF(e) {
+    setStudentCPF(e.target.value);
+  }
+  function ThesisName(e) {
+    setThesisName(e.target.value);
   }
   const formsFile = ['Tese'];
   const handleClick = async (e) => {
@@ -26,9 +30,8 @@ function ThesesPost() {
     files.forEach(async (file) => {
       const data = new FormData();
       data.append('file', file.file);
-      // await managerService (função de upload file)
+      await managerService.uploadThesis(data, studentCPF, thesisName);
     });
-    await managerService.getStudents(studentName);
   };
   const StyledButton = withStyles({
     root: {
@@ -75,7 +78,7 @@ function ThesesPost() {
               {formsFile.map((file) => (
                 <div className="forms_input_file">
                   <div className="forms_upload_text">{file}</div>
-                  <UploadInput files={files} setFiles={setFiles} fileName={file} />
+                  <UploadInput files={files} setFiles={setFiles} />
                 </div>
               ))}
             </div>
@@ -93,7 +96,22 @@ function ThesesPost() {
                     </InputAdornment>
                   ),
                 }}
-                onChange={(e) => StudentName(e)}
+                onChange={(e) => StudentCPF(e)}
+              />
+              <TextField
+                className="studentName"
+                label="Título"
+                id="input-with-icon-textfield"
+                variant="filled"
+                size="small"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IoMdSchool size="25" />
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={(e) => ThesisName(e)}
               />
               <div className="postButton">
                 <StyledButton variant="contained" color="primary" type="submit" onClick={(e) => handleClick(e)}>Postar</StyledButton>
@@ -101,7 +119,11 @@ function ThesesPost() {
             </div>
           </div>
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

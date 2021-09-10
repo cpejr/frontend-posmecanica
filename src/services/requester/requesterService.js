@@ -21,6 +21,11 @@ export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/can
     'Content-Type': 'multipart/form-data',
   },
 });
+export const uploadThesis = (file, candidateId, fileName) => httpClient.post(`/students/upload/${candidateId}/${fileName}`, file, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
 
 export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
 

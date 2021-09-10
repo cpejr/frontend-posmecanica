@@ -40,7 +40,7 @@ function Routes() {
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
           <Route exact path="/painel/administrator/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
-          <Route exact path="/painel/administrator/postagem-teses" component={ThesesPost} />
+          <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />
