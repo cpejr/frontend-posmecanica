@@ -5,6 +5,7 @@ import {
   TextField,
   withStyles,
 } from '@material-ui/core';
+import { useToasts } from 'react-toast-notifications';
 import { IoMdSchool } from 'react-icons/io';
 import UploadInput from '../../components/UploadInput';
 import Header from '../../components/Navbar';
@@ -12,15 +13,14 @@ import Footer from '../../components/Footer';
 import './ThesesPost.scss';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
+import { useAuth } from '../../providers/auth';
 
 function ThesesPost() {
+  const { user } = useAuth();
+  const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [files, setFiles] = useState([]);
-  const [studentCPF, setStudentCPF] = useState('');
   const [thesisName, setThesisName] = useState('');
-  function StudentCPF(e) {
-    setStudentCPF(e.target.value);
-  }
   function ThesisName(e) {
     setThesisName(e.target.value);
   }
@@ -30,7 +30,12 @@ function ThesesPost() {
     files.forEach(async (file) => {
       const data = new FormData();
       data.append('file', file.file);
-      await managerService.uploadThesis(data, studentCPF, thesisName);
+      try {
+        await managerService.uploadThesis(data, user.name, thesisName);
+        addToast('Tese postada com sucesso!', { appearance: 'success' });
+      } catch {
+        addToast('Falha ao postar Tese', { appearance: 'error' });
+      }
     });
   };
   const StyledButton = withStyles({
@@ -42,28 +47,24 @@ function ThesesPost() {
   })(Button);
   const inputProps = [
     {
-      text: 'Página principal',
-      path: 'lista-estudantes',
-    },
-    {
-      text: 'Criar processo seletivo',
+      text: 'Página Inicial',
       path: '/',
     },
     {
-      text: 'Postagens de teses',
+      text: 'Notas',
       path: '/',
     },
     {
-      text: 'Cadastro de professores',
-      path: 'lista-professores',
+      text: 'Editar Informações',
+      path: '/',
     },
     {
-      text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      text: 'Dúvidas',
+      path: '/',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
 
@@ -85,22 +86,7 @@ function ThesesPost() {
             <div className="studentName-grid">
               <TextField
                 className="studentName"
-                label="Autor"
-                id="input-with-icon-textfield"
-                variant="filled"
-                size="small"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <IoMdSchool size="25" />
-                    </InputAdornment>
-                  ),
-                }}
-                onChange={(e) => StudentCPF(e)}
-              />
-              <TextField
-                className="studentName"
-                label="Título"
+                label="Título da Tese"
                 id="input-with-icon-textfield"
                 variant="filled"
                 size="small"
