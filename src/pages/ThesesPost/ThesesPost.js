@@ -17,6 +17,7 @@ import { useAuth } from '../../providers/auth';
 
 function ThesesPost() {
   const { user } = useAuth();
+  console.log(user.name);
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [files, setFiles] = useState([]);
@@ -84,6 +85,22 @@ function ThesesPost() {
               ))}
             </div>
             <div className="studentName-grid">
+              <TextField
+                className="studentName"
+                label="Autor(a)"
+                id="filled-read-only-input"
+                variant="filled"
+                size="small"
+                InputProps={{
+                  readOnly: true,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <IoMdSchool size="25" style={{ marginRight: '7px' }} />
+                      {user.name}
+                    </InputAdornment>
+                  ),
+                }}
+              />
               <TextField
                 className="studentName"
                 label="Título da Tese"
