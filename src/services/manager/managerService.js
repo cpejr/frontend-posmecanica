@@ -28,6 +28,12 @@ export const getAllCandidateDiscipline = async (field, filter) => {
   return response.data;
 };
 
+export const getByIdDisciplineDeferment = async (firstFilter, secondFilter) => {
+  const response = await requesterService.getByIdDisciplineDeferment(firstFilter, secondFilter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createCandidate = async (candidate, selectiveProcessId) => {
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

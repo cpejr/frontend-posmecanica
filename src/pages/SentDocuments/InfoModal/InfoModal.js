@@ -3,7 +3,7 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({
-  close, conteudo, painelADM, disciplina,
+  close, conteudo, painelADM, disciplinaInfo,
 }) {
   function formatedDate(date) {
     const data = new Date(date);
@@ -24,6 +24,7 @@ function InfoModal({
 
     return 'Pendente';
   }
+
   return (
     <>
       {painelADM === 0 ? (
@@ -120,33 +121,33 @@ function InfoModal({
                 </div>
               </div>
               {conteudo?.first_discipline_isolated !== 'none'
-          && conteudo?.second_discipline_isolated !== 'none'
-          && (
-          <div className="rowGrid">
-            <div>
-              <b>Primeira Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[0]?.discipline_name} `}
-            </div>
-            <div>
-              <b>Segunda Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[1]?.discipline_name}`}
-            </div>
-          </div>
-          )}
+                && conteudo?.second_discipline_isolated !== 'none'
+                && (
+                  <div className="rowGrid">
+                    <div>
+                      <b>Primeira Disciplina Isolada:</b>
+                      {` ${conteudo?.disciplines[0]?.discipline_name} `}
+                    </div>
+                    <div>
+                      <b>Segunda Disciplina Isolada:</b>
+                      {` ${conteudo?.disciplines[1]?.discipline_name}`}
+                    </div>
+                  </div>
+                )}
               {conteudo?.third_discipline_isolated !== 'none'
-          && conteudo?.fourth_discipline_isolated !== 'none'
-          && (
-          <div className="rowGrid">
-            <div>
-              <b>Terceira Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[2]?.discipline_name}`}
-            </div>
-            <div>
-              <b>Quarta Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[3]?.discipline_name}`}
-            </div>
-          </div>
-          )}
+                && conteudo?.fourth_discipline_isolated !== 'none'
+                && (
+                  <div className="rowGrid">
+                    <div>
+                      <b>Terceira Disciplina Isolada:</b>
+                      {` ${conteudo?.disciplines[2]?.discipline_name}`}
+                    </div>
+                    <div>
+                      <b>Quarta Disciplina Isolada:</b>
+                      {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                    </div>
+                  </div>
+                )}
               <div className="row">
                 <b>Data de Nascimento:</b>
                 {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
@@ -176,59 +177,70 @@ function InfoModal({
               <div className="rowGridIsolatedCandidate">
                 <div>
                   <b>Primeira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[0]?.discipline_name} `}
+                  {` ${disciplinaInfo[0]?.disciplineName} `}
                 </div>
                 <div>
                   <b>Situação:</b>
-                  {` ${disciplina && disciplineSituation(disciplina[0][0].cd_dis_deferment)}`}
+                  {` ${disciplinaInfo && disciplineSituation(disciplinaInfo[0].candidateDisciplineDeferment)}`}
                 </div>
                 <div>
                   <b>Professor responsável:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                  {` ${disciplinaInfo[0]?.professorName}`}
                 </div>
               </div>
-              <div className="rowGridIsolatedCandidate">
-                <div>
-                  <b>Segunda Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[1]?.discipline_name}`}
-                </div>
-                <div>
-                  <b>Situação:</b>
-                  {` ${disciplina && disciplineSituation(disciplina[0][1].cd_dis_deferment)}`}
-                </div>
-                <div>
-                  <b>Professor responsável:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
-                </div>
-              </div>
-              <div className="rowGridIsolatedCandidate">
-                <div>
-                  <b>Terceira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[2]?.discipline_name}`}
-                </div>
-                <div>
-                  <b>Situação:</b>
-                  {` ${disciplina && disciplineSituation(disciplina[0][2].cd_dis_deferment)}`}
-                </div>
-                <div>
-                  <b>Professor responsável:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
-                </div>
-              </div>
-              <div className="rowGridIsolatedCandidate">
-                <div>
-                  <b>Quarta Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
-                </div>
-                <div>
-                  <b>Situação:</b>
-                  {` ${disciplina && disciplineSituation(disciplina[0][3].cd_dis_deferment)}`}
-                </div>
-                <div>
-                  <b>Professor responsável:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name}`}
-                </div>
-              </div>
+              {disciplinaInfo[1]
+                && (
+                  <div className="rowGridIsolatedCandidate">
+                    <div>
+                      <b>Segunda Disciplina Isolada:</b>
+                      {` ${disciplinaInfo[1]?.disciplineName}`}
+                    </div>
+                    <div>
+                      <b>Situação:</b>
+                      {` ${disciplinaInfo && disciplineSituation(disciplinaInfo[1].candidateDisciplineDeferment)}`}
+                    </div>
+                    <div>
+                      <b>Professor responsável:</b>
+                      {` ${disciplinaInfo[1]?.professorName}`}
+                    </div>
+                  </div>
+                )}
+              {disciplinaInfo[2]
+                && (
+                  <div className="rowGridIsolatedCandidate">
+                    <div>
+                      <b>Terceira Disciplina Isolada:</b>
+                      {` ${disciplinaInfo[2]?.disciplineName}`}
+                    </div>
+                    <div>
+                      <b>Situação:</b>
+                      {` ${disciplinaInfo && disciplineSituation(disciplinaInfo[2].candidateDisciplineDeferment)}`}
+                    </div>
+                    <div>
+                      <b>Professor responsável:</b>
+                      {` ${disciplinaInfo[2]?.professorName}`}
+                    </div>
+                  </div>
+                )}
+
+              {disciplinaInfo[3]
+                && (
+                  <div className="rowGridIsolatedCandidate">
+                    <div>
+                      <b>Quarta Disciplina Isolada:</b>
+                      {` ${disciplinaInfo[3]?.disciplineName}`}
+                    </div>
+                    <div>
+                      <b>Situação:</b>
+                      {` ${disciplinaInfo && disciplineSituation(disciplinaInfo[3].candidateDisciplineDeferment)}`}
+                    </div>
+                    <div>
+                      <b>Professor responsável:</b>
+                      {` ${disciplinaInfo[3]?.professorName}`}
+                    </div>
+                  </div>
+                )}
+
             </div>
           </div>
         </div>
