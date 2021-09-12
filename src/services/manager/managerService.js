@@ -65,6 +65,11 @@ export const uploadFile = async (file, candidateId, fileName) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const uploadThesis = async (file, candidateId, thesisName) => {
+  const response = await requesterService.uploadThesis(file, candidateId, thesisName);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const createDiscipline = async (discipline) => {
   const response = await requesterService.createDiscipline(discipline);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

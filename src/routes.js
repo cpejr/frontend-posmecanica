@@ -17,6 +17,7 @@ import SelectiveProcesses from './pages/SelectiveProcesses';
 import StudentList from './pages/StudentsList';
 import StylePDF from './components/StylePDF';
 import EditStudentInfo from './pages/EditStudentInfo';
+import ThesesPost from './pages/ThesesPost';
 
 const useStyles = makeStyles({
   container: {
@@ -39,6 +40,7 @@ function Routes() {
           <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
           <Route exact path="/painel/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
+          <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
