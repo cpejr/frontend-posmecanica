@@ -35,7 +35,6 @@ function BoxDashboardProfesssor() {
       });
     });
     setDisciplineObject(disciplineAux);
-    console.log('🚀 ~ file: BoxDashboardProfessor.js ~ line 10 ~ BoxDashboardProfesssor ~ disciplineObject', disciplineObject);
     setProcesssSelective(selectiveProcesses);
   }, []);
   useEffect(() => {

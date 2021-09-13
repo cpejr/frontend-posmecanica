@@ -7,49 +7,46 @@ import './InscritoPS.scss';
 import * as managerService from '../../../services/manager/managerService';
 
 function InscritoPS({ candidate, boolean }) {
-  // eslint-disable-next-line prefer-const
-  let disciplines = [];
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   const [buttonText, setButtonText] = useState();
   const [link, setLink] = useState();
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const [disciplinas, setDisciplinas] = useState([]);
-  const [disciplineName, setDisciplineName] = useState([]);
-  const [professorName, setProfessorName] = useState([]);
+
+  const [object, setObject] = useState([]);
 
   const handleClickClose = () => {
     setShowInfoModal(false);
   };
 
-  const getDisciplineNames = async (disciplineId) => {
-    await managerService.getByIdDiscipline(disciplineId).then((response) => {
-      disciplines.push({ name: response.discipline_name });
+  const buildObject = (candidateId, disciplineId) => {
+    const line = {};
+
+    Promise.all([
+      managerService.getByIdDiscipline(disciplineId),
+      managerService.getByIdDisciplineDeferment(candidateId, disciplineId),
+      managerService.getProfByDisciplineId(disciplineId),
+    ]).then((response) => {
+      line.disciplineName = response[0].discipline_name;
+      line.candidateDisciplineDeferment = response[1][0].cd_dis_deferment;
+      line.professorName = response[2].prof_name;
     });
+    setObject((previousState) => [...previousState, line]);
   };
 
-  useEffect(async () => {
-    // console.log('🚀 ~ file: InscritoPS.js ~ line 10 ~ InscritoPS ~ candidate', candidate);
-
+  useEffect(() => {
+    setObject('');
     if (candidate.selective_process.process_type === 'ISOLADA') {
-      getDisciplineNames(candidate.first_discipline_isolated);
-      getDisciplineNames(candidate.second_discipline_isolated);
-      getDisciplineNames(candidate.third_discipline_isolated);
-      getDisciplineNames(candidate.fourth_discipline_isolated);
-      setDisciplineName(disciplines);
-      console.log('🚀 ~ file: InscritoPS.js ~ line 44 ~ useEffect ~ disciplines', disciplineName);
-
-      // console.log('🚀 ~ file: InscritoPS.js ~ line 12 ~ InscritoPS ~ object', object);
-
-      await managerService.getAllCandidateDiscipline('cd_candidate_id', candidate.candidate_id).then((response) => {
-        setDisciplinas([response]);
-        response.forEach((resp) => {
-          managerService.getProfByDisciplineId(resp.cd_dis_id).then((name) => {
-            setProfessorName([name]);
-            console.log('🚀 ~ file: InscritoPS.js ~ line 20 ~ InscritoPS ~ professorName', professorName);
-          });
-        });
-      });
+      buildObject(candidate.candidate_id, candidate.first_discipline_isolated);
+      if (candidate.second_discipline_isolated) {
+        buildObject(candidate.candidate_id, candidate.second_discipline_isolated, 2);
+      }
+      if (candidate.third_discipline_isolated) {
+        buildObject(candidate.candidate_id, candidate.third_discipline_isolated, 3);
+      }
+      if (candidate.fourth_discipline_isolated) {
+        buildObject(candidate.candidate_id, candidate.fourth_discipline_isolated, 4);
+      }
     }
 
     if (boolean === 'true') {
@@ -79,6 +76,7 @@ function InscritoPS({ candidate, boolean }) {
       setProcesstype('Isolada');
     }
   }, []);
+
   return (
     <>
       {candidate.selective_process.process_type !== 'ISOLADA' ? (
@@ -124,13 +122,13 @@ function InscritoPS({ candidate, boolean }) {
         </div>
       )}
       {showInfoModal && (
-      <InfoModal
-        painelADM={1}
-        disciplina={disciplinas}
-        conteudo={candidate}
-        close={handleClickClose}
-        className="isoPsLinkButton"
-      />
+        <InfoModal
+          painelADM={1}
+          disciplinaInfo={object}
+          conteudo={candidate}
+          close={handleClickClose}
+          className="isoPsLinkButton"
+        />
       )}
     </>
   );

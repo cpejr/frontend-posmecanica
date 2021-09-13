@@ -18,7 +18,6 @@ function BoxDashboard({
     if (type === 'adm' || type === 'prof') {
       setShowInput(true);
     }
-    console.log('🚀 ~ file: BoxDashboard.js ~ line 13 ~ disciplineFilter', disciplineFilter);
   }, []);
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -127,50 +126,50 @@ function BoxDashboard({
         </div>
         <div className="BdBox">
           {position === 'first' && (
-          <div className="BdDivGrid">
-            {list.map((listItem) => {
-              if (type === 'adm') {
-                if (dados.type === listItem.selective_process.process_type) {
-                  return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
+            <div className="BdDivGrid">
+              {list.map((listItem) => {
+                if (type === 'adm') {
+                  if (dados.type === listItem.selective_process.process_type) {
+                    return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
+                  }
+                  if (dados.type === '') {
+                    return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
+                  }
+                  return <div />;
                 }
-                if (dados.type === '') {
-                  return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
+                if (type === 'prof') {
+                  if (listItem.candidate_deferment === false) {
+                    return (
+                      <BoxProf
+                        candidate={listItem}
+                        isoCandidates={isoCandidates}
+                        setIsoCandidates={setIsoCandidates}
+                        key={listItem.candidate_id}
+                      />
+                    );
+                  }
+                  return <div />;
                 }
                 return <div />;
-              }
-              if (type === 'prof') {
-                if (listItem.candidate_deferment === false) {
+              })}
+            </div>
+          )}
+          {position === 'second' && (
+            <div className="BdDivGrid">
+              {list.map((listDeferItem) => {
+                if (listDeferItem.candidate_deferment === true) {
                   return (
                     <BoxProf
-                      candidate={listItem}
+                      candidate={listDeferItem}
                       isoCandidates={isoCandidates}
                       setIsoCandidates={setIsoCandidates}
-                      key={listItem.candidate_id}
+                      key={listDeferItem.candidate_id}
                     />
                   );
                 }
                 return <div />;
-              }
-              return <div />;
-            })}
-          </div>
-          )}
-          {position === 'second' && (
-          <div className="BdDivGrid">
-            {list.map((listDeferItem) => {
-              if (listDeferItem.candidate_deferment === true) {
-                return (
-                  <BoxProf
-                    candidate={listDeferItem}
-                    isoCandidates={isoCandidates}
-                    setIsoCandidates={setIsoCandidates}
-                    key={listDeferItem.candidate_id}
-                  />
-                );
-              }
-              return <div />;
-            })}
-          </div>
+              })}
+            </div>
           )}
         </div>
       </div>
