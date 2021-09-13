@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Drawer from '@material-ui/core/Drawer';
-import { useAuth } from '../../../providers/auth';
+import { useAuth, logout } from '../../../providers/auth';
 import './RightPanel.scss';
 
 function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
@@ -25,6 +25,10 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
     </ListItem>
   );
 
+  function Logout() {
+    logout();
+  }
+
   return (
     <Drawer anchor="right" open={expandRightPanel} onClose={() => setExpandRightPanel(false)}>
       <List>
@@ -41,6 +45,13 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
             </ListItem>
           </Link>
         ))}
+        <Link to={{ pathname: '/login' }}>
+          <ListItem button>
+            <ListItemText onClick={Logout}>
+              Logout
+            </ListItemText>
+          </ListItem>
+        </Link>
       </List>
     </Drawer>
   );
