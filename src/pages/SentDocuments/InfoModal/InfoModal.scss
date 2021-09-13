@@ -16,6 +16,7 @@
     margin: auto;
     padding:  4em 2rem;
     background-color: #FFF;
+    border-radius: 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
   }
   .container{
@@ -50,7 +51,11 @@
     margin: auto;
     padding:  4em 2rem;
     background-color: #FFF;
-    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    @media (max-width: 450px){
+      height: 80%;
+    }
   }
   .container{
     height: 50;

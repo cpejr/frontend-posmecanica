@@ -39,13 +39,13 @@ function InscritoPS({ candidate, boolean }) {
     if (candidate.selective_process.process_type === 'ISOLADA') {
       buildObject(candidate.candidate_id, candidate.first_discipline_isolated);
       if (candidate.second_discipline_isolated) {
-        buildObject(candidate.candidate_id, candidate.second_discipline_isolated, 2);
+        buildObject(candidate.candidate_id, candidate.second_discipline_isolated);
       }
       if (candidate.third_discipline_isolated) {
-        buildObject(candidate.candidate_id, candidate.third_discipline_isolated, 3);
+        buildObject(candidate.candidate_id, candidate.third_discipline_isolated);
       }
       if (candidate.fourth_discipline_isolated) {
-        buildObject(candidate.candidate_id, candidate.fourth_discipline_isolated, 4);
+        buildObject(candidate.candidate_id, candidate.fourth_discipline_isolated);
       }
     }
 

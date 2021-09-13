@@ -10,7 +10,6 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
-  // justify-content: center;
   color: #061744;
   margin: 0px 50px 0px 50px;
   margin-top: 25px;
@@ -21,14 +20,14 @@
   }
 }
 .BdBoxFather {
-  margin: 0px 50px 30px 50px;
-  height: 420px;
+  margin: 0px 50px 5px 50px;
+  height: 460px;
   border: 1px solid #C4C4C4;
   border-radius: 8px;
   box-shadow: 0px 3px 5px 0px #C4C4C4;
 }
 .BdBox {
-  max-height: 307px!important;
+  max-height: 280px!important;
   overflow: scroll;
 }
 
@@ -55,7 +54,7 @@
   color: white;
 }
 .BdDivGrid {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,10 +71,12 @@
 @media (max-width: 769px){
 
   .BdBox{
+    max-height: 240px!important;
     margin: 0px;
   }
 
   .BdBoxFather{
+    height: 400px;
     margin: 0px 0px 20px 0px;
   }
 
