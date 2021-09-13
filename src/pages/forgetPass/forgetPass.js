@@ -4,6 +4,7 @@ import { useToasts } from 'react-toast-notifications';
 import React, { useState } from 'react';
 import '../../components/CampoText/campotxt';
 import './forgetPass.scss';
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -11,6 +12,7 @@ import Footer from '../../components/Footer';
 function esqueciSenha() {
   const [email, setEmail] = useState('');
   const { addToast } = useToasts();
+  const history = useHistory();
   function confirmarEmail(e) {
     setEmail(e.target.value);
   }
@@ -22,6 +24,8 @@ function esqueciSenha() {
     try {
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
+      history.push('/login');
+      addToast('Email enviado com sucesso!', { appearance: 'success' });
     } catch {
       addToast('Email não cadastrado!', { appearance: 'error' });
     }

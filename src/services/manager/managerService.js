@@ -68,7 +68,6 @@ export const sendResetEmail = async (email) => {
   const teste = JSON.parse(email);
   const response = await requesterService.sendResetEmail(teste);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
-  window.location.href = '/login';
   return response;
 };
 
