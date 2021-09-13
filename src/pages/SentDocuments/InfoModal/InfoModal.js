@@ -120,32 +120,40 @@ function InfoModal({
                   {` ${conteudo?.candidate_cep}`}
                 </div>
               </div>
-              {conteudo?.first_discipline_isolated !== 'none'
-                && conteudo?.second_discipline_isolated !== 'none'
+              {(conteudo?.first_discipline_isolated !== 'none'
+                || conteudo?.second_discipline_isolated !== 'none')
                 && (
                   <div className="rowGrid">
-                    <div>
-                      <b>Primeira Disciplina Isolada:</b>
-                      {` ${conteudo?.disciplines[0]?.discipline_name} `}
-                    </div>
-                    <div>
-                      <b>Segunda Disciplina Isolada:</b>
-                      {` ${conteudo?.disciplines[1]?.discipline_name}`}
-                    </div>
+                    {conteudo?.first_discipline_isolated !== 'none' && (
+                      <div>
+                        <b>Primeira Disciplina Isolada:</b>
+                        {` ${conteudo?.disciplines[0]?.discipline_name} `}
+                      </div>
+                    )}
+                    {conteudo?.second_discipline_isolated !== 'none' && (
+                      <div>
+                        <b>Segunda Disciplina Isolada:</b>
+                        {` ${conteudo?.disciplines[1]?.discipline_name}`}
+                      </div>
+                    )}
                   </div>
                 )}
-              {conteudo?.third_discipline_isolated !== 'none'
-                && conteudo?.fourth_discipline_isolated !== 'none'
+              {(conteudo?.third_discipline_isolated !== 'none'
+                || conteudo?.fourth_discipline_isolated !== 'none')
                 && (
                   <div className="rowGrid">
-                    <div>
-                      <b>Terceira Disciplina Isolada:</b>
-                      {` ${conteudo?.disciplines[2]?.discipline_name}`}
-                    </div>
-                    <div>
-                      <b>Quarta Disciplina Isolada:</b>
-                      {` ${conteudo?.disciplines[3]?.discipline_name}`}
-                    </div>
+                    {conteudo?.third_discipline_isolated !== 'none' && (
+                      <div>
+                        <b>Terceira Disciplina Isolada:</b>
+                        {` ${conteudo?.disciplines[2]?.discipline_name}`}
+                      </div>
+                    )}
+                    {conteudo?.fourth_discipline_isolated !== 'none' && (
+                      <div>
+                        <b>Quarta Disciplina Isolada:</b>
+                        {` ${conteudo?.disciplines[3]?.discipline_name}`}
+                      </div>
+                    )}
                   </div>
                 )}
               <div className="row">
