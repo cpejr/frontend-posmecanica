@@ -15,7 +15,7 @@ function BoxDashboardProfesssor() {
     const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses[0].process_id);
     const disciplineAux = [];
 
-    await managerService.getAllProfessorDiscipline('pd_professor_id', user.id).then((resp) => {
+    managerService.getAllProfessorDiscipline('pd_professor_id', user.id).then((resp) => {
       const disciplineProfessor = [];
       resp.forEach((response) => {
         disciplineProfessor.push(response.pd_dis_id);

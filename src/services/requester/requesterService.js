@@ -30,6 +30,7 @@ export const getByIdDisciplineDeferment = (firstFilter, secondFilter) => httpCli
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(`/connect/candidate_dis/${id}`, { cd_dis_ids: disciplineIds });
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
+export const updateByIdDisciplineDeferment = (deferment, candidateId, disciplineId) => httpClient.put(`/updateDisciplineDeferment/candidate_dis/${candidateId}/${disciplineId}`, deferment);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
 export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/candidates/upload/${candidateId}/${fileName}`, file, {
   headers: {
