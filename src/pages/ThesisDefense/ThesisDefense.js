@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
+import { TextField } from '@material-ui/core';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import './ThesisDefense.scss';
-import StyledInput from '../../components/StyledInputWithIcon';
+// import StyledInput from '../../components/StyledInputWithIcon';
 import RightPanel from '../../components/Menu/RightPanel';
+// import ThesisDefensePDF from '../../components/PDFTese/ThesisDefensePDF';
+import './ThesisDefense.scss';
 
-const initialState = {
-  nome: '',
-  tese: '',
-  orientador: '',
-  horario: '',
-  local: '',
-  data: '',
-  banca: '',
-};
+function Divulgaçao() {
+  window.location.href = '/';
+}
 
 function ThesisDefense() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
-  const [dados, setDados] = useState(initialState);
-  const handleChange = (value, field) => {
-    setDados({ ...dados, [field]: value });
-  };
+  const [nome, setNome] = useState();
+  const [titulo, setTitulo] = useState();
+  const [orientador, setOrientador] = useState();
+  const [hora, setHora] = useState();
+  const [local, setLocal] = useState();
+  const [data, setData] = useState();
+  const [banca, setBanca] = useState();
+  console.log(nome, titulo, orientador, hora, local, data, banca);
   const inputProps = [
     {
       text: 'Página principal',
@@ -58,28 +58,35 @@ function ThesisDefense() {
             <div className="leftDefenseGrid">
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     type="text"
                     label="Aluno"
-                    setDados={handleChange}
+                    onChange={(e) => setNome(e.target.value)}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
-                    type="text"
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     label="Título da Tese"
-                    setDados={handleChange}
+                    onChange={(e) => setTitulo(e.target.value)}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
-                    type="text"
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     label="Orientador"
-                    setDados={handleChange}
+                    onChange={(e) => setOrientador(e.target.value)}
                   />
                 </div>
               </div>
@@ -87,30 +94,34 @@ function ThesisDefense() {
             <div className="rightDefenseGrid">
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
-                    type="text"
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     label="Horário"
-                    shrink="true"
-                    setDados={handleChange}
+                    onChange={(e) => setHora(e.target.value)}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
-                    type="text"
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     label="Local"
-                    setDados={handleChange}
+                    onChange={(e) => setLocal(e.target.value)}
                   />
                 </div>
               </div>
               <div className="input-SPcontent">
                 <div className="form_SP_input">
-                  <StyledInput
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    style={{ marginBottom: '10px' }}
                     type="date"
-                    shrink
-                    label="Data"
-                    setDados={handleChange}
+                    onChange={(e) => setData(e.target.value)}
                   />
                 </div>
               </div>
@@ -118,15 +129,20 @@ function ThesisDefense() {
           </div>
           <div className="input-SPcontent">
             <div className="form_SP1_input">
-              <StyledInput
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                style={{ marginBottom: '10px' }}
                 type="text"
                 label="Banca Examinadora"
-                setDados={handleChange}
+                multiline
+                rows={4}
+                onChange={(e) => setBanca(e.target.value)}
               />
             </div>
           </div>
           <div className="divButton">
-            <button type="submit" className="buttonDivulgar">GERAR DIVULGAÇÃO</button>
+            <button type="submit" className="buttonDivulgar" handleClick={() => Divulgaçao()}>GERAR DIVULGAÇÃO</button>
           </div>
         </div>
         <RightPanel
