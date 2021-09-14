@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+/*eslint-disable*/
+import React, { useState } from "react";
 import {
   Button,
   InputAdornment,
   TextField,
   withStyles,
-} from '@material-ui/core';
-import { useToasts } from 'react-toast-notifications';
-import { IoMdSchool } from 'react-icons/io';
-import UploadInput from '../../components/UploadInput';
-import Header from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import './ThesesPost.scss';
-import RightPanel from '../../components/Menu/RightPanel';
-import * as managerService from '../../services/manager/managerService';
-import { useAuth } from '../../providers/auth';
+} from "@material-ui/core";
+import { useToasts } from "react-toast-notifications";
+import { IoMdSchool } from "react-icons/io";
+import UploadInput from "../../components/UploadInput";
+import Header from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import "./ThesesPost.scss";
+import RightPanel from "../../components/Menu/RightPanel";
+import * as managerService from "../../services/manager/managerService";
+import { useAuth } from "../../providers/auth";
 
 function ThesesPost() {
   const { user } = useAuth();
@@ -21,57 +22,61 @@ function ThesesPost() {
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [files, setFiles] = useState([]);
-  const [thesisName, setThesisName] = useState('');
+  const [thesisName, setThesisName] = useState("");
   function ThesisName(e) {
     setThesisName(e.target.value);
   }
-  const formsFile = ['Tese'];
+  const formsFile = ["Coloque sua tese aqui:"];
   const handleClick = async (e) => {
     e.preventDefault();
     files.forEach(async (file) => {
       const data = new FormData();
-      data.append('file', file.file);
+      data.append("file", file.file);
       try {
         await managerService.uploadThesis(data, user.name, thesisName);
-        addToast('Tese postada com sucesso!', { appearance: 'success' });
+        addToast("Tese postada com sucesso!", { appearance: "success" });
       } catch {
-        addToast('Falha ao postar Tese', { appearance: 'error' });
+        addToast("Falha ao postar Tese", { appearance: "error" });
       }
     });
   };
   const StyledButton = withStyles({
     root: {
-      backgroundColor: 'rgb(76, 76, 167)',
-      width: '40%',
-      justifyContent: 'center',
+      backgroundColor: "rgb(76, 76, 167)",
+      width: "25%",
+      height: "6vh",
+      justifyContent: "center",
     },
   })(Button);
   const inputProps = [
     {
-      text: 'Página Inicial',
-      path: '/',
+      text: "Página Inicial",
+      path: "/",
     },
     {
-      text: 'Notas',
-      path: '/',
+      text: "Notas",
+      path: "/",
     },
     {
-      text: 'Editar Informações',
-      path: '/',
+      text: "Editar Informações",
+      path: "/",
     },
     {
-      text: 'Dúvidas',
-      path: '/',
+      text: "Dúvidas",
+      path: "/",
     },
     {
-      text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      text: "Redefinição de senha",
+      path: "../esqueci-senha",
     },
   ];
 
   return (
     <div className="thesesPost-root">
-      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+      <Header
+        expandRightPanel={expandRightPanel}
+        setExpandRightPanel={setExpandRightPanel}
+      />
       <div className="thesesPost-content">
         <div className="thesesPost-grid">
           <h5>Postagem de Teses</h5>
@@ -95,7 +100,7 @@ function ThesesPost() {
                   readOnly: true,
                   startAdornment: (
                     <InputAdornment position="start">
-                      <IoMdSchool size="25" style={{ marginRight: '7px' }} />
+                      <IoMdSchool size="25" style={{ marginRight: "7px" }} />
                       {user.name}
                     </InputAdornment>
                   ),
@@ -117,7 +122,14 @@ function ThesesPost() {
                 onChange={(e) => ThesisName(e)}
               />
               <div className="postButton">
-                <StyledButton variant="contained" color="primary" type="submit" onClick={(e) => handleClick(e)}>Postar</StyledButton>
+                <StyledButton
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={(e) => handleClick(e)}
+                >
+                  Postar
+                </StyledButton>
               </div>
             </div>
           </div>

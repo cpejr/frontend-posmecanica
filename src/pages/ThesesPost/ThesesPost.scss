@@ -1,69 +1,71 @@
-.thesesPost-root{
-    width: 100%;
-    height: 100%;
+.thesesPost-root {
+  width: 100%;
+  height: 100%;
 }
 
-.thesesPost-content{
-    display: flex;
-    flex-direction: row;
-    height: 71%;
+.thesesPost-content {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  align-items: center;
 }
-.thesesPost-grid{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 10px;
+.thesesPost-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 80%;
+  padding: 10px;
 
-        h5{
-        font-family: "Montserrat", sans-serif;
-        font: normal 25pt Montserrat;
-        display: flex;
-        justify-content: center;
-        color:black;
-        }
-}
-.post-Content{
+  h5 {
+    font-family: "Montserrat", sans-serif;
+    font: normal 35pt Montserrat;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+    color: black;
+  }
+}
+.post-Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25vh;
 }
 .MuiFormControl-root.MuiTextField-root.studentName {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.933);
+  border: 1px solid #f3eeee;
+  box-sizing: border-box;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.studentName-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+
+.MuiButtonBase-root.studentName-grid {
+  background-color: rgb(76, 76, 167);
+}
+.postButton {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 680px) {
+  .thesesPost-grid {
+    padding: 0px;
+  }
+  .MuiFormControl-root.MuiTextField-root.studentName {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.933);
-    border: 1px solid #f3eeee;
-    box-sizing: border-box;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
   }
-
-  .studentName-grid{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 40%;
+  .post-Content {
+    flex-direction: column;
   }
-
-  .MuiButtonBase-root.studentName-grid{
-      background-color: rgb(76, 76, 167);
-  }
-  .postButton{
-      display: flex;
-      justify-content: center;
-  }
-
-  @media (max-width: 680px){
-        .thesesPost-grid{
-            padding: 0px;
-        }
-      .MuiFormControl-root.MuiTextField-root.studentName {
-        width: 100%;
-      }
-      .post-Content{
-          flex-direction: column;
-      }
-  }
+}
