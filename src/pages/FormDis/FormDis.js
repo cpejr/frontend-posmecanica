@@ -17,6 +17,8 @@ function FormDis() {
     candidate_nationality: "",
     candidate_civil_state: "",
     candidate_birth: "",
+    candidate_mother_name: "",
+    candidate_father_name: "",
     candidate_race: "",
     candidate_gender: "",
     candidate_voter_title: "",
@@ -36,11 +38,14 @@ function FormDis() {
     candidate_grade_date_begin: "",
     candidate_grade_date_end: "",
     candidate_pGraduate_university: "",
+    candidate_pGraduation_course: "",
     candidate_ufmg_active_serv: "",
     candidate_ufmg_retired_serv: "",
     first_discipline_isolated: "",
     second_discipline_isolated: "",
     third_discipline_isolated: "",
+    fourth_discipline_isolated: "",
+    candidate_justify: "",
   };
   const [files, setFiles] = useState([]);
   const history = useHistory();
@@ -58,6 +63,7 @@ function FormDis() {
 
   const handleClick = async (e, dados) => {
     dados.candidate_grade = "NENHUMA DAS OPÇÕES";
+
     e.preventDefault();
     if (
       dados.candidate_name.length > 3 &&
@@ -65,8 +71,10 @@ function FormDis() {
       dados.candidate_identity.length > 3 &&
       dados.candidate_expedition !== "" &&
       dados.candidate_nationality.length > 3 &&
+      dados.candidate_mother_name.length > 3 &&
+      dados.candidate_father_name.length > 3 &&
       dados.candidate_civil_state.length > 3 &&
-      dados.candidate_birth.length > 3 &&
+      dados.candidate_birth !== "" &&
       dados.candidate_race.length > 3 &&
       dados.candidate_gender.length > 3 &&
       dados.candidate_voter_title.length > 3 &&
@@ -74,6 +82,7 @@ function FormDis() {
       dados.candidate_section_title !== "" &&
       dados.candidate_street !== "" &&
       dados.candidate_pGraduate_university !== "" &&
+      dados.candidate_pGraduation_course !== "" &&
       dados.candidate_ufmg_active_serv !== "" &&
       dados.candidate_ufmg_retired_serv !== "" &&
       dados.candidate_city !== "" &&
@@ -83,19 +92,24 @@ function FormDis() {
       dados.candidate_adress_num !== "" &&
       dados.candidate_country.length >= 3 &&
       dados.candidate_cep.length > 3 &&
-      dados.candidate_grade_date_begin.lenght > 3 &&
-      dados.candidate_grade_date_end.lenght > 3 &&
+      dados.candidate_grade_date_begin !== "" &&
+      dados.candidate_grade_date_end !== "" &&
       dados.candidate_email.length > 3 &&
       dados.candidate_phone_number.length > 3 &&
       dados.candidate_university !== "" &&
       dados.candidate_graduation.length > 3 &&
-      files.length === 4 &&
+      files.length === 5 &&
       dados.first_discipline_isolated !== "" &&
       dados.second_discipline_isolated !== "" &&
       dados.third_discipline_isolated !== "" &&
+      dados.fourth_discipline_isolated !== "" &&
       dados.first_discipline_isolated !== dados.second_discipline_isolated &&
       dados.first_discipline_isolated !== dados.third_discipline_isolated &&
-      dados.second_discipline_isolated !== dados.third_discipline_isolated
+      dados.first_discipline_isolated !== dados.fourth_discipline_isolated &&
+      dados.second_discipline_isolated !== dados.third_discipline_isolated &&
+      dados.second_discipline_isolated !== dados.fourth_discipline_isolated &&
+      dados.third_discipline_isolated !== dados.fourth_discipline_isolated
+     
     ) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
@@ -122,9 +136,13 @@ function FormDis() {
       dados.first_discipline_isolated !== "" &&
       dados.second_discipline_isolated !== "" &&
       dados.third_discipline_isolated !== "" &&
+      dados.fourth_discipline_isolated !== "" &&
       (dados.first_discipline_isolated === dados.second_discipline_isolated ||
         dados.first_discipline_isolated === dados.third_discipline_isolated ||
-        dados.second_discipline_isolated === dados.third_discipline_isolated)
+        dados.first_discipline_isolated === dados.fourth_discipline_isolated ||
+        dados.second_discipline_isolated === dados.third_discipline_isolated ||
+        dados.second_discipline_isolated === dados.fourth_discipline_isolated ||
+        dados.third_discipline_isolated === dados.fourth_discipline_isolated)
     ) {
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
     } else {
