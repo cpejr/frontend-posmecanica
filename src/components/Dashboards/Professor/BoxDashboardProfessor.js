@@ -14,9 +14,12 @@ function BoxDashboardProfesssor() {
     const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
     const isolatedCandidates = await managerService.getCandidates('candidate_process_id', selectiveProcesses[0].process_id);
     const disciplineAux = [];
+    const allCandidatesArray = [];
+    let filteredCandidates = [];
 
     managerService.getAllProfessorDiscipline('pd_professor_id', user.id).then((resp) => {
       const disciplineProfessor = [];
+
       resp.forEach((response) => {
         disciplineProfessor.push(response.pd_dis_id);
       });
@@ -24,19 +27,24 @@ function BoxDashboardProfesssor() {
         managerService.getByIdDiscipline(id).then((disc) => {
           disciplineAux.push({ label: disc.discipline_name, value: disc.discipline_id });
         });
+
         isolatedCandidates.forEach((candidato) => {
           if (candidato.first_discipline_isolated === id
             || candidato.second_discipline_isolated === id
             || candidato.third_discipline_isolated === id
             || candidato.fourth_discipline_isolated === id) {
-            setCandidates([candidato]);
+            allCandidatesArray.push(candidato);
           }
         });
       });
+      filteredCandidates = [...new Set(allCandidatesArray)];
+      setCandidates(filteredCandidates);
     });
+
     setDisciplineObject(disciplineAux);
     setProcesssSelective(selectiveProcesses);
   }, []);
+
   useEffect(() => {
     setFilteredStudents(candidates);
   }, [candidates]);

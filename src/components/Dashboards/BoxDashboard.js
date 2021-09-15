@@ -124,7 +124,7 @@ function BoxDashboard({
             />
           </div>
         </div>
-        <div className="BdBox">
+        <div className={type === 'prof' ? 'BdBoxProf' : 'BdBox'}>
           {position === 'first' && (
             <div className="BdDivGrid">
               {list.map((listItem) => {
@@ -143,6 +143,7 @@ function BoxDashboard({
                       <BoxProf
                         candidate={listItem}
                         isoCandidates={isoCandidates}
+                        disciplineToDeferment={dados.type}
                         setIsoCandidates={setIsoCandidates}
                         key={listItem.candidate_id}
                       />

@@ -9,7 +9,7 @@ import * as managerService from '../../../services/manager/managerService';
 import './InscritosIsoPS.scss';
 
 function InscritosIsoPS({
-  isoCandidates, setIsoCandidates, candidate,
+  isoCandidates, setIsoCandidates, candidate, disciplineToDeferment,
 }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
@@ -28,11 +28,14 @@ function InscritosIsoPS({
       if (candidate.first_discipline_isolated !== 'none'
         && candidate.second_discipline_isolated !== 'none'
         && candidate.third_discipline_isolated !== 'none') {
-        await managerService.createStudent(candidate, candidate.candidate_process_id);
-        await managerService.updateCandidate({
-          candidate_deferment: true,
-        }, candidate.candidate_id);
-        candidate.candidate_deferment = true;
+        // await managerService.createStudent(candidate, candidate.candidate_process_id);
+        // await managerService.updateCandidate({
+        //   candidate_deferment: true,
+        // }, candidate.candidate_id);
+        await managerService.updateByIdDisciplineDeferment({
+          cd_dis_deferment: true,
+        }, candidate.candidate_id, disciplineToDeferment);
+        // candidate.candidate_deferment = true;
         addToast('Candidato deferido com sucesso!', { appearance: 'success' });
       } else {
         await managerService.createStudent(candidate);
@@ -74,37 +77,37 @@ function InscritosIsoPS({
       </div>
       {candidate.candidate_deferment === false
         && (
-        <div className="isoPsDivButtons">
-          <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
-          <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
-        </div>
+          <div className="isoPsDivButtons">
+            <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
+            <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
+          </div>
         )}
       {candidate.candidate_deferment === true
         && (
-        <div className="isoPsDivButtons">
-          <div className="isoPsDivButtonsDeferido">
-            <Button className="isoPsDefermentStatus" id="Deferido" variant="contained">Deferido</Button>
+          <div className="isoPsDivButtons">
+            <div className="isoPsDivButtonsDeferido">
+              <Button className="isoPsDefermentStatus" id="Deferido" variant="contained">Deferido</Button>
+            </div>
           </div>
-        </div>
         )}
       <div className="divButtonSituationStudent">
         <button type="button" className="buttonSituationStudent" onClick={() => setShowInfoModal(true)}>Ver situação do aluno</button>
       </div>
       {showInfoModal && (
-      <InfoModal
-        painelADM={0}
-        conteudo={candidate}
-        close={handleClickClose}
-        className="isoPsLinkButton"
-      />
+        <InfoModal
+          painelADM={0}
+          conteudo={candidate}
+          close={handleClickClose}
+          className="isoPsLinkButton"
+        />
       )}
       {showConfirmModalCandidate && (
-      <DeferirModal
-        label={label}
-        handleCloseClick={handleClickClose}
-        handleConfirmClick={handleClickConfirmClick}
-        className="confirmCandidateButton"
-      />
+        <DeferirModal
+          label={label}
+          handleCloseClick={handleClickClose}
+          handleConfirmClick={handleClickConfirmClick}
+          className="confirmCandidateButton"
+        />
       )}
     </div>
   );
