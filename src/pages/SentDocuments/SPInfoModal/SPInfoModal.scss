@@ -17,6 +17,7 @@
     margin: auto;
     padding:  4em 2rem;
     background-color: #FFF;
+    border-radius: 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
   }
   .container{
@@ -35,7 +36,7 @@
 .divSPredirect{
   display: flex;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 20%;
 }
 .SPredirect {
   background-color: green;

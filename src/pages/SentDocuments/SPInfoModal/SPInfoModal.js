@@ -30,6 +30,10 @@ function InfoModal({ close, conteudo, redirect }) {
             {` ${conteudo?.process_type}`}
           </div>
           <div className="SProw">
+            <b>Número de inscritos:</b>
+            {` ${conteudo?.candidate_quantity}`}
+          </div>
+          <div className="SProw">
             <b>Data de início:</b>
             {` ${conteudo && formatedDate(conteudo.process_date_begin)}`}
           </div>

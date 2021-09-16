@@ -46,6 +46,7 @@ export const getSelectiveProcess = (times, field, filter) => httpClient.get('/se
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const getByIdSelectiveProcess = (selectiveProcessId) => httpClient.get(`/selectiveProcesses/${selectiveProcessId}`);
+export const updateSelectiveProcess = (selectiveProcess, selectiveProcessId) => httpClient.put(`/selectiveProcesses/${selectiveProcessId}`, selectiveProcess);
 
 export const getStudents = (times, field, filter) => httpClient.get('/students', {
   params: {

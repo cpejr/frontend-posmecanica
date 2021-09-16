@@ -155,6 +155,12 @@ export const getByIdSelectiveProcess = async (selectiveProcessId) => {
   return response.data;
 };
 
+export const updateSelectiveProcess = async (selectiveProcess, selectiveProcessId) => {
+  const response = await requesterService
+    .updateSelectiveProcess(selectiveProcess, selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const getStudents = async (field, filter) => {
   let times = 0;
   let response;
