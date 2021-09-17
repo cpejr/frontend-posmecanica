@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
+import { CircularProgress } from '@material-ui/core';
 import StyledInputWithIcon from '../../components/StyledInputWithIcon';
 import * as managerService from '../../services/manager/managerService';
 import Header from '../../components/Navbar';
@@ -15,16 +16,19 @@ function Login() {
   const [user, setUser] = useState(initialUser);
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleChange = (value, field) => {
     setUser({ ...user, [field]: value });
   };
 
   const handleClick = async (e) => {
+    setLoading(true);
     try {
       e.preventDefault();
       await managerService.login(user);
     } catch {
       addToast('Acesso negado!', { appearance: 'error' });
+      setLoading(false);
     }
   };
 
@@ -56,7 +60,9 @@ function Login() {
           </div>
           <div className="Login-buttons">
             <div className="Login-button1">
-              <button type="button" onClick={handleClick}>Entrar</button>
+              <button type="button" onClick={handleClick}>
+                {loading ? <CircularProgress size={24} color="inherit" /> : <p>Entrar</p>}
+              </button>
             </div>
             <div className="Login-link">
               <Link to="esqueci-senha"> Esqueceu a senha? </Link>
