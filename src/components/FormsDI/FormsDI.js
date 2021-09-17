@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import TextField from '@material-ui/core/TextField';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
@@ -27,6 +28,11 @@ function Forms({
       type: 'text',
       id: 'third_discipline_isolated',
       label: 'Terceira opção',
+    },
+    {
+      type: 'text',
+      id: 'fourth_discipline_isolated',
+      label: 'Quarta opção',
     },
   ];
   const [disciplines, setDisciplines] = useState([]);
@@ -83,7 +89,7 @@ function Forms({
               type={disc.type}
               id={disc.id}
               label={disc.label}
-              width="19em"
+              width="18em"
               field={disciplines}
               select={1}
               dados={dados}
@@ -104,6 +110,29 @@ function Forms({
             <UploadInput files={files} setFiles={setFiles} fileName={file} />
           </div>
         ))}
+      </div>
+      <div className="forms_line_files">
+        <div className="forms_input_file">
+          <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
+          <UploadInput files={files} setFiles={setFiles} fileName="comprovante_proficiencia" />
+        </div>
+      </div>
+      <div className="formsDI_box_title">
+        <div className="formsDI_title">
+          Justificativa
+        </div>
+      </div>
+      <div className="formsDI_TextInputDiv">
+        <div className="formsDI_TextInput">
+          <StyledInput
+            type="text"
+            id="candidate_justify"
+            label="Insira aqui sua justificativa"
+            multiline
+            dados={dados}
+            setDados={handleChange}
+          />
+        </div>
       </div>
       <div className="formsDI_divButton">
         <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>

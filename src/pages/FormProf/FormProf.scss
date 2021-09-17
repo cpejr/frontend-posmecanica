@@ -13,7 +13,7 @@ body {
   h1 {
     text-align: center;
     margin-bottom: 0.4em;
-    margin-top: 0.5em;
+    margin-top: 1.5em;
     color: $azulPadrao;
     font-weight: 500;
     font-size: 3.5em;
@@ -22,10 +22,13 @@ body {
 .form_dis_prof_box_title {
   display: flex;
   align-items: center;
-  background-image: linear-gradient(to right, $azulPadrao, #1037a1);
+  background-color: #1d2d57;
   margin: 2%;
-  height: 7%;
-  margin-bottom: 3%;
+  height: 6vh;
+
+  margin-bottom: 5%;
+  margin-top: 5%;
+  justify-content: center;
 }
 .form_dis_prof_title {
   color: white;
@@ -36,7 +39,7 @@ body {
 .form_dis_prof_line {
   background-color: #ffff;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   align-items: center;
 }
@@ -53,16 +56,15 @@ body {
   margin-bottom: 20px;
   width: 100%;
   button {
-    height: 3rem;
-    width: 37%;
+    height: 5rem;
+    width: 20%;
     border: 0;
     border-radius: 7px;
     background-color: $azulPadrao;
     color: #ffffff;
     border-radius: 5px;
     font-size: 25px;
-    text-shadow: 0em 0.3em 0.3em #000;
-    box-shadow: 1px 1px 5px #000;
+
     margin-bottom: 3rem;
     cursor: pointer;
   }
@@ -80,7 +82,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(to right, $azulPadrao, #1037a1);
+    background-color: #1d2d57;
     margin-top: 2%;
     margin-left: 2%;
     margin-right: 2%;
