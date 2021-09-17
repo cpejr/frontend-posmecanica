@@ -24,7 +24,7 @@ function esqueciSenha() {
     try {
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
-      history.push('/login');
+      history.push('/confirmacao');
       addToast('Email enviado com sucesso!', { appearance: 'success' });
     } catch {
       addToast('Email não cadastrado!', { appearance: 'error' });
@@ -41,7 +41,6 @@ function esqueciSenha() {
           <div className="text1">
             <h1>Informe seu email cadastrado</h1>
             <h2>Enviaremos para seu email um link para realizar a alteração da sua senha.</h2>
-            <h3>Após feito isso, realize login novamente.</h3>
           </div>
           <TextField
             className="campinho"

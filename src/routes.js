@@ -17,6 +17,7 @@ import SelectiveProcesses from './pages/SelectiveProcesses';
 import StudentList from './pages/StudentsList';
 import StylePDF from './components/StylePDF';
 import EditStudentInfo from './pages/EditStudentInfo';
+import Confirmation from './pages/forgetPass/Confirmation';
 
 const useStyles = makeStyles({
   container: {
@@ -42,6 +43,7 @@ function Routes() {
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/administrator/esqueci-senha" component={forgetPass} />
           <Route exact path="/painel/painel/esqueci-senha" component={forgetPass} />
+          <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
           <Route exact path="/painel/administrator/formulario-professores" component={FormProf} />
