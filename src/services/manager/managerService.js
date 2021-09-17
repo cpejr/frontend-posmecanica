@@ -22,6 +22,7 @@ export const getByIdCandidate = async (candidateId) => {
 };
 
 export const createCandidate = async (candidate, selectiveProcessId) => {
+  candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data.id;
@@ -34,10 +35,12 @@ export const createCandidateISO = async (candidate, selectiveProcessId) => {
     first_discipline_isolated: firstDisciplineIsolated,
     second_discipline_isolated: secondDisciplineIsolated,
     third_discipline_isolated: thirdDisciplineIsolated,
+    fourth_discipline_isolated: fourthDisciplineIsolated,
   } = candidate;
   const disciplines = [{ cd_dis_id: firstDisciplineIsolated },
     { cd_dis_id: secondDisciplineIsolated },
-    { cd_dis_id: thirdDisciplineIsolated }];
+    { cd_dis_id: thirdDisciplineIsolated },
+    { cd_dis_id: fourthDisciplineIsolated }];
   await requesterService
     .createCandidateDiscipline(response.data.id, disciplines);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
