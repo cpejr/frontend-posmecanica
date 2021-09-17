@@ -1,10 +1,9 @@
 /*eslint-disable*/
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
-  Button,
   InputAdornment,
   TextField,
-  withStyles,
 } from "@material-ui/core";
 import { useToasts } from "react-toast-notifications";
 import { IoMdSchool } from "react-icons/io";
@@ -18,36 +17,49 @@ import { useAuth } from "../../providers/auth";
 
 function ThesesPost() {
   const { user } = useAuth();
-  console.log(user.name);
+  const history = useHistory();
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [files, setFiles] = useState([]);
   const [thesisName, setThesisName] = useState("");
+  const [buttonState, setButtonState] = useState("buttonPost");
+  const [textButton, setTextButton] = useState("POSTAR");
   function ThesisName(e) {
     setThesisName(e.target.value);
   }
   const formsFile = ["Coloque sua tese aqui:"];
   const handleClick = async (e) => {
     e.preventDefault();
+
+    if(thesisName === ""){
+      addToast("Insira um título!", { appearance: "error" });
+    }
+    if(files.length === 0){
+      addToast("Insira um arquivo!", { appearance: "error" });
+    }
+
     files.forEach(async (file) => {
       const data = new FormData();
       data.append("file", file.file);
-      try {
-        await managerService.uploadThesis(data, user.name, thesisName);
-        addToast("Tese postada com sucesso!", { appearance: "success" });
-      } catch {
-        addToast("Falha ao postar Tese", { appearance: "error" });
+
+      const maxSize = 100 * 1024 * 1024;
+      if(file.file.size > maxSize){
+        addToast("Arquivo não suportado! (Máximo 100 MB)", { appearance: "error" });
+        history.push("/painel/aluno");
+      } else {
+        try {
+          setButtonState("spinerButton");
+          setTextButton("");
+          await managerService.uploadThesis(data, user.name, thesisName);
+          addToast("Tese postada com sucesso!", { appearance: "success" });
+          history.push("/painel/aluno");
+        } catch {
+          addToast("Falha ao postar Tese", { appearance: "error" });
+          history.push("/painel/aluno");
+        }
       }
     });
   };
-  const StyledButton = withStyles({
-    root: {
-      backgroundColor: "rgb(76, 76, 167)",
-      width: "25%",
-      height: "6vh",
-      justifyContent: "center",
-    },
-  })(Button);
   const inputProps = [
     {
       text: "Página Inicial",
@@ -122,14 +134,13 @@ function ThesesPost() {
                 onChange={(e) => ThesisName(e)}
               />
               <div className="postButton">
-                <StyledButton
-                  variant="contained"
-                  color="primary"
+                <button
+                  className={buttonState}
                   type="submit"
                   onClick={(e) => handleClick(e)}
                 >
-                  Postar
-                </StyledButton>
+                  {textButton}
+                </button>
               </div>
             </div>
           </div>
