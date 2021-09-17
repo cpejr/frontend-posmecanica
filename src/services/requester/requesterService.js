@@ -27,6 +27,13 @@ export const getByIdDisciplineDeferment = (firstFilter, secondFilter) => httpCli
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const getByIdDisciplineDefermentCandidateSituation = (filter, situation) => httpClient.get('/getByIdDisciplineDefermentCandidateSituation/candidate_dis', {
+  params: {
+    filter,
+    situation,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(`/connect/candidate_dis/${id}`, { cd_dis_ids: disciplineIds });
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);

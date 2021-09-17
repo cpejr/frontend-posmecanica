@@ -28,11 +28,11 @@ export const getAllCandidateDiscipline = async (field, filter) => {
   return response.data;
 };
 
-export const updateByIdDisciplineDeferment = async (deferment, candidateId, DisciplineId) => {
+export const updateByIdDisciplineDeferment = async (deferment, candidateId, disciplineId) => {
   const response = await requesterService.updateByIdDisciplineDeferment(
     deferment,
     candidateId,
-    DisciplineId,
+    disciplineId,
   );
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
@@ -40,6 +40,13 @@ export const updateByIdDisciplineDeferment = async (deferment, candidateId, Disc
 
 export const getByIdDisciplineDeferment = async (firstFilter, secondFilter) => {
   const response = await requesterService.getByIdDisciplineDeferment(firstFilter, secondFilter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdDisciplineDefermentCandidateSituation = async (filter, situation) => {
+  const response = await requesterService
+    .getByIdDisciplineDefermentCandidateSituation(filter, situation);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
