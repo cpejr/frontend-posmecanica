@@ -40,6 +40,7 @@ function Forms({
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
       const disciplinas = [];
+      disciplinas.push({ label: 'Nenhuma', value: '' });
       resp.forEach((object) => {
         disciplinas.push({ label: object.discipline_name, value: object.discipline_id });
       });
