@@ -4,12 +4,8 @@ import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 // import StyledInput from '../../components/StyledInputWithIcon';
 import RightPanel from '../../components/Menu/RightPanel';
-// import ThesisDefensePDF from '../../components/PDFTese/ThesisDefensePDF';
+import ThesisDefensePDF from '../../components/PDFTese/ThesisDefensePDF';
 import './ThesisDefense.scss';
-
-function Divulgaçao() {
-  window.location.href = '/';
-}
 
 function ThesisDefense() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
@@ -47,6 +43,12 @@ function ThesisDefense() {
       path: 'esqueci-senha',
     },
   ];
+  function Divulgaçao() {
+    // e.preventDefault();
+    return (
+      <ThesisDefensePDF nome={nome} />
+    );
+  }
   return (
     <div className="defenseContent">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
@@ -61,7 +63,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     type="text"
                     label="Aluno"
                     onChange={(e) => setNome(e.target.value)}
@@ -73,7 +74,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     label="Título da Tese"
                     onChange={(e) => setTitulo(e.target.value)}
                   />
@@ -84,7 +84,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     label="Orientador"
                     onChange={(e) => setOrientador(e.target.value)}
                   />
@@ -97,7 +96,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     label="Horário"
                     onChange={(e) => setHora(e.target.value)}
                   />
@@ -108,7 +106,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     label="Local"
                     onChange={(e) => setLocal(e.target.value)}
                   />
@@ -119,7 +116,6 @@ function ThesisDefense() {
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
-                    style={{ marginBottom: '10px' }}
                     type="date"
                     onChange={(e) => setData(e.target.value)}
                   />
@@ -132,7 +128,6 @@ function ThesisDefense() {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                style={{ marginBottom: '10px' }}
                 type="text"
                 label="Banca Examinadora"
                 multiline
@@ -142,7 +137,9 @@ function ThesisDefense() {
             </div>
           </div>
           <div className="divButton">
-            <button type="submit" className="buttonDivulgar" handleClick={() => Divulgaçao()}>GERAR DIVULGAÇÃO</button>
+            <button type="submit" className="buttonDivulgar" onClick={Divulgaçao}>
+              GERAR DIVULGAÇÃO
+            </button>
           </div>
         </div>
         <RightPanel
