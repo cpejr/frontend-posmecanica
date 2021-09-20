@@ -11,7 +11,7 @@ class ComponentToPrint extends React.Component {
     return (
       <div className="pdfrender-external-div">
         <div className="pdfrender-header">
-          <p className="pdfrender-dedicate">PROGRAMA DE PÓS-GRADUAÇÃO EM ENGENHARIA MECÂNICA</p>
+          <p className="pdfrender-subtitle">PROGRAMA DE PÓS-GRADUAÇÃO EM ENGENHARIA MECÂNICA</p>
         </div>
         <div className="pdfrender-text">
           <div className="pdfrender-title">
@@ -23,21 +23,24 @@ class ComponentToPrint extends React.Component {
           <p className="pdfrender-dedicate">
             {`TÍTULO: ${defenseInfo.title}`}
           </p>
-          <p className="pdfrender-dedicate">
-            {`BANCA EXAMINADORA: ${defenseInfo.bench}`}
+          <p className="pdfrender-dedicate-bench">
+            <p className="pdfrender-dedicate-bench-title"> BANCA EXAMINADORA </p>
+            {`${defenseInfo.bench}`}
           </p>
-          <p className="pdfrender-dedicate">
+          <p className="pdfrender-dedicate-advisor">
             {`ORIENTADOR: ${defenseInfo.advisor}`}
           </p>
-          <p className="pdfrender-dedicate">
-            {`DATA: ${defenseInfo.date}`}
-          </p>
-          <p className="pdfrender-dedicate">
-            {`HORA: ${defenseInfo.hour}`}
-          </p>
-          <p className="pdfrender-dedicate">
-            {`LOCAL: ${defenseInfo.location}`}
-          </p>
+          <div className="pdfrender-last-infos">
+            <p>
+              {`DATA: ${defenseInfo.date}`}
+            </p>
+            <p>
+              {`HORÁRIO: ${defenseInfo.hour}`}
+            </p>
+            <p>
+              {`LOCAL: ${defenseInfo.location}`}
+            </p>
+          </div>
         </div>
       </div>
     );

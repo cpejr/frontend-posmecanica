@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
-// import StyledInput from '../../components/StyledInputWithIcon';
 import RightPanel from '../../components/Menu/RightPanel';
-// import ThesisDefensePDF from '../../components/ThesisDefensePDF/ThesisDefensePDF';
 import './ThesisDefense.scss';
 
 function ThesisDefense() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const { addToast } = useToasts();
   const [nome, setNome] = useState();
   const [titulo, setTitulo] = useState();
   const [orientador, setOrientador] = useState();
@@ -18,7 +18,17 @@ function ThesisDefense() {
   const [data, setData] = useState();
   const [banca, setBanca] = useState();
   const history = useHistory();
-  console.log(nome, titulo, orientador, hora, local, data, banca);
+  function formatedDate(date) {
+    const newData = new Date(date);
+    const day = (newData.getDate() + 1).toString();
+    console.log(day);
+    const responseDay = day.length === 1 ? `0${day}` : day;
+    const month = (newData.getMonth() + 1).toString();
+    // +1 pois no getMonth Janeiro começa com zero.
+    const responseMonth = month.length === 1 ? `0${month}` : month;
+    const year = newData.getFullYear();
+    return `${responseDay}/${responseMonth}/${year}`;
+  }
   const inputProps = [
     {
       text: 'Página principal',
@@ -57,11 +67,25 @@ function ThesisDefense() {
       bench: banca,
     },
   ];
+
   function Divulgaçao() {
-    history.push({
-      pathname: '/painel/administrator/divulgaçao-tese',
-      state: { detail: defenseProps },
-    });
+    console.log(formatedDate(data));
+    if (
+      defenseProps[0].name === undefined
+      || defenseProps[0].title === undefined
+      || defenseProps[0].advisor === undefined
+      || defenseProps[0].hour === undefined
+      || defenseProps[0].location === undefined
+      || defenseProps[0].date === undefined
+      || defenseProps[0].bench === undefined
+    ) {
+      addToast('Preencha todos os campos', { appearance: 'error' });
+    } else {
+      history.push({
+        pathname: '/painel/administrator/divulgaçao-tese',
+        state: { detail: defenseProps },
+      });
+    }
   }
   return (
     <div className="defenseContent">
