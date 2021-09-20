@@ -1,0 +1,51 @@
+.pdfrender-external-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  padding: 5%;
+}
+.pdfrender-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:75%;
+  height: 20vh;
+}
+.pdfrender-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 5%;
+  margin-top: 8%;
+
+  .pdfrender-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2em;
+  }
+  .pdfrender-dedicate {
+      width: 70%;
+      margin: 4%;
+      text-align: justify;
+      font-size: 1.3em;
+  }
+}
+
+.print-button {
+  cursor: pointer;
+  background: linear-gradient(45deg, #04133a, #092161, #04133a);
+
+  .print-button-text {
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 1% 2%;
+
+      .print-icon {
+          margin: 0 5px 0 5px;
+      }
+  }
+}

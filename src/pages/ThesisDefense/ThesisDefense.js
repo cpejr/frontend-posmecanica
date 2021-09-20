@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 // import StyledInput from '../../components/StyledInputWithIcon';
 import RightPanel from '../../components/Menu/RightPanel';
-import ThesisDefensePDF from '../../components/PDFTese/ThesisDefensePDF';
+// import ThesisDefensePDF from '../../components/ThesisDefensePDF/ThesisDefensePDF';
 import './ThesisDefense.scss';
 
 function ThesisDefense() {
@@ -16,6 +17,7 @@ function ThesisDefense() {
   const [local, setLocal] = useState();
   const [data, setData] = useState();
   const [banca, setBanca] = useState();
+  const history = useHistory();
   console.log(nome, titulo, orientador, hora, local, data, banca);
   const inputProps = [
     {
@@ -43,11 +45,23 @@ function ThesisDefense() {
       path: 'esqueci-senha',
     },
   ];
+
+  const defenseProps = [
+    {
+      name: nome,
+      title: titulo,
+      advisor: orientador,
+      hour: hora,
+      location: local,
+      date: data,
+      bench: banca,
+    },
+  ];
   function Divulgaçao() {
-    // e.preventDefault();
-    return (
-      <ThesisDefensePDF nome={nome} />
-    );
+    history.push({
+      pathname: '/painel/administrator/divulgaçao-tese',
+      state: { detail: defenseProps },
+    });
   }
   return (
     <div className="defenseContent">

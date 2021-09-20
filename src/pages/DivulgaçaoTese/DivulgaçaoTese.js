@@ -1,9 +1,10 @@
 import React from 'react';
-import ThesisDefensePDF from '../../components/PDFTese/ThesisDefensePDF';
+import ThesisDefensePDF from '../../components/ThesisDefensePDF/ThesisDefensePDF';
 
-function Divulgaçao() {
+function Divulgaçao(props) {
+  const defenseInfo = props;
   return (
-    <ThesisDefensePDF nome="slaaaaaaaaaaa" />
+    <ThesisDefensePDF props={defenseInfo.location.state.detail} />
   );
 }
 
