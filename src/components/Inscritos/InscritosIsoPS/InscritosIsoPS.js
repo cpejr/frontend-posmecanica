@@ -15,6 +15,8 @@ function InscritosIsoPS({
   const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
   const [buttonName, setButtonName] = useState();
   const [label, setLabel] = useState();
+  const [approvePermission, setApprovePermission] = useState(false);
+  const [deletePermission, setDeletePermission] = useState(false);
   const { addToast } = useToasts();
 
   const handleClickClose = () => {
@@ -25,32 +27,82 @@ function InscritosIsoPS({
   const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
       candidate.stud_scholarship = false;
-      if (candidate.first_discipline_isolated !== 'none'
-        && candidate.second_discipline_isolated !== 'none'
-        && candidate.third_discipline_isolated !== 'none') {
-        // await managerService.createStudent(candidate, candidate.candidate_process_id);
-        // await managerService.updateCandidate({
-        //   candidate_deferment: true,
-        // }, candidate.candidate_id);
-        await managerService.updateByIdDisciplineDeferment({
-          cd_dis_deferment: true,
-        }, candidate.candidate_id, disciplineToDeferment);
-        // candidate.candidate_deferment = true;
-        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
-      } else {
-        await managerService.createStudent(candidate);
-        await managerService.updateCandidate({
-          candidate_deferment: true,
-        }, candidate.candidate_id);
-        candidate.candidate_deferment = true;
-        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
+      if (candidate.disciplines.length === 1) {
+        setApprovePermission(true);
       }
+      if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
+        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
+          .then((response) => {
+            if ((response.length !== 0 && candidate.disciplines.length === 2)
+              || (response.length === 2 && candidate.disciplines.length === 3)) {
+              setApprovePermission(true);
+            } else {
+              managerService.updateByIdDisciplineDeferment({
+                cd_dis_deferment: true,
+              }, candidate.candidate_id, disciplineToDeferment);
+            }
+          });
+      }
+      if (candidate.disciplines.length === 4) {
+        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
+          .then((response) => {
+            if (response.length === 3) {
+              setApprovePermission(true);
+            } else if (response.cd_dis_id.some(candidate.first_discipline_isolated) === true
+              && response.cd_dis_id.some(candidate.second_discipline_isolated) === true
+              && response.cd_dis_id.some(candidate.third_discipline_isolated) === true) {
+              setApprovePermission(true);
+            } else {
+              managerService.updateByIdDisciplineDeferment({
+                cd_dis_deferment: true,
+              }, candidate.candidate_id, disciplineToDeferment);
+            }
+          });
+        if (approvePermission === true) {
+          managerService.createStudent(candidate, candidate.candidate_process_id);
+          managerService.updateByIdDisciplineDeferment({
+            cd_dis_deferment: true,
+          }, candidate.candidate_id, disciplineToDeferment);
+          managerService.updateCandidate({
+            candidate_deferment: true,
+          }, candidate.candidate_id);
+        }
+      }
+      addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
-      await managerService.denyCandidate(candidate.candidate_id);
-      const removeCandidate = isoCandidates.filter(
-        (person) => person.candidate_id !== candidate.candidate_id,
-      );
-      setIsoCandidates(removeCandidate);
+      managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, false)
+        .then((resp) => {
+          if (resp.length === candidate.disciplines.length) {
+            setDeletePermission(true);
+          }
+        });
+      if (candidate.disciplines.length === 1) {
+        setDeletePermission(true);
+      } else if (deletePermission === false) {
+        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
+          .then((response) => {
+            if ((candidate.disciplines.length === 2 && response.length === 1)
+              || (candidate.disciplines.length === 3 && response.length === 2)
+              || (candidate.disciplines.length === 4 && response.length === 3)
+            ) {
+              managerService.updateByIdDisciplineDeferment({
+                cd_dis_deferment: false,
+              }, candidate.candidate_id, disciplineToDeferment);
+              managerService.createStudent(candidate, candidate.candidate_process_id);
+              managerService.updateCandidate({
+                candidate_deferment: true,
+              }, candidate.candidate_id);
+            }
+          });
+      }
+
+      if (deletePermission === true) {
+        await managerService.denyCandidate(candidate.candidate_id);
+        const removeCandidate = isoCandidates.filter(
+          (person) => person.candidate_id !== candidate.candidate_id,
+        );
+        setIsoCandidates(removeCandidate);
+      }
       addToast('Candidato indeferido com sucesso!', { appearance: 'success' });
     }
     setShowConfirmModalCandidate(false);
@@ -67,6 +119,14 @@ function InscritosIsoPS({
     setShowConfirmModalCandidate(true);
   };
 
+  const verifyDeferment = async () => {
+    const result = await managerService.getByIdDisciplineDeferment(
+      candidate.candidate_id,
+      disciplineToDeferment,
+    );
+    return result.cd_dis_deferment;
+  };
+
   return (
     <div className="isoPsListItem" id={candidate.candidate_id}>
       <div className="isoPsDivItem">
@@ -75,14 +135,14 @@ function InscritosIsoPS({
         </IconContext.Provider>
         {candidate.candidate_name}
       </div>
-      {candidate.candidate_deferment === false
+      {verifyDeferment() === false
         && (
           <div className="isoPsDivButtons">
             <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
             <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
           </div>
         )}
-      {candidate.candidate_deferment === true
+      {verifyDeferment() === true
         && (
           <div className="isoPsDivButtons">
             <div className="isoPsDivButtonsDeferido">
