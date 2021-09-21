@@ -15,19 +15,13 @@ function ThesisDefense() {
   const [orientador, setOrientador] = useState();
   const [hora, setHora] = useState();
   const [local, setLocal] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState('');
   const [banca, setBanca] = useState();
   const history = useHistory();
   function formatedDate(date) {
-    const newData = new Date(date);
-    const day = (newData.getDate() + 1).toString();
-    console.log(day);
-    const responseDay = day.length === 1 ? `0${day}` : day;
-    const month = (newData.getMonth() + 1).toString();
-    // +1 pois no getMonth Janeiro começa com zero.
-    const responseMonth = month.length === 1 ? `0${month}` : month;
-    const year = newData.getFullYear();
-    return `${responseDay}/${responseMonth}/${year}`;
+    let newData = '';
+    newData = date.split('-');
+    return `${newData[2]}/${newData[1]}/${newData[0]}`;
   }
   const inputProps = [
     {
@@ -36,23 +30,23 @@ function ThesisDefense() {
     },
     {
       text: 'Lista de estudantes',
-      path: 'lista-estudantes',
+      path: 'administrator/lista-estudantes',
     },
     {
       text: 'Criar processo seletivo',
-      path: 'criar-processo-seletivo',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Cadastro de professores',
-      path: 'formulario-professores',
+      path: 'administrator/formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      path: 'administrator/cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
 
@@ -63,13 +57,11 @@ function ThesisDefense() {
       advisor: orientador,
       hour: hora,
       location: local,
-      date: data,
+      date: formatedDate(data),
       bench: banca,
     },
   ];
-
   function Divulgaçao() {
-    console.log(formatedDate(data));
     if (
       defenseProps[0].name === undefined
       || defenseProps[0].title === undefined
@@ -79,7 +71,7 @@ function ThesisDefense() {
       || defenseProps[0].date === undefined
       || defenseProps[0].bench === undefined
     ) {
-      addToast('Preencha todos os campos', { appearance: 'error' });
+      addToast('Preencha todos os campos!', { appearance: 'error' });
     } else {
       history.push({
         pathname: '/painel/administrator/divulgaçao-tese',
