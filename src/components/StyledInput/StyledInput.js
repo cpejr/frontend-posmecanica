@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
@@ -27,36 +26,6 @@ function StyledInput({
 
 }) {
   const [error, setError] = useState(false);
-  const [CPF, setCPF] = useState('');
-  const [phone, setPhone] = useState('');
-  const [CEP, setCEP] = useState('');
-
-  // 000.000.000-00
-  const maskCPF = (value) => (
-    value.toString()
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{2})\d+?$/, '$1')
-  );
-  
-  // (99) 99999-9999
-  const maskPhone = (value) => (
-    value.toString()
-      .replace(/\D/g, '')
-      .replace(/^(\d\d)(\d)/g, '($1) $2')
-      .replace(/(\d{5})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{4})\d+?$/, '$1')
-  );
-
-  // 00000-000
-  const maskCEP = (value) => (
-    value.toString()
-      .replace(/\D/g, '')
-      .replace(/(\d{5})(\d{1,2})/, '$1-$2')
-      .replace(/(-\d{3})\d+?$/, '$1')
-  );
 
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
@@ -66,9 +35,6 @@ function StyledInput({
     }
     const { value } = e.target;
     setDados(value, entrada);
-    setCPF(maskCPF(e.target.value));
-    setPhone(maskPhone(e.target.value));
-    setCEP(maskCEP(e.target.value));
   };
 
   return (
@@ -103,8 +69,6 @@ function StyledInput({
       width={width}
       select={select}
       onChange={(e) => handleChange(e, id)}
-      value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : undefined}
-
     >
       {field
         && field.map((option) => (
