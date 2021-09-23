@@ -15,6 +15,34 @@ export const getCandidates = async (field, filter) => {
   return allCandidates;
 };
 
+export const getCandidatesWithDisciplineSituation = async (field, filter, pageFilter) => {
+  let times = 0;
+  let response;
+  let allCandidates = [];
+  do {
+    response = await requesterService.getCandidates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCandidates = allCandidates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+
+  const filteredCandidates = allCandidates
+    .filter((resp) => resp.disciplines.some(
+      (element) => element.discipline_id === pageFilter,
+    ) === true);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const data of filteredCandidates) {
+    const candidateDiscipline = await requesterService.getByIdDisciplineDeferment(
+      data.candidate_id,
+      pageFilter,
+    );
+    data.candidate_discipline = candidateDiscipline.data;
+  }
+
+  return filteredCandidates;
+};
+
 export const getByIdCandidate = async (candidateId) => {
   const response = await requesterService.getByIdCandidate(candidateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
