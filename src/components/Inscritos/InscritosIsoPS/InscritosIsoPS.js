@@ -15,31 +15,53 @@ function InscritosIsoPS({
   const [showConfirmModalCandidate, setShowConfirmModalCandidate] = useState(false);
   const [buttonName, setButtonName] = useState();
   const [label, setLabel] = useState();
-  const [approvePermission, setApprovePermission] = useState(false);
   const [deletePermission, setDeletePermission] = useState(false);
+  const [showCandidate, setShowCandidate] = useState(true);
   const { addToast } = useToasts();
+  let nullCounter = 0;
 
   const handleClickClose = () => {
     setShowInfoModal(false);
     setShowConfirmModalCandidate(false);
   };
 
+  const totalAprrovalCandidate = async () => {
+    candidate.stud_scholarship = false;
+    managerService.createStudent(candidate, candidate.candidate_process_id);
+    managerService.updateByIdDisciplineDeferment({
+      cd_dis_deferment: true,
+    }, candidate.candidate_id, disciplineToDeferment);
+    managerService.updateCandidate({
+      candidate_deferment: true,
+    }, candidate.candidate_id);
+    setShowCandidate(false);
+  };
+
+  const deleteCandidate = async () => {
+    await managerService.denyCandidate(candidate.candidate_id);
+    const removeCandidate = isoCandidates.filter(
+      (person) => person.candidate_id !== candidate.candidate_id,
+    );
+    setIsoCandidates(removeCandidate);
+  };
+
   const handleClickConfirmClick = async () => {
+    nullCounter = 0;
     if (buttonName === 'Deferir') {
-      candidate.stud_scholarship = false;
       if (candidate.disciplines.length === 1) {
-        setApprovePermission(true);
+        totalAprrovalCandidate();
       }
       if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
             if ((response.length !== 0 && candidate.disciplines.length === 2)
               || (response.length === 2 && candidate.disciplines.length === 3)) {
-              setApprovePermission(true);
+              totalAprrovalCandidate();
             } else {
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: true,
               }, candidate.candidate_id, disciplineToDeferment);
+              setShowCandidate(false);
             }
           });
       }
@@ -47,44 +69,48 @@ function InscritosIsoPS({
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
             if (response.length === 3) {
-              setApprovePermission(true);
-            } else if (response.cd_dis_id.some(candidate.first_discipline_isolated) === true
-              && response.cd_dis_id.some(candidate.second_discipline_isolated) === true
-              && response.cd_dis_id.some(candidate.third_discipline_isolated) === true) {
-              setApprovePermission(true);
+              totalAprrovalCandidate();
+            } else if (response?.cd_dis_id.some(candidate.first_discipline_isolated) === true
+              && response?.cd_dis_id.some(candidate.second_discipline_isolated) === true
+              && response?.cd_dis_id.some(candidate.third_discipline_isolated) === true
+              && response.length !== 0) {
+              totalAprrovalCandidate();
             } else {
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: true,
               }, candidate.candidate_id, disciplineToDeferment);
+              setShowCandidate(false);
             }
           });
-        if (approvePermission === true) {
-          managerService.createStudent(candidate, candidate.candidate_process_id);
-          managerService.updateByIdDisciplineDeferment({
-            cd_dis_deferment: true,
-          }, candidate.candidate_id, disciplineToDeferment);
-          managerService.updateCandidate({
-            candidate_deferment: true,
-          }, candidate.candidate_id);
-        }
       }
       addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
       managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, false)
         .then((resp) => {
-          if (resp.length === candidate.disciplines.length) {
+          nullCounter = candidate.disciplines.length - resp.length;
+          if ((candidate.disciplines.length === 2 && resp.length === 1)
+            || (candidate.disciplines.length === 3 && resp.length === 2)
+            || (candidate.disciplines.length === 4 && resp.length === 3)) {
+            deleteCandidate();
             setDeletePermission(true);
+            setShowCandidate(null);
           }
         });
       if (candidate.disciplines.length === 1) {
+        deleteCandidate();
         setDeletePermission(true);
+        setShowCandidate(null);
       } else if (deletePermission === false) {
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
-            if ((candidate.disciplines.length === 2 && response.length === 1)
-              || (candidate.disciplines.length === 3 && response.length === 2)
-              || (candidate.disciplines.length === 4 && response.length === 3)
-            ) {
+            nullCounter -= response.length;
+            if (nullCounter > 1) {
+              managerService.updateByIdDisciplineDeferment({
+                cd_dis_deferment: false,
+              }, candidate.candidate_id, disciplineToDeferment);
+              setShowCandidate(null);
+            } else if (response.length > 0) {
+              candidate.stud_scholarship = false;
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: false,
               }, candidate.candidate_id, disciplineToDeferment);
@@ -92,16 +118,9 @@ function InscritosIsoPS({
               managerService.updateCandidate({
                 candidate_deferment: true,
               }, candidate.candidate_id);
+              setShowCandidate(null);
             }
           });
-      }
-
-      if (deletePermission === true) {
-        await managerService.denyCandidate(candidate.candidate_id);
-        const removeCandidate = isoCandidates.filter(
-          (person) => person.candidate_id !== candidate.candidate_id,
-        );
-        setIsoCandidates(removeCandidate);
       }
       addToast('Candidato indeferido com sucesso!', { appearance: 'success' });
     }
@@ -119,14 +138,6 @@ function InscritosIsoPS({
     setShowConfirmModalCandidate(true);
   };
 
-  const verifyDeferment = async () => {
-    const result = await managerService.getByIdDisciplineDeferment(
-      candidate.candidate_id,
-      disciplineToDeferment,
-    );
-    return result.cd_dis_deferment;
-  };
-
   return (
     <div className="isoPsListItem" id={candidate.candidate_id}>
       <div className="isoPsDivItem">
@@ -135,19 +146,25 @@ function InscritosIsoPS({
         </IconContext.Provider>
         {candidate.candidate_name}
       </div>
-      {verifyDeferment() === false
+      {showCandidate === true && candidate.candidate_discipline[0].cd_dis_deferment === null
         && (
           <div className="isoPsDivButtons">
             <Button className="isoPsConfirmButton" id="Deferir" onClick={(e) => handleClick(e)} variant="contained">Deferir</Button>
             <Button className="isoPsDenyButton" id="Indeferir" onClick={(e) => handleClick(e)} variant="contained">Indeferir</Button>
           </div>
         )}
-      {verifyDeferment() === true
+      {(showCandidate === false || candidate.candidate_discipline[0].cd_dis_deferment === true)
         && (
           <div className="isoPsDivButtons">
             <div className="isoPsDivButtonsDeferido">
               <Button className="isoPsDefermentStatus" id="Deferido" variant="contained">Deferido</Button>
             </div>
+          </div>
+        )}
+      {showCandidate === null
+        && (
+          <div className="isoPsDivButtons">
+            <div className="isoPsDivButtonsDeferido" />
           </div>
         )}
       <div className="divButtonSituationStudent">
