@@ -15,34 +15,6 @@ export const getCandidates = async (field, filter) => {
   return allCandidates;
 };
 
-export const getCandidatesWithDisciplineSituation = async (field, filter, pageFilter) => {
-  let times = 0;
-  let response;
-  let allCandidates = [];
-  do {
-    response = await requesterService.getCandidates(times, field, filter);
-    if (isFailureStatus(response)) throw new Error('Problem with api response');
-    allCandidates = allCandidates.concat(response.data);
-    times += 1;
-  } while (response.data.length > 0);
-
-  const filteredCandidates = allCandidates
-    .filter((resp) => resp.disciplines.some(
-      (element) => element.discipline_id === pageFilter,
-    ) === true);
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const data of filteredCandidates) {
-    const candidateDiscipline = await requesterService.getByIdDisciplineDeferment(
-      data.candidate_id,
-      pageFilter,
-    );
-    data.candidate_discipline = candidateDiscipline.data;
-  }
-
-  return filteredCandidates;
-};
-
 export const getByIdCandidate = async (candidateId) => {
   const response = await requesterService.getByIdCandidate(candidateId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -292,4 +264,36 @@ export const getByIdStudent = async (studentId) => {
   const response = await requesterService.getByIdStudent(studentId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getCandidatesWithDisciplineSituation = async (field, filter, pageFilter) => {
+  let times = 0;
+  let response;
+  let allCandidates = [];
+  do {
+    response = await requesterService.getCandidates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCandidates = allCandidates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+
+  const process = await getActualSelectiveProcess('process_type', 'ISOLADA');
+  const processFilter = allCandidates
+    .filter((resp) => resp.candidate_process_id === process[0].process_id);
+
+  const filteredCandidates = processFilter
+    .filter((resp) => resp.disciplines.some(
+      (element) => element.discipline_id === pageFilter,
+    ) === true);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const data of filteredCandidates) {
+    const candidateDiscipline = await requesterService.getByIdDisciplineDeferment(
+      data.candidate_id,
+      pageFilter,
+    );
+    data.candidate_discipline = candidateDiscipline.data;
+  }
+
+  return filteredCandidates;
 };
