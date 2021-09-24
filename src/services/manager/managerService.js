@@ -261,11 +261,30 @@ export const updateStudent = async (student, id) => {
 
 export const createStudent = async (student) => {
   const { disciplines } = student;
-  const sdId = disciplines.map((sd) => ({ sd_dis_id: sd.discipline_id }));
-  const { stud_scholarship: studScholarship } = student;
+  let sdId;
+  const sdIdArray = [];
+  let verify = false;
 
+  const candidateDiscipline = await requesterService
+    .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
+  if (disciplines.length === 4) {
+    if (candidateDiscipline.data.length === 3) {
+      sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
+      verify = true;
+    }
+  } else {
+    sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
+  }
+
+  const { stud_scholarship: studScholarship } = student;
   const response = await requesterService.createStudent(student, studScholarship);
-  await requesterService.createStudentDiscipline(response.data.id, sdId);
+  if (disciplines.length === 4 && verify === true) {
+    await requesterService.createStudentDiscipline(response.data.id, sdIdArray);
+  } else {
+    await requesterService.createStudentDiscipline(response.data.id, sdId);
+  }
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
