@@ -4,27 +4,57 @@ import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
 import { AllTitleTypes } from '../../utils/titleTypes';
 import './BoxDashboard.scss';
+import * as managerService from '../../services/manager/managerService';
 
 function BoxDashboard({
   title, subtitle, list,
-  type, isoCandidates, setIsoCandidates,
-  processes, position, disciplineFilter,
+  type, processes, position,
+  disciplineFilter,
 }) {
   const initialState = {
     type: '',
   };
   const [showInput, setShowInput] = useState(false);
+  const [dados, setDados] = useState(initialState);
+  const [candidates, setCandidates] = useState();
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
+  };
+  let processCount = 0;
+
   useEffect(async () => {
     if (type === 'adm' || type === 'prof') {
       setShowInput(true);
     }
   }, []);
-  const [dados, setDados] = useState(initialState);
-  const handleChange = (value, field) => {
-    setDados({ ...dados, [field]: value });
+
+  useEffect(async () => {
+    if (dados.type) {
+      const filteredCandidates = await managerService.getCandidatesWithDisciplineSituation(
+        'candidate_grade',
+        'NENHUMA DAS OPÇÕES',
+        dados.type,
+      );
+      setCandidates(filteredCandidates);
+    }
+  }, [dados.type]);
+
+  const counterByDiscipline = (positions) => {
+    processCount = 0;
+    candidates?.forEach((e) => {
+      if (positions === 'first') {
+        if (e.candidate_discipline[0].cd_dis_deferment === null) {
+          processCount += 1;
+        }
+      } else if (positions === 'second') {
+        if (e.candidate_discipline[0].cd_dis_deferment === true) {
+          processCount += 1;
+        }
+      }
+    });
+
+    return processCount;
   };
-  let processCount = 0;
-  let finalCount = 0;
 
   function count() {
     processCount = 0;
@@ -63,36 +93,25 @@ function BoxDashboard({
               <div className="BdSubTitle">
                 {subtitle}
                 {processes.map((process) => {
-                  if (position === 'first') {
-                    if (list.length === 0) {
+                  if (position === 'first' && dados.type) {
+                    if (candidates?.length === 0) {
                       return 0;
                     }
                     if (process.count_candidates === 0) {
                       return 0;
                     }
-                    if (list.length !== 0) {
-                      list.forEach((e) => {
-                        if (e.candidate_deferment === true) {
-                          processCount += 1;
-                        }
-                      });
+                    if (candidates?.length !== 0) {
+                      return counterByDiscipline(position);
                     }
-                    if (list.length === processCount) {
-                      return list.length;
+                    if (candidates?.length === processCount) {
+                      return candidates.length;
                     }
-                    finalCount = list.length - processCount;
-                    return finalCount;
                   }
-                  if (position === 'second') {
-                    if (list.length === 0) {
+                  if (position === 'second' && dados.type) {
+                    if (candidates?.length === 0) {
                       return 0;
                     }
-                    list.forEach((e) => {
-                      if (e.candidate_deferment === true) {
-                        processCount += 1;
-                      }
-                    });
-                    return processCount;
+                    return counterByDiscipline(position);
                   }
                   return <div />;
                 })}
@@ -120,50 +139,53 @@ function BoxDashboard({
               select
               background="transparent"
               dados={dados}
+              in
               setDados={handleChange}
             />
           </div>
         </div>
         <div className={type === 'prof' ? 'BdBoxProf' : 'BdBox'}>
-          {position === 'first' && (
+          {position === 'first' && type === 'adm' && (
             <div className="BdDivGrid">
               {list.map((listItem) => {
-                if (type === 'adm') {
-                  if (dados.type === listItem.selective_process.process_type) {
-                    return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
-                  }
-                  if (dados.type === '') {
-                    return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
-                  }
-                  return <div />;
+                if (dados.type === listItem.selective_process.process_type) {
+                  return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
                 }
-                if (type === 'prof') {
-                  if (listItem.candidate_deferment === false) {
-                    return (
-                      <BoxProf
-                        candidate={listItem}
-                        isoCandidates={isoCandidates}
-                        disciplineToDeferment={dados.type}
-                        setIsoCandidates={setIsoCandidates}
-                        key={listItem.candidate_id}
-                      />
-                    );
-                  }
-                  return <div />;
+                if (dados.type === '') {
+                  return <BoxAdm candidate={listItem} key={listItem.candidate_id} />;
                 }
                 return <div />;
               })}
             </div>
           )}
-          {position === 'second' && (
+          {position === 'first' && type === 'prof' && dados.type && (
             <div className="BdDivGrid">
-              {list.map((listDeferItem) => {
-                if (listDeferItem.candidate_deferment === true) {
+              {candidates?.map((element) => {
+                if (element.candidate_discipline[0].cd_dis_deferment === null) {
+                  return (
+                    <BoxProf
+                      candidate={element}
+                      isoCandidates={candidates}
+                      disciplineToDeferment={dados.type}
+                      setIsoCandidates={setCandidates}
+                      key={element.candidate_id}
+                    />
+                  );
+                }
+                return <div />;
+              })}
+            </div>
+          )}
+          {position === 'second' && dados.type && (
+            <div className="BdDivGrid">
+              {candidates?.map((listDeferItem) => {
+                if (listDeferItem.candidate_discipline[0].cd_dis_deferment === true) {
                   return (
                     <BoxProf
                       candidate={listDeferItem}
-                      isoCandidates={isoCandidates}
-                      setIsoCandidates={setIsoCandidates}
+                      isoCandidates={candidates}
+                      disciplineToDeferment={dados.type}
+                      setIsoCandidates={setCandidates}
                       key={listDeferItem.candidate_id}
                     />
                   );
