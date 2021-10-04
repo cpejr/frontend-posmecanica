@@ -19,6 +19,8 @@ import StylePDF from './components/StylePDF';
 import EditStudentInfo from './pages/EditStudentInfo';
 import Confirmation from './pages/forgetPass/Confirmation';
 import ThesesPost from './pages/ThesesPost';
+import ThesisDefense from './pages/ThesisDefense';
+import DivulgaçaoTese from './pages/DivulgaçaoTese';
 
 const useStyles = makeStyles({
   container: {
@@ -50,8 +52,10 @@ function Routes() {
           <Route exact path="/lista-professores" component={ProfessorList} />
           <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
           <Route exact path="/documentos-enviados" component={SentDocuments} />
-          <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
+          <Route exact path="/processos-seletivos" component={SelectiveProcesses} />
+          <Route exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
           <Route exact path="/pdf" component={StylePDF} />
+          <Route exact path="/painel/administrator/divulgaçao-tese" component={DivulgaçaoTese} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
