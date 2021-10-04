@@ -34,7 +34,7 @@ function registerDis() {
           await managerService.createSelectiveProcess(dados);
           addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
         } else {
-          addToast('Já há um Processo em andamento na data escolhida!', { appearance: 'error' });
+          addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
         }
       } else {
         addToast('Preencha todos os campos!', { appearance: 'error' });
