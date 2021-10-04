@@ -202,7 +202,7 @@ function InscritosIsoPS({
       </div>
       {showInfoModal && (
         <InfoModal
-          painelADM={1}
+          painelADM={0}
           disciplinaInfo={object}
           conteudo={candidate}
           close={handleClickClose}
