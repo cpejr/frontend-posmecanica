@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import "./FormProf.scss";
 import { useToasts } from "react-toast-notifications";
-import SiteHeader from "../../components/SiteHeader";
+import Header from "../../components/Navbar";
 import StyledInput from "../../components/StyledInput";
 import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsProf";
+import RightPanel from "../../components/Menu/RightPanel";
 
 function FormProf() {
   const initialState = {
@@ -46,10 +47,41 @@ function FormProf() {
       addToast("Preencha todos os campos!", { appearance: "error" });
     }
   };
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'administrator/criar-processo-seletivo',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
   return (
     <div className="screen-ps">
-      <SiteHeader />
-      <h1> Inscrição Processo Seletivo:</h1>
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel}/>
+      <h1> Cadastro de Professor:</h1>
       {formsInput.map((topic) => (
         <div key={topic.title}>
           <div className="form_dis_prof_box_title">
@@ -79,9 +111,14 @@ function FormProf() {
       <div className="divButton-psprof">
         <button className="Button-psprof" type="submit" onClick={handleClick}>
           {" "}
-          Cadastre-se
+          Cadastrar
         </button>
       </div>
+      <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+      />
     </div>
   );
 }

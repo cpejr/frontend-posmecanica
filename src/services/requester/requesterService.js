@@ -3,6 +3,8 @@ import httpClient from '../../hooks/httpClient';
 
 export const sendResetEmail = (email) => httpClient.post('/login/forgotten_password', email);
 
+export const getUserFiles = (candidateId, fileName) => httpClient.get(`/candidates/documents/${candidateId}/${fileName}`);
+
 export const getCandidates = (times, field, filter) => httpClient.get('/candidates', {
   params: {
     times,
@@ -17,6 +19,11 @@ export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
 export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/candidates/upload/${candidateId}/${fileName}`, file, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+export const uploadThesis = (file, candidateId, fileName) => httpClient.post(`/students/upload/${candidateId}/${fileName}`, file, {
   headers: {
     'Content-Type': 'multipart/form-data',
   },

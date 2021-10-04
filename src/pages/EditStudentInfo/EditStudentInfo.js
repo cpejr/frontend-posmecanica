@@ -6,37 +6,51 @@ import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import StudEdit from '../../utils/StudentEdit_ByAdmin';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/Footer';
 
 function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
-  const [expandRightPanel, setExpandRightPanel] = useState(true);
-  // eslint-disable-next-line camelcase
-  const { stud_id } = location.state.candidate;
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  if (location.state == null) {
+    window.location = '/login';
+  }
+  const { stud_id } = location.state.candidate; // eslint-disable-line
   const inputProps = [
     {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
       text: 'Lista de estudantes',
-      path: 'lista-estudantes',
+      path: 'administrator/lista-estudantes',
     },
     {
       text: 'Criar processo seletivo',
-      path: '/',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
-      text: 'Postagens de teses',
-      path: '/',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
-      text: 'Cadastro de professores',
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
+    },
+    {
+      text: 'Lista de professores',
       path: 'lista-professores',
     },
     {
+      text: 'Cadastro de professores',
+      path: 'administrator/formulario-professores',
+    },
+    {
       text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      path: 'administrator/cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
   const { addToast } = useToasts();
@@ -90,7 +104,11 @@ function EditStudentInfo({ location }) {
             <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
         </div>
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

@@ -61,3 +61,16 @@
 .modalCloseIcon {
   margin-right: 5px;
 }
+
+@media (max-width: 465px){
+  .infoModalcontainer{
+    display: flex;
+    overflow: auto;
+    font-size: small;
+  }
+  .rowGrid{
+    display: flex;
+    flex-direction: column;
+    
+  }
+}

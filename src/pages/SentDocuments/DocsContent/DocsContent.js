@@ -18,7 +18,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
   };
 
   const handleConfirmClick = async () => {
-    if (action.toLowerCase() === 'aprovar') {
+    if (action.toLowerCase() === 'homologar') {
       await managerService.updateCandidate({
         candidate_form_approval: true,
       }, candidate.candidate_id);
@@ -39,7 +39,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
     if (docs.types.length === 1) {
       return (
         <div key={docs.types[0]} className="DC-documentsDivLine">
-          <Document handleClick={handleClickInfoModal} type={docs.types[0]}>
+          <Document handleClick={handleClickInfoModal} type={docs.types[0]} text={docs.text[0]}>
             {docs.icons[0]}
           </Document>
         </div>
@@ -47,12 +47,37 @@ function DocsContent({ setShowInfoModal, candidate }) {
     }
     return (
       <div key={docs.types[1]} className="DC-documentsDivLine">
-        <Document type={docs.types[0]}>
+        <Document
+          type={docs.types[0]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
           {docs.icons[0]}
         </Document>
-        <Document type={docs.types[1]}>
+        <Document
+          type={docs.types[1]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
           {docs.icons[1]}
         </Document>
+        <Document
+          type={docs.types[2]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[2]}
+        </Document>
+        {candidate.candidate_grade === 'DOUTORADO'
+        && (
+        <Document
+          type={docs.types[3]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[3]}
+        </Document>
+        )}
       </div>
     );
   };
@@ -78,12 +103,12 @@ function DocsContent({ setShowInfoModal, candidate }) {
         <div className="DC-buttons">
           <div className="DC-button-aprovar">
             <button type="button" onClick={handleButtonsClick}>
-              Aprovar
+              Homologar
             </button>
           </div>
           <div className="DC-button-solicitar">
             <button type="button" onClick={handleButtonsClick}>
-              Reprovar
+              Não homologar
             </button>
           </div>
         </div>

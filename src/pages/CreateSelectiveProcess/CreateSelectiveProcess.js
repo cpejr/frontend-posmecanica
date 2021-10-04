@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './CreateSelectiveProcess.scss';
 import { useToasts } from 'react-toast-notifications';
 import processType from '../../utils/processType';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
+import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 
 function registerDis() {
@@ -42,9 +43,44 @@ function registerDis() {
       addToast('Data inválida!', { appearance: 'error' });
     }
   };
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
   return (
     <div className="screen-ps">
-      <SiteHeader />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <h1> Cadastro de Processo Seletivo:</h1>
       <div className="form_SP_cad_box_title">
         <div className="form_SP_cad_title">
@@ -111,6 +147,11 @@ function registerDis() {
             </div>
           </div>
         </div>
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

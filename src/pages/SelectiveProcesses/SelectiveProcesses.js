@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BiBeer } from 'react-icons/bi';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -8,7 +9,9 @@ import SPInfoModal from '../SentDocuments/SPInfoModal';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
 import Semeters from '../../utils/semesters';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
+import RightPanel from '../../components/Menu/RightPanel';
+import { useAuth } from '../../providers/auth';
 
 const semeters = Semeters;
 const initialStateData = {
@@ -19,6 +22,7 @@ const initialStateData = {
 };
 
 function SelectiveProcesses() {
+  const { user } = useAuth();
   const history = useHistory();
   const initialState = {
     semester: '',
@@ -54,7 +58,7 @@ function SelectiveProcesses() {
     }
   };
   const handleClickRedirect = () => {
-    history.push('painel/professor');
+    history.push('professor');
   };
 
   useEffect(async () => {
@@ -94,10 +98,57 @@ function SelectiveProcesses() {
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'administrator/criar-processo-seletivo',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
+  const inputPropsProfessor = [
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Página principal',
+      path: 'professor',
+    },
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
   return (
     <div className="SP-externalDiv">
-      <SiteHeader />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SP-screen">
         <div className="SP-title">
           Processos Seletivos
@@ -166,6 +217,22 @@ function SelectiveProcesses() {
           />
           )}
         </div>
+        {user.type === 'administrator'
+        && (
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
+        )}
+        {user.type === 'professor'
+        && (
+        <RightPanel
+          inputProps={inputPropsProfessor}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
+        )}
       </div>
       <Footer />
     </div>

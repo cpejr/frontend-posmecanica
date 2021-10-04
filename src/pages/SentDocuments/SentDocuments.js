@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './SentDocuments.scss';
 import Pagination from '@material-ui/lab/Pagination';
 import Header from '../../components/Navbar';
+import RightPanel from '../../components/Menu/RightPanel';
 import Footer from '../../components/Footer';
 import InfoModal from './InfoModal';
 import DocsContent from './DocsContent';
@@ -26,7 +27,44 @@ function SentDocuments({ location }) {
   const handleChangePag = (e, value) => {
     setPage(value);
   };
-
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Criar processo seletivo',
+      path: 'administrator/criar-processo-seletivo',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
   return (
     <div className="SD-externalDiv">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
@@ -40,6 +78,11 @@ function SentDocuments({ location }) {
         )}
         {candidate && showInfoModal && <InfoModal conteudo={candidate} close={handleClickClose} />}
       </div>
+      <RightPanel
+        inputProps={inputProps}
+        expandRightPanel={expandRightPanel}
+        setExpandRightPanel={setExpandRightPanel}
+      />
       <Footer />
     </div>
   );

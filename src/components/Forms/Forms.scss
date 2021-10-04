@@ -1,20 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 $corFundo: #c7d1dc;
 $azulPadrao: #1d2d57;
-.forms_box_title{
+.forms_box_title {
   display: flex;
   align-items: center;
-  background-image: linear-gradient(to right, $azulPadrao,#1037a1);
-  margin:2%;
+  background-image: linear-gradient(to right, $azulPadrao, #1037a1);
+  margin: 2%;
   height: 8%;
 }
-.forms_title{
+.forms_title {
   color: white;
   margin-left: 1%;
   font-family: Montserrat;
-  font-size: 2.0em;
+  font-size: 2em;
 }
-.forms_line{
+.forms_line {
   background-color: #ffff;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ $azulPadrao: #1d2d57;
   margin-right: 2.5%;
   margin-bottom: 1%;
 }
-.forms_line_files{
+.forms_line_files {
   background-color: #ffff;
   display: flex;
   justify-content: center;
@@ -30,17 +30,18 @@ $azulPadrao: #1d2d57;
   margin-right: 2.5%;
   margin-bottom: 1%;
 }
-.forms_input{
+.forms_input {
   margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
-.forms_input_file{
+.forms_input_file {
   margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
+  font-size: large;
 }
 .forms_divButton {
   display: flex;
@@ -59,66 +60,66 @@ $azulPadrao: #1d2d57;
     text-shadow: 0em 0.05em 0.05em #000;
     box-shadow: 1px 1px 3px #000;
     margin-bottom: 3rem;
-  cursor: pointer;
+    cursor: pointer;
+  }
 }
-}
-.forms_title{
+.forms_title {
   color: white;
   margin-left: 1%;
   font-family: Montserrat;
-  font-size: 2.0em;
+  font-size: 2em;
 }
 .forms_upload_text {
   margin-bottom: 10px;
 }
 @media screen and (max-width: 1250px) {
-  .forms_line{
+  .forms_line {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.forms_line_files{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.forms_box_title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(to right, $azulPadrao,#1037a1);
-  margin-top: 2%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 5%;
-  height: 7%;
-}
-.forms_input{
-  margin-right: 0;
-}
-.forms_input_file {
-  margin-top: 0px;
-  margin-bottom: 20px;
-  margin-right: 0;
-}
-.forms_divButton {
-  display: flex;
-  justify-content: center;
-  margin-top: 6.5%;
-  margin-bottom: 20px;
-  button {
-    height: 3rem;
-    width: 40%;
-    border: 0;
-    border-radius: 7px;
-    background-color: $azulPadrao;
-    color: #ffffff;
-    border-radius: 5px;
-    font-size: 25px;
-    text-shadow: 0em 0.3em 0.3em #000;
-    box-shadow: 1px 1px 5px #000;
-    margin-bottom: 3rem;
-  cursor: pointer;
-}
-}
+  }
+  .forms_line_files {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .forms_box_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, $azulPadrao, #1037a1);
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+    height: 7%;
+  }
+  .forms_input {
+    margin-right: 0;
+  }
+  .forms_input_file {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-right: 0;
+  }
+  .forms_divButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 6.5%;
+    margin-bottom: 20px;
+    button {
+      height: 3rem;
+      width: 40%;
+      border: 0;
+      border-radius: 7px;
+      background-color: $azulPadrao;
+      color: #ffffff;
+      border-radius: 5px;
+      font-size: 25px;
+      text-shadow: 0em 0.3em 0.3em #000;
+      box-shadow: 1px 1px 5px #000;
+      margin-bottom: 3rem;
+      cursor: pointer;
+    }
+  }
 }

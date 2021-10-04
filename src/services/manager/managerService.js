@@ -21,6 +21,12 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
+export const getUserFiles = async (candidateId, fileName) => {
+  const response = await requesterService.getUserFiles(candidateId, fileName);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createCandidate = async (candidate, selectiveProcessId) => {
   candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
@@ -59,6 +65,11 @@ export const denyCandidate = async (candidateId) => {
 
 export const uploadFile = async (file, candidateId, fileName) => {
   const response = await requesterService.uploadFile(file, candidateId, fileName);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const uploadThesis = async (file, candidateId, thesisName) => {
+  const response = await requesterService.uploadThesis(file, candidateId, thesisName);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 

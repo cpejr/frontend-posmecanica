@@ -1,0 +1,121 @@
+.thesesPost-root {
+  width: 100%;
+  height: 100%;
+}
+
+.thesesPost-content {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  align-items: center;
+}
+.thesesPost-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 80%;
+  padding: 10px;
+
+  h5 {
+    font-family: "Montserrat", sans-serif;
+    font: normal 35pt Montserrat;
+    display: flex;
+    justify-content: center;
+    color: black;
+  }
+}
+.post-Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25vh;
+}
+
+.buttonPost{
+  display: flex;
+  background: #3b54a7;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.spinerButton{
+  background-color: white;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #3b54a7;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.MuiFormControl-root.MuiTextField-root.studentName {
+  margin-bottom: 25px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.933);
+  border: 1px solid #f3eeee;
+  box-sizing: border-box;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.studentName-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+
+.MuiButtonBase-root.studentName-grid {
+  background-color: rgb(76, 76, 167);
+}
+.postButton {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-height: 620px) {
+  .thesesPost-grid {
+    h5 {
+      font: normal 30pt Montserrat;
+    }
+  }
+
+  .post-Content{
+    margin-top: 30px;
+  }
+
+  .studentName-grid {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .thesesPost-grid {
+    padding: 0px;
+    h5 {
+      font: normal 20pt Montserrat;
+    }
+  }
+  .MuiFormControl-root.MuiTextField-root.studentName {
+    width: 100%;
+  }
+  .post-Content {
+    flex-direction: column;
+  }
+  .studentName-grid{
+    width: 90%;
+    justify-items: center;
+    overflow: auto;
+  }
+}

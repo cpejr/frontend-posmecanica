@@ -6,21 +6,19 @@ import BoxDashboardProfessor from '../../components/Dashboards/Professor';
 function DashboardProfessor() {
   const inputProps = [
     {
-      icon: <BiBeer />,
-      text: 'Inbox',
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
-      icon: <BiBeer />,
-      text: 'Starred',
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
+      text: 'Lista de professores',
+      path: 'lista-professores',
     },
     {
-      icon: <BiBeer />,
-      text: 'Send email',
-    },
-    {
-      icon: <BiBeer />,
+      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
 
