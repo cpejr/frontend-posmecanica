@@ -7,7 +7,6 @@ import {
   AccordionDetails,
   Typography,
 } from "@material-ui/core";
-import { BiBeer } from 'react-icons/bi';
 import { makeStyles } from "@material-ui/core/styles";
 import { FaChevronCircleDown } from "react-icons/fa";
 import Footer from '../../components/Footer';
@@ -80,17 +79,14 @@ function ProfessorList() {
   ];
   const inputPropsProfessor = [
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Página principal',
       path: 'professor',
     },
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Lista de professores',
       path: 'lista-professores',
     },
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
@@ -214,21 +210,21 @@ function ProfessorList() {
         </div>
         {user.type === 'administrator'
           && (
-          <RightPanel
-            inputProps={inputProps}
-            expandRightPanel={expandRightPanel}
-            setExpandRightPanel={setExpandRightPanel}
-          />
+            <RightPanel
+              inputProps={inputProps}
+              expandRightPanel={expandRightPanel}
+              setExpandRightPanel={setExpandRightPanel}
+            />
           )}
-          {user.type === 'professor'
+        {user.type === 'professor'
           && (
-          <RightPanel
-            inputProps={inputPropsProfessor}
-            expandRightPanel={expandRightPanel}
-            setExpandRightPanel={setExpandRightPanel}
-          />
+            <RightPanel
+              inputProps={inputPropsProfessor}
+              expandRightPanel={expandRightPanel}
+              setExpandRightPanel={setExpandRightPanel}
+            />
           )}
-        </div>
+      </div>
       <Footer />
     </div>
   );

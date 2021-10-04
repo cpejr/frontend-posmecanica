@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { BiBeer } from 'react-icons/bi';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -131,17 +130,14 @@ function SelectiveProcesses() {
   ];
   const inputPropsProfessor = [
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Página principal',
       path: 'professor',
     },
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Lista de professores',
       path: 'lista-professores',
     },
     {
-      icon: <BiBeer style={{ marginRight: '10px' }} />,
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
@@ -209,30 +205,30 @@ function SelectiveProcesses() {
             ))}
           </div>
           {showSPInfoModal && (
-          <SPInfoModal
-            conteudo={data}
-            close={handleClickClose}
-            redirect={handleClickRedirect}
-            className="PSLinkButton"
-          />
+            <SPInfoModal
+              conteudo={data}
+              close={handleClickClose}
+              redirect={handleClickRedirect}
+              className="PSLinkButton"
+            />
           )}
         </div>
         {user.type === 'administrator'
-        && (
-        <RightPanel
-          inputProps={inputProps}
-          expandRightPanel={expandRightPanel}
-          setExpandRightPanel={setExpandRightPanel}
-        />
-        )}
+          && (
+            <RightPanel
+              inputProps={inputProps}
+              expandRightPanel={expandRightPanel}
+              setExpandRightPanel={setExpandRightPanel}
+            />
+          )}
         {user.type === 'professor'
-        && (
-        <RightPanel
-          inputProps={inputPropsProfessor}
-          expandRightPanel={expandRightPanel}
-          setExpandRightPanel={setExpandRightPanel}
-        />
-        )}
+          && (
+            <RightPanel
+              inputProps={inputPropsProfessor}
+              expandRightPanel={expandRightPanel}
+              setExpandRightPanel={setExpandRightPanel}
+            />
+          )}
       </div>
       <Footer />
     </div>
