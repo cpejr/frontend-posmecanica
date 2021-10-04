@@ -23,14 +23,23 @@ function registerDis() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    if (dados.process_type.length > 3
-      && dados.process_name.length > 3
-      && dados.process_date_begin !== ''
-      && dados.process_date_end !== '') {
-      await managerService.createSelectiveProcess(dados);
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+    if (dados.process_date_begin < dados.process_date_end) {
+      if (dados.process_type.length > 3
+        && dados.process_name.length > 3
+        && dados.process_date_begin !== ''
+        && dados.process_date_end !== '') {
+        const verify = await managerService.verifySelectiveProcess('process_type', dados);
+        if (verify.length === 0) {
+          await managerService.createSelectiveProcess(dados);
+          addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
+        } else {
+          addToast('Já há um Processo em andamento na data escolhida!', { appearance: 'error' });
+        }
+      } else {
+        addToast('Preencha todos os campos!', { appearance: 'error' });
+      }
     } else {
-      addToast('Preencha todos os campos!', { appearance: 'error' });
+      addToast('Data inválida!', { appearance: 'error' });
     }
   };
   return (

@@ -128,6 +128,25 @@ export const createSelectiveProcess = async (selectiveProcess) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const verifySelectiveProcess = async (field, dados) => {
+  const times = 0;
+  const response = await requesterService.getSelectiveProcess(times, field, dados.process_type);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  const filteredProcess = response.data.filter(
+    (object) => {
+      const initialDate = new Date(object.process_date_begin);
+      const finalDate = new Date(object.process_date_end);
+      const actualInitialDate = new Date(dados.process_date_begin);
+      const actualFinalDate = new Date(dados.process_date_end);
+      // condição para não criar
+      return (actualInitialDate >= initialDate && actualInitialDate <= finalDate)
+      || (actualFinalDate >= initialDate && actualFinalDate <= finalDate);
+    },
+  );
+  console.log(filteredProcess);
+  return filteredProcess;
+};
+
 export const getActualSelectiveProcess = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getSelectiveProcess(times, field, filter);
