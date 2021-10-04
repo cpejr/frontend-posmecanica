@@ -218,7 +218,8 @@ export const verifySelectiveProcess = async (field, dados) => {
       const actualFinalDate = new Date(dados.process_date_end);
       // condição para não criar
       return (actualInitialDate >= initialDate && actualInitialDate <= finalDate)
-      || (actualFinalDate >= initialDate && actualFinalDate <= finalDate);
+      || (actualFinalDate >= initialDate && actualFinalDate <= finalDate)
+      || (actualInitialDate <= initialDate && actualFinalDate >= finalDate);
     },
   );
   console.log(filteredProcess);

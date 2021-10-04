@@ -84,7 +84,7 @@ function ThesisDefense() {
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="defenseContainer">
         <h2 className="defenseTitle">Divulgação de Defesa de Tese</h2>
-        <div className="subTitle-line" />
+        <div className="subTitleLine" />
         <div className="defenseBlock">
           <div className="defenseGrid">
             <div className="leftDefenseGrid">

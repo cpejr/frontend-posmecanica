@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CreateSelectiveProcess.scss';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import processType from '../../utils/processType';
 import Header from '../../components/Navbar';
@@ -16,6 +17,7 @@ function registerDis() {
     process_date_end: '',
   };
   const [dados, setDados] = useState(initialState);
+  const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -33,6 +35,7 @@ function registerDis() {
         if (verify.length === 0) {
           await managerService.createSelectiveProcess(dados);
           addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
+          history.push('/painel/processos-seletivos');
         } else {
           addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
         }
