@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Button from '@material-ui/core/Button';
@@ -17,6 +17,7 @@ function InscritosIsoPS({
   const [label, setLabel] = useState();
   const [deletePermission, setDeletePermission] = useState(false);
   const [showCandidate, setShowCandidate] = useState(true);
+  const [object, setObject] = useState([]);
   const { addToast } = useToasts();
   let nullCounter = 0;
 
@@ -43,6 +44,21 @@ function InscritosIsoPS({
       (person) => person.candidate_id !== candidate.candidate_id,
     );
     setIsoCandidates(removeCandidate);
+  };
+
+  const buildObject = (candidateId, disciplineId) => {
+    const line = {};
+
+    Promise.all([
+      managerService.getByIdDiscipline(disciplineId),
+      managerService.getByIdDisciplineDeferment(candidateId, disciplineId),
+      managerService.getProfByDisciplineId(disciplineId),
+    ]).then((response) => {
+      line.disciplineName = response[0].discipline_name;
+      line.candidateDisciplineDeferment = response[1][0].cd_dis_deferment;
+      line.professorName = response[2].prof_name;
+    });
+    setObject((previousState) => [...previousState, line]);
   };
 
   const handleClickConfirmClick = async () => {
@@ -138,6 +154,20 @@ function InscritosIsoPS({
     setShowConfirmModalCandidate(true);
   };
 
+  useEffect(() => {
+    setObject('');
+    buildObject(candidate.candidate_id, candidate.first_discipline_isolated);
+    if (candidate.second_discipline_isolated) {
+      buildObject(candidate.candidate_id, candidate.second_discipline_isolated);
+    }
+    if (candidate.third_discipline_isolated) {
+      buildObject(candidate.candidate_id, candidate.third_discipline_isolated);
+    }
+    if (candidate.fourth_discipline_isolated) {
+      buildObject(candidate.candidate_id, candidate.fourth_discipline_isolated);
+    }
+  }, []);
+
   return (
     <div className="isoPsListItem" id={candidate.candidate_id}>
       <div className="isoPsDivItem">
@@ -172,7 +202,8 @@ function InscritosIsoPS({
       </div>
       {showInfoModal && (
         <InfoModal
-          painelADM={0}
+          painelADM={1}
+          disciplinaInfo={object}
           conteudo={candidate}
           close={handleClickClose}
           className="isoPsLinkButton"
