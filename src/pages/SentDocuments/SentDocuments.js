@@ -76,7 +76,8 @@ function SentDocuments({ location }) {
         {candidate && candidate.candidate_rating === null && (
           <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
         )}
-        {candidate && showInfoModal && <InfoModal conteudo={candidate} close={handleClickClose} />}
+        {candidate && showInfoModal
+          && <InfoModal painelADM={0} conteudo={candidate} close={handleClickClose} />}
       </div>
       <RightPanel
         inputProps={inputProps}
