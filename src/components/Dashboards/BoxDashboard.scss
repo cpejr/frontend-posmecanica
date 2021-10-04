@@ -29,11 +29,11 @@
 }
 .BdBox {
   max-height: 280px!important;
-  overflow: scroll;
+  overflow: auto;
 }
 .BdBoxProf {
   max-height: 350px!important;
-  overflow: scroll;
+  overflow: auto;
 }
 .BdBoxTitle {
   height: 25%;
@@ -70,6 +70,9 @@
   display: flex;
   width: 16rem;
   align-items: center;
+  .MuiSelect-selectMenu{
+    padding: 24px 32px 24px 12px;
+  }
 }
 
 @media (max-width: 769px){
@@ -80,7 +83,8 @@
   }
 
   .BdBoxFather{
-    height: 400px;
+    height: auto;
+    min-height: 300px;
     margin: 0px 0px 20px 0px;
   }
 
@@ -92,9 +96,13 @@
     font-size: 15px;
     justify-content: inherit;
   }
-
   .BdInputReal{
-    width: 50%;
+    width: 40%;
+    margin-left: 10%;
+    .MuiSelect-selectMenu{
+      font-size: 15px;
+      padding: 12px 32px 12px 12px;
+    }
   }
 
   .MuiInputBase-root.MuiFilledInput-root.MuiFilledInput-underline.MuiInputBase-formControl.BdInputReal{
