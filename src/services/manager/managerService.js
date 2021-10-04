@@ -47,8 +47,16 @@ export const createCandidateISO = async (candidate, selectiveProcessId) => {
     { cd_dis_id: secondDisciplineIsolated },
     { cd_dis_id: thirdDisciplineIsolated },
     { cd_dis_id: fourthDisciplineIsolated }];
+  const notNullableDisciplines = [];
+  disciplines.map((id) => {
+    if (id.cd_dis_id !== '') {
+      notNullableDisciplines.push(id);
+    }
+    return notNullableDisciplines;
+  });
+  console.log(notNullableDisciplines);
   await requesterService
-    .createCandidateDiscipline(response.data.id, disciplines);
+    .createCandidateDiscipline(response.data.id, notNullableDisciplines);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data.id;
 };
@@ -182,6 +190,12 @@ export const getByIdSelectiveProcess = async (selectiveProcessId) => {
   const response = await requesterService.getByIdSelectiveProcess(selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const updateSelectiveProcess = async (selectiveProcess, selectiveProcessId) => {
+  const response = await requesterService
+    .updateSelectiveProcess(selectiveProcess, selectiveProcessId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
 export const getStudents = async (field, filter) => {

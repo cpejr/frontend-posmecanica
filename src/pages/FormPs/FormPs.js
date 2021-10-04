@@ -113,6 +113,9 @@ function FormPs() {
           dados,
           selectiveProcesses[0].process_id
         );
+        const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+        let quantity = infoSelectiveProcess.candidate_quantity + 1;
+        await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
         files.forEach(async (file) => {
           const data = new FormData();
           data.append("file", file.file);

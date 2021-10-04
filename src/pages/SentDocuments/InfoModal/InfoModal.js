@@ -105,27 +105,26 @@ function InfoModal({ close, conteudo }) {
               {` ${conteudo?.candidate_cep}`}
             </div>
           </div>
-          {conteudo?.first_discipline_isolated !== 'none'
-          && conteudo?.second_discipline_isolated !== 'none'
-          && (
           <div className="rowGrid">
             <div>
               <b>Primeira Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[0]?.discipline_name} `}
+              {` ${conteudo?.disciplines[0]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'} `}
             </div>
             <div>
               <b>Segunda Disciplina Isolada:</b>
-              {` ${conteudo?.disciplines[1]?.discipline_name}`}
+              {` ${conteudo?.disciplines[1]?.discipline_name ? conteudo?.disciplines[1]?.discipline_name : '-'}`}
             </div>
           </div>
-          )}
-          {conteudo?.third_discipline_isolated !== 'none'
-          && (
-          <div className="row">
-            <b>Terceira Disciplina Isolada:</b>
-            {` ${conteudo?.disciplines[2]?.discipline_name}`}
+          <div className="rowGrid">
+            <div>
+              <b>Terceira Disciplina Isolada:</b>
+              {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+            </div>
+            <div>
+              <b>Quarta Disciplina Isolada:</b>
+              {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+            </div>
           </div>
-          )}
           <div className="row">
             <b>Data de Nascimento:</b>
             {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
