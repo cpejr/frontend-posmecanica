@@ -138,6 +138,7 @@ function StudentList() {
                 <InscritoPS
                   candidate={student}
                   boolean="true"
+                  studentCondition="true"
                 />
               </div>
             ))}

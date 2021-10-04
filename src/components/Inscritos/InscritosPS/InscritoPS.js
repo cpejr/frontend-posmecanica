@@ -6,7 +6,7 @@ import InfoModal from '../../../pages/SentDocuments/InfoModal';
 import './InscritoPS.scss';
 import * as managerService from '../../../services/manager/managerService';
 
-function InscritoPS({ candidate, boolean }) {
+function InscritoPS({ candidate, boolean, studentCondition }) {
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   const [buttonText, setButtonText] = useState();
@@ -123,7 +123,8 @@ function InscritoPS({ candidate, boolean }) {
       )}
       {showInfoModal && (
         <InfoModal
-          painelADM={1}
+          painelADM={studentCondition === 'true' ? 0 : 1}
+          studentList={studentCondition}
           disciplinaInfo={object}
           conteudo={candidate}
           close={handleClickClose}

@@ -70,6 +70,19 @@
     white-space: pre-wrap;
   }
 }
+.divInfoModalStudentRedirect{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+.InfoModalStudentRedirect {
+  background-color: green;
+  border: none;
+  width: 50%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
 .close{
   background-color: #000;
   border: 0;
