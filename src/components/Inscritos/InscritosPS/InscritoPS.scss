@@ -19,6 +19,10 @@
   font-family: Montserrat;
   font-size: 18px;
   width: 33%;
+
+  @media(max-width: 650px){
+    font-size: small;
+  }
 }
 .trash {
   cursor: pointer;
@@ -28,14 +32,73 @@
   width: 47.5%;
   font-family: Montserrat;
   text-align: center;
+
+  @media(max-width: 650px){
+    font-size: 8pt;
+    min-width: 55px;
+  }
 } 
 .mestrado{
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  background-color: #e72929;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  min-width: 70px;
+
+  @media(max-width: 650px){
+    font-size: small;
+    min-width: 60px;
+  }
 }
 .doutorado{
-  background-color: green;
+  display: flex;
+  justify-content: center;
+  background-color: #29e729;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  min-width: 70px;
+
+  @media(max-width: 650px){
+    font-size: small;
+    min-width: 60px;
+  }
+}
+.isolada{
+  display: flex;
+  justify-content: center;
+  background-color: #020896;
+  color:white;
+  min-width: 70px;
+  padding: 4px;
+  border-radius: 4px;
+
+  @media(max-width: 650px){
+    font-size: small;
+    min-width: 60px;
+  }
+
+}
+.divButtonInfoIsolatedCandidate {
+  display: flex;
+  justify-content: center;
+  width: 47.5%;
+
+  @media(max-width: 650px){
+    font-size: 8pt;
+    min-width: 55px;
+  }
+}
+.buttonInfoIsolatedCandidate {
+  background-color: transparent;
+  font-family: Montserrat;
+  font-size: 14px;
+  border: none;
+
+  @media(max-width: 650px){
+    font-size: 8pt;
+    min-width: 55px;
+  }
 }

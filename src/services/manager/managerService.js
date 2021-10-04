@@ -27,6 +27,36 @@ export const getUserFiles = async (candidateId, fileName) => {
   return response.data;
 };
 
+export const getAllCandidateDiscipline = async (field, filter) => {
+  const times = 0;
+  const response = await requesterService.getCandidateDiscipline(times, field, filter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const updateByIdDisciplineDeferment = async (deferment, candidateId, disciplineId) => {
+  const response = await requesterService.updateByIdDisciplineDeferment(
+    deferment,
+    candidateId,
+    disciplineId,
+  );
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdDisciplineDeferment = async (firstFilter, secondFilter) => {
+  const response = await requesterService.getByIdDisciplineDeferment(firstFilter, secondFilter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdDisciplineDefermentCandidateSituation = async (filter, situation) => {
+  const response = await requesterService
+    .getByIdDisciplineDefermentCandidateSituation(filter, situation);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createCandidate = async (candidate, selectiveProcessId) => {
   candidate.candidate_date_inscrition = new Date();
   const response = await requesterService.createCandidate(candidate, selectiveProcessId);
@@ -43,7 +73,8 @@ export const createCandidateISO = async (candidate, selectiveProcessId) => {
     third_discipline_isolated: thirdDisciplineIsolated,
     fourth_discipline_isolated: fourthDisciplineIsolated,
   } = candidate;
-  const disciplines = [{ cd_dis_id: firstDisciplineIsolated },
+  const disciplines = [
+    { cd_dis_id: firstDisciplineIsolated },
     { cd_dis_id: secondDisciplineIsolated },
     { cd_dis_id: thirdDisciplineIsolated },
     { cd_dis_id: fourthDisciplineIsolated }];
@@ -81,8 +112,11 @@ export const uploadThesis = async (file, candidateId, thesisName) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const createDiscipline = async (discipline) => {
+export const createDiscipline = async (discipline, profId) => {
   const response = await requesterService.createDiscipline(discipline);
+  const disciplineId = [{ pd_dis_id: response.data.id }];
+  const { prof_id: professorId } = profId;
+  await requesterService.createProfessorDiscipline(professorId, disciplineId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -106,6 +140,12 @@ export const getDisciplines = async (field, filter) => {
   return allDisciplines;
 };
 
+export const getByIdDiscipline = async (disciplineId) => {
+  const response = await requesterService.getByIdDiscipline(disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -126,6 +166,26 @@ export const login = async (user) => {
 export const createProfessor = async (professor) => {
   const response = await requesterService.createProfessor(professor);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getProfByDisciplineId = async (disciplineId) => {
+  const response = await requesterService.getProfByDisciplineId(disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getAllProfessors = async () => {
+  const times = 0;
+  const response = await requesterService.getProfessor(times);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getAllProfessorDiscipline = async (field, filter) => {
+  const times = 0;
+  const response = await requesterService.getProfessorDiscipline(times, field, filter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };
 
 export const getSearchArea = async (field, filter) => {
@@ -218,11 +278,30 @@ export const updateStudent = async (student, id) => {
 
 export const createStudent = async (student) => {
   const { disciplines } = student;
-  const sdId = disciplines.map((sd) => ({ sd_dis_id: sd.discipline_id }));
-  const { stud_scholarship: studScholarship } = student;
+  let sdId;
+  const sdIdArray = [];
+  let verify = false;
 
+  const candidateDiscipline = await requesterService
+    .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
+  if (disciplines.length === 4) {
+    if (candidateDiscipline.data.length === 3) {
+      sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
+      verify = true;
+    }
+  } else {
+    sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
+  }
+
+  const { stud_scholarship: studScholarship } = student;
   const response = await requesterService.createStudent(student, studScholarship);
-  await requesterService.createStudentDiscipline(response.data.id, sdId);
+  if (disciplines.length === 4 && verify === true) {
+    await requesterService.createStudentDiscipline(response.data.id, sdIdArray);
+  } else {
+    await requesterService.createStudentDiscipline(response.data.id, sdId);
+  }
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
@@ -230,4 +309,36 @@ export const getByIdStudent = async (studentId) => {
   const response = await requesterService.getByIdStudent(studentId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const getCandidatesWithDisciplineSituation = async (field, filter, pageFilter) => {
+  let times = 0;
+  let response;
+  let allCandidates = [];
+  do {
+    response = await requesterService.getCandidates(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allCandidates = allCandidates.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+
+  const process = await getActualSelectiveProcess('process_type', 'ISOLADA');
+  const processFilter = allCandidates
+    .filter((resp) => resp.candidate_process_id === process[0].process_id);
+
+  const filteredCandidates = processFilter
+    .filter((resp) => resp.disciplines.some(
+      (element) => element.discipline_id === pageFilter,
+    ) === true);
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const data of filteredCandidates) {
+    const candidateDiscipline = await requesterService.getByIdDisciplineDeferment(
+      data.candidate_id,
+      pageFilter,
+    );
+    data.candidate_discipline = candidateDiscipline.data;
+  }
+
+  return filteredCandidates;
 };

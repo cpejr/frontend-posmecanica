@@ -14,9 +14,32 @@ export const getCandidates = (times, field, filter) => httpClient.get('/candidat
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const getByIdCandidate = (candidateId) => httpClient.get(`/candidates/${candidateId}`);
+export const getCandidateDiscipline = (times, field, filter) => httpClient.get('/getAll/candidate_dis', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const getByIdDisciplineDeferment = (firstFilter, secondFilter) => httpClient.get('/getByIdDisciplineDeferment/candidate_dis', {
+  params: {
+    firstFilter,
+    secondFilter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const getByIdDisciplineDefermentCandidateSituation = (filter, situation) => httpClient.get('/getByIdDisciplineDefermentCandidateSituation/candidate_dis', {
+  params: {
+    filter,
+    situation,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 export const createCandidate = (candidate, selectiveProcessId) => httpClient.post(`/candidates/${selectiveProcessId}`, candidate);
 export const createCandidateDiscipline = (id, disciplineIds) => httpClient.post(`/connect/candidate_dis/${id}`, { cd_dis_ids: disciplineIds });
 export const updateCandidate = (candidate, candidateId) => httpClient.put(`/candidates/${candidateId}`, candidate);
+export const updateByIdDisciplineDeferment = (deferment, candidateId, disciplineId) => httpClient.put(`/updateDisciplineDeferment/candidate_dis/${candidateId}/${disciplineId}`, deferment);
 export const deleteCandidate = (candidateId) => httpClient.delete(`/candidates/${candidateId}`);
 export const uploadFile = (file, candidateId, fileName) => httpClient.post(`/candidates/upload/${candidateId}/${fileName}`, file, {
   headers: {
@@ -34,6 +57,24 @@ export const createDiscipline = (discipline) => httpClient.post('/disciplines', 
 export const login = (user) => httpClient.post('/login', user);
 
 export const createProfessor = (professor) => httpClient.post('/professors', professor);
+export const getProfByDisciplineId = (disciplineId) => httpClient.get(`/professors/discipline/${disciplineId}`);
+export const getProfessor = (times, field, filter) => httpClient.get('/professors', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
+export const createProfessorDiscipline = (id, disciplineIds) => httpClient.post(`/connect/professor_discipline/${id}`, { pd_dis_ids: disciplineIds });
+export const getProfessorDiscipline = (times, field, filter) => httpClient.get('/getAll/professor_discipline', {
+  params: {
+    times,
+    field,
+    filter,
+  },
+  paramsSerializer: (params) => qs.stringify(params),
+});
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {
@@ -72,6 +113,7 @@ export const getDisciplines = (times, field, filter) => httpClient.get('/discipl
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const getByIdDiscipline = (disciplineId) => httpClient.get(`/disciplines/${disciplineId}`);
 
 export const updateStudent = (student, studentId) => httpClient.put(`/students/${studentId}`, student);
 export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);
