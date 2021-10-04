@@ -3,7 +3,7 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({
-  close, conteudo, painelADM, disciplinaInfo,
+  close, conteudo, painelADM, disciplinaInfo, studentList,
 }) {
   function formatedDate(date) {
     const data = new Date(date);
@@ -148,6 +148,13 @@ function InfoModal({
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
               </div>
             </div>
+            {studentList === 'true' && (
+              <div className="divInfoModalStudentRedirect">
+                <button type="button" className="InfoModalStudentRedirect">
+                  Editar estudante
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ) : (
