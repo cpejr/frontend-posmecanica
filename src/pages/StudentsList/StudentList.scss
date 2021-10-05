@@ -67,3 +67,10 @@
     flex-wrap: wrap;
   }
 }
+@media (max-width:460px){
+  .studentList-FiltersDIVInside {
+    .MuiInputLabel-filled {
+      font-size: smaller;
+    }
+  }
+}
