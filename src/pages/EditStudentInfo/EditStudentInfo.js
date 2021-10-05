@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './EditStudentInfo.scss';
 import { useToasts } from 'react-toast-notifications';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
@@ -9,12 +10,13 @@ import StudEdit from '../../utils/StudentEdit_ByAdmin';
 import Footer from '../../components/Footer';
 
 function EditStudentInfo({ location }) {
+  const history = useHistory();
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   if (location.state == null) {
     window.location = '/login';
   }
-  const { stud_id } = location.state.candidate; // eslint-disable-line
+  const { stud_id } = location.state; // eslint-disable-line
   const inputProps = [
     {
       text: 'Página principal',
@@ -59,6 +61,7 @@ function EditStudentInfo({ location }) {
       e.preventDefault();
       await managerService.updateStudent(dados, stud_id);
       addToast('Cadastro atualizado com sucesso!', { appearance: 'success' });
+      history.push('/painel/administrator/lista-estudantes');
     } catch {
       addToast('Falha em atualizar o cadastro!', { appearance: 'error' });
     }

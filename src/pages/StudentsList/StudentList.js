@@ -102,35 +102,37 @@ function StudentList() {
         <div className="studentList-LeftContainer">
           <h1>Lista de estudantes</h1>
           <div className="studentList-Filters">
-            <StyledInput
-              styled={{ marginTop: '20px' }}
-              type="text"
-              id="filter-name"
-              label="Nome"
-              width="16rem"
-              dados={filterName}
-              setDados={handleFilterNameChange}
-            />
-            <StyledInput
-              type="number"
-              id="filter-year"
-              label="Ano"
-              width="16rem"
-              field={years}
-              select
-              dados={filterYear}
-              setDados={handleFilterYearChange}
-            />
-            <StyledInput
-              type="text"
-              id="filter-graduation"
-              label="Graduação"
-              width="16rem"
-              field={AllTitleTypes}
-              select
-              dados={filterGraduation}
-              setDados={handleFilterGraduationChange}
-            />
+            <div className="studentList-FiltersDIVInside">
+              <StyledInput
+                styled={{ marginTop: '20px' }}
+                type="text"
+                id="filter-name"
+                label="Nome"
+                width="80%"
+                dados={filterName}
+                setDados={handleFilterNameChange}
+              />
+              <StyledInput
+                type="number"
+                id="filter-year"
+                label="Ano"
+                width="80%"
+                field={years}
+                select
+                dados={filterYear}
+                setDados={handleFilterYearChange}
+              />
+              <StyledInput
+                type="text"
+                id="filter-graduation"
+                label="Graduação"
+                width="80%"
+                field={AllTitleTypes}
+                select
+                dados={filterGraduation}
+                setDados={handleFilterGraduationChange}
+              />
+            </div>
           </div>
           <div className="gridAll">
             {filterStudents.map((student) => (
