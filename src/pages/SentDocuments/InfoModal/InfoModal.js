@@ -1,6 +1,7 @@
 import React from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList,
@@ -14,6 +15,9 @@ function InfoModal({
     const year = data.getFullYear();
     return `${responseDay}/${responseMonth}/${year}`;
   }
+
+  const history = useHistory();
+
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -22,6 +26,13 @@ function InfoModal({
       return 'Deferida';
     }
     return 'Pendente';
+  }
+
+  function redirect() {
+    history.push({
+      pathname: '/painel/administrator/editar/aluno',
+      state: conteudo,
+    });
   }
 
   return (
@@ -150,7 +161,7 @@ function InfoModal({
             </div>
             {studentList === 'true' && (
               <div className="divInfoModalStudentRedirect">
-                <button type="button" className="InfoModalStudentRedirect">
+                <button type="button" className="InfoModalStudentRedirect" onClick={redirect}>
                   Editar estudante
                 </button>
               </div>
