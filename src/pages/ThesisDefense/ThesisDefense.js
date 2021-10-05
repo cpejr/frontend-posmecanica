@@ -26,7 +26,7 @@ function ThesisDefense() {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Lista de estudantes',
@@ -35,6 +35,14 @@ function ThesisDefense() {
     {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
     },
     {
       text: 'Cadastro de professores',
