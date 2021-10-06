@@ -7,7 +7,7 @@ import RightPanel from '../../components/Menu/RightPanel';
 import Footer from '../../components/Footer';
 import InfoModal from './InfoModal';
 import DocsContent from './DocsContent';
-import TestContent from './TestContent';
+import ApproveContent from './ApproveContent';
 
 function SentDocuments({ location }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
@@ -72,8 +72,8 @@ function SentDocuments({ location }) {
         {candidate && page === 1 && (
           <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
         )}
-        {candidate && page === 2 && <TestContent id={candidate.candidate_id} />}
-        {candidate && candidate.candidate_rating === null && (
+        {candidate && page === 2 && <ApproveContent candidate={candidate} />}
+        {candidate && (
           <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
         )}
         {candidate && showInfoModal

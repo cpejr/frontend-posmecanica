@@ -99,7 +99,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
       <div className="DC-documentsDiv">
         {infos.map((info) => renderInfo(info))}
       </div>
-      {candidate.candidate_form_approval === null && (
+      {candidate.candidate_form_approval === null ? (
         <div className="DC-buttons">
           <div className="DC-button-aprovar">
             <button type="button" onClick={handleButtonsClick}>
@@ -112,7 +112,16 @@ function DocsContent({ setShowInfoModal, candidate }) {
             </button>
           </div>
         </div>
+      ) : (
+        <div className="DC-result">
+          {candidate.candidate_form_approval === true ? (
+            <>Documentos Homologados</>
+          ) : (
+            <>Documentos não homologados</>
+          )}
+        </div>
       )}
+
       {showConfirmModal && (
         <Modal handleCloseClick={handleCloseClick} handleConfirmClick={handleConfirmClick}>
           {`Deseja ${action.toLowerCase()} os doumentos do candidato?`}
