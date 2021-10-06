@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -22,7 +21,6 @@ const initialStateData = {
 
 function SelectiveProcesses() {
   const { user } = useAuth();
-  const history = useHistory();
   const initialState = {
     semester: '',
   };
@@ -44,7 +42,10 @@ function SelectiveProcesses() {
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
     }
-    return 'Finalizado';
+    if (currentDate > endDate) {
+      return 'Finalizado';
+    }
+    return 'Não iniciado';
   }
   const handleClickClose = () => {
     setShowSPInfoModal(false);
@@ -55,9 +56,6 @@ function SelectiveProcesses() {
     } else {
       setShowSPInfoModal(true);
     }
-  };
-  const handleClickRedirect = () => {
-    history.push('professor');
   };
 
   useEffect(async () => {
@@ -208,7 +206,6 @@ function SelectiveProcesses() {
             <SPInfoModal
               conteudo={data}
               close={handleClickClose}
-              redirect={handleClickRedirect}
               className="PSLinkButton"
             />
           )}
