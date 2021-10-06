@@ -98,7 +98,7 @@ const formsInput = [
           {
             type: 'text',
             id: 'prof_curriculum',
-            label: 'Currículo Lattes',
+            label: 'Curriculum Lattes',
             field: null,
             select: false,
           },

@@ -80,7 +80,7 @@ function FormProf() {
   ];
   return (
     <div className="screen-ps">
-      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel}/>
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <h1> Cadastro de Professor:</h1>
       {formsInput.map((topic) => (
         <div key={topic.title}>
@@ -108,6 +108,18 @@ function FormProf() {
           ))}
         </div>
       ))}
+      <div className="DIV_form_dis_prof_description">
+        <div className="DIVinside_form_dis_prof_description">
+          <StyledInput
+            type="text"
+            id="prof_description"
+            label="Descrição do professor"
+            multiline
+            dados={dados}
+            setDados={handleChange}
+          />
+        </div>
+      </div>
       <div className="divButton-psprof">
         <button className="Button-psprof" type="submit" onClick={handleClick}>
           {" "}
@@ -115,9 +127,9 @@ function FormProf() {
         </button>
       </div>
       <RightPanel
-          inputProps={inputProps}
-          expandRightPanel={expandRightPanel}
-          setExpandRightPanel={setExpandRightPanel}
+        inputProps={inputProps}
+        expandRightPanel={expandRightPanel}
+        setExpandRightPanel={setExpandRightPanel}
       />
     </div>
   );
