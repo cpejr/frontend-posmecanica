@@ -106,12 +106,12 @@ function SelectiveProcesses() {
       path: 'administrator/lista-estudantes',
     },
     {
-      text: 'Criar processo seletivo',
-      path: 'administrator/criar-processo-seletivo',
+      text: 'Lista de professores',
+      path: 'lista-professores',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
+      text: 'Criar processo seletivo',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Cadastro de professores',
@@ -120,6 +120,10 @@ function SelectiveProcesses() {
     {
       text: 'Cadastro de disciplina isolada',
       path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',

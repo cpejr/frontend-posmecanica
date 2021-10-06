@@ -70,6 +70,10 @@ function registerDis() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
@@ -78,16 +82,12 @@ function registerDis() {
       path: 'processos-seletivos',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
-      text: 'Lista de professores',
-      path: 'lista-professores',
-    },
-    {
       text: 'Cadastro de professores',
       path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',
