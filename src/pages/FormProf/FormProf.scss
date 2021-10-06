@@ -3,14 +3,14 @@ $azulPadrao: #1d2d57;
 body {
   margin: 0px;
 }
-.screen-ps {
+.screen-ps-profForms {
   background-color: #ffff;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  h1 {
+  .title_professor_forms{
     text-align: center;
     margin-bottom: 0.4em;
     margin-top: 1.5em;

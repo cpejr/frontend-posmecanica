@@ -8,6 +8,7 @@ import enumm from '../../utils/enum';
 import boolean from '../../utils/boolean';
 import semester from '../../utils/semester';
 import RightPanel from '../../components/Menu/RightPanel';
+import Footer from '../../components/Footer';
 import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;
@@ -95,9 +96,9 @@ function registerDis() {
     },
   ];
   return (
-    <div className="screen-ps">
+    <div className="screen-ps-registerDis">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      <h1> Cadastro de Disciplinas:</h1>
+      <h1 className="title_registerDiscipline"> Cadastro de Disciplinas:</h1>
       <div className="form_dis_cad_box_title">
         <div className="form_dis_cad_title">
           Dados da Disciplina
@@ -200,6 +201,7 @@ function registerDis() {
         expandRightPanel={expandRightPanel}
         setExpandRightPanel={setExpandRightPanel}
       />
+      <Footer />
     </div>
   );
 }
