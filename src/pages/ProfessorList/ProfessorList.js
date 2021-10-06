@@ -61,8 +61,8 @@ function ProfessorList() {
       path: 'administrator/criar-processo-seletivo',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',
@@ -71,6 +71,10 @@ function ProfessorList() {
     {
       text: 'Cadastro de disciplina isolada',
       path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',
