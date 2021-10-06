@@ -157,7 +157,7 @@ function SelectiveProcesses() {
               type="text"
               id="semester"
               label="Semestre"
-              width="20em"
+              width="100%"
               field={semeters}
               select
               dados={dados}
