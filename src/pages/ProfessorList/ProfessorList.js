@@ -87,8 +87,8 @@ function ProfessorList() {
       path: 'professor',
     },
     {
-      text: 'Lista de professores',
-      path: 'lista-professores',
+      text: 'Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Redefinição de senha',
