@@ -96,8 +96,8 @@ function ProfessorList() {
     },
   ];
   return (
-    <div className="box-container">
-      <div className="grid-container">
+    <div className="box-containerProfList">
+      <div className="grid-containerProfList">
         <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
         <div className="professor-list-container">
           <h1>Professores</h1>
@@ -116,8 +116,8 @@ function ProfessorList() {
               dolorem, fugit dolore perspiciatis.
             </p>
           </div>
-          <div className="header-content">
-            <h2 className="header-content-title">Buscar por área de pesquisa</h2>
+          <div className="header-content_ProfList">
+            <h2 className="header-content-title_ProfList">Buscar por área de pesquisa</h2>
             <div className="header-content-searchInput">
               <InputBase
                 autoFocus
