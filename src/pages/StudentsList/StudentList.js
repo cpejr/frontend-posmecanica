@@ -67,6 +67,10 @@ function StudentList() {
       path: 'administrator',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
@@ -75,20 +79,16 @@ function StudentList() {
       path: 'processos-seletivos',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
-      text: 'Lista de professores',
-      path: 'lista-professores',
-    },
-    {
       text: 'Cadastro de professores',
       path: 'administrator/formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
       path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',

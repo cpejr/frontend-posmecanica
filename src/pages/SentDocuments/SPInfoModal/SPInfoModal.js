@@ -2,7 +2,7 @@ import React from 'react';
 import './SPInfoModal.scss';
 import { FiX } from 'react-icons/fi';
 
-function InfoModal({ close, conteudo, redirect }) {
+function InfoModal({ close, conteudo }) {
   function formatedDate(date) {
     const data = new Date(date);
     const day = data.getDate().toString();
@@ -41,11 +41,6 @@ function InfoModal({ close, conteudo, redirect }) {
             <b>Data de término:</b>
             {` ${conteudo && formatedDate(conteudo.process_date_end)}`}
           </div>
-        </div>
-        <div className="divSPredirect">
-          <button type="button" className="SPredirect" onClick={redirect}>
-            Ver candidatos
-          </button>
         </div>
       </div>
     </div>

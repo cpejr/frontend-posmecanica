@@ -17,32 +17,46 @@
   font-size: 1.9em;
   cursor: pointer;
 }
-.compoSP-buttonAndamento{
+.campoSP-buttonAndamento{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 30%;
   min-width: 30%;
   height: 55px;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   border-radius: 10px;
   color: #ffffff;
   background-color: #316B28;
   cursor: default;
 }
-.compoSP-buttonFinalizado{
+.campoSP-buttonFinalizado{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 30%;
   min-width: 30%;
   height: 55px;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   border-radius: 10px;
   color: #ffffff;
   background-color: #843125;
+  cursor: default;
+}
+.campoSP-buttonNaoIniciado{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  min-width: 30%;
+  height: 55px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #020896;
   cursor: default;
 }
 .buttonInfoSPname{
@@ -65,15 +79,21 @@
     font-size: 1.6em;
   }
 
-  .compoSP-buttonAndamento{
+  .campoSP-buttonAndamento{
     height: 48px;
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 5px;
   }
 
-  .compoSP-buttonFinalizado{
+  .campoSP-buttonFinalizado{
     height: 48px;
-    font-size: 16px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+
+  .campoSP-buttonNaoIniciado{
+    height: 48px;
+    font-size: 12px;
     border-radius: 5px;
   }
 }
@@ -83,14 +103,19 @@
     font-size: 1.2em;
   }
 
-  .compoSP-buttonAndamento{
+  .campoSP-buttonAndamento{
     height: 36px;
-    font-size: 12px;
+    font-size: 9px;
   }
 
-  .compoSP-buttonFinalizado{
+  .campoSP-buttonFinalizado{
     height: 36px;
-    font-size: 12px;
+    font-size: 9px;
+  }
+
+  .campoSP-buttonNaoIniciado{
+    height: 36px;
+    font-size: 9px;
   }
 }
 
@@ -103,12 +128,17 @@
     font-size: 0.8em;
   }
 
-  .compoSP-buttonAndamento{
+  .campoSP-buttonAndamento{
     height: 24px;
     font-size: 8px;
   }
 
-  .compoSP-buttonFinalizado{
+  .campoSP-buttonFinalizado{
+    height: 24px;
+    font-size: 8px;
+  }
+
+  .campoSP-buttonNaoIniciado{
     height: 24px;
     font-size: 8px;
   }
