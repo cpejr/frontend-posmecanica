@@ -79,7 +79,7 @@ function ThesisDefense({ location }) {
     defense_hour: hora,
     defense_date: data,
   };
-  const Qualificaçao = async () => {
+  const Defense = async () => {
     if (
       defense.defense_title === undefined
       || defense.defense_type === undefined
@@ -239,7 +239,7 @@ function ThesisDefense({ location }) {
             </div>
           </div>
           <div className="divButton">
-            <button type="submit" className="buttonDivulgar" onClick={Qualificaçao}>
+            <button type="submit" className="buttonDivulgar" onClick={Defense}>
               GERAR DEFESA
             </button>
           </div>
