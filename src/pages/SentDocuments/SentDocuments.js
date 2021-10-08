@@ -70,7 +70,11 @@ function SentDocuments({ location }) {
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SD-screen">
         {candidate && page === 1 && (
-          <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
+          <DocsContent
+            setShowInfoModal={setShowInfoModal}
+            id={candidate.candidate_id}
+            candidate={candidate}
+          />
         )}
         {candidate && page === 2 && <ApproveContent candidate={candidate} />}
         {candidate && (
