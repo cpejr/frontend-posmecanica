@@ -76,7 +76,7 @@ function StyledInput({
       InputLabelProps={{
         style: {
           color: 'black',
-          background: 'white',
+          background: 'transparent',
           alignItems: 'center',
           justifyContent: 'center',
         },

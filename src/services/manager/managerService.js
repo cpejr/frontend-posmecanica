@@ -97,7 +97,6 @@ export const createCandidateISO = async (candidate, selectiveProcessId) => {
     }
     return notNullableDisciplines;
   });
-  console.log(notNullableDisciplines);
   await requesterService
     .createCandidateDiscipline(response.data.id, notNullableDisciplines);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -230,11 +229,10 @@ export const verifySelectiveProcess = async (field, dados) => {
       const actualFinalDate = new Date(dados.process_date_end);
       // condição para não criar
       return (actualInitialDate >= initialDate && actualInitialDate <= finalDate)
-      || (actualFinalDate >= initialDate && actualFinalDate <= finalDate)
-      || (actualInitialDate <= initialDate && actualFinalDate >= finalDate);
+        || (actualFinalDate >= initialDate && actualFinalDate <= finalDate)
+        || (actualInitialDate <= initialDate && actualFinalDate >= finalDate);
     },
   );
-  console.log(filteredProcess);
   return filteredProcess;
 };
 
@@ -298,7 +296,7 @@ export const createStudent = async (student) => {
   const candidateDiscipline = await requesterService
     .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
   if (disciplines.length === 4) {
-    if (candidateDiscipline.data.length === 3) {
+    if (candidateDiscipline.data.length === 4) {
       sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
       sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
       sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });

@@ -28,15 +28,23 @@ function ThesisDefense({ location }) {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Lista de estudantes',
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',

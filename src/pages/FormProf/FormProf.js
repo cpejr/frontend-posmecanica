@@ -8,6 +8,7 @@ import StyledInput from "../../components/StyledInput";
 import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsProf";
 import RightPanel from "../../components/Menu/RightPanel";
+import Footer from '../../components/Footer';
 
 function FormProf() {
   const initialState = {
@@ -74,14 +75,18 @@ function FormProf() {
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
+    },
+    {
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
   ];
   return (
-    <div className="screen-ps">
-      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel}/>
-      <h1> Cadastro de Professor:</h1>
+    <div className="screen-ps-profForms">
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+      <h1 className="title_professor_forms"> Cadastro de Professor:</h1>
       {formsInput.map((topic) => (
         <div key={topic.title}>
           <div className="form_dis_prof_box_title">
@@ -108,6 +113,18 @@ function FormProf() {
           ))}
         </div>
       ))}
+      <div className="DIV_form_dis_prof_description">
+        <div className="DIVinside_form_dis_prof_description">
+          <StyledInput
+            type="text"
+            id="prof_description"
+            label="Descrição do professor"
+            multiline
+            dados={dados}
+            setDados={handleChange}
+          />
+        </div>
+      </div>
       <div className="divButton-psprof">
         <button className="Button-psprof" type="submit" onClick={handleClick}>
           {" "}
@@ -115,10 +132,11 @@ function FormProf() {
         </button>
       </div>
       <RightPanel
-          inputProps={inputProps}
-          expandRightPanel={expandRightPanel}
-          setExpandRightPanel={setExpandRightPanel}
+        inputProps={inputProps}
+        expandRightPanel={expandRightPanel}
+        setExpandRightPanel={setExpandRightPanel}
       />
+      <Footer />
     </div>
   );
 }

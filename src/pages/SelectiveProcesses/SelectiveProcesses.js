@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -22,7 +21,6 @@ const initialStateData = {
 
 function SelectiveProcesses() {
   const { user } = useAuth();
-  const history = useHistory();
   const initialState = {
     semester: '',
   };
@@ -44,7 +42,10 @@ function SelectiveProcesses() {
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
     }
-    return 'Finalizado';
+    if (currentDate > endDate) {
+      return 'Finalizado';
+    }
+    return 'Não iniciado';
   }
   const handleClickClose = () => {
     setShowSPInfoModal(false);
@@ -55,9 +56,6 @@ function SelectiveProcesses() {
     } else {
       setShowSPInfoModal(true);
     }
-  };
-  const handleClickRedirect = () => {
-    history.push('professor');
   };
 
   useEffect(async () => {
@@ -108,12 +106,12 @@ function SelectiveProcesses() {
       path: 'administrator/lista-estudantes',
     },
     {
-      text: 'Criar processo seletivo',
-      path: 'administrator/criar-processo-seletivo',
+      text: 'Lista de professores',
+      path: 'lista-professores',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
+      text: 'Criar processo seletivo',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Cadastro de professores',
@@ -122,6 +120,10 @@ function SelectiveProcesses() {
     {
       text: 'Cadastro de disciplina isolada',
       path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',
@@ -159,7 +161,7 @@ function SelectiveProcesses() {
               type="text"
               id="semester"
               label="Semestre"
-              width="20em"
+              width="100%"
               field={semeters}
               select
               dados={dados}
@@ -208,7 +210,6 @@ function SelectiveProcesses() {
             <SPInfoModal
               conteudo={data}
               close={handleClickClose}
-              redirect={handleClickRedirect}
               className="PSLinkButton"
             />
           )}

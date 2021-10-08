@@ -10,7 +10,7 @@ export default function Footer() {
         src="/Images/logo-ufmg-branca.png"
         alt="logotipo Universidade FEderal de Minas Gerais"
       />
-      <h1 className="text">Feito por cpeJR</h1>
+      <h1 className="text">Desenvolvido por CPEjr</h1>
       <img
         className="imageC"
         src={logoCpe}

@@ -8,6 +8,7 @@ import enumm from '../../utils/enum';
 import boolean from '../../utils/boolean';
 import semester from '../../utils/semester';
 import RightPanel from '../../components/Menu/RightPanel';
+import Footer from '../../components/Footer';
 import * as managerService from '../../services/manager/managerService';
 
 const booleans = boolean;
@@ -70,6 +71,10 @@ function registerDis() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
@@ -78,16 +83,12 @@ function registerDis() {
       path: 'processos-seletivos',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
-      text: 'Lista de professores',
-      path: 'lista-professores',
-    },
-    {
       text: 'Cadastro de professores',
       path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Divulgar Defesa de Tese',
+      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',
@@ -95,9 +96,9 @@ function registerDis() {
     },
   ];
   return (
-    <div className="screen-ps">
+    <div className="screen-ps-registerDis">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      <h1> Cadastro de Disciplinas:</h1>
+      <h1 className="title_registerDiscipline"> Cadastro de Disciplinas:</h1>
       <div className="form_dis_cad_box_title">
         <div className="form_dis_cad_title">
           Dados da Disciplina
@@ -200,6 +201,7 @@ function registerDis() {
         expandRightPanel={expandRightPanel}
         setExpandRightPanel={setExpandRightPanel}
       />
+      <Footer />
     </div>
   );
 }

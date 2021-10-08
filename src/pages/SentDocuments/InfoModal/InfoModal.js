@@ -65,7 +65,7 @@ function InfoModal({
                 {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Nome:</b>
                   {` ${conteudo?.candidate_name} `}
                 </div>
@@ -75,7 +75,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Graduação:</b>
                   {` ${conteudo?.candidate_graduation} `}
                 </div>
@@ -85,7 +85,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Número de telefone:</b>
                   {` ${conteudo?.candidate_phone_number}`}
                 </div>
@@ -95,7 +95,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>CPF/Passaporte:</b>
                   {` ${conteudo?.candidate_cpf} `}
                 </div>
@@ -105,7 +105,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Título de Eleitor:</b>
                   {` ${conteudo?.candidate_voter_title} `}
                 </div>
@@ -115,7 +115,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Sessão de Eleição:</b>
                   {` ${conteudo?.candidate_section_title} `}
                 </div>
@@ -125,7 +125,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Raça:</b>
                   {` ${conteudo?.candidate_race} `}
                 </div>
@@ -135,7 +135,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Nacionalidade:</b>
                   {` ${conteudo?.candidate_nationality} `}
                 </div>
@@ -145,7 +145,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Primeira Disciplina Isolada:</b>
                   {` ${conteudo?.disciplines[0]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'} `}
                 </div>
@@ -155,7 +155,7 @@ function InfoModal({
                 </div>
               </div>
               <div className="rowGrid">
-                <div>
+                <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
                   {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
                 </div>
@@ -171,6 +171,10 @@ function InfoModal({
               <div className="row">
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
+              </div>
+              <div className="row">
+                <b>Justificativa:</b>
+                {` ${conteudo?.candidate_justify}`}
               </div>
             </div>
             {studentList === 'true' && (
