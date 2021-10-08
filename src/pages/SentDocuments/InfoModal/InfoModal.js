@@ -28,6 +28,20 @@ function InfoModal({
     return 'Pendente';
   }
 
+  function redirectToDefense() {
+    history.push({
+      pathname: '/painel/administrator/defesa-de-teses',
+      state: conteudo,
+    });
+  }
+
+  function redirectToQualification() {
+    history.push({
+      pathname: '/painel/administrator/qualificaçao-teses',
+      state: conteudo,
+    });
+  }
+
   function redirect() {
     history.push({
       pathname: '/painel/administrator/editar/aluno',
@@ -163,6 +177,12 @@ function InfoModal({
               <div className="divInfoModalStudentRedirect">
                 <button type="button" className="InfoModalStudentRedirect" onClick={redirect}>
                   Editar estudante
+                </button>
+                <button type="button" className="InfoModalStudentRedirect" onClick={redirectToQualification}>
+                  Marcar Qualificação
+                </button>
+                <button type="button" className="InfoModalStudentRedirect" onClick={redirectToDefense}>
+                  Marcar Defesa
                 </button>
               </div>
             )}

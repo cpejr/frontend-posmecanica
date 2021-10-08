@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { FiPrinter } from 'react-icons/fi';
-import './ThesisDefensePDF.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
@@ -17,11 +16,11 @@ class ComponentToPrint extends React.Component {
           <div className="pdfrender-title">
             {defenseInfo.tipo === 'DISSERTACAO'
               && (
-                'DEFESA DE DISSERTAÇÃO'
+                'QUALIFICAÇÃO DE DISSERTAÇÃO'
               )}
             {defenseInfo.tipo === 'TESE'
               && (
-                'DEFESA DE TESE'
+                'QUALIFICAÇÃO DE TESE'
               )}
           </div>
           <p className="pdfrender-dedicate">
@@ -54,7 +53,7 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-const ThesisDefensePDF = (props) => {
+const ThesisQualificationPDF = (props) => {
   const infoDefense = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -74,4 +73,4 @@ const ThesisDefensePDF = (props) => {
   );
 };
 
-export default ThesisDefensePDF;
+export default ThesisQualificationPDF;

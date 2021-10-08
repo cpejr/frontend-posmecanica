@@ -21,6 +21,8 @@ import Confirmation from './pages/forgetPass/Confirmation';
 import ThesesPost from './pages/ThesesPost';
 import ThesisDefense from './pages/ThesisDefense';
 import DivulgaçaoTese from './pages/DivulgaçaoTese';
+import ThesisQualification from './pages/ThesisQualification/ThesisQualification';
+import DivulgaçaoQualificaçao from './pages/DivulgaçaoQualificaçao';
 
 const useStyles = makeStyles({
   container: {
@@ -54,8 +56,10 @@ function Routes() {
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
+          <Route exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} />
+          <Route exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
           <Route exact path="/pdf" component={StylePDF} />
-          <Route exact path="/painel/administrator/divulgaçao-tese" component={DivulgaçaoTese} />
+          <Route exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
