@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormProf.scss";
 import { useToasts } from "react-toast-notifications";
 import Header from "../../components/Navbar";
@@ -33,6 +33,7 @@ function FormProf() {
     prof_workplace: "",
   };
   const [dados, setDados] = useState(initialState);
+  const [searchArea, setSearchArea] = useState(initialState);
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -83,6 +84,17 @@ function FormProf() {
       path: '../esqueci-senha',
     },
   ];
+
+  useEffect(async () => {
+    const allSearchAreas = await managerService.getAllSearchAreas();
+    const serachAreaArray = [];
+    allSearchAreas.forEach((item) => {
+      serachAreaArray.push({ label: item.search_area_name, value: item.search_area_id });
+    });
+    console.log("🚀 ~ file: FormProf.js ~ line 93 ~ allSearchAreas.forEach ~ serachAreaArray", serachAreaArray)
+    setSearchArea(serachAreaArray);
+  }, []);
+
   return (
     <div className="screen-ps-profForms">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
@@ -113,6 +125,30 @@ function FormProf() {
           ))}
         </div>
       ))}
+      <div className="form_dis_prof_line">
+        <div className="form_dis_prof_input">
+          <StyledInput
+            type="text"
+            id="prof_workplace"
+            label="Local de trabalho"
+            width="18rem"
+            dados={dados}
+            setDados={handleChange}
+          />
+        </div>
+        <div className="form_dis_prof_input">
+          <StyledInput
+            type="text"
+            id="searchArea_id"
+            label="Área de pesquisa"
+            width="18rem"
+            field={searchArea}
+            select
+            dados={dados}
+            setDados={handleChange}
+          />
+        </div>
+      </div>
       <div className="DIV_form_dis_prof_description">
         <div className="DIVinside_form_dis_prof_description">
           <StyledInput

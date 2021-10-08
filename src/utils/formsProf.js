@@ -161,17 +161,6 @@ const formsInput = [
           },
         ],
       },
-      {
-        items: [
-          {
-            type: 'text',
-            id: 'prof_workplace',
-            label: 'Local de trabalho',
-            field: null,
-            select: false,
-          },
-        ],
-      },
     ],
   },
 ];
