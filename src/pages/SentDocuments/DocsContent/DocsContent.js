@@ -6,7 +6,7 @@ import Modal from '../../../utils/GenericModal';
 import * as managerService from '../../../services/manager/managerService';
 import './DocsContent.scss';
 
-function DocsContent({ setShowInfoModal, candidate }) {
+function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
   const [action, setAction] = useState();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -19,6 +19,7 @@ function DocsContent({ setShowInfoModal, candidate }) {
 
   const handleCloseClick = () => {
     setShowConfirmModal(false);
+    setShowDeleteModal(false);
   };
 
   const handleConfirmClick = async () => {
@@ -27,11 +28,13 @@ function DocsContent({ setShowInfoModal, candidate }) {
         candidate_form_approval: true,
       }, candidate.candidate_id);
       candidate.candidate_form_approval = true;
+      setHasChanged(true);
     } else {
       await managerService.updateCandidate({
         candidate_form_approval: false,
       }, candidate.candidate_id);
       candidate.candidate_form_approval = false;
+      setHasChanged(false);
     }
     setEdit(false);
     setShowConfirmModal(false);
