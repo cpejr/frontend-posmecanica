@@ -6,7 +6,7 @@
 }
 
 .grid-containerProfList{
-   height: 100%;
+   height: max-content;
 }
 
 .professor-list-container {
@@ -102,6 +102,8 @@
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
 }
 
 .accordionBorderBottom {
