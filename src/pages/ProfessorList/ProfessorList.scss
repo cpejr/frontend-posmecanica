@@ -129,9 +129,34 @@
     flex-direction: column;
 }
 
+.spanDisciplinasProfList {
+    display: flex;
+    flex-direction: row;
+}
+
 .professor-list-desc-item {
     font-family: "Montserrat", sans-serif;
     display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    p {
+        font-size: 15px;
+        font-weight: 700;
+        color: #7a7a7a;
+    }
+    span {
+        font-size: 15px;
+        font-weight: 400;
+        color: #7a7a7a;
+        margin-left: 5px;
+    }
+}
+
+.professor-list-desc-itemDisciplinas {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 20px;
 
