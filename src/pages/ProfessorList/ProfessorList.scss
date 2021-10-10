@@ -151,6 +151,32 @@
         color: #7a7a7a;
         margin-left: 5px;
     }
+    @media (max-width: 580px) {
+        flex-direction: column;
+        p {
+            display: flex;
+            justify-content: center;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+            margin-left: 0;
+            margin-top: 5px;
+        }
+        a {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+    }
+    @media (max-width: 450px) {
+        p {
+            font-size: 13px;
+        }
+        span {
+            font-size: 10px;
+        }
+    }
 }
 
 .professor-list-desc-itemDisciplinas {
@@ -159,6 +185,10 @@
     flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 20px;
+
+    .professor-list-desc-itemDisciplinasInside{
+        margin-top: 5px;
+    }
 
     p {
         font-size: 15px;
@@ -170,6 +200,25 @@
         font-weight: 400;
         color: #7a7a7a;
         margin-left: 5px;
+    }
+    @media (max-width: 580px) {
+        flex-direction: column;
+        p {
+            display: flex;
+            justify-content: center;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    @media (max-width: 450px) {
+        p {
+            font-size: 13px;
+        }
+        span {
+            font-size: 10px;
+        }
     }
 }
 
