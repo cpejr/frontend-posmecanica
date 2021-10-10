@@ -186,10 +186,6 @@
     flex-direction: row;
     margin-bottom: 20px;
 
-    .professor-list-desc-itemDisciplinasInside{
-        margin-top: 5px;
-    }
-
     p {
         font-size: 15px;
         font-weight: 700;
@@ -203,6 +199,9 @@
     }
     @media (max-width: 580px) {
         flex-direction: column;
+        .professor-list-desc-itemDisciplinasInside{
+            margin-top: 5px;
+        }
         p {
             display: flex;
             justify-content: center;

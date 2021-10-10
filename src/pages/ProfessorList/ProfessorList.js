@@ -138,8 +138,8 @@ function ProfessorList() {
           </div>
           <div className="professor-list-content">
             <div className={classes.root}>
-              {/* {orderElements(professors, searchAreaOrder).map((item) => ( */}
-              {professors?.map((item) => (
+              {orderElements(professors, searchAreaOrder)?.map((item) => (
+                // {/* {professors?.map((item) => ( */}
                 <Accordion key={item.search_area_id}>
                   <AccordionSummary
                     expandIcon={<FaChevronCircleDown color="#1f487c" size={17} />}
