@@ -170,15 +170,8 @@ function ProfessorList() {
                         </div>
                         <div className="professor-list-desc-itemDisciplinas">
                           <p>Disciplinas ministradas: </p>
-                          {/* {item.disciplines?.map((disciplinas) => {
-                            if (disciplinas.discipline_name === item.disciplines[item.disciplines.length - 1].name) {
-                              return <span className="spanDisciplinasProfList">{disciplinas.discipline_name}</span>
-                            } else {
-                              return <span className="spanDisciplinasProfList">{disciplinas.discipline_name},</span>
-                            }
-                          })} */}
                           {item.disciplines && (item.disciplines.length === 0 ? <span> - </span> : (item.disciplines?.map((disciplinas) => {
-                            if (disciplinas.discipline_name === item.disciplines[item.disciplines.length - 1].name) {
+                            if (disciplinas.discipline_name === item.disciplines[item.disciplines.length - 1].discipline_name) {
                               return <span className="spanDisciplinasProfList">{disciplinas.discipline_name}</span>
                             } else {
                               return <span className="spanDisciplinasProfList">{disciplinas.discipline_name},</span>
