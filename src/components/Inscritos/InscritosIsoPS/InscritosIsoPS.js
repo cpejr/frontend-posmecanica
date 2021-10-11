@@ -168,6 +168,10 @@ function InscritosIsoPS({
     }
   }, []);
 
+  useEffect(() => {
+    setShowCandidate(true);
+  }, [disciplineToDeferment]);
+
   return (
     <div className="isoPsListItem" id={candidate.candidate_id}>
       <div className="isoPsDivItem">
