@@ -132,8 +132,8 @@
 }
 
 .spanDisciplinasProfList {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
 }
 
 .professor-list-desc-item {
@@ -184,14 +184,19 @@
 .professor-list-desc-itemDisciplinas {
     font-family: "Montserrat", sans-serif;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 20px;
+
+    .professor-list-desc-itemDisciplinasInside{
+        display: flex;
+        flex-wrap: wrap;
+    }
 
     p {
         font-size: 15px;
         font-weight: 700;
         color: #7a7a7a;
+        min-width: 183.11px;
     }
     span {
         font-size: 15px;
@@ -202,11 +207,13 @@
     @media (max-width: 580px) {
         flex-direction: column;
         .professor-list-desc-itemDisciplinasInside{
+            display: block;
             margin-top: 5px;
         }
         p {
             display: flex;
             justify-content: center;
+            min-width: 0;
         }
         span {
             display: flex;

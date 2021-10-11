@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 function ProfessorList() {
   const [professors, setProfessors] = useState([]);
   const searchAreaOrder = "prof_name";
-  const profOrder = "prof_name";
   const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
@@ -117,7 +116,7 @@ function ProfessorList() {
             </p>
           </div>
           <div className="header-content_ProfList">
-            <h2 className="header-content-title_ProfList">Buscar por área de pesquisa</h2>
+            <h2 className="header-content-title_ProfList">Buscar por nomes</h2>
             <div className="header-content-searchInput">
               <InputBase
                 autoFocus
