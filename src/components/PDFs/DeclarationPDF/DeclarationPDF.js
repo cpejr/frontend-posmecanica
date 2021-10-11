@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import './PDF.scss';
+import './Declaration.scss';
 import { FiPrinter } from 'react-icons/fi';
 
 // eslint-disable-next-line react/prefer-stateless-function

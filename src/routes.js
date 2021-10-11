@@ -24,10 +24,10 @@ import DivulgaçaoTese from './pages/DivulgaçaoTese';
 import ThesisQualification from './pages/ThesisQualification/ThesisQualification';
 import DivulgaçaoQualificaçao from './pages/DivulgaçaoQualificaçao';
 import DefenseReports from './pages/DefenseReports';
-import SummaryAtaPDF from './components/SummaryAtaPDF';
-import FinalCertificatePDF from './components/FinalCertificatePDF';
-import CertificatePDF from './components/CertificatePDF';
-import ChoiceMemberPDF from './components/ChoiceMemberPDF';
+import SummaryAtaPDF from './components/PDFs/SummaryAtaPDF';
+import FinalCertificatePDF from './components/PDFs/FinalCertificatePDF';
+import CertificatePDF from './components/PDFs/CertificatePDF';
+import ChoiceMemberPDF from './components/PDFs/ChoiceMemberPDF';
 
 const useStyles = makeStyles({
   container: {
