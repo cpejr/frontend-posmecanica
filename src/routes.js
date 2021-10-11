@@ -23,6 +23,11 @@ import ThesisDefense from './pages/ThesisDefense';
 import DivulgaçaoTese from './pages/DivulgaçaoTese';
 import ThesisQualification from './pages/ThesisQualification/ThesisQualification';
 import DivulgaçaoQualificaçao from './pages/DivulgaçaoQualificaçao';
+import DefenseReports from './pages/DefenseReports';
+import SummaryAtaPDF from './components/SummaryAtaPDF';
+import FinalCertificatePDF from './components/FinalCertificatePDF';
+import CertificatePDF from './components/CertificatePDF';
+import ChoiceMemberPDF from './components/ChoiceMemberPDF';
 
 const useStyles = makeStyles({
   container: {
@@ -60,6 +65,11 @@ function Routes() {
           <Route exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
           <Route exact path="/pdf" component={StylePDF} />
           <Route exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
+          <Route exact path="/painel/administrator/relatorios" component={DefenseReports} />
+          <Route exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAtaPDF} />
+          <Route exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificatePDF} />
+          <Route exact path="/painel/administrator/relatorios/certificado" component={CertificatePDF} />
+          <Route exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMemberPDF} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

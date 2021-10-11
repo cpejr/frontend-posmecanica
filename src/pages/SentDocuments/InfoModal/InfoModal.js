@@ -28,9 +28,9 @@ function InfoModal({
     return 'Pendente';
   }
 
-  function redirectToDefense() {
+  function redirectToEdit() {
     history.push({
-      pathname: '/painel/administrator/defesa-de-teses',
+      pathname: '/painel/administrator/editar/aluno',
       state: conteudo,
     });
   }
@@ -42,9 +42,16 @@ function InfoModal({
     });
   }
 
-  function redirect() {
+  function redirectToDefense() {
     history.push({
-      pathname: '/painel/administrator/editar/aluno',
+      pathname: '/painel/administrator/defesa-de-teses',
+      state: conteudo,
+    });
+  }
+
+  function redirectToReports() {
+    history.push({
+      pathname: '/painel/administrator/relatorios',
       state: conteudo,
     });
   }
@@ -178,16 +185,21 @@ function InfoModal({
               </div>
             </div>
             {studentList === 'true' && (
-              <div className="divInfoModalStudentRedirect">
-                <button type="button" className="InfoModalStudentRedirect" onClick={redirect}>
-                  Editar estudante
-                </button>
-                <button type="button" className="InfoModalStudentRedirect" onClick={redirectToQualification}>
-                  Marcar Qualificação
-                </button>
-                <button type="button" className="InfoModalStudentRedirect" onClick={redirectToDefense}>
-                  Marcar Defesa
-                </button>
+              <div className="buttonsGroupRedirect">
+                <div className="divInfoModalStudentRedirect">
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToEdit}>
+                    EDITAR ESTUDANTE
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToQualification}>
+                    MARCAR QUALIFICAÇÃO
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToDefense}>
+                    MARCAR DEFESA
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToReports}>
+                    RELATÓRIOS
+                  </button>
+                </div>
               </div>
             )}
           </div>
