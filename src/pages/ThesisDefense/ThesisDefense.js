@@ -72,6 +72,7 @@ function ThesisDefense({ location }) {
     },
   ];
   const defense = {
+    defense_stud_name: location.state.candidate_name,
     defense_type: type,
     defense_title: titulo,
     defense_number: numero,

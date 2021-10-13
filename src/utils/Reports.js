@@ -6,14 +6,16 @@ const reports = [
     text: 'Emissão de Relatórios:',
     docs: [
       {
-        text: 'Form',
+        text: 'Report',
         types: ['Ata Resumida', 'Ata Completa', 'Escolha de Membro Banca'],
         icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        path: ['ata-resumida', 'ata-completa', 'escolha-membro'],
       },
       {
-        text: 'Form',
+        text: 'Report',
         types: ['Certificado', 'Atestado Final de Conclusão'],
         icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        path: ['certificado', 'atestado-final'],
       },
     ],
   },

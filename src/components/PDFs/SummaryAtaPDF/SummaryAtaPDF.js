@@ -7,8 +7,8 @@ import './SummaryAta.scss';
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
   render() {
-    // const defenseProps = this.props;
-    // const defenseInfo = defenseProps.info;
+    const qualiProps = this.props;
+    const qualiInfo = qualiProps.info;
     return (
       <div className="pdfrenderSummary-external-div">
         <div className="pdfrender-header">
@@ -31,21 +31,17 @@ class ComponentToPrint extends React.Component {
         </div>
         <div className="pdfrender-text">
           <div className="pdfrenderSummary-title">
-            RESULTADOS DE INCERTEZA DE CALIBRAÇÃO PARA SENSORES INFRAVERMELHO DO TIPO MEMS TERMOPILHA
+            {`${qualiInfo.title}`}
           </div>
           <p className="pdfrender-paragraph"/>
           <div className="pdfrenderSummary-title">
-            VITOR FURTADO PAES
+          {`${qualiInfo.studName}`}
           </div>
           <p className="pdfrender-paragraph"/>
           <p className="pdfSumary-dedicate">
           Dissertação submetida à Banca Examinadora designada pelo Colegiado do Programa 
           de Pós-Graduação em Engenharia Mecânica da Universidade Federal de Minas Gerais, 
-          constituída pelos Professores: Dr. Matheus Pereira Porto (Orientador-Departamento
-           de Engenharia Mecânica/UFMG), Dr. Renato Nunes Teixeira (Instituto Nacional de Metrologia, 
-           Qualidade e Tecnologia/INMETRO), Dr. Rafael Augusto Magalhães Ferreira (Departamento de 
-           Engenharia Mecânica/UFMG) e Dr. Pedro Bastos Costa (Departamento de Engenharia 
-           Mecânica/UFMG), como parte dos requisitos necessários à obtenção do título de 
+          constituída pelos Professores: {`${qualiInfo.bank}`}, como parte dos requisitos necessários à obtenção do título de 
            "Mestre em Engenharia Mecânica", na área de concentração de "Energia e Sustentabilidade".
           </p>
           <p className="pdfSummary-date">Dissertação aprovada no dia 27 de julho de 2021.</p>
@@ -60,8 +56,8 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-const ThesisQualificationPDF = () => {
-  // const infoDefense = props;
+const SummaryAtaPDF = (props) => {
+  const infoQuali = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -75,9 +71,9 @@ const ThesisQualificationPDF = () => {
           Imprimir
         </div>
       </div>
-      <ComponentToPrint ref={componentRef} />
+      <ComponentToPrint ref={componentRef} info={infoQuali.props[0]} />
     </div>
   );
 };
 
-export default ThesisQualificationPDF;
+export default SummaryAtaPDF;

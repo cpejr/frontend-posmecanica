@@ -122,3 +122,5 @@ export const createStudentDiscipline = (id, disciplines) => httpClient.post(`/co
 
 export const createQualification = (qualification, qualiStudId) => httpClient.post(`qualifications/${qualiStudId}`, qualification);
 export const createDefense = (defense, defenseStudId) => httpClient.post(`defenses/${defenseStudId}`, defense);
+export const getByStudentQualification = (qualiStudId) => httpClient.get(`qualifications/students/${qualiStudId}`);
+export const getByStudentDefense = (defenseStudId) => httpClient.get(`defenses/${defenseStudId}`);

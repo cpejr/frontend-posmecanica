@@ -7,14 +7,8 @@ import infos from '../../utils/Reports';
 import RightPanel from "../../components/Menu/RightPanel";
 import './DefenseReports.scss';
 
-function DefenseReports() {
+function DefenseReports({ location }) {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
-  const handleClick = () => {
-    history.push({
-      pathname: '/painel/administrator/reltaorios/',
-      state: { detail: defenseProps },
-    });
-  }
   const inputProps = [
     {
       text: 'Página principal',
@@ -55,19 +49,24 @@ function DefenseReports() {
         <Document
           type={docs.types[0]}
           text={docs.text}
-          handleClick={handleClick}
+          path={docs.path[0]}
+          location={location}
         >
           {docs.icons[0]}
         </Document>
         <Document
           type={docs.types[1]}
           text={docs.text}
+          path={docs.path[1]}
+          location={location}
         >
           {docs.icons[1]}
         </Document>
         <Document
           type={docs.types[2]}
           text={docs.text}
+          path={docs.path[2]}
+          location={location}
         >
           {docs.icons[2]}
         </Document>

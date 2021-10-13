@@ -1,5 +1,5 @@
 import React from 'react';
-import ThesisQualificationPDF from '../../components/ThesisQualificationPDF/ThesisQualificationPDF';
+import ThesisQualificationPDF from '../../components/PDFs/ThesisQualificationPDF/ThesisQualificationPDF';
 
 function Qualificaçao(props) {
   const defenseInfo = props;

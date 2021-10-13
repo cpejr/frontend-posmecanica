@@ -63,6 +63,7 @@ function ThesisQualification({ location }) {
     },
   ];
   const qualification = {
+    quali_stud_name: location.state.candidate_name,
     quali_type: type,
     quali_title: titulo,
     quali_place: local,
@@ -188,7 +189,6 @@ function ThesisQualification({ location }) {
                     variant="outlined"
                     type="date"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setData(e.target.value);
                     }}
                   />

@@ -8,8 +8,8 @@ import './ChoiceMember.scss';
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
   render() {
-    // const defenseProps = this.props;
-    // const defenseInfo = defenseProps.info;
+    const defenseProps = this.props;
+    const defenseInfo = defenseProps.info;
     return (
       <div className="pdfrenderSummary-external-div">
         <div className="pdfrender-text">
@@ -42,7 +42,7 @@ class ComponentToPrint extends React.Component {
 }
 
 const ChoiceMemberPDF = () => {
-  // const infoDefense = props;
+  const infoDefense = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
