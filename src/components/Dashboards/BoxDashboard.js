@@ -139,7 +139,7 @@ function BoxDashboard({
             <StyledInput
               type="text"
               id="type"
-              label={type === 'prof' ? 'Selecione uma disciplina' : 'Título'}
+              label={type === 'prof' ? 'Selecione uma disciplina' : 'Processo seletivo'}
               field={type === 'prof' ? disciplineFilter : AllTitleTypes}
               select
               background="transparent"
@@ -171,6 +171,11 @@ function BoxDashboard({
           {type === 'prof' && dados.type && loading === true && (
             <div className="BdDivGridLoader">
               <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+            </div>
+          )}
+          {type === 'prof' && !dados.type && (
+            <div className="BdDivGridNoDisciplineSelected">
+              <p>~ Selecione uma disciplina ~</p>
             </div>
           )}
           {position === 'first' && type === 'prof' && dados.type && loading === false && (

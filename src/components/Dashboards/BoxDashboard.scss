@@ -72,7 +72,18 @@
 .BdDivGridLoader {
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 80px;
+}
+.BdDivGridNoDisciplineSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #51595c48;
+  height: 205px;
+  font-size: 150%;
+  @media (max-width: 400px){
+    font-size: 100%;
+  }
 }
 .BdInput {
   display: none;
@@ -89,8 +100,13 @@
   }
 
   .MuiFormLabel-root {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     @media (max-width: 763px){
       font-size: 0.85rem;
+      max-width: 80%;
     }
     @media (max-width: 500px){
       font-size: 0.8rem;
