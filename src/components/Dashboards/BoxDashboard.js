@@ -139,7 +139,7 @@ function BoxDashboard({
             <StyledInput
               type="text"
               id="type"
-              label="Título"
+              label={type === 'prof' ? 'Selecione uma disciplina' : 'Título'}
               field={type === 'prof' ? disciplineFilter : AllTitleTypes}
               select
               background="transparent"

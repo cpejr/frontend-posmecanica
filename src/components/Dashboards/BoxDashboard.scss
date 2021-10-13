@@ -74,7 +74,7 @@
   justify-content: center;
   margin-top: 10%;
 }
-.BdInput{
+.BdInput {
   display: none;
 }
 .BdInputReal{
@@ -83,6 +83,24 @@
   align-items: center;
   .MuiSelect-selectMenu{
     padding: 24px 32px 24px 12px;
+  }
+  .MuiInputLabel-shrink {
+    transform-origin: left;
+  }
+
+  .MuiFormLabel-root {
+    @media (max-width: 763px){
+      font-size: 0.85rem;
+    }
+    @media (max-width: 500px){
+      font-size: 0.8rem;
+    }
+    @media (max-width: 410px){
+      font-size: 0.6rem;
+    }
+    @media (max-width: 325px){
+      font-size: 0.5rem;
+    }
   }
 }
 
@@ -111,7 +129,7 @@
     width: 40%;
     margin-left: 10%;
     .MuiSelect-selectMenu{
-      font-size: 15px;
+      font-size: 13px;
       padding: 12px 32px 12px 12px;
     }
   }
