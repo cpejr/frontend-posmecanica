@@ -308,8 +308,12 @@ export const createStudent = async (student) => {
     }
     if (isFailureStatus(response)) throw new Error('Problem with api response');
   } else {
-    const { candidate_scholarship: studScholarship } = student;
-    const response = await requesterService.createStudent(student, studScholarship);
+    const {
+      candidate_scholarship: studScholarship,
+      candidate_email: email,
+      candidate_name: name,
+    } = student;
+    const response = await requesterService.createStudent(student, studScholarship, email, name);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
   }
 };
