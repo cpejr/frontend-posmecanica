@@ -158,10 +158,12 @@ function InfoModal({
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
               </div>
-              <div className="row">
-                <b>Justificativa:</b>
-                {` ${conteudo?.candidate_justify}`}
-              </div>
+              {conteudo.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
+                <div className="row">
+                  <b>Justificativa:</b>
+                  {` ${conteudo?.candidate_justify}`}
+                </div>
+              )}
             </div>
             {studentList === 'true' && (
               <div className="divInfoModalStudentRedirect">
