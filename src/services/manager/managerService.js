@@ -297,9 +297,11 @@ export const createStudent = async (student) => {
       sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
     }
 
-    const { stud_scholarship: studScholarship } = student;
-    const { candidate_email: email } = student;
-    const { candidate_name: name } = student;
+    const {
+      candidate_scholarship: studScholarship,
+      candidate_email: email,
+      candidate_name: name,
+    } = student;
     const response = await requesterService.createStudent(student, studScholarship, email, name);
     if (disciplines.length === 4 && verify === true) {
       await requesterService.createStudentDiscipline(response.data.id, sdIdArray);
@@ -309,9 +311,9 @@ export const createStudent = async (student) => {
     if (isFailureStatus(response)) throw new Error('Problem with api response');
   } else {
     const {
-      candidate_scholarship: studScholarship,
       candidate_email: email,
       candidate_name: name,
+      candidate_scholarship: studScholarship,
     } = student;
     const response = await requesterService.createStudent(student, studScholarship, email, name);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
