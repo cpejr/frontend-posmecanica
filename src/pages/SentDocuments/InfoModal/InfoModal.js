@@ -143,11 +143,11 @@ function InfoModal({
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[2]?.discipline_name : '-'}`}
                 </div>
                 <div>
                   <b>Quarta Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[3]?.discipline_name : '-'}`}
                 </div>
               </div>
               <div className="row">
