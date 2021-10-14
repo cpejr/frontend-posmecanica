@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import moment from 'moment';
 import { FiPrinter } from 'react-icons/fi';
 import './SummaryAta.scss';
 
@@ -44,7 +45,7 @@ class ComponentToPrint extends React.Component {
           constituída pelos Professores: {`${qualiInfo.bank}`}, como parte dos requisitos necessários à obtenção do título de 
            "Mestre em Engenharia Mecânica", na área de concentração de "Energia e Sustentabilidade".
           </p>
-          <p className="pdfSummary-date">Dissertação aprovada no dia 27 de julho de 2021.</p>
+          <p className="pdfSummary-date">Dissertação aprovada no dia {`${moment(qualiInfo.date).format('LL')}`}.</p>
         </div>
         <div className="pdfSummary-coordinator">
             <p>Prof. Dr. Marco Túlio Corrêa de Faria</p>

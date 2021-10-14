@@ -24,10 +24,10 @@ import DivulgaçaoTese from './pages/DivulgaçaoTese';
 import ThesisQualification from './pages/ThesisQualification/ThesisQualification';
 import DivulgaçaoQualificaçao from './pages/DivulgaçaoQualificaçao';
 import DefenseReports from './pages/DefenseReports';
-import FinalCertificatePDF from './components/PDFs/FinalCertificatePDF';
-import CertificatePDF from './components/PDFs/CertificatePDF';
-import ChoiceMemberPDF from './components/PDFs/ChoiceMemberPDF';
 import SummaryAta from './pages/IssuingsReports/SummaryAta';
+import ChoiceMember from './pages/IssuingsReports/ChoiceMember';
+import FinalCertificate from './pages/IssuingsReports/FinalCertificate';
+import CertificateReport from './pages/IssuingsReports/CertificateReport';
 
 const useStyles = makeStyles({
   container: {
@@ -67,9 +67,9 @@ function Routes() {
           <Route exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
           <Route exact path="/painel/administrator/relatorios" component={DefenseReports} />
           <Route exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} />
-          <Route exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificatePDF} />
-          <Route exact path="/painel/administrator/relatorios/certificado" component={CertificatePDF} />
-          <Route exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMemberPDF} />
+          <Route exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} />
+          <Route exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} />
+          <Route exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

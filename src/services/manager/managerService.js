@@ -75,10 +75,10 @@ export const createDefense = async (defense, defenseStudId) => {
   return response.data.id;
 };
 
-export const getByStudent = async (defenseStudId) => {
+export const getByStudentDefense = async (defenseStudId) => {
   const response = await requesterService.getByStudentDefense(defenseStudId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data.id;
+  return response.data;
 };
 
 export const createCandidate = async (candidate, selectiveProcessId) => {

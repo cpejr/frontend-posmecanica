@@ -2,13 +2,14 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { FiPrinter } from 'react-icons/fi';
+import moment from 'moment';
 import '../SummaryAtaPDF/SummaryAta.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
   render() {
-    // const defenseProps = this.props;
-    // const defenseInfo = defenseProps.info;
+    const defenseProps = this.props;
+    const defenseInfo = defenseProps.info;
     return (
       <div className="pdfrenderSummary-external-div">
         <div className="pdfrender-header">
@@ -34,27 +35,22 @@ class ComponentToPrint extends React.Component {
             ATESTADO
           </div>
           <p className="pdfSumary-dedicate">
-            Atesto, para os devidos fins, que, VITOR FURTADO PAES defendeu,
-            no dia 27 de julho de 2021, perante Banca Examinadora homologada
+            Atesto, para os devidos fins, que, {`${defenseInfo.studName}`} defendeu,
+            no dia {`${moment(defenseInfo.date).format('LL')}`}, perante Banca Examinadora homologada
             pelo Colegiado do Programa de Pós-Graduação em Engenharia Mecânica
             da Universidade Federal de Minas Gerais, constituída pelos professores:
-            Dr. Matheus Pereira Porto (Orientador-Departamento de Engenharia Mecânica/UFMG),
-            Dr. Renato Nunes Teixeira (Instituto Nacional de Metrologia,
-            Qualidade e Tecnologia/INMETRO), Dr. Rafael Augusto Magalhães Ferreira
-            (Departamento de Engenharia Mecânica/UFMG) e Dr. Pedro Bastos Costa
-            (Departamento de Engenharia Mecânica/UFMG), a dissertação intitulada
-            “RESULTADOS DE INCERTEZA DE CALIBRAÇÃO PARA SENSORES
-            INFRAVERMELHO DO TIPO MEMS TERMOPILHA”.
+            {`${defenseInfo.bank}`}, a {`${defenseInfo.type}`} intitulada
+            “{`${defenseInfo.title}`}”.
           </p>
           <p className="pdfSumary-dedicate">
-            Salientamos que o Sr. Vitor Furtado Paes está apto a gozar dos direitos que 
+            Salientamos que o Sr. {`${defenseInfo.studName}`} está apto a gozar dos direitos que 
             o referido título lhe concede - Mestre em Engenharia Mecânica. Atesto também 
             que seu pedido de diploma estará em fase de expedição junto ao Programa de 
             Pós-Graduação em Engenharia Mecânica e da Pró-Reitoria de Pós-Graduação da 
             Universidade Federal de Minas Gerais após o retorno das atividades presenciais, 
             devido à crise sanitária da covid-19.
           </p>
-          <p className="pdfSummary-date">Belo Horizonte, 13 de maio de 2021</p>
+          <p className="pdfSummary-date">Belo Horizonte, {`${moment(defenseInfo.currentDate).format('LL')}`}</p>
         </div>
         <div className="pdfSummary-coordinator">
             <p>Prof. Dr. Marco Túlio Corrêa de Faria</p>
@@ -66,8 +62,8 @@ class ComponentToPrint extends React.Component {
   }
 }
 
-const FinalCertificatePDF = () => {
-  // const infoDefense = props;
+const FinalCertificatePDF = (props) => {
+  const infoDefense = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -81,7 +77,7 @@ const FinalCertificatePDF = () => {
           Imprimir
         </div>
       </div>
-      <ComponentToPrint ref={componentRef} />
+      <ComponentToPrint ref={componentRef} info={infoDefense.props[0]} />
     </div>
   );
 };
