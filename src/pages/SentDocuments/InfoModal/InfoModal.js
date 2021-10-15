@@ -1,7 +1,9 @@
 import React from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
+import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
+import * as managerService from '../../../services/manager/managerService';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList,
@@ -17,7 +19,7 @@ function InfoModal({
   }
 
   const history = useHistory();
-
+  const { addToast } = useToasts();
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -35,18 +37,28 @@ function InfoModal({
     });
   }
 
-  function redirectToQualification() {
-    history.push({
-      pathname: '/painel/administrator/qualificaçao-teses',
-      state: conteudo,
-    });
+  async function redirectToQualification() {
+    const verify = await managerService.getByStudentQualification(conteudo.stud_id);
+    if (verify) {
+      addToast('O aluno já possui uma qualificação marcada!', { appearance: 'error' });
+    } else {
+      history.push({
+        pathname: '/painel/administrator/qualificaçao-teses',
+        state: conteudo,
+      });
+    }
   }
 
-  function redirectToDefense() {
-    history.push({
-      pathname: '/painel/administrator/defesa-de-teses',
-      state: conteudo,
-    });
+  async function redirectToDefense() {
+    const verify = await managerService.getByStudentDefense(conteudo.stud_id);
+    if (verify) {
+      addToast('O aluno já possui uma defesa marcada!', { appearance: 'error' });
+    } else {
+      history.push({
+        pathname: '/painel/administrator/defesa-de-teses',
+        state: conteudo,
+      });
+    }
   }
 
   function redirectToReports() {

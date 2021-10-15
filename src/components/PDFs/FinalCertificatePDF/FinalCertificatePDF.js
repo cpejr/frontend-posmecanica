@@ -38,13 +38,18 @@ class ComponentToPrint extends React.Component {
             Atesto, para os devidos fins, que, {`${defenseInfo.studName}`} defendeu,
             no dia {`${moment(defenseInfo.date).format('LL')}`}, perante Banca Examinadora homologada
             pelo Colegiado do Programa de Pós-Graduação em Engenharia Mecânica
-            da Universidade Federal de Minas Gerais, constituída pelos professores:
-            {`${defenseInfo.bank}`}, a {`${defenseInfo.type}`} intitulada
+            da Universidade Federal de Minas Gerais, constituída pelos professores: {`${defenseInfo.bank}`}, a 
+            {(defenseInfo.type == 'DISSERTACAO') ? (
+              ' dissertação'
+            ) : (' tese')} intitulada
             “{`${defenseInfo.title}`}”.
           </p>
           <p className="pdfSumary-dedicate">
             Salientamos que o Sr. {`${defenseInfo.studName}`} está apto a gozar dos direitos que 
-            o referido título lhe concede - Mestre em Engenharia Mecânica. Atesto também 
+            o referido título lhe concede - 
+            {(defenseInfo.type == 'DISSERTACAO') ? (
+              ' Mestre'
+            ) : (' Doutor')} em Engenharia Mecânica. Atesto também 
             que seu pedido de diploma estará em fase de expedição junto ao Programa de 
             Pós-Graduação em Engenharia Mecânica e da Pró-Reitoria de Pós-Graduação da 
             Universidade Federal de Minas Gerais após o retorno das atividades presenciais, 

@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import Header from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Document from '../../components/Document';
 import infos from '../../utils/Reports';
 import RightPanel from "../../components/Menu/RightPanel";
 import './DefenseReports.scss';
+import StudentReports from '../../components/StudentReport/StudentReport'
 
 function DefenseReports({ location }) {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
@@ -46,30 +46,30 @@ function DefenseReports({ location }) {
   const renderLine = (docs) => {
     return (
       <div key={docs.types[0]} className="defenseReport-line">
-        <Document
+        <StudentReports
           type={docs.types[0]}
           text={docs.text}
           path={docs.path[0]}
           location={location}
         >
           {docs.icons[0]}
-        </Document>
-        <Document
+        </StudentReports>
+        <StudentReports
           type={docs.types[1]}
           text={docs.text}
           path={docs.path[1]}
           location={location}
         >
           {docs.icons[1]}
-        </Document>
-        <Document
+        </StudentReports>
+        <StudentReports
           type={docs.types[2]}
           text={docs.text}
           path={docs.path[2]}
           location={location}
         >
           {docs.icons[2]}
-        </Document>
+        </StudentReports>
       </div>
     );
   };
