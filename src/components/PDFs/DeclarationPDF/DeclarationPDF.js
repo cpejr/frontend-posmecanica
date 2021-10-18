@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import './Declaration.scss';
 import moment from 'moment';
+import extenso from 'extenso';
 import { FiPrinter } from 'react-icons/fi';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -44,8 +45,9 @@ class ComponentToPrint extends React.Component {
               `Declaro, ainda, que o referido aluno é bolsista do Conselho 
               Nacional de Desenvolvimento Científico
               e Tecnológico (CNPq), recebendo, mensalmente, a quantia
-              correspondente a ${studentInfo.amount} (uma) bolsa de doutorado, no valor de R$ ${studentInfo.value}
-            (um mil, quinhentos reais), de acordo com a legislação vigente.`
+              correspondente a ${studentInfo.amount} (${extenso(studentInfo.amount, { number: { gender: 'f' } })}) 
+              bolsa de doutorado, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
+              de acordo com a legislação vigente.`
             ) : ('')}
           </p>
           <p className="pdf-date">Belo Horizonte, {`${moment(studentInfo.currentDate).format('LL')}`}</p>
