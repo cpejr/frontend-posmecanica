@@ -119,3 +119,7 @@ export const updateStudent = (student, studentId) => httpClient.put(`/students/$
 export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);
 export const createStudent = (student, studScholarship) => httpClient.post(`/students/${student.candidate_id}`, { stud_scholarship: studScholarship });
 export const createStudentDiscipline = (id, disciplines) => httpClient.post(`/connect/student_dis/${id}`, { sd_dis_ids: disciplines });
+export const getMessageByUserId = (id, type) => httpClient.get(`/messages/${type}/${id}`);
+export const getUploadedFileByUserId = (id) => httpClient.get(`candidates/documents/${id}`);
+export const createMessage = (message) => httpClient.post('/messages', message);
+export const getThesisList = (id) => httpClient.get(`students/thesis/${id}`);

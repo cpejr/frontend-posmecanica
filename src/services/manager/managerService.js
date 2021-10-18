@@ -341,3 +341,26 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
 
   return filteredCandidates;
 };
+
+export const getMessageByUserId = async (id, type) => {
+  const response = await requesterService.getMessageByUserId(id, type);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getUploadedFileByUserId = async (id) => {
+  const response = await requesterService.getUploadedFileByUserId(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createMessage = async (message) => {
+  const response = await requesterService.createMessage(message);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getThesisList = async (id) => {
+  const response = await requesterService.getThesisList(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
