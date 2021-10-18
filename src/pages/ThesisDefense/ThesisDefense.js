@@ -84,6 +84,7 @@ function ThesisDefense({ location }) {
     if (
       defense.defense_title === undefined
       || defense.defense_type === undefined
+      || defense.defense_number === undefined
       || defense.defense_hour === undefined
       || defense.defense_place === undefined
       || defense.defense_date === undefined
@@ -199,7 +200,6 @@ function ThesisDefense({ location }) {
                     variant="outlined"
                     type="date"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setData(e.target.value);
                     }}
                   />
@@ -212,7 +212,6 @@ function ThesisDefense({ location }) {
                     variant="outlined"
                     label="Número da Defesa"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setNumero(e.target.value);
                     }}
                   />

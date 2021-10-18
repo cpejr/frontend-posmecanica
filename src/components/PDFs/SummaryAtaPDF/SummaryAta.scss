@@ -8,8 +8,8 @@
 }
 
 .pdfSummary-image {
-  width: 55%;
-  height: 75%;
+  width: 18vw;
+  height: 12vh;
   align-content: flex-start;
 }
 
@@ -45,4 +45,19 @@
 
 .pdfrender-paragraph{
   margin-bottom: 30px;
+}
+
+.pdfSummary-studentName{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.pdfSummary-studentNameBold{
+  font-weight: bold;
+}
+
+.pdfSummary-CapsItalic{
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
 }

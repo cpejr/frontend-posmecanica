@@ -21,8 +21,9 @@ class ComponentToPrint extends React.Component {
           </div>
           <p className="pdfSumary-dedicate">
             A Banca Examinadora constituída pelos professores: {`${qualiInfo.bank}`}  reunida no dia {`${moment(qualiInfo.date).format('LL')}`}
-            , às {`${qualiInfo.hour}`} horas, para examinar a dissertação intitulada “{`${qualiInfo.title}`}", 
-            defendida pelo  aluno {`${qualiInfo.studName}`}, decidiu, por unanimidade, designar o(a) {`${qualiInfo.advisor}`}, para supervisionar as correções requeridas e/ou sugeridas 
+            , às {`${qualiInfo.hour}`} horas, para examinar a dissertação intitulada <a className="pdfChoiceMember-title">“{`${qualiInfo.title}`}"</a>, 
+            defendida pelo  aluno <a className="pdfChoiceMember-student">{`${qualiInfo.studName}`}</a>, decidiu, por unanimidade, 
+            designar o(a) {`${qualiInfo.advisor}`}, para supervisionar as correções requeridas e/ou sugeridas 
             pela Banca Examinadora do candidato.
           </p>
           <p className="pdfSumary-dedicate">

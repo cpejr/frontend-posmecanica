@@ -41,12 +41,18 @@ class ComponentToPrint extends React.Component {
             ) : (' Doutorado')},
             da Universidade Federal de Minas Gerais, frequentando regularmente
             as atividades desde {`${moment(studentInfo.inscrition).format('MMMM [de] YYYY')}`}.
+          </p>
+          <p className="pdf-dedicate">
             {(studentInfo.scholarship == true) ? (
               `Declaro, ainda, que o referido aluno é bolsista do Conselho 
               Nacional de Desenvolvimento Científico
               e Tecnológico (CNPq), recebendo, mensalmente, a quantia
               correspondente a ${studentInfo.amount} (${extenso(studentInfo.amount, { number: { gender: 'f' } })}) 
-              bolsa de doutorado, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
+              ${(studentInfo.amount > 1) ? (
+                ' bolsas'
+              ) : (' bolsa')}, de ${(studentInfo.grade == 'MESTRADO') ? (
+                ' mestrado'
+              ) : (' doutorado')}, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
               de acordo com a legislação vigente.`
             ) : ('')}
           </p>

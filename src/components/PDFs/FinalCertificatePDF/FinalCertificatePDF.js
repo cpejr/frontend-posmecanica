@@ -35,17 +35,17 @@ class ComponentToPrint extends React.Component {
             ATESTADO
           </div>
           <p className="pdfSumary-dedicate">
-            Atesto, para os devidos fins, que, {`${defenseInfo.studName}`} defendeu,
+            Atesto, para os devidos fins, que, <a className="pdfSummary-studentName">{`${defenseInfo.studName}`}</a> defendeu,
             no dia {`${moment(defenseInfo.date).format('LL')}`}, perante Banca Examinadora homologada
             pelo Colegiado do Programa de Pós-Graduação em Engenharia Mecânica
             da Universidade Federal de Minas Gerais, constituída pelos professores: {`${defenseInfo.bank}`}, a 
             {(defenseInfo.type == 'DISSERTACAO') ? (
               ' dissertação'
             ) : (' tese')} intitulada
-            “{`${defenseInfo.title}`}”.
+            <a className="pdfSummary-studentName"> “{`${defenseInfo.title}`}”</a>.
           </p>
           <p className="pdfSumary-dedicate">
-            Salientamos que o Sr. {`${defenseInfo.studName}`} está apto a gozar dos direitos que 
+            Salientamos que o Sr(a). <a className="pdfSummary-studentNameBold">{`${defenseInfo.studName}`}</a> está apto a gozar dos direitos que 
             o referido título lhe concede - 
             {(defenseInfo.type == 'DISSERTACAO') ? (
               ' Mestre'

@@ -36,22 +36,29 @@ class ComponentToPrint extends React.Component {
           </div>
           <p className="pdfrender-paragraph"/>
           <p className="pdfSumary-dedicate">
-          Ata da Sessão Pública da defesa de dissertação de {`${defenseInfo.name}`}, 
-          de registro Número {`${defenseInfo.register}`}, aluno(a) do Curso de Mestrado do Programa 
+          Ata da Sessão Pública da defesa de dissertação de <a className="pdfSummary-studentName">{`${defenseInfo.studName}`}</a>, 
+          de registro Número {`${defenseInfo.register}`}, aluno(a) do Curso de 
+          {(defenseInfo.type == 'DISSERTACAO') ? (
+              ' Mestrado'
+            ) : (' Doutorado')}  do Programa 
           de Pós-Graduação em Engenharia Mecânica da Escola de Engenharia, da Universidade 
           Federal de Minas Gerais. Sendo a participação de todos os membros da Banca 
           inclusive do Discente por vídeoconferência, às {`${defenseInfo.hour}`} horas do dia {`${moment(defenseInfo.date).format('LL')}`}. 
           A Banca Examinadora indicada pelo Colegiado do Curso, foi constituída pelos 
           professores: {`${defenseInfo.bank}`}. O Presidente da Banca Examinadora {`${defenseInfo.advisor}`}, abriu 
           a Sessão Pública de defesa Nº {`${defenseInfo.number}`}, para avaliar a defesa de dissertação do aluno(a) 
-          {`${defenseInfo.name}`}, intitulada: “{`${defenseInfo.title}`}” requisito final para obtenção do Grau de Mestre 
+          <a className="pdfSummary-studentNameBold"> {`${defenseInfo.studName}`}</a>, intitulada: <a className="pdfSummary-studentName">“{`${defenseInfo.title}`}” </a>
+          requisito final para obtenção do Grau de 
+          {(defenseInfo.type == 'DISSERTACAO') ? (
+              ' Mestrado '
+            ) : (' Doutorado ')} 
           em Engenharia Mecânica, na área de concentração "{`${defenseInfo.searchArea}`}” e, após dar
            conhecimento aos presentes o teor das normas regulamentares do trabalho final, passou 
            a palavra ao candidato(a) para apresentação de seu trabalho. Seguiu-se a arguição pelos 
            examinadores com a respectiva defesa do candidato. Após a defesa, os membros da Banca 
            Examinadora realizaram a avaliação, por meio eletrônico, do trabalho sem a presença do 
            candidato, para julgamento e expedição do resultado final. Foi atribuída a seguinte 
-           indicação: o candidato foi considerado {`${defenseInfo.aprovall}`}, por unanimidade. O resultado final foi
+           indicação: o candidato foi considerado <a className="pdfSummary-studentName">{`${defenseInfo.aprovad}`}</a>, por unanimidade. O resultado final foi
           comunicado ao candidato pelo Senhor Presidente da Banca Examinadora. Nada mais havendo 
           a tratar, lavrou-se a presente Ata que será assinada eletronicamente pelos membros da Banca.
           </p>
