@@ -14,10 +14,6 @@
   margin: 0px 50px 0px 50px;
   margin-top: 25px;
   margin-bottom: 15px;
-
-  @media(max-width: 650px){
-    justify-content: center;
-  }
 }
 .BdBoxFather {
   margin: 0px 50px 5px 50px;
@@ -77,6 +73,10 @@
 
 @media (max-width: 769px){
 
+  .BdTitle {
+    justify-content: center;
+  }
+
   .BdBox{
     max-height: 240px!important;
     margin: 0px;
@@ -110,7 +110,8 @@
   }
 
   .isoPsIcon{
-    display: none;
+    width: 30px;
+    min-width: 30px;
   }
 
   .BdSubTitle{
@@ -119,5 +120,11 @@
 
   .BdTitle{
     font-size: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  .isoPsIcon{
+    display: none;
   }
 }

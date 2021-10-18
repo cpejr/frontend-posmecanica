@@ -85,7 +85,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
             <IconContext.Provider value={{ size: 50 }}>
               <BiUserCircle className="isoPsIcon" />
             </IconContext.Provider>
-            {candidate.candidate_name}
+            <p>{candidate.candidate_name}</p>
           </div>
           <div className="tipo">
             <div className={stylesProcessType ? 'mestrado' : 'doutorado'}>
@@ -99,7 +99,8 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
                 state: { candidate },
               }}
             >
-              {buttonText}
+              <p>{buttonText}</p>
+              <p>Info</p>
             </Link>
           </div>
         </div>
@@ -109,7 +110,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
             <IconContext.Provider value={{ size: 50 }}>
               <BiUserCircle className="isoPsIcon" />
             </IconContext.Provider>
-            {candidate.candidate_name}
+            <p>{candidate.candidate_name}</p>
           </div>
           <div className="tipo">
             <div className="isolada">
@@ -117,7 +118,10 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
             </div>
           </div>
           <div className="divButtonInfoIsolatedCandidate">
-            <button type="button" className="buttonInfoIsolatedCandidate" onClick={() => setShowInfoModal(true)}>Ver informações do candidato</button>
+            <button type="button" className="buttonInfoIsolatedCandidate" onClick={() => setShowInfoModal(true)}>
+              <p>Ver informações do candidato</p>
+              <p>Info</p>
+            </button>
           </div>
         </div>
       )}
