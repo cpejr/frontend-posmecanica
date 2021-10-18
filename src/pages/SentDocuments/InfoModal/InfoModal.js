@@ -196,7 +196,7 @@ function InfoModal({
                 {` ${conteudo?.candidate_justify}`}
               </div>
             </div>
-            {studentList === 'true' && (
+            {studentList === 'true' && conteudo.process_type !== 'ISOLADA' && (
               <div className="buttonsGroupRedirect">
                 <div className="divInfoModalStudentRedirect">
                   <button type="button" className="InfoModalStudentRedirect" onClick={redirectToEdit}>

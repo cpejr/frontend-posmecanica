@@ -26,7 +26,7 @@ class ComponentToPrint extends React.Component {
             pela Banca Examinadora do candidato.
           </p>
           <p className="pdfSumary-dedicate">
-            A Banca Examinadora decidiu ainda que o candidato terá um prazo de 60 dias para a 
+            A Banca Examinadora decidiu ainda que o candidato terá um prazo de {`${qualiInfo.qualiDays}`} dias para a 
             entrega da versão final de sua dissertação.
           </p>
           <p className="pdfSummary-date">Belo Horizonte, {`${moment(qualiInfo.currentDate).format('LL')}`}</p>

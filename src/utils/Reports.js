@@ -13,9 +13,9 @@ const reports = [
       },
       {
         text: 'Report',
-        types: ['Certificado', 'Atestado Final de Conclusão'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
-        path: ['certificado', 'atestado-final'],
+        types: ['Certificado', 'Atestado Final de Conclusão', 'Declaração'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        path: ['certificado', 'atestado-final', 'declaracao'],
       },
     ],
   },
