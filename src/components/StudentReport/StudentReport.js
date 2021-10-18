@@ -16,6 +16,9 @@ function StudentReport({
   location,
 }) {
   const history = useHistory();
+  if (location.state == null) {
+    window.location = '/login';
+  }
   const { addToast } = useToasts();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showDadosModal, setShowDadosModal] = useState(false);
@@ -151,7 +154,7 @@ function StudentReport({
           handleCloseClick={handleCloseClick}
           handleConfirmClick={handleConfirmClick}
         >
-          Defina a quantidade de bolsas recebidas pelo aluno e seu respectivo valor.
+          Defina a quantidade de bolsas recebidas pelo aluno(a) e seu respectivo valor.
           <TextField
             id="outlined-number"
             label="Quantidade"
@@ -175,7 +178,7 @@ function StudentReport({
           handleCloseClick={handleCloseClick}
           handleConfirmClick={handleConfirmClick}
         >
-          Defina o resultado final do candidato(a).
+          Defina o resultado final do aluno(a).
           <TextField
             id="outlined-select-currency"
             label="Resultado"

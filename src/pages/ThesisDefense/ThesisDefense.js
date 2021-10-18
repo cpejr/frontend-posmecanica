@@ -20,6 +20,9 @@ function ThesisDefense({ location }) {
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
   const history = useHistory();
+  if (location.state == null) {
+    window.location = '/login';
+  }
   function formatedDate(date) {
     let newData = '';
     newData = date.split('-');

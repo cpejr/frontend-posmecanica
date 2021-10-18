@@ -121,6 +121,9 @@ export const createStudent = (student, studScholarship) => httpClient.post(`/stu
 export const createStudentDiscipline = (id, disciplines) => httpClient.post(`/connect/student_dis/${id}`, { sd_dis_ids: disciplines });
 
 export const createQualification = (qualification, qualiStudId) => httpClient.post(`qualifications/${qualiStudId}`, qualification);
-export const createDefense = (defense, defenseStudId) => httpClient.post(`defenses/${defenseStudId}`, defense);
 export const getByStudentQualification = (qualiStudId) => httpClient.get(`qualifications/students/${qualiStudId}`);
+export const deleteQualification = (qualiStudId) => httpClient.delete(`qualifications/${qualiStudId}`);
+
+export const createDefense = (defense, defenseStudId) => httpClient.post(`defenses/${defenseStudId}`, defense);
 export const getByStudentDefense = (defenseStudId) => httpClient.get(`defenses/students/${defenseStudId}`);
+export const deleteDefense = (defenseStudId) => httpClient.delete(`defenses/${defenseStudId}`);

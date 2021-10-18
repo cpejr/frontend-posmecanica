@@ -69,6 +69,12 @@ export const getByStudentQualification = async (qualiStudId) => {
   return response.data;
 };
 
+export const deleteQualification = async (qualiStudId) => {
+  const response = await requesterService.deleteQualification(qualiStudId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data.id;
+};
+
 export const createDefense = async (defense, defenseStudId) => {
   const response = await requesterService.createDefense(defense, defenseStudId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -79,6 +85,12 @@ export const getByStudentDefense = async (defenseStudId) => {
   const response = await requesterService.getByStudentDefense(defenseStudId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
+};
+
+export const deleteDefense = async (defenseStudId) => {
+  const response = await requesterService.deleteDefense(defenseStudId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data.id;
 };
 
 export const createCandidate = async (candidate, selectiveProcessId) => {

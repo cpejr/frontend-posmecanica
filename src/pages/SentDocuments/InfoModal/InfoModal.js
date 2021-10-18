@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
-import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../../services/manager/managerService';
+import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList,
@@ -19,7 +19,8 @@ function InfoModal({
   }
 
   const history = useHistory();
-  const { addToast } = useToasts();
+  const [showModal, setShowModal] = useState(false);
+  const [action, setAction] = useState('');
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -38,9 +39,10 @@ function InfoModal({
   }
 
   async function redirectToQualification() {
+    setAction('qualificação');
     const verify = await managerService.getByStudentQualification(conteudo.stud_id);
     if (verify) {
-      addToast('O aluno já possui uma qualificação marcada!', { appearance: 'error' });
+      setShowModal(true);
     } else {
       history.push({
         pathname: '/painel/administrator/qualificaçao-teses',
@@ -50,9 +52,10 @@ function InfoModal({
   }
 
   async function redirectToDefense() {
+    setAction('defesa');
     const verify = await managerService.getByStudentDefense(conteudo.stud_id);
     if (verify) {
-      addToast('O aluno já possui uma defesa marcada!', { appearance: 'error' });
+      setShowModal(true);
     } else {
       history.push({
         pathname: '/painel/administrator/defesa-de-teses',
@@ -67,6 +70,28 @@ function InfoModal({
       state: conteudo,
     });
   }
+
+  const handleCloseClick = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirmClick = async () => {
+    if (action === 'qualificação') {
+      const qualification = await managerService.getByStudentQualification(conteudo.stud_id);
+      await managerService.deleteQualification(qualification.quali_id);
+      history.push({
+        pathname: '/painel/administrator/qualificaçao-teses',
+        state: conteudo,
+      });
+    } else {
+      const defense = await managerService.getByStudentDefense(conteudo.stud_id);
+      await managerService.deleteDefense(defense.defense_id);
+      history.push({
+        pathname: '/painel/administrator/defesa-de-teses',
+        state: conteudo,
+      });
+    }
+  };
 
   return (
     <>
@@ -299,6 +324,16 @@ function InfoModal({
             </div>
           </div>
         </div>
+      )}
+      {showModal && (
+        <GenericModal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleConfirmClick}
+        >
+          O estudante já possui uma
+          {` ${action}`}
+          , deseja remarcar?
+        </GenericModal>
       )}
     </>
   );
