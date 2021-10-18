@@ -50,7 +50,7 @@ function ThesesPost() {
         try {
           setButtonState("spinerButton");
           setTextButton("");
-          await managerService.uploadThesis(data, user.name, thesisName);
+          await managerService.uploadThesis(data, user.id, thesisName);
           addToast("Tese postada com sucesso!", { appearance: "success" });
           history.push("/painel/aluno");
         } catch {
