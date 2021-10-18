@@ -90,7 +90,7 @@ function StudentReport({
             date: defense.defense_date,
             bank: student.stud_bank,
             advisor: student.stud_prof_advisor,
-            number: defense.defense_number,
+            number: defense.defense_protocol,
             register: student.stud_registration,
             aprovad: aproval,
             searchArea: location.state.candidate_concentration_area,
