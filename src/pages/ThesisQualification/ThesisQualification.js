@@ -8,14 +8,13 @@ import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
-import './ThesisDefense.scss';
+import '../ThesisDefense/ThesisDefense.scss';
 
-function ThesisDefense({ location }) {
+function ThesisQualification({ location }) {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const { addToast } = useToasts();
   const [titulo, setTitulo] = useState();
   const [type, setType] = useState();
-  const [numero, setNumero] = useState();
   const [hora, setHora] = useState();
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
@@ -28,23 +27,15 @@ function ThesisDefense({ location }) {
   const inputProps = [
     {
       text: 'Página principal',
-      path: 'administrator',
+      path: '',
     },
     {
       text: 'Lista de estudantes',
       path: 'administrator/lista-estudantes',
     },
     {
-      text: 'Lista de professores',
-      path: 'lista-professores',
-    },
-    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
-    },
-    {
-      text: 'Visualizar Processos Seletivos',
-      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',
@@ -59,7 +50,7 @@ function ThesisDefense({ location }) {
       path: '../esqueci-senha',
     },
   ];
-  const defenseProps = [
+  const qualiProps = [
     {
       name: location.state.candidate_name,
       title: titulo,
@@ -71,30 +62,29 @@ function ThesisDefense({ location }) {
       bench: location.state.stud_bank,
     },
   ];
-  const defense = {
-    defense_stud_name: location.state.candidate_name,
-    defense_type: type,
-    defense_title: titulo,
-    defense_number: numero,
-    defense_place: local,
-    defense_hour: hora,
-    defense_date: data,
+  const qualification = {
+    quali_stud_name: location.state.candidate_name,
+    quali_type: type,
+    quali_title: titulo,
+    quali_place: local,
+    quali_hour: hora,
+    quali_date: data,
   };
-  const Defense = async () => {
+  const Qualificaçao = async () => {
     if (
-      defense.defense_title === undefined
-      || defense.defense_type === undefined
-      || defense.defense_hour === undefined
-      || defense.defense_place === undefined
-      || defense.defense_date === undefined
+      qualification.quali_title === undefined
+      || qualification.quali_type === undefined
+      || qualification.quali_hour === undefined
+      || qualification.quali_place === undefined
+      || qualification.quali_date === undefined
     ) {
       addToast('Preencha todos os campos!', { appearance: 'error' });
     } else {
-      await managerService.createDefense(defense, location.state.stud_id);
-      addToast('Defesa marcada com sucesso!', { appearance: 'success' });
+      await managerService.createQualification(qualification, location.state.stud_id);
+      addToast('Qualificação marcada com sucesso!', { appearance: 'success' });
       history.push({
-        pathname: '/painel/administrator/divulgaçao-defesa',
-        state: { detail: defenseProps },
+        pathname: '/painel/administrator/divulgaçao-qualificaçao',
+        state: { detail: qualiProps },
       });
     }
   };
@@ -102,7 +92,7 @@ function ThesisDefense({ location }) {
     <div className="defenseContent">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="defenseContainer">
-        <h2 className="defenseTitle">Defesa</h2>
+        <h2 className="defenseTitle">Qualificação</h2>
         <div className="subTitleLine" />
         <div className="defenseBlock">
           <div className="defenseGrid">
@@ -147,7 +137,7 @@ function ThesisDefense({ location }) {
                   <TextField
                     id="outlined-select-currency"
                     variant="outlined"
-                    label="Tipo de Defesa"
+                    label="Tipo de Qualificação"
                     select
                     value={type}
                     onChange={(e) => setType(e.target.value)}
@@ -161,7 +151,7 @@ function ThesisDefense({ location }) {
                 </div>
               </div>
               <div className="input-SPcontent">
-                <div className="form_SP_input">
+                <div className="form_SP1_input">
                   <TextField
                     id="outlined-basic"
                     variant="outlined"
@@ -195,25 +185,11 @@ function ThesisDefense({ location }) {
               <div className="input-SPcontent">
                 <div className="form_SP_input">
                   <TextField
-                    id="outlined-number"
+                    id="outlined-basic"
                     variant="outlined"
                     type="date"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setData(e.target.value);
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="input-SPcontent">
-                <div className="form_SP_input">
-                  <TextField
-                    id="outlined-basic"
-                    variant="outlined"
-                    label="Número da Defesa"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      setNumero(e.target.value);
                     }}
                   />
                 </div>
@@ -240,8 +216,8 @@ function ThesisDefense({ location }) {
             </div>
           </div>
           <div className="divButton">
-            <button type="submit" className="buttonDivulgar" onClick={Defense}>
-              GERAR DEFESA
+            <button type="submit" className="buttonDivulgar" onClick={Qualificaçao}>
+              GERAR QUALIFICAÇÃO
             </button>
           </div>
         </div>
@@ -256,4 +232,4 @@ function ThesisDefense({ location }) {
   );
 }
 
-export default ThesisDefense;
+export default ThesisQualification;

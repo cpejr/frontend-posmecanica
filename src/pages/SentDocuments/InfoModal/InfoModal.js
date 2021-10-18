@@ -1,7 +1,9 @@
 import React from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
+import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
+import * as managerService from '../../../services/manager/managerService';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList,
@@ -17,7 +19,7 @@ function InfoModal({
   }
 
   const history = useHistory();
-
+  const { addToast } = useToasts();
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -28,9 +30,40 @@ function InfoModal({
     return 'Pendente';
   }
 
-  function redirect() {
+  function redirectToEdit() {
     history.push({
       pathname: '/painel/administrator/editar/aluno',
+      state: conteudo,
+    });
+  }
+
+  async function redirectToQualification() {
+    const verify = await managerService.getByStudentQualification(conteudo.stud_id);
+    if (verify) {
+      addToast('O aluno já possui uma qualificação marcada!', { appearance: 'error' });
+    } else {
+      history.push({
+        pathname: '/painel/administrator/qualificaçao-teses',
+        state: conteudo,
+      });
+    }
+  }
+
+  async function redirectToDefense() {
+    const verify = await managerService.getByStudentDefense(conteudo.stud_id);
+    if (verify) {
+      addToast('O aluno já possui uma defesa marcada!', { appearance: 'error' });
+    } else {
+      history.push({
+        pathname: '/painel/administrator/defesa-de-teses',
+        state: conteudo,
+      });
+    }
+  }
+
+  function redirectToReports() {
+    history.push({
+      pathname: '/painel/administrator/relatorios',
       state: conteudo,
     });
   }
@@ -163,11 +196,22 @@ function InfoModal({
                 {` ${conteudo?.candidate_justify}`}
               </div>
             </div>
-            {studentList === 'true' && (
-              <div className="divInfoModalStudentRedirect">
-                <button type="button" className="InfoModalStudentRedirect" onClick={redirect}>
-                  Editar estudante
-                </button>
+            {studentList === 'true' && conteudo.process_type !== 'ISOLADA' && (
+              <div className="buttonsGroupRedirect">
+                <div className="divInfoModalStudentRedirect">
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToEdit}>
+                    EDITAR ESTUDANTE
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToQualification}>
+                    MARCAR QUALIFICAÇÃO
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToDefense}>
+                    MARCAR DEFESA
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToReports}>
+                    RELATÓRIOS
+                  </button>
+                </div>
               </div>
             )}
           </div>
