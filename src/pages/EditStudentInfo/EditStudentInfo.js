@@ -35,10 +35,6 @@ function EditStudentInfo({ location }) {
       path: 'processos-seletivos',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
       text: 'Lista de professores',
       path: 'lista-professores',
     },
@@ -91,7 +87,7 @@ function EditStudentInfo({ location }) {
                         shrink={item.type === 'date' ? true : undefined}
                         id={item.id}
                         label={item.label}
-                        width="22rem"
+                        width={item.width}
                         field={item.field}
                         select={item.select}
                         dados={dados}

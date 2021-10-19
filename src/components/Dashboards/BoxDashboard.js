@@ -1,4 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import BoxAdm from '../Inscritos/InscritosPS';
 import BoxProf from '../Inscritos/InscritosIsoPS';
 import StyledInput from '../StyledInput';
@@ -17,6 +19,8 @@ function BoxDashboard({
   const [showInput, setShowInput] = useState(false);
   const [dados, setDados] = useState(initialState);
   const [candidates, setCandidates] = useState();
+  const [loading, setLoading] = useState(false);
+  const [empty, setEmpty] = useState(false);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
@@ -29,13 +33,27 @@ function BoxDashboard({
   }, []);
 
   useEffect(async () => {
+    setEmpty(false);
     if (dados.type) {
+      setLoading(true);
       const filteredCandidates = await managerService.getCandidatesWithDisciplineSituation(
         'candidate_grade',
         'NENHUMA DAS OPÇÕES',
         dados.type,
       );
+      setLoading(false);
       setCandidates(filteredCandidates);
+      let verify;
+      if (position === 'first') {
+        verify = filteredCandidates
+          ?.every((resp) => resp.candidate_discipline[0].cd_dis_deferment === true);
+      } else {
+        verify = filteredCandidates
+          ?.every((resp) => resp.candidate_discipline[0].cd_dis_deferment === null);
+      }
+      if (filteredCandidates?.length === 0 || verify === true) {
+        setEmpty(true);
+      }
     }
   }, [dados.type]);
 
@@ -134,7 +152,7 @@ function BoxDashboard({
             <StyledInput
               type="text"
               id="type"
-              label="Título"
+              label={type === 'prof' ? 'Selecione uma disciplina' : 'Processo seletivo'}
               field={type === 'prof' ? disciplineFilter : AllTitleTypes}
               select
               background="transparent"
@@ -144,7 +162,12 @@ function BoxDashboard({
             />
           </div>
         </div>
-        <div className={type === 'prof' ? 'BdBoxProf' : 'BdBox'}>
+        <div className={type === 'prof' ? (
+          loading ? 'BdBoxProfLoaderTrue' : 'BdBoxProf'
+        ) : (
+          loading ? 'BdBoxLoaderTrue' : 'BdBox'
+        )}
+        >
           {position === 'first' && type === 'adm' && (
             <div className="BdDivGrid">
               {list.map((listItem) => {
@@ -158,7 +181,23 @@ function BoxDashboard({
               })}
             </div>
           )}
-          {position === 'first' && type === 'prof' && dados.type && (
+          {type === 'prof' && dados.type && loading === true && (
+            <div className="BdDivGridLoader">
+              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+            </div>
+          )}
+          {type === 'prof' && !dados.type && (
+            <div className="BdDivGridNoDisciplineSelected">
+              <p>~ Selecione uma disciplina ~</p>
+            </div>
+          )}
+          {type === 'prof' && empty === true && (
+            <div className="BdDivGridNoDisciplineSelected">
+              <p>~ Não há candidatos para essa disciplina ~</p>
+            </div>
+          )}
+
+          {position === 'first' && type === 'prof' && dados.type && loading === false && (
             <div className="BdDivGrid">
               {candidates?.map((element) => {
                 if (element.candidate_discipline[0].cd_dis_deferment === null) {
@@ -176,7 +215,7 @@ function BoxDashboard({
               })}
             </div>
           )}
-          {position === 'second' && dados.type && (
+          {position === 'second' && dados.type && loading === false && (
             <div className="BdDivGrid">
               {candidates?.map((listDeferItem) => {
                 if (listDeferItem.candidate_discipline[0].cd_dis_deferment === true) {

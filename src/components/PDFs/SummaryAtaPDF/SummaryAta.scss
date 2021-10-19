@@ -1,0 +1,63 @@
+.pdfrenderSummary-external-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 5%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.pdfSummary-image {
+  width: 18vw;
+  height: 12vh;
+  align-content: flex-start;
+}
+
+.pdfrenderSummary-title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20pt;
+}
+
+.pdfheaderSumary-text {
+  text-align: center;
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.pdfSumary-dedicate {
+  font-size: 14pt;
+  margin-top: 20px;
+  text-indent: 4em;
+  text-align: justify;
+}
+
+.pdfSummary-date {
+  font-size: 14pt;
+  margin-top: 30px;
+}
+
+.pdfSummary-coordinator {
+  font-size: 14pt;
+  text-align: center;
+  margin-top: 35px;
+}
+
+.pdfrender-paragraph{
+  margin-bottom: 30px;
+}
+
+.pdfSummary-studentName{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.pdfSummary-studentNameBold{
+  font-weight: bold;
+}
+
+.pdfSummary-CapsItalic{
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+}

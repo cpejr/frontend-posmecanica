@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField, InputAdornment } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
+import MenuItem from '@material-ui/core/MenuItem';
+import typeDefense from '../../utils/typeDefense';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import RightPanel from '../../components/Menu/RightPanel';
+import * as managerService from '../../services/manager/managerService';
 import './ThesisDefense.scss';
 
-function ThesisDefense() {
+function ThesisDefense({ location }) {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const { addToast } = useToasts();
-  const [nome, setNome] = useState();
   const [titulo, setTitulo] = useState();
-  const [orientador, setOrientador] = useState();
+  const [type, setType] = useState();
+  const [numero, setNumero] = useState();
   const [hora, setHora] = useState();
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
-  const [banca, setBanca] = useState();
   const history = useHistory();
+  if (location.state == null) {
+    window.location = '/login';
+  }
   function formatedDate(date) {
     let newData = '';
     newData = date.split('-');
@@ -57,41 +62,51 @@ function ThesisDefense() {
       path: '../esqueci-senha',
     },
   ];
-
   const defenseProps = [
     {
-      name: nome,
+      name: location.state.candidate_name,
       title: titulo,
-      advisor: orientador,
+      tipo: type,
       hour: hora,
       location: local,
       date: formatedDate(data),
-      bench: banca,
+      advisor: location.state.stud_prof_advisor,
+      bench: location.state.stud_bank,
     },
   ];
-  function Divulgaçao() {
+  const defense = {
+    defense_stud_name: location.state.candidate_name,
+    defense_type: type,
+    defense_title: titulo,
+    defense_protocol: numero,
+    defense_place: local,
+    defense_hour: hora,
+    defense_date: data,
+  };
+  const Defense = async () => {
     if (
-      defenseProps[0].name === undefined
-      || defenseProps[0].title === undefined
-      || defenseProps[0].advisor === undefined
-      || defenseProps[0].hour === undefined
-      || defenseProps[0].location === undefined
-      || defenseProps[0].date === undefined
-      || defenseProps[0].bench === undefined
+      defense.defense_title === undefined
+      || defense.defense_type === undefined
+      || defense.defense_protocol === undefined
+      || defense.defense_hour === undefined
+      || defense.defense_place === undefined
+      || defense.defense_date === undefined
     ) {
       addToast('Preencha todos os campos!', { appearance: 'error' });
     } else {
+      await managerService.createDefense(defense, location.state.stud_id);
+      addToast('Defesa marcada com sucesso!', { appearance: 'success' });
       history.push({
-        pathname: '/painel/administrator/divulgaçao-tese',
+        pathname: '/painel/administrator/divulgaçao-defesa',
         state: { detail: defenseProps },
       });
     }
-  }
+  };
   return (
     <div className="defenseContent">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="defenseContainer">
-        <h2 className="defenseTitle">Divulgação de Defesa de Tese</h2>
+        <h2 className="defenseTitle">Defesa</h2>
         <div className="subTitleLine" />
         <div className="defenseBlock">
           <div className="defenseGrid">
@@ -103,17 +118,14 @@ function ThesisDefense() {
                     variant="outlined"
                     type="text"
                     label="Aluno"
-                    onChange={(e) => setNome(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="input-SPcontent">
-                <div className="form_SP_input">
-                  <TextField
-                    id="outlined-basic"
-                    variant="outlined"
-                    label="Título da Tese"
-                    onChange={(e) => setTitulo(e.target.value)}
+                    InputProps={{
+                      readOnly: true,
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {location.state.candidate_name}
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
               </div>
@@ -123,7 +135,42 @@ function ThesisDefense() {
                     id="outlined-basic"
                     variant="outlined"
                     label="Orientador"
-                    onChange={(e) => setOrientador(e.target.value)}
+                    InputProps={{
+                      readOnly: true,
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {location.state.stud_prof_advisor}
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="input-SPcontent">
+                <div className="form_SP_input">
+                  <TextField
+                    id="outlined-select-currency"
+                    variant="outlined"
+                    label="Tipo de Defesa"
+                    select
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    {typeDefense.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </div>
+              </div>
+              <div className="input-SPcontent">
+                <div className="form_SP_input">
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    label="Título"
+                    onChange={(e) => setTitulo(e.target.value)}
                   />
                 </div>
               </div>
@@ -152,10 +199,24 @@ function ThesisDefense() {
               <div className="input-SPcontent">
                 <div className="form_SP_input">
                   <TextField
-                    id="outlined-basic"
+                    id="outlined-number"
                     variant="outlined"
                     type="date"
-                    onChange={(e) => setData(e.target.value)}
+                    onChange={(e) => {
+                      setData(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="input-SPcontent">
+                <div className="form_SP_input">
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    label="Número da Defesa"
+                    onChange={(e) => {
+                      setNumero(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -169,14 +230,20 @@ function ThesisDefense() {
                 type="text"
                 label="Banca Examinadora"
                 multiline
-                rows={4}
-                onChange={(e) => setBanca(e.target.value)}
+                InputProps={{
+                  readOnly: true,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {location.state.stud_bank}
+                    </InputAdornment>
+                  ),
+                }}
               />
             </div>
           </div>
           <div className="divButton">
-            <button type="submit" className="buttonDivulgar" onClick={Divulgaçao}>
-              GERAR DIVULGAÇÃO
+            <button type="submit" className="buttonDivulgar" onClick={Defense}>
+              GERAR DEFESA
             </button>
           </div>
         </div>

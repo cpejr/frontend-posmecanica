@@ -1,11 +1,16 @@
+/*eslint-disable*/
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import './PDF.scss';
+import './Declaration.scss';
+import moment from 'moment';
+import extenso from 'extenso';
 import { FiPrinter } from 'react-icons/fi';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
   render() {
+    const studentProps = this.props;
+    const studentInfo = studentProps.info;
     return (
       <div className="pdf-external-div">
         <div className="pdf-header">
@@ -28,35 +33,43 @@ class ComponentToPrint extends React.Component {
         <div className="pdf-text">
           <div className="pdf-title">DECLARAÇÃO</div>
           <p className="pdf-dedicate">
-            Declaro, para os devidos fins, que ANDERSON JÚNIOR DOS SANTOS,
-            matrícula nº 2018700680, é aluno regularmente matriculado no
-            Programa de Pós-Graduação em Engenharia Mecânica, nível Doutorado,
+            Declaro, para os devidos fins, que {`${studentInfo.name}`},
+            matrícula nº {`${studentInfo.register}`}, é aluno regularmente matriculado no
+            Programa de Pós-Graduação em Engenharia Mecânica, nível 
+            {(studentInfo.grade == 'MESTRADO') ? (
+              ' Mestrado'
+            ) : (' Doutorado')},
             da Universidade Federal de Minas Gerais, frequentando regularmente
-            as atividades desde março de 2018. Declaro, ainda, que o referido
-            aluno é bolsista do Conselho Nacional de Desenvolvimento Científico
-            e Tecnológico (CNPq), recebendo, mensalmente, a quantia
-            correspondente a 01 (uma) bolsa de doutorado, no valor de R$ 1500
-            (um mil, quinhentos reais), de acordo com a legislação vigente.
+            as atividades desde {`${moment(studentInfo.inscrition).format('MMMM [de] YYYY')}`}.
           </p>
-          <p className="pdf-date">Belo Horizonte, 13 de maio de 2021</p>
+          <p className="pdf-dedicate">
+            {(studentInfo.scholarship == true) ? (
+              `Declaro, ainda, que o referido aluno é bolsista do Conselho 
+              Nacional de Desenvolvimento Científico
+              e Tecnológico (CNPq), recebendo, mensalmente, a quantia
+              correspondente a ${studentInfo.amount} (${extenso(studentInfo.amount, { number: { gender: 'f' } })}) 
+              ${(studentInfo.amount > 1) ? (
+                ' bolsas'
+              ) : (' bolsa')}, de ${(studentInfo.grade == 'MESTRADO') ? (
+                ' mestrado'
+              ) : (' doutorado')}, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
+              de acordo com a legislação vigente.`
+            ) : ('')}
+          </p>
+          <p className="pdf-date">Belo Horizonte, {`${moment(studentInfo.currentDate).format('LL')}`}</p>
           <div className="pdf-coordinator">
             <p>Prof. Dr. Marco Túlio Corrêa de Faria</p>
             <p>Coordenador do Programa de Pós-Graduação</p>
             <p>em Engenharia Mecânica da UFMG</p>
           </div>
-          <p className="pdf-observation">
-            OBS: Sugiro que os dados a serem preenchidos pela secretaria fossem
-            os de destaque. Se possível o campo permitir a digitação de mais
-            dados caso necessário. Os demais itens serão gerados automáticos
-            correto?
-          </p>
         </div>
       </div>
     );
   }
 }
 
-const PDFPage = () => {
+const PDFPage = (props) => {
+  const infoStudent = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -70,7 +83,7 @@ const PDFPage = () => {
           Imprimir
         </div>
       </div>
-      <ComponentToPrint ref={componentRef} />
+      <ComponentToPrint ref={componentRef} info={infoStudent.props[0]} />
     </div>
   );
 };

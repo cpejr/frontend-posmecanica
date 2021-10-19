@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import * as managerService from '../../../services/manager/managerService';
+import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList,
@@ -17,7 +19,8 @@ function InfoModal({
   }
 
   const history = useHistory();
-
+  const [showModal, setShowModal] = useState(false);
+  const [action, setAction] = useState('');
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -28,12 +31,67 @@ function InfoModal({
     return 'Pendente';
   }
 
-  function redirect() {
+  function redirectToEdit() {
     history.push({
       pathname: '/painel/administrator/editar/aluno',
       state: conteudo,
     });
   }
+
+  async function redirectToQualification() {
+    setAction('qualificação');
+    const verify = await managerService.getByStudentQualification(conteudo.stud_id);
+    if (verify) {
+      setShowModal(true);
+    } else {
+      history.push({
+        pathname: '/painel/administrator/qualificaçao-teses',
+        state: conteudo,
+      });
+    }
+  }
+
+  async function redirectToDefense() {
+    setAction('defesa');
+    const verify = await managerService.getByStudentDefense(conteudo.stud_id);
+    if (verify) {
+      setShowModal(true);
+    } else {
+      history.push({
+        pathname: '/painel/administrator/defesa-de-teses',
+        state: conteudo,
+      });
+    }
+  }
+
+  function redirectToReports() {
+    history.push({
+      pathname: '/painel/administrator/relatorios',
+      state: conteudo,
+    });
+  }
+
+  const handleCloseClick = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirmClick = async () => {
+    if (action === 'qualificação') {
+      const qualification = await managerService.getByStudentQualification(conteudo.stud_id);
+      await managerService.deleteQualification(qualification.quali_id);
+      history.push({
+        pathname: '/painel/administrator/qualificaçao-teses',
+        state: conteudo,
+      });
+    } else {
+      const defense = await managerService.getByStudentDefense(conteudo.stud_id);
+      await managerService.deleteDefense(defense.defense_id);
+      history.push({
+        pathname: '/painel/administrator/defesa-de-teses',
+        state: conteudo,
+      });
+    }
+  };
 
   return (
     <>
@@ -143,11 +201,11 @@ function InfoModal({
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[2]?.discipline_name : '-'}`}
                 </div>
                 <div>
                   <b>Quarta Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[3]?.discipline_name : '-'}`}
                 </div>
               </div>
               <div className="row">
@@ -158,16 +216,29 @@ function InfoModal({
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
               </div>
-              <div className="row">
-                <b>Justificativa:</b>
-                {` ${conteudo?.candidate_justify}`}
-              </div>
+              {conteudo.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
+                <div className="row">
+                  <b>Justificativa:</b>
+                  {` ${conteudo?.candidate_justify}`}
+                </div>
+              )}
             </div>
-            {studentList === 'true' && (
-              <div className="divInfoModalStudentRedirect">
-                <button type="button" className="InfoModalStudentRedirect" onClick={redirect}>
-                  Editar estudante
-                </button>
+            {studentList === 'true' && conteudo.process_type !== 'ISOLADA' && (
+              <div className="buttonsGroupRedirect">
+                <div className="divInfoModalStudentRedirect">
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToEdit}>
+                    EDITAR ESTUDANTE
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToQualification}>
+                    MARCAR QUALIFICAÇÃO
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToDefense}>
+                    MARCAR DEFESA
+                  </button>
+                  <button type="button" className="InfoModalStudentRedirect" onClick={redirectToReports}>
+                    RELATÓRIOS
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -255,6 +326,16 @@ function InfoModal({
             </div>
           </div>
         </div>
+      )}
+      {showModal && (
+        <GenericModal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleConfirmClick}
+        >
+          O estudante já possui uma
+          {` ${action}`}
+          , deseja remarcar?
+        </GenericModal>
       )}
     </>
   );

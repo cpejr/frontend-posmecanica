@@ -17,8 +17,8 @@
         max-width: 50%;
         justify-content: center;
         img {
-            width: 12vw;
-            height: 18vh;
+            width: 18vw;
+            height: 12vh;
         }
     }
     .pdf-header-text {
@@ -47,6 +47,7 @@
         margin: 4%;
         text-align: justify;
         font-size: 1.3em;
+        text-indent: 4em;
     }
     .pdf-date {
         text-align: center;

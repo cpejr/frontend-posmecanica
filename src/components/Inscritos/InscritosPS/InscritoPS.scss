@@ -7,10 +7,10 @@
   width: 100%;
   margin-bottom: 0.5em;
 }
-.inscritoPSicon{
+.isoPsIcon{
   display: flex;
   justify-content: center;
-  width: 14.5%;
+  min-width: 50px;
 }
 .nomeInscrito {
   display: flex;
@@ -20,8 +20,18 @@
   font-size: 18px;
   width: 33%;
 
-  @media(max-width: 650px){
-    font-size: small;
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
+  }
+
+  @media (max-width:400px) {
+    width: 50%;
   }
 }
 .trash {
@@ -33,51 +43,73 @@
   font-family: Montserrat;
   text-align: center;
 
-  @media(max-width: 650px){
-    font-size: 8pt;
+  p:nth-child(1) {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: none;
+    }
+  }
+
+  p:nth-child(2) {
+    display: none;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: flex;
+    }
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
     min-width: 55px;
   }
+
+  @media (max-width: 400px) {
+    width: 20%;
+  }
 } 
-.mestrado{
+.Mestrado{
   display: flex;
   justify-content: center;
   background-color: #e72929;
   color:white;
   padding: 4px;
   border-radius: 4px;
-  min-width: 70px;
+  width: 80px;
 
-  @media(max-width: 650px){
-    font-size: small;
-    min-width: 60px;
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
   }
 }
-.doutorado{
+.Doutorado{
   display: flex;
   justify-content: center;
   background-color: #29e729;
   color:white;
   padding: 4px;
   border-radius: 4px;
-  min-width: 70px;
+  width: 80px;
 
-  @media(max-width: 650px){
-    font-size: small;
-    min-width: 60px;
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
   }
 }
-.isolada{
+.Isolada{
   display: flex;
   justify-content: center;
   background-color: #020896;
   color:white;
-  min-width: 70px;
+  width: 80px;
   padding: 4px;
   border-radius: 4px;
 
-  @media(max-width: 650px){
-    font-size: small;
-    min-width: 60px;
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
   }
 
 }
@@ -86,9 +118,31 @@
   justify-content: center;
   width: 47.5%;
 
-  @media(max-width: 650px){
-    font-size: 8pt;
+  p:nth-child(1) {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: none;
+    }
+  }
+
+  p:nth-child(2) {
+    display: none;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: flex;
+    }
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
     min-width: 55px;
+  }
+
+  @media (max-width: 400px) {
+    width: 20%
   }
 }
 .buttonInfoIsolatedCandidate {
@@ -97,8 +151,8 @@
   font-size: 14px;
   border: none;
 
-  @media(max-width: 650px){
-    font-size: 8pt;
+  @media(max-width: 500px){
+    font-size: 12px;
     min-width: 55px;
   }
 }

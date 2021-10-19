@@ -178,7 +178,7 @@ function InscritosIsoPS({
         <IconContext.Provider value={{ size: 50 }}>
           <BiUserCircle className="isoPsIcon" />
         </IconContext.Provider>
-        {candidate.candidate_name}
+        <p>{candidate.candidate_name}</p>
       </div>
       {showCandidate === true && candidate.candidate_discipline[0].cd_dis_deferment === null
         && (
