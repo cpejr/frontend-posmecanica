@@ -1,4 +1,10 @@
 .MuiInputBase-input MuiOutlinedInput-input {
   color: yellowgreen;
+}
 
+.loadingStyledInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
 }

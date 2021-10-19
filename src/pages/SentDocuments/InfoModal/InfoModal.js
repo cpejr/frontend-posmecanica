@@ -143,11 +143,11 @@ function InfoModal({
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[2]?.discipline_name : '-'}`}
                 </div>
                 <div>
                   <b>Quarta Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'}`}
+                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[3]?.discipline_name : '-'}`}
                 </div>
               </div>
               <div className="row">
@@ -158,10 +158,12 @@ function InfoModal({
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
               </div>
-              <div className="row">
-                <b>Justificativa:</b>
-                {` ${conteudo?.candidate_justify}`}
-              </div>
+              {conteudo.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
+                <div className="row">
+                  <b>Justificativa:</b>
+                  {` ${conteudo?.candidate_justify}`}
+                </div>
+              )}
             </div>
             {studentList === 'true' && (
               <div className="divInfoModalStudentRedirect">

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import './StyledInput.scss';
 
@@ -26,10 +27,12 @@ function StyledInput({
   setDados, type, label, id, width, field, select, height, shrink, multiline = false,
 
 }) {
+
   const [error, setError] = useState(false);
   const [CPF, setCPF] = useState('');
   const [phone, setPhone] = useState('');
   const [CEP, setCEP] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // 000.000.000-00
   const maskCPF = (value) => (
@@ -40,7 +43,7 @@ function StyledInput({
       .replace(/(\d{3})(\d{1,2})/, '$1-$2')
       .replace(/(-\d{2})\d+?$/, '$1')
   );
-  
+
   // (99) 99999-9999
   const maskPhone = (value) => (
     value.toString()
@@ -70,6 +73,12 @@ function StyledInput({
     setPhone(maskPhone(e.target.value));
     setCEP(maskCEP(e.target.value));
   };
+
+  setTimeout(() => {
+    if (loading === true) {
+      setLoading(false);
+    }
+  }, 12000);
 
   return (
     <CssTextField
@@ -106,6 +115,11 @@ function StyledInput({
       value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : undefined}
 
     >
+      {select === true && field.length === 0 && loading === true && (
+        <div className="loadingStyledInput">
+          <CircularProgress size={24} color="inherit" />
+        </div>
+      )}
       {field
         && field.map((option) => (
           <MenuItem
@@ -124,8 +138,9 @@ function StyledInput({
           >
             {option.label}
           </MenuItem>
-        ))}
-    </CssTextField>
+        ))
+      }
+    </CssTextField >
   );
 }
 export default StyledInput;
