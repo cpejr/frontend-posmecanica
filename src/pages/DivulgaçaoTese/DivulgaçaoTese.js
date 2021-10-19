@@ -1,5 +1,5 @@
 import React from 'react';
-import ThesisDefensePDF from '../../components/ThesisDefensePDF/ThesisDefensePDF';
+import ThesisDefensePDF from '../../components/PDFs/ThesisDefensePDF/ThesisDefensePDF';
 
 function Divulgaçao(props) {
   const defenseInfo = props;

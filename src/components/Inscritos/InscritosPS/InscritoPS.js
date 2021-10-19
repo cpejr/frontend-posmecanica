@@ -9,6 +9,7 @@ import * as managerService from '../../../services/manager/managerService';
 function InscritoPS({ candidate, boolean, studentCondition }) {
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
+  const [studentList, setStudentList] = useState();
   const [buttonText, setButtonText] = useState();
   const [link, setLink] = useState();
   const [showInfoModal, setShowInfoModal] = useState(false);
@@ -58,8 +59,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
         setProcesstype('Mestrado');
         setstylesProcessType(true);
       }
-      setButtonText('Editar informações');
-      setLink('/painel/administrator/editar/aluno');
+      setStudentList(true);
     } else {
       setProcesstype(candidate.selective_process.process_type);
       if (candidate.selective_process.process_type === 'DOUTORADO') {
@@ -79,16 +79,16 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
 
   return (
     <>
-      {candidate.selective_process.process_type !== 'ISOLADA' ? (
+      {candidate.selective_process.process_type !== 'ISOLADA' && studentList !== true ? (
         <div className="linhaInscrito">
           <div className="nomeInscrito">
             <IconContext.Provider value={{ size: 50 }}>
               <BiUserCircle className="isoPsIcon" />
             </IconContext.Provider>
-            {candidate.candidate_name}
+            <p>{candidate.candidate_name}</p>
           </div>
           <div className="tipo">
-            <div className={stylesProcessType ? 'mestrado' : 'doutorado'}>
+            <div className={stylesProcessType ? 'Mestrado' : 'Doutorado'}>
               {processType}
             </div>
           </div>
@@ -99,7 +99,8 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
                 state: { candidate },
               }}
             >
-              {buttonText}
+              <p>{buttonText}</p>
+              <p>Info</p>
             </Link>
           </div>
         </div>
@@ -109,15 +110,18 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
             <IconContext.Provider value={{ size: 50 }}>
               <BiUserCircle className="isoPsIcon" />
             </IconContext.Provider>
-            {candidate.candidate_name}
+            <p>{candidate.candidate_name}</p>
           </div>
           <div className="tipo">
-            <div className="isolada">
+            <div className={processType}>
               {processType}
             </div>
           </div>
           <div className="divButtonInfoIsolatedCandidate">
-            <button type="button" className="buttonInfoIsolatedCandidate" onClick={() => setShowInfoModal(true)}>Ver informações do candidato</button>
+            <button type="button" className="buttonInfoIsolatedCandidate" onClick={() => setShowInfoModal(true)}>
+              <p>Ver informações do candidato</p>
+              <p>Info</p>
+            </button>
           </div>
         </div>
       )}

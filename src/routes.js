@@ -15,12 +15,20 @@ import registerDis from './pages/registerDis';
 import SentDocuments from './pages/SentDocuments';
 import SelectiveProcesses from './pages/SelectiveProcesses';
 import StudentList from './pages/StudentsList';
-import StylePDF from './components/StylePDF';
 import EditStudentInfo from './pages/EditStudentInfo';
 import Confirmation from './pages/forgetPass/Confirmation';
 import ThesesPost from './pages/ThesesPost';
 import ThesisDefense from './pages/ThesisDefense';
 import DivulgaçaoTese from './pages/DivulgaçaoTese';
+import ThesisQualification from './pages/ThesisQualification/ThesisQualification';
+import DivulgaçaoQualificaçao from './pages/DivulgaçaoQualificaçao';
+import DefenseReports from './pages/DefenseReports';
+import SummaryAta from './pages/IssuingsReports/SummaryAta';
+import ChoiceMember from './pages/IssuingsReports/ChoiceMember';
+import FinalCertificate from './pages/IssuingsReports/FinalCertificate';
+import CertificateReport from './pages/IssuingsReports/CertificateReport';
+import Declaration from './pages/IssuingsReports/Declaration';
+import CompleteAta from './pages/IssuingsReports/CompleteAta';
 
 const useStyles = makeStyles({
   container: {
@@ -54,8 +62,16 @@ function Routes() {
           <Route exact path="/documentos-enviados" component={SentDocuments} />
           <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
           <Route exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
-          <Route exact path="/pdf" component={StylePDF} />
-          <Route exact path="/painel/administrator/divulgaçao-tese" component={DivulgaçaoTese} />
+          <Route exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} />
+          <Route exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
+          <Route exact path="/painel/administrator/relatorios/declaracao" component={Declaration} />
+          <Route exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
+          <Route exact path="/painel/administrator/relatorios" component={DefenseReports} />
+          <Route exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} />
+          <Route exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} />
+          <Route exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} />
+          <Route exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} />
+          <Route exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

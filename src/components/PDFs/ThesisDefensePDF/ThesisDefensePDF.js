@@ -15,7 +15,14 @@ class ComponentToPrint extends React.Component {
         </div>
         <div className="pdfrender-text">
           <div className="pdfrender-title">
-            DEFESA PÚBLICA DE TESE
+            {defenseInfo.tipo === 'DISSERTACAO'
+              && (
+                'DEFESA DE DISSERTAÇÃO'
+              )}
+            {defenseInfo.tipo === 'TESE'
+              && (
+                'DEFESA DE TESE'
+              )}
           </div>
           <p className="pdfrender-dedicate">
             {`ALUNO: ${defenseInfo.name}`}

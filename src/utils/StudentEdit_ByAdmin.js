@@ -46,6 +46,13 @@ const StudEdit = [
             field: null,
             select: false,
           },
+          {
+            type: 'longtext',
+            id: 'stud_bank',
+            label: 'Banca',
+            field: null,
+            select: false,
+          },
         ],
       },
       {
