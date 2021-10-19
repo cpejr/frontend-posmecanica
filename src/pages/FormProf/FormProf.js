@@ -83,6 +83,7 @@ function FormProf() {
       path: '../esqueci-senha',
     },
   ];
+
   return (
     <div className="screen-ps-profForms">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
