@@ -18,6 +18,9 @@ function ThesisQualification({ location }) {
   const [hora, setHora] = useState();
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
+  if (location.state == null) {
+    window.location = '/login';
+  }
   const history = useHistory();
   function formatedDate(date) {
     let newData = '';

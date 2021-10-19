@@ -91,7 +91,7 @@ function EditStudentInfo({ location }) {
                         shrink={item.type === 'date' ? true : undefined}
                         id={item.id}
                         label={item.label}
-                        width="22rem"
+                        width={item.width}
                         field={item.field}
                         select={item.select}
                         dados={dados}

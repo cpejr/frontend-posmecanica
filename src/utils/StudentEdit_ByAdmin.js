@@ -1,5 +1,4 @@
 import booleans from './boolean';
-import Studtypes from './stud_type';
 
 const StudEdit = [
   {
@@ -13,13 +12,7 @@ const StudEdit = [
             label: 'Registro',
             field: null,
             select: false,
-          },
-          {
-            type: 'text',
-            id: 'stud_type',
-            label: 'Tipo do estudante',
-            field: Studtypes,
-            select: true,
+            width: '22rem',
           },
           {
             type: 'text',
@@ -27,6 +20,15 @@ const StudEdit = [
             label: 'Bolsista',
             field: booleans,
             select: true,
+            width: '22rem',
+          },
+          {
+            type: 'text',
+            id: 'stud_workplane',
+            label: 'Plano de estudo?',
+            field: booleans,
+            select: true,
+            width: '22rem',
           },
         ],
       },
@@ -38,6 +40,7 @@ const StudEdit = [
             label: 'Professor Orientador',
             field: null,
             select: false,
+            width: '22rem',
           },
           {
             type: 'text',
@@ -45,24 +48,7 @@ const StudEdit = [
             label: 'Professor Co-Orientador',
             field: null,
             select: false,
-          },
-          {
-            type: 'longtext',
-            id: 'stud_bank',
-            label: 'Banca',
-            field: null,
-            select: false,
-          },
-        ],
-      },
-      {
-        items: [
-          {
-            type: 'text',
-            id: 'stud_workplane',
-            label: 'Plano de estudo?',
-            field: booleans,
-            select: true,
+            width: '22rem',
           },
           {
             type: 'date',
@@ -70,6 +56,19 @@ const StudEdit = [
             label: 'Data de termino',
             field: null,
             select: false,
+            width: '22rem',
+          },
+        ],
+      },
+      {
+        items: [
+          {
+            type: 'longtext',
+            id: 'stud_bank',
+            label: 'Banca',
+            field: null,
+            select: false,
+            width: '40rem',
           },
         ],
       },

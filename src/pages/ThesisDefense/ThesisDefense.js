@@ -20,6 +20,9 @@ function ThesisDefense({ location }) {
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
   const history = useHistory();
+  if (location.state == null) {
+    window.location = '/login';
+  }
   function formatedDate(date) {
     let newData = '';
     newData = date.split('-');
@@ -75,7 +78,7 @@ function ThesisDefense({ location }) {
     defense_stud_name: location.state.candidate_name,
     defense_type: type,
     defense_title: titulo,
-    defense_number: numero,
+    defense_protocol: numero,
     defense_place: local,
     defense_hour: hora,
     defense_date: data,
@@ -84,6 +87,7 @@ function ThesisDefense({ location }) {
     if (
       defense.defense_title === undefined
       || defense.defense_type === undefined
+      || defense.defense_protocol === undefined
       || defense.defense_hour === undefined
       || defense.defense_place === undefined
       || defense.defense_date === undefined
@@ -199,7 +203,6 @@ function ThesisDefense({ location }) {
                     variant="outlined"
                     type="date"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setData(e.target.value);
                     }}
                   />
@@ -212,7 +215,6 @@ function ThesisDefense({ location }) {
                     variant="outlined"
                     label="Número da Defesa"
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setNumero(e.target.value);
                     }}
                   />

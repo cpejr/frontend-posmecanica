@@ -23,10 +23,13 @@ class ComponentToPrint extends React.Component {
             alt="logotipo Universidade FEderal de Minas Gerais"
           />
           <p className="pdfSumary-dedicate">
-            Certificamos que: {`${defenseInfo.bank}`}, participaram como membros da Banca Examinadora da {`${defenseInfo.type}`} intitulada “{`${defenseInfo.title}`}”, 
-            de autoria do aluno(a) {`${defenseInfo.studName}`}, do Programa 
-            de Pós-Graduação em Engenharia Mecânica, nível Mestrado, Área de Concentração: 
-            Energia e Sustentabilidade, defendida e aprovada em Belo Horizonte no dia {`${moment(defenseInfo.date).format('LL')}`}.
+            Certificamos que: {`${defenseInfo.bank}`}, participaram como membros da Banca Examinadora da 
+            {(defenseInfo.type == 'DISSERTACAO') ? (
+              ' Dissertação'
+            ) : (' Tese')} intitulada <a className="pdfCertificate-titleFormated">“{`${defenseInfo.title}`}”</a>,
+            de autoria do aluno(a) <a className="pdfCertificate-titleFormated">{`${defenseInfo.studName}`}</a>, do Programa 
+            de Pós-Graduação em Engenharia Mecânica, nível Mestrado, Área de Concentração: {`${defenseInfo.searchArea}`}, 
+            defendida e aprovada em Belo Horizonte no dia {`${moment(defenseInfo.date).format('LL')}`}.
           </p>
         </div>
         <div className="pdfSummary-coordinator">
