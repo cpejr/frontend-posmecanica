@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastProvider } from 'react-toast-notifications';
 import Routes from './routes';
-// import 'moment/locale/pt-br';
+import 'moment/locale/pt-br';
 import './global.scss';
 
 function App() {
