@@ -61,10 +61,6 @@ function registerDis() {
       path: 'processos-seletivos',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
       text: 'Lista de professores',
       path: 'lista-professores',
     },
