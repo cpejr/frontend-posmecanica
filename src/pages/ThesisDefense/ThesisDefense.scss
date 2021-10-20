@@ -87,9 +87,17 @@
     
     .form_SP1_input{
         width: initial;
+        .MuiOutlinedInput-multiline{
+            overflow: auto;
+        }
     }
     
     .defenseBlock button{
         width: 100%;
+    }
+    .form_SP_input{
+        .MuiOutlinedInput-adornedStart{
+            overflow: auto;
+        }
     }
 }

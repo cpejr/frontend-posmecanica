@@ -78,7 +78,9 @@ function EditStudentInfo({ location }) {
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="atualizationContent">
         <div className="campsContent">
-          <h1> Atualização Cadastral:</h1>
+          <div className="titleEdit">
+            <h1> Atualização Cadastral:</h1>
+          </div>
           {StudEdit.map((topic) => (
             <div key={topic.title}>
               <div className="formsDI_box_title">
