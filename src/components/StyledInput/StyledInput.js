@@ -24,7 +24,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height, shrink, multiline = false,
+  setDados, type, label, id, width, field, select, height, shrink, defaultValue, multiline = false,
 
 }) {
 
@@ -111,6 +111,7 @@ function StyledInput({
       id={id}
       width={width}
       select={select}
+      defaultValue={defaultValue}
       onChange={(e) => handleChange(e, id)}
       value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : undefined}
 

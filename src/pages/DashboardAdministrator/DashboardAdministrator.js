@@ -13,6 +13,10 @@ function DashboardAdministrator() {
       path: 'lista-professores',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },

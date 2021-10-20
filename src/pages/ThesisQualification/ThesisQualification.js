@@ -37,6 +37,10 @@ function ThesisQualification({ location }) {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
