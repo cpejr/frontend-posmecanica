@@ -74,8 +74,8 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} type="administrator" />
-          <Route exact path="/painel/administrator/lista-isoladas" component={IsolatedList} />
-          <Route exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} />
+          <PrivateRoute exact path="/painel/administrator/lista-isoladas" component={IsolatedList} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} type="administrator" />
           <Route path="/" component={Login} />
         </Switch>
       </div>
