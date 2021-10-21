@@ -85,7 +85,6 @@ export const createCandidateISO = async (candidate, selectiveProcessId) => {
     }
     return notNullableDisciplines;
   });
-  console.log(notNullableDisciplines);
   await requesterService
     .createCandidateDiscipline(response.data.id, notNullableDisciplines);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -222,7 +221,6 @@ export const verifySelectiveProcess = async (field, dados) => {
         || (actualInitialDate <= initialDate && actualFinalDate >= finalDate);
     },
   );
-  console.log(filteredProcess);
   return filteredProcess;
 };
 

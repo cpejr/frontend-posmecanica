@@ -38,7 +38,6 @@ function ApproveContent({ candidate }) {
         candidate.candidate_id
       );
       if (result.length > 0) {
-        console.log(typeof result[0].stud_id);
         await managerService.deleteStudent(result[0].stud_id);
       }
       candidate.candidate_approval = false;
