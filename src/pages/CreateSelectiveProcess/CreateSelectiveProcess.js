@@ -57,6 +57,10 @@ function registerDis() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Visualizar Processos Seletivos',
       path: 'processos-seletivos',
     },

@@ -32,3 +32,9 @@
   margin-top: 10px;
   margin-right: 5px;
 }
+
+@media (max-width: 680px){
+  .defenseReport-line{
+    flex-direction: column;
+  }
+}

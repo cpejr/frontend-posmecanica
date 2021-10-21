@@ -181,6 +181,11 @@ export const getByIdDiscipline = async (disciplineId) => {
   return response.data;
 };
 
+export const updateDiscipline = async (discipline, disciplineId) => {
+  const response = await requesterService.updateDiscipline(discipline, disciplineId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
 export const login = async (user) => {
   const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
