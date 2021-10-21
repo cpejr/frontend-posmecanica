@@ -29,6 +29,7 @@ import FinalCertificate from './pages/IssuingsReports/FinalCertificate';
 import CertificateReport from './pages/IssuingsReports/CertificateReport';
 import Declaration from './pages/IssuingsReports/Declaration';
 import CompleteAta from './pages/IssuingsReports/CompleteAta';
+import PrivateRoute from './components/PrivateRoute';
 
 const useStyles = makeStyles({
   container: {
@@ -44,34 +45,34 @@ function Routes() {
     <BrowserRouter>
       <div className={classes.container}>
         <Switch>
-          <Route exact path="/painel/professor" component={DashboardProfessor} />
-          <Route exact path="/painel/aluno" component={DashboardAluno} />
-          <Route exact path="/painel/administrator" component={DashboardAdministrator} />
-          <Route exact path="/painel/administrator/lista-estudantes" component={StudentList} />
-          <Route exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} />
+          <PrivateRoute exact path="/painel/professor" component={DashboardProfessor} type="professor" />
+          <Route exact path="/painel/aluno" component={DashboardAluno} type="student" />
+          <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <Route exact path="/painel/lista-professores" component={ProfessorList} />
-          <Route exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} />
-          <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} />
+          <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
+          <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="student" />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
-          <Route exact path="/painel/administrator/formulario-professores" component={FormProf} />
+          <PrivateRoute exact path="/painel/administrator/formulario-professores" component={FormProf} type="administrator" />
           <Route exact path="/lista-professores" component={ProfessorList} />
-          <Route exact path="/painel/administrator/cadastro-disciplina" component={registerDis} />
-          <Route exact path="/documentos-enviados" component={SentDocuments} />
+          <PrivateRoute exact path="/painel/administrator/cadastro-disciplina" component={registerDis} type="administrator" />
+          <PrivateRoute exact path="/documentos-enviados" component={SentDocuments} type="administrator" />
           <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
-          <Route exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
-          <Route exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} />
-          <Route exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
-          <Route exact path="/painel/administrator/relatorios/declaracao" component={Declaration} />
-          <Route exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
-          <Route exact path="/painel/administrator/relatorios" component={DefenseReports} />
-          <Route exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} />
-          <Route exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} />
-          <Route exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} />
-          <Route exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} />
-          <Route exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} />
+          <PrivateRoute exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
+          <PrivateRoute exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} />
+          <PrivateRoute exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/declaracao" component={Declaration} />
+          <PrivateRoute exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
+          <PrivateRoute exact path="/painel/administrator/relatorios" component={DefenseReports} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} />
+          <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} />
           <Route path="/" component={Login} />
         </Switch>
       </div>
