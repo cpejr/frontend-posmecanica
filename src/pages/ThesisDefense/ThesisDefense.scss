@@ -68,12 +68,21 @@
     margin-right: 8px;
     margin-left: 8px;
     margin-bottom: 10px;
+    .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl.MuiInputBase-adornedStart.MuiOutlinedInput-adornedStart{
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        text-overflow: clip ellipsis;
+    }
 }
 
 .form_SP1_input{
     width: 43rem;
     margin-left: 8px;  
     margin-bottom: 10px;
+    .MuiOutlinedInput-multiline{
+        overflow: auto;
+    }
 }
 
 

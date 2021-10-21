@@ -30,7 +30,7 @@ function ThesisQualification({ location }) {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Lista de estudantes',
