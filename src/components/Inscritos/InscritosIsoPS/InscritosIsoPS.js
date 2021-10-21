@@ -26,9 +26,9 @@ function InscritosIsoPS({
     setShowConfirmModalCandidate(false);
   };
 
-  const totalAprrovalCandidate = async () => {
-    candidate.stud_scholarship = false;
-    managerService.createStudent(candidate, candidate.candidate_process_id);
+  const totalApprovalCandidate = async () => {
+    candidate.candidate_scholarship = false;
+    managerService.createStudent(candidate);
     managerService.updateByIdDisciplineDeferment({
       cd_dis_deferment: true,
     }, candidate.candidate_id, disciplineToDeferment);
@@ -65,14 +65,14 @@ function InscritosIsoPS({
     nullCounter = 0;
     if (buttonName === 'Deferir') {
       if (candidate.disciplines.length === 1) {
-        totalAprrovalCandidate();
+        totalApprovalCandidate();
       }
       if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
             if ((response.length !== 0 && candidate.disciplines.length === 2)
               || (response.length === 2 && candidate.disciplines.length === 3)) {
-              totalAprrovalCandidate();
+              totalApprovalCandidate();
             } else {
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: true,
@@ -85,12 +85,12 @@ function InscritosIsoPS({
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
             if (response.length === 3) {
-              totalAprrovalCandidate();
+              totalApprovalCandidate();
             } else if (response?.cd_dis_id.some(candidate.first_discipline_isolated) === true
               && response?.cd_dis_id.some(candidate.second_discipline_isolated) === true
               && response?.cd_dis_id.some(candidate.third_discipline_isolated) === true
               && response.length !== 0) {
-              totalAprrovalCandidate();
+              totalApprovalCandidate();
             } else {
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: true,
@@ -130,7 +130,7 @@ function InscritosIsoPS({
               managerService.updateByIdDisciplineDeferment({
                 cd_dis_deferment: false,
               }, candidate.candidate_id, disciplineToDeferment);
-              managerService.createStudent(candidate, candidate.candidate_process_id);
+              managerService.createStudent(candidate);
               managerService.updateCandidate({
                 candidate_deferment: true,
               }, candidate.candidate_id);

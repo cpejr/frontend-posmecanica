@@ -318,30 +318,49 @@ export const updateStudent = async (student, id) => {
 
 export const createStudent = async (student) => {
   const { disciplines } = student;
-  let sdId;
-  const sdIdArray = [];
-  let verify = false;
+  if (disciplines.length > 0) {
+    let sdId;
+    const sdIdArray = [];
+    let verify = false;
 
-  const candidateDiscipline = await requesterService
-    .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
-  if (disciplines.length === 4) {
-    if (candidateDiscipline.data.length === 4) {
-      sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
-      sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
-      sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
-      verify = true;
+    const candidateDiscipline = await requesterService
+      .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
+    if (disciplines.length === 4) {
+      if (candidateDiscipline.data.length === 3) {
+        sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
+        sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
+        sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
+        verify = true;
+      }
+    } else {
+      sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
     }
-  } else {
-    sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
-  }
 
-  const { stud_scholarship: studScholarship } = student;
-  const response = await requesterService.createStudent(student, studScholarship);
-  if (disciplines.length === 4 && verify === true) {
-    await requesterService.createStudentDiscipline(response.data.id, sdIdArray);
+    const {
+      candidate_scholarship: studScholarship,
+      candidate_email: email,
+      candidate_name: name,
+    } = student;
+    const response = await requesterService.createStudent(student, studScholarship, email, name);
+    if (disciplines.length === 4 && verify === true) {
+      await requesterService.createStudentDiscipline(response.data.id, sdIdArray);
+    } else {
+      await requesterService.createStudentDiscipline(response.data.id, sdId);
+    }
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
   } else {
-    await requesterService.createStudentDiscipline(response.data.id, sdId);
+    const {
+      candidate_email: email,
+      candidate_name: name,
+      candidate_scholarship: studScholarship,
+    } = student;
+    const response = await requesterService.createStudent(student, studScholarship, email, name);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
   }
+};
+
+export const deleteStudent = async (studentId) => {
+  const response = await requesterService.deleteStudent(studentId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
