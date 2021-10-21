@@ -79,10 +79,6 @@ function FormProf() {
       path: 'administrator/cadastro-disciplina',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
