@@ -59,6 +59,10 @@ function FormProf() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Lista de professores',
       path: 'lista-professores',
     },

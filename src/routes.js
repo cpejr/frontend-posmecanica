@@ -29,6 +29,8 @@ import FinalCertificate from './pages/IssuingsReports/FinalCertificate';
 import CertificateReport from './pages/IssuingsReports/CertificateReport';
 import Declaration from './pages/IssuingsReports/Declaration';
 import CompleteAta from './pages/IssuingsReports/CompleteAta';
+import IsolatedList from './pages/IsolatedList';
+import EditDiscipline from './pages/EditDiscipline';
 import PrivateRoute from './components/PrivateRoute';
 
 const useStyles = makeStyles({
@@ -72,6 +74,8 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} type="administrator" />
+          <Route exact path="/painel/administrator/lista-isoladas" component={IsolatedList} />
+          <Route exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

@@ -6,12 +6,10 @@ import SelectiveProcess from '../../components/SelectiveProcess';
 import SPInfoModal from '../SentDocuments/SPInfoModal';
 import * as managerService from '../../services/manager/managerService';
 import './SelectiveProcesses.scss';
-import Semeters from '../../utils/semesters';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
 import { useAuth } from '../../providers/auth';
 
-const semeters = Semeters;
 const initialStateData = {
   process_type: '',
   process_name: '',
@@ -33,6 +31,7 @@ function SelectiveProcesses() {
   const [filterProcessDoutorado, setFilterProcessDoutorado] = useState([]);
   const [allProcessIsolada, setAllProcessIsolada] = useState([]);
   const [filterProcessIsolada, setFilterProcessIsolada] = useState([]);
+  const [semestre, setSemestre] = useState([]);
   const [data, setData] = useState(initialStateData);
 
   function verificationIsOpen(process) {
@@ -60,9 +59,9 @@ function SelectiveProcesses() {
 
   useEffect(async () => {
     if (dados.semester === '') {
-      setPeriod(`${dados.semester}`);
+      setPeriod('Todos');
     } else {
-      setPeriod(`: ${dados.semester}`);
+      setPeriod(`${dados.semester}`);
     }
   }, [dados]);
   useEffect(async () => {
@@ -76,21 +75,39 @@ function SelectiveProcesses() {
     newArray = selectiveProcess.filter((process) => process.process_type === 'ISOLADA');
     setAllProcessIsolada(newArray);
     setFilterProcessIsolada(newArray);
+    let Array = [];
+    selectiveProcess.forEach((process) => {
+      Array.push(process.process_semester);
+    });
+    Array = [...new Set(Array)];
+    Array.sort();
+    const auxSemestre = [];
+    auxSemestre.push({ label: 'Todos', value: 'Todos' });
+    Array.forEach((semester) => {
+      auxSemestre.push({ label: semester, value: semester });
+    });
+    setSemestre(auxSemestre);
   }, []);
 
   useEffect(() => {
     let initialProcessMestrado = allProcessMestrado;
     let initialProcessDoutorado = allProcessDoutorado;
-    if (period !== '') {
+    let initialProcessIsolada = allProcessIsolada;
+
+    if (period !== '' && period !== 'Todos') {
       initialProcessMestrado = initialProcessMestrado.filter((semester) => (
-        semester.process_date_begin === period
+        semester.process_semester === period
       ));
       initialProcessDoutorado = initialProcessDoutorado.filter((semester) => (
-        semester.process_date_begin === period
+        semester.process_semester === period
+      ));
+      initialProcessIsolada = initialProcessIsolada.filter((semester) => (
+        semester.process_semester === period
       ));
     }
     setFilterProcessMestrado(initialProcessMestrado);
     setFilterProcessDoutorado(initialProcessDoutorado);
+    setFilterProcessIsolada(initialProcessIsolada);
   }, [period]);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
@@ -104,6 +121,10 @@ function SelectiveProcesses() {
     {
       text: 'Lista de estudantes',
       path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
     },
     {
       text: 'Lista de professores',
@@ -158,7 +179,7 @@ function SelectiveProcesses() {
               id="semester"
               label="Semestre"
               width="100%"
-              field={semeters}
+              field={semestre}
               select
               dados={dados}
               setDados={handleChange}
@@ -168,7 +189,7 @@ function SelectiveProcesses() {
         <div className="SP-box">
           <div className="SP-topBar">
             <div className="SP-barTitle">
-              Período
+              {'Período: '}
               {period}
             </div>
           </div>

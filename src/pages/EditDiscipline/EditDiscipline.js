@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import './EditStudentInfo.scss';
+import '../EditStudentInfo/EditStudentInfo.scss';
 import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
 import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
-import StudEdit from '../../utils/StudentEdit_ByAdmin';
+import DisciplineEdit from '../../utils/DisciplineEdit_ByAdmin';
 import Footer from '../../components/Footer';
 
-function EditStudentInfo({ location }) {
+function EditDiscipline({ location }) {
   const history = useHistory();
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   if (location.state == null) {
     window.location = '/login';
   }
-  const { stud_id } = location.state; // eslint-disable-line
+  const { discipline_id } = location.state; // eslint-disable-line
   const inputProps = [
     {
       text: 'Página principal',
@@ -59,9 +59,9 @@ function EditStudentInfo({ location }) {
   const handleClick = async (e) => {
     try {
       e.preventDefault();
-      await managerService.updateStudent(dados, stud_id);
-      addToast('Cadastro atualizado com sucesso!', { appearance: 'success' });
-      history.push('/painel/administrator/lista-estudantes');
+      await managerService.updateDiscipline(dados, discipline_id);
+      addToast('Disciplina atualizada com sucesso!', { appearance: 'success' });
+      history.push('/painel/administrator/lista-isoladas');
     } catch {
       addToast('Falha em atualizar o cadastro!', { appearance: 'error' });
     }
@@ -75,9 +75,9 @@ function EditStudentInfo({ location }) {
       <div className="atualizationContent">
         <div className="campsContent">
           <div className="titleEdit">
-            <h1> Atualização Cadastral:</h1>
+            <h1> Atualização de Disciplina:</h1>
           </div>
-          {StudEdit.map((topic) => (
+          {DisciplineEdit.map((topic) => (
             <div key={topic.title}>
               <div className="formsDI_box_title">
                 <div className="formsEdit-title">
@@ -99,6 +99,10 @@ function EditStudentInfo({ location }) {
                           multiline={item.multiline}
                           rows={item.rows}
                           dados={dados}
+                          defaultValue={item.id === 'discipline_name' ? location.state.discipline_name // eslint-disable-line
+                            : (item.id === 'discipline_code' ? location.state.discipline_code // eslint-disable-line
+                              : (item.id === 'discipline_content' ? location.state.discipline_content // eslint-disable-line
+                                : location.state.discipline_semester))} // eslint-disable-line
                           setDados={handleChange}
                         />
                       </div>
@@ -123,4 +127,4 @@ function EditStudentInfo({ location }) {
   );
 }
 
-export default EditStudentInfo;
+export default EditDiscipline;

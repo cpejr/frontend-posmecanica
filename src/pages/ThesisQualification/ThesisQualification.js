@@ -30,11 +30,15 @@ function ThesisQualification({ location }) {
   const inputProps = [
     {
       text: 'Página principal',
-      path: '',
+      path: 'administrator',
     },
     {
       text: 'Lista de estudantes',
       path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
     },
     {
       text: 'Criar processo seletivo',

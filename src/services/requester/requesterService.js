@@ -117,6 +117,7 @@ export const getDisciplines = (times, field, filter) => httpClient.get('/discipl
   paramsSerializer: (params) => qs.stringify(params),
 });
 export const getByIdDiscipline = (disciplineId) => httpClient.get(`/disciplines/${disciplineId}`);
+export const updateDiscipline = (discipline, disciplineId) => httpClient.put(`/disciplines/${disciplineId}`, discipline);
 
 export const updateStudent = (student, studentId) => httpClient.put(`/students/${studentId}`, student);
 export const getByIdStudent = (studentId) => httpClient.get(`/students/${studentId}`);
