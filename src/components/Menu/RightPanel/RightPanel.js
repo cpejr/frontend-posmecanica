@@ -25,10 +25,6 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
     </ListItem>
   );
 
-  function Logout() {
-    logout();
-  }
-
   return (
     <Drawer anchor="right" open={expandRightPanel} onClose={() => setExpandRightPanel(false)}>
       <List>
@@ -47,7 +43,7 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
         ))}
         <Link to={{ pathname: '/login' }}>
           <ListItem button>
-            <ListItemText onClick={Logout}>
+            <ListItemText onClick={() => logout()}>
               Logout
             </ListItemText>
           </ListItem>

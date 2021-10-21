@@ -9,35 +9,105 @@
   font-size: 18px;
   font-family: Montserrat;
   width: 28%;
+  max-width: 28%;
+
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
   @media (max-width: 650px){
-    width: 20%;
+    width: 43%;
+    max-width: 43%;
     font-size: 12pt;
+  }
+
+  @media (max-width: 450px){
+    width: 25%;
+    font-size: 9pt;
+  }
+
+  @media (max-width: 350px){
+    width: 30%;
+    font-size: 7pt;
   }
 }
 .isoPsDivButtons {
   display: flex;
   align-items: center;
-  width: 39%;
+  width: 37%;
   justify-content: space-around;
   
   @media (max-width: 650px){
-    width: 50%;
-    justify-content: space-between;
+    width: 32%;
+  }
+
+  @media (max-width: 450px){
+    width: 40%;
+    min-width: 125px;
+  }
+
+  @media (max-width: 450px){
+    width: 35%;
+    min-width: 0px;
   }
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.isoPsDenyButton{
   @media (max-width: 650px){
     font-size: 8pt;
-    width: 50px;
+    width: 64px;
+    min-width: 0px;
+  }
+
+  @media (max-width: 450px){
+    font-size: 6pt;
+    width: 58px;
+  }
+
+  @media (max-width: 350px){
+    width: 45px;
+    height: 20px;
+    font-size: 5pt;
   }
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.isoPsConfirmButton{
   @media (max-width: 650px){
     font-size: 8pt;
-    width: 50px;
+    width: 64px;
+    min-width: 0px;
+  }
+
+  @media (max-width: 450px){
+    font-size: 6pt;
+    width: 58px;
+  }
+
+  @media (max-width: 350px){
+    width: 45px;
+    height: 20px;
+    font-size: 5pt;
+  }
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.isoPsDefermentStatus{
+  @media (max-width: 650px){
+    font-size: 8pt;
+    width: 64px;
+    min-width: 0px;
+  }
+
+  @media (max-width: 450px){
+    font-size: 6pt;
+    width: 58px;
+  }
+
+  @media (max-width: 350px){
+    width: 45px;
+    height: 20px;
+    font-size: 5pt;
   }
 }
 
@@ -75,18 +145,34 @@
   width: 35%;
 
   @media (max-width: 650px){
-    justify-content: flex-end;
+    width: 25%;
+  }
+
+  @media (max-width: 450px){
+    width: 35%;
   }
 }
 
 .buttonSituationStudent {
   background-color: transparent;
   border: none;
+  font-size: 18px;
+
+  @media (max-width: 650px){
+    font-size: 12pt;
+  }
+
+  @media (max-width: 450px){
+    font-size: 9pt;
+  }
+
+  @media (max-width: 350px){
+    font-size: 7pt;
+  }
 }
 
 @media (max-width: 680px){
   .isoPsListItem{
-    flex-direction: column;
     margin-bottom: 10px;
     width: 100%;
   }

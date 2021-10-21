@@ -57,12 +57,12 @@ function registerDis() {
       path: 'administrator/lista-estudantes',
     },
     {
-      text: 'Visualizar Processos Seletivos',
-      path: 'processos-seletivos',
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Lista de professores',

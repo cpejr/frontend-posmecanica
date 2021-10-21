@@ -71,6 +71,10 @@ function registerDis() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Lista de professores',
       path: 'lista-professores',
     },
@@ -85,10 +89,6 @@ function registerDis() {
     {
       text: 'Cadastro de professores',
       path: 'administrator/formulario-professores',
-    },
-    {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',

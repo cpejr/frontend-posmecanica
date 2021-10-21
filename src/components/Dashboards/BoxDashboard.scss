@@ -14,10 +14,6 @@
   margin: 0px 50px 0px 50px;
   margin-top: 25px;
   margin-bottom: 15px;
-
-  @media(max-width: 650px){
-    justify-content: center;
-  }
 }
 .BdBoxFather {
   margin: 0px 50px 5px 50px;
@@ -31,9 +27,15 @@
   max-height: 280px!important;
   overflow: auto;
 }
+.BdBoxLoaderTrue {
+  max-height: 280px!important;
+}
 .BdBoxProf {
   max-height: 350px!important;
   overflow: auto;
+}
+.BdBoxProfLoaderTrue {
+  max-height: 350px!important;
 }
 .BdBoxTitle {
   height: 25%;
@@ -63,7 +65,23 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.BdInput{
+.BdDivGridLoader {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+.BdDivGridNoDisciplineSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #51595c56;
+  height: 205px;
+  font-size: 180%;
+  @media (max-width: 400px){
+    font-size: 120%;
+  }
+}
+.BdInput {
   display: none;
 }
 .BdInputReal{
@@ -73,9 +91,37 @@
   .MuiSelect-selectMenu{
     padding: 24px 32px 24px 12px;
   }
+  .MuiInputLabel-shrink {
+    transform-origin: left;
+  }
+
+  .MuiFormLabel-root {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (max-width: 763px){
+      font-size: 0.85rem;
+      max-width: 80%;
+    }
+    @media (max-width: 500px){
+      font-size: 0.8rem;
+    }
+    @media (max-width: 410px){
+      font-size: 0.6rem;
+    }
+    @media (max-width: 325px){
+      font-size: 0.5rem;
+    }
+  }
 }
 
 @media (max-width: 769px){
+
+  .BdTitle {
+    justify-content: center;
+    font-size: 30px;
+  }
 
   .BdBox{
     max-height: 240px!important;
@@ -100,7 +146,7 @@
     width: 40%;
     margin-left: 10%;
     .MuiSelect-selectMenu{
-      font-size: 15px;
+      font-size: 13px;
       padding: 12px 32px 12px 12px;
     }
   }
@@ -110,7 +156,8 @@
   }
 
   .isoPsIcon{
-    display: none;
+    width: 30px;
+    min-width: 30px;
   }
 
   .BdSubTitle{
@@ -119,5 +166,15 @@
 
   .BdTitle{
     font-size: 28px;
+  }
+}
+
+@media (max-width: 430px) {
+  .BdTitle {
+    font-size: 20px;
+  }
+
+  .isoPsIcon{
+    display: none;
   }
 }

@@ -9,7 +9,7 @@
   .container{
     position: fixed;
     max-width: 400px;
-    height: 50%;
+    height: auto;
     top: 15%;
     left:0;
     right: 0;
@@ -62,5 +62,14 @@
     box-shadow: 0.2em 0.2em 0.5em #000;
     font-size: clamp(1vw, 1em, 2vw);
   cursor: pointer;
+  }
+}
+
+@media (max-width: 680px){
+  .DM-button{
+    button{
+      width: 35vw;
+      font-size: 10pt;
+    }
   }
 }

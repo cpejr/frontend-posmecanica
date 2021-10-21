@@ -29,19 +29,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ProfessorList() {
-  const [searchAreas, setSearchAreas] = useState([]);
-  const searchAreaOrder = "search_area_name";
-  const profOrder = "prof_name";
+  const [professors, setProfessors] = useState([]);
+  const searchAreaOrder = "prof_name";
   const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
-    const getSearchArea = await managerService.getAllSearchAreas();
-    const filteredSearchAreas = getSearchArea.filter((searchArea) =>
-      searchArea.search_area_name
+    const getProfessors = await managerService.getAllProfessors();
+    const filteredProfessors = getProfessors.filter((searchName) =>
+      searchName.prof_name
         .toLowerCase()
         .includes(inputText.toLowerCase())
     );
-    setSearchAreas(filteredSearchAreas);
+    setProfessors(filteredProfessors);
   }, [inputText]);
 
   const classes = useStyles();
@@ -55,6 +54,10 @@ function ProfessorList() {
     {
       text: 'Lista de estudantes',
       path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
     },
     {
       text: 'Criar processo seletivo',
@@ -71,10 +74,6 @@ function ProfessorList() {
     {
       text: 'Cadastro de disciplina isolada',
       path: 'administrator/cadastro-disciplina',
-    },
-    {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Redefinição de senha',
@@ -96,8 +95,8 @@ function ProfessorList() {
     },
   ];
   return (
-    <div className="box-container">
-      <div className="grid-container">
+    <div className="box-containerProfList">
+      <div className="grid-containerProfList">
         <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
         <div className="professor-list-container">
           <h1>Professores</h1>
@@ -116,8 +115,8 @@ function ProfessorList() {
               dolorem, fugit dolore perspiciatis.
             </p>
           </div>
-          <div className="header-content">
-            <h2 className="header-content-title">Buscar por área de pesquisa</h2>
+          <div className="header-content_ProfList">
+            <h2 className="header-content-title_ProfList">Buscar por nomes</h2>
             <div className="header-content-searchInput">
               <InputBase
                 autoFocus
@@ -138,73 +137,67 @@ function ProfessorList() {
           </div>
           <div className="professor-list-content">
             <div className={classes.root}>
-              {orderElements(searchAreas, searchAreaOrder).map((searchArea) => (
-                <Accordion key={searchArea.search_area_id}>
+              {orderElements(professors, searchAreaOrder)?.map((item) => (
+                <Accordion key={item.search_area_id}>
                   <AccordionSummary
                     expandIcon={<FaChevronCircleDown color="#1f487c" size={17} />}
                   >
                     <div className="accordionHeadeBox">
                       <Typography>
                         <div className="accordingMainTitle">
-                          {searchArea.search_area_name}
+                          {item.prof_name}
                         </div>
                       </Typography>
-                      <div className="accordionBorderBottom">
-                        <></>
-                      </div>
+                      <div className="accordionBorderBottom" />
                     </div>
                   </AccordionSummary>
                   <AccordionDetails>
                     <div className="professor-list-item">
-                      {orderElements(searchArea.professors, profOrder).map(
-                        (professor) => (
-                          <Accordion key={professor.prof_id}>
-                            <AccordionSummary
-                              expandIcon={
-                                <FaChevronCircleDown color="#1f487c" size={17} />
+                      <AccordionDetails className="professor-list-desc">
+                        <div className="professor-list-desc-item">
+                          <p>Email: </p>
+                          <span>{item.prof_email}</span>
+                        </div>
+                        <div className="professor-list-desc-item">
+                          <p>Grau acadêmico: </p>
+                          <span>{item.prof_type}</span>
+                        </div>
+                        <div className="professor-list-desc-item">
+                          <p>Universidade: </p>
+                          <span>{item.prof_university}</span>
+                        </div>
+                        <div className="professor-list-desc-itemDisciplinas">
+                          <p>Disciplinas ministradas: </p>
+                          <div className="professor-list-desc-itemDisciplinasInside">
+                            {item.disciplines && (item.disciplines.length === 0 ? <span> - </span> : (item.disciplines?.map((disciplinas) => {
+                              if (disciplinas.discipline_name === item.disciplines[item.disciplines.length - 1].discipline_name) {
+                                return <span className="spanDisciplinasProfList">{disciplinas.discipline_name}</span>
+                              } else {
+                                return <span className="spanDisciplinasProfList">{disciplinas.discipline_name},</span>
                               }
-                            >
-                              <Typography className={classes.heading}>
-                                <div className="accordingSecondaryTitle">
-                                  {professor.prof_name}
-                                </div>
-                              </Typography>
-                            </AccordionSummary>
-                            <AccordionDetails className="professor-list-desc">
-                              <div className="professor-list-desc-item">
-                                <p>Email: </p>
-                                <span>{professor.prof_email}</span>
-                              </div>
-                              <div className="professor-list-desc-item">
-                                <p>Grau acadêmico: </p>
-                                <span>{professor.prof_type}</span>
-                              </div>
-                              <div className="professor-list-desc-item">
-                                <p>Universidade: </p>
-                                <span>{professor.prof_university}</span>
-                              </div>
-                              <div className="professor-list-desc-item">
-                                <p>País de origem: </p>
-                                <span>{professor.prof_country}</span>
-                              </div>
-                              <div className="professor-list-desc-item">
-                                <p>Descrição: </p>
-                                <span>{professor.prof_description}</span>
-                              </div>
-                              <div className="professor-list-desc-item">
-                                <p>Currículo Lattes: </p>
-                                <a
-                                  href={professor.prof_curriculum}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  Ver Currículo
-                                </a>
-                              </div>
-                            </AccordionDetails>
-                          </Accordion>
-                        )
-                      )}
+                            })))}
+                          </div>
+                        </div>
+                        <div className="professor-list-desc-item">
+                          <p>País de origem: </p>
+                          <span>{item.prof_country}</span>
+                        </div>
+                        <div className="professor-list-desc-item">
+                          <p>Descrição: </p>
+                          <span>{item.prof_description}</span>
+                        </div>
+                        <div className="professor-list-desc-item">
+                          <p>Currículo Lattes: </p>
+                          <a
+                            href={item.prof_curriculum}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {"\t"}
+                            Ver Currículo
+                          </a>
+                        </div>
+                      </AccordionDetails>
                     </div>
                   </AccordionDetails>
                 </Accordion>

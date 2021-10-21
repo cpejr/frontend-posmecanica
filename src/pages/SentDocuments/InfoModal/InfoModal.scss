@@ -74,15 +74,23 @@
 .divInfoModalStudentRedirect{
   display: flex;
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 20px;
 }
+
+.buttonsGroupRedirect{
+  display: grid;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .InfoModalStudentRedirect {
-  background-color: green;
+  display: flex;
+  background: #3b54a7;
+  color:white;
   border: none;
-  width: 50%;
-  height: 40px;
   border-radius: 5px;
-  font-size: 1.2em;
+  padding: 15px;
+  margin-right: 10px;
 }
 .close{
   background-color: #000;
@@ -150,5 +158,13 @@
   }
   .InsideRowGridModal{
     padding-bottom: 10px;
+  }
+  .divInfoModalStudentRedirect{
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .InfoModalStudentRedirect{
+    flex-direction: column;
+    margin-bottom: 10px;
   }
 }

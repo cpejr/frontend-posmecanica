@@ -27,16 +27,16 @@ function EditStudentInfo({ location }) {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Visualizar Processos Seletivos',
       path: 'processos-seletivos',
-    },
-    {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Lista de professores',
@@ -70,37 +70,42 @@ function EditStudentInfo({ location }) {
     setDados({ ...dados, [field]: value });
   };
   return (
-    <div className="screen-ps">
+    <div className="screen-Edit">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="atualizationContent">
         <div className="campsContent">
-          <h1> Atualização Cadastral:</h1>
+          <div className="titleEdit">
+            <h1> Atualização Cadastral:</h1>
+          </div>
           {StudEdit.map((topic) => (
             <div key={topic.title}>
               <div className="formsDI_box_title">
-                <div className="formsDI_title">
+                <div className="formsEdit-title">
                   {topic.title}
                 </div>
               </div>
-              {topic.lines.map((line) => (
-                <div className="formsDI_line">
-                  {line.items.map((item) => (
-                    <div className="formsDI_input">
-                      <StyledInput
-                        type={item.type}
-                        shrink={item.type === 'date' ? true : undefined}
-                        id={item.id}
-                        label={item.label}
-                        width="22rem"
-                        field={item.field}
-                        select={item.select}
-                        dados={dados}
-                        setDados={handleChange}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
+              <div className="editBox">
+                {topic.lines.map((line) => (
+                  <div className="formsDI_line">
+                    {line.items.map((item) => (
+                      <div className={item.className}>
+                        <StyledInput
+                          type={item.type}
+                          shrink={item.type === 'date' ? true : undefined}
+                          id={item.id}
+                          label={item.label}
+                          field={item.field}
+                          select={item.select}
+                          multiline={item.multiline}
+                          rows={item.rows}
+                          dados={dados}
+                          setDados={handleChange}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
           <div className="Login-button1">

@@ -40,16 +40,16 @@ function SentDocuments({ location }) {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Criar processo seletivo',
       path: 'administrator/criar-processo-seletivo',
     },
     {
       text: 'Visualizar Processos Seletivos',
       path: 'processos-seletivos',
-    },
-    {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
     },
     {
       text: 'Lista de professores',

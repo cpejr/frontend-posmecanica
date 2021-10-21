@@ -59,6 +59,10 @@ function FormProf() {
       path: 'administrator/lista-estudantes',
     },
     {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
       text: 'Lista de professores',
       path: 'lista-professores',
     },
@@ -75,14 +79,11 @@ function FormProf() {
       path: 'administrator/cadastro-disciplina',
     },
     {
-      text: 'Divulgar Defesa de Tese',
-      path: 'administrator/defesa-de-teses',
-    },
-    {
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
   ];
+
   return (
     <div className="screen-ps-profForms">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
