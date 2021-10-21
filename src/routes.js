@@ -46,13 +46,13 @@ function Routes() {
       <div className={classes.container}>
         <Switch>
           <PrivateRoute exact path="/painel/professor" component={DashboardProfessor} type="professor" />
-          <Route exact path="/painel/aluno" component={DashboardAluno} type="student" />
+          <PrivateRoute exact path="/painel/aluno" component={DashboardAluno} type="aluno" />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
-          <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="student" />
+          <PrivateRoute exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="aluno" />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
@@ -60,7 +60,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/formulario-professores" component={FormProf} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/cadastro-disciplina" component={registerDis} type="administrator" />
           <PrivateRoute exact path="/documentos-enviados" component={SentDocuments} type="administrator" />
-          <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} type="both" />
+          <PrivateRoute exact path="/painel/processos-seletivos" component={SelectiveProcesses} type="both" />
           <PrivateRoute exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} type="administrator" />

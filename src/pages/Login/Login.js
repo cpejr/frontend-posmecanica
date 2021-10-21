@@ -32,14 +32,33 @@ function Login() {
       const response = await managerService.login(usuario);
       const fields = Object.keys(response.data.user).find((field) => field.includes('id'));
       const id = response.data.user[fields];
-      setUser({
-        name: response.data.user.name,
-        email: response.data.user.email,
-        type: response.data.user.type,
-        acessToken: response.data.accessToken,
-        id,
-      });
-      history.push(`/painel/${response.data.user.type}`);
+      if (response.data.user.name === undefined) {
+        const resp = await managerService.getByIdCandidate(response.data.user.stud_candidate_id);
+        setUser({
+          name: resp.candidate_name,
+          email: resp.candidate_email,
+          type: 'aluno',
+          acessToken: response.data.accessToken,
+          id: response.data.user.stud_id,
+        });
+        localStorage.setItem('user', JSON.stringify({
+          name: resp.candidate_name,
+          email: resp.candidate_email,
+          type: 'aluno',
+          acessToken: response.data.accessToken,
+          id: response.data.user.stud_id,
+        }));
+        history.push('/painel/aluno');
+      } else {
+        setUser({
+          name: response.data.user.name,
+          email: response.data.user.email,
+          type: response.data.user.type,
+          acessToken: response.data.accessToken,
+          id,
+        });
+        history.push(`/painel/${response.data.user.type}`);
+      }
     } catch {
       addToast('Acesso negado!', { appearance: 'error' });
       setLoading(false);
