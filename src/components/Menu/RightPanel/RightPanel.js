@@ -43,7 +43,7 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
         ))}
         <Link to={{ pathname: '/login' }}>
           <ListItem button>
-            <ListItemText onClick={() => logout()}>
+            <ListItemText onClick={logout}>
               Logout
             </ListItemText>
           </ListItem>

@@ -50,7 +50,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
-          <Route exact path="/painel/lista-professores" component={ProfessorList} />
+          <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
           <Route exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="student" />
           <Route exact path="/esqueci-senha" component={forgetPass} />
@@ -58,21 +58,20 @@ function Routes() {
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
           <Route exact path="/formulario-processo-seletivo" component={FormPs} />
           <PrivateRoute exact path="/painel/administrator/formulario-professores" component={FormProf} type="administrator" />
-          <Route exact path="/lista-professores" component={ProfessorList} />
           <PrivateRoute exact path="/painel/administrator/cadastro-disciplina" component={registerDis} type="administrator" />
           <PrivateRoute exact path="/documentos-enviados" component={SentDocuments} type="administrator" />
-          <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} />
-          <PrivateRoute exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} />
-          <PrivateRoute exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} />
-          <PrivateRoute exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/declaracao" component={Declaration} />
-          <PrivateRoute exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} />
-          <PrivateRoute exact path="/painel/administrator/relatorios" component={DefenseReports} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} />
-          <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} />
+          <Route exact path="/painel/processos-seletivos" component={SelectiveProcesses} type="both" />
+          <PrivateRoute exact path="/painel/administrator/defesa-de-teses" component={ThesisDefense} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/qualificaçao-teses" component={ThesisQualification} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/divulgaçao-qualificaçao" component={DivulgaçaoQualificaçao} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/declaracao" component={Declaration} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/divulgaçao-defesa" component={DivulgaçaoTese} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios" component={DefenseReports} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/ata-resumida" component={SummaryAta} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/atestado-final" component={FinalCertificate} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/certificado" component={CertificateReport} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/escolha-membro" component={ChoiceMember} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} type="administrator" />
           <Route path="/" component={Login} />
         </Switch>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
@@ -10,10 +11,14 @@ function PrivateRoute({ component: Component, type, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) => (user.type === type ? (
+      render={(props) => (type === 'both' && (user.type === 'administrator' || user.type === 'professor') ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        user.type === type ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        )
       ))}
     />
   );
