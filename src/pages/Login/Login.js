@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
@@ -24,6 +24,12 @@ function Login() {
   const handleChange = (value, field) => {
     setUsusario({ ...usuario, [field]: value });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      localStorage.removeItem('user');
+    }
+  }, []);
 
   const handleClick = async (e) => {
     setLoading(true);
