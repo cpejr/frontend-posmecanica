@@ -109,7 +109,7 @@ function BoxDashboard({
             {type === 'prof' && (
               <div className="BdSubTitle">
                 {subtitle}
-                {processes.map(() => {
+                {() => {
                   if (position === 'first' && dados.type) {
                     if (candidates?.length === 0) {
                       return 0;
@@ -123,7 +123,7 @@ function BoxDashboard({
                     return counterByDiscipline(position);
                   }
                   return <div />;
-                })}
+                }}
               </div>
             )}
             {type === 'adm' && (
