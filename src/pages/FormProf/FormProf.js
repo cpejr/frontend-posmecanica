@@ -40,6 +40,7 @@ function FormProf() {
   };
 
   const handleClick = async (e) => {
+    dados.prof_birth = moment(dados.prof_birth).format();
     e.preventDefault();
     if (1) {
       await managerService.createProfessor(dados);
