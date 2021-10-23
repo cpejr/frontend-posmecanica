@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './SentDocuments.scss';
 import Pagination from '@material-ui/lab/Pagination';
@@ -7,20 +7,23 @@ import RightPanel from '../../components/Menu/RightPanel';
 import Footer from '../../components/Footer';
 import InfoModal from './InfoModal';
 import DocsContent from './DocsContent';
-import TestContent from './TestContent';
+import ApproveContent from './ApproveContent';
 
 function SentDocuments({ location }) {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [page, setPage] = useState(1);
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const history = useHistory();
+  const [wasApproved, setWasApproved] = useState(false);
   let candidate;
   if (location.state && location.state.candidate) {
     candidate = location.state.candidate;
   } else {
     history.push('/');
   }
-
+  useEffect(() => {
+    setWasApproved(candidate.candidate_form_approval);
+  });
   const handleClickClose = () => {
     setShowInfoModal(false);
   };
@@ -65,15 +68,21 @@ function SentDocuments({ location }) {
       path: '../esqueci-senha',
     },
   ];
+
   return (
     <div className="SD-externalDiv">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="SD-screen">
         {candidate && page === 1 && (
-          <DocsContent setShowInfoModal={setShowInfoModal} candidate={candidate} />
+          <DocsContent
+            setShowInfoModal={setShowInfoModal}
+            setHasChanged={setWasApproved}
+            id={candidate.candidate_id}
+            candidate={candidate}
+          />
         )}
-        {candidate && page === 2 && <TestContent id={candidate.candidate_id} />}
-        {candidate && candidate.candidate_rating === null && (
+        {candidate && page === 2 && <ApproveContent candidate={candidate} />}
+        {candidate && wasApproved && (
           <Pagination page={page} className="sentDoc-pagination" count={2} size="small" onChange={handleChangePag} />
         )}
         {candidate && showInfoModal

@@ -9,27 +9,43 @@ import { AllTitleTypes } from '../../utils/titleTypes';
 import './StudentList.scss';
 
 function StudentList() {
+  const initialState = {
+    semester: '',
+  };
   const [allStudents, setAllStudents] = useState([]);
   const [filterStudents, setFilterStudents] = useState([]);
-  const [years, setYears] = useState([]);
+  const [dados, setDados] = useState(initialState);
+  const [period, setPeriod] = useState('');
+  const [semestre, setSemestre] = useState([]);
   const [filterName, setFilterName] = useState();
-  const [filterYear, setFilterYear] = useState();
   const [filterGraduation, setFilterGraduation] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   useEffect(async () => {
+    if (dados.semester === '') {
+      setPeriod('Todos');
+    } else {
+      setPeriod(`${dados.semester}`);
+    }
+  }, [dados]);
+
+  useEffect(async () => {
     const students = await managerService.getStudents();
-    let yearsFilters = [{ label: 'Nenhum filtro', value: '' }];
-    let existentYears = students.map((student) => {
-      const parseDate = new Date(student.created_at).getUTCFullYear();
-      const parseDateObj = { label: `${parseDate}`, value: `${parseDate}` };
-      return parseDateObj;
-    });
-    existentYears = [...new Map(existentYears.map((item) => [item.label, item])).values()];
-    yearsFilters = yearsFilters.concat(existentYears);
+    const selectiveProcess = await managerService.getAllSelectiveProcess();
     setAllStudents(students);
     setFilterStudents(students);
-    setYears(yearsFilters);
+    let Array = [];
+    selectiveProcess.forEach((process) => {
+      Array.push(process.process_semester);
+    });
+    Array = [...new Set(Array)];
+    Array.sort();
+    const auxSemestre = [];
+    auxSemestre.push({ label: 'Todos', value: 'Todos' });
+    Array.forEach((semester) => {
+      auxSemestre.push({ label: semester, value: semester });
+    });
+    setSemestre(auxSemestre);
   }, []);
 
   useEffect(() => {
@@ -39,9 +55,9 @@ function StudentList() {
         (student) => student.candidate_name.toLowerCase().includes(filterName.toLowerCase()),
       );
     }
-    if (filterYear) {
+    if (period !== '' && period !== 'Todos') {
       initialStudents = initialStudents.filter((student) => (
-        new Date(student.created_at).getUTCFullYear().toString() === filterYear
+        student.selective_process.process_semester === period
       ));
     }
     if (filterGraduation) {
@@ -50,13 +66,13 @@ function StudentList() {
       ));
     }
     setFilterStudents(initialStudents);
-  }, [filterName, filterYear, filterGraduation]);
+  }, [filterName, period, filterGraduation]);
 
   const handleFilterNameChange = (value) => {
     setFilterName(value);
   };
-  const handleFilterYearChange = (value) => {
-    setFilterYear(value);
+  const handleChange = (value, field) => {
+    setDados({ ...dados, [field]: value });
   };
   const handleFilterGraduationChange = (value) => {
     setFilterGraduation(value);
@@ -113,14 +129,14 @@ function StudentList() {
                 setDados={handleFilterNameChange}
               />
               <StyledInput
-                type="number"
-                id="filter-year"
-                label="Ano"
+                type="text"
+                id="semester"
+                label="Semestre"
                 width="80%"
-                field={years}
+                field={semestre}
                 select
-                dados={filterYear}
-                setDados={handleFilterYearChange}
+                dados={dados}
+                setDados={handleChange}
               />
               <StyledInput
                 type="text"
