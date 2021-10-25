@@ -32,6 +32,11 @@ import CompleteAta from './pages/IssuingsReports/CompleteAta';
 import IsolatedList from './pages/IsolatedList';
 import EditDiscipline from './pages/EditDiscipline';
 import PrivateRoute from './components/PrivateRoute';
+import SentDoubts from './pages/StudentSentDoubts';
+import StudentDocuments from './pages/StudentDocuments/StudentDocuments';
+import SendDoubts from './pages/StudentSendDoubts';
+import AdministratorDoubts from './pages/AdminDoubts';
+import ThesisList from './pages/ThesisList';
 
 const useStyles = makeStyles({
   container: {
@@ -49,12 +54,18 @@ function Routes() {
         <Switch>
           <PrivateRoute exact path="/painel/professor" component={DashboardProfessor} type="professor" />
           <PrivateRoute exact path="/painel/aluno" component={DashboardAluno} type="aluno" />
+          <Route exact path="/painel/aluno/documentos" component={StudentDocuments} />
+          <Route exact path="/painel/aluno/duvidas/lista" component={SentDoubts} />
+          <Route exact path="/painel/aluno/duvidas/envio" component={SendDoubts} />
+          <Route exact path="/painel/aluno/editar/" component={EditStudentInfo} />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
+          <Route exact path="/painel/administrator/duvidas" component={AdministratorDoubts} />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
           <PrivateRoute exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="aluno" />
+          <Route exact path="/painel/aluno/teses" component={ThesisList} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
