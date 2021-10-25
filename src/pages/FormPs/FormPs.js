@@ -108,7 +108,7 @@ function FormPs() {
       dados.candidate_birth = moment(dados.candidate_birth).format();
       dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
-      dados.candidade_date_inscrition = moment(dados.candidade_date_inscrition).format();
+      dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
 
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
