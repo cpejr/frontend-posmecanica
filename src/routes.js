@@ -54,18 +54,18 @@ function Routes() {
         <Switch>
           <PrivateRoute exact path="/painel/professor" component={DashboardProfessor} type="professor" />
           <PrivateRoute exact path="/painel/aluno" component={DashboardAluno} type="aluno" />
-          <Route exact path="/painel/aluno/documentos" component={StudentDocuments} />
-          <Route exact path="/painel/aluno/duvidas/lista" component={SentDoubts} />
-          <Route exact path="/painel/aluno/duvidas/envio" component={SendDoubts} />
-          <Route exact path="/painel/aluno/editar/" component={EditStudentInfo} />
+          <PrivateRoute exact path="/painel/aluno/documentos" component={StudentDocuments} type="aluno" />
+          <PrivateRoute exact path="/painel/aluno/duvidas/lista" component={SentDoubts} type="aluno" />
+          <PrivateRoute exact path="/painel/aluno/duvidas/envio" component={SendDoubts} type="aluno" />
+          <PrivateRoute exact path="/painel/aluno/editar/" component={EditStudentInfo} type="aluno" />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
-          <Route exact path="/painel/administrator/duvidas" component={AdministratorDoubts} />
+          <PrivateRoute exact path="/painel/administrator/duvidas" component={AdministratorDoubts} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
           <PrivateRoute exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="aluno" />
-          <Route exact path="/painel/aluno/teses" component={ThesisList} />
+          <PrivateRoute exact path="/painel/aluno/teses" component={ThesisList} type="aluno" />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
