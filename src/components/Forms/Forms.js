@@ -26,6 +26,7 @@ function Forms({
               {line.items.map((item) => (
                 <div className="forms_input">
                   <StyledInput
+                    required
                     type={item.type}
                     id={item.id}
                     label={item.label}
