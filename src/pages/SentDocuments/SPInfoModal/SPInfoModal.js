@@ -2,7 +2,6 @@ import React from 'react';
 import './SPInfoModal.scss';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
-// import * as managerService from '../../../services/manager/managerService';
 
 function InfoModal({ close, conteudo }) {
   const history = useHistory();
