@@ -64,7 +64,9 @@ function InfoModal({ close, conteudo }) {
           </div>
         </div>
         {conteudo.process_type === 'ISOLADA' && verificationIsClose(conteudo.process_date_end) && (
-          <button type="button" className="SPbutton-result" onClick={() => handleClick()}>RESULTADO</button>
+          <div className="teste">
+            <button type="button" className="SPbutton-result" onClick={() => handleClick()}>RESULTADO</button>
+          </div>
         )}
       </div>
     </div>

@@ -8,7 +8,7 @@
   z-index: 999;
   .SPinfoModalcontainer{
     position: absolute;
-    height: 500px;
+    height: fit-content;
     max-width: 600px;
     top: 3%;
     bottom: 3%;
@@ -80,4 +80,10 @@
   border-radius: 5px;
   padding: 15px;
   margin-right: 10px;
+}
+
+.teste {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
