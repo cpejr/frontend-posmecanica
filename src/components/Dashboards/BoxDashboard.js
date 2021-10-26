@@ -18,7 +18,7 @@ function BoxDashboard({
   };
   const [showInput, setShowInput] = useState(false);
   const [dados, setDados] = useState(initialState);
-  const [candidates, setCandidates] = useState();
+  const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [empty, setEmpty] = useState(false);
   const handleChange = (value, field) => {
@@ -97,7 +97,6 @@ function BoxDashboard({
     }
     return processCount;
   }
-
   return (
     <div className="BdMenu">
       <div className="BdTitle">
@@ -109,20 +108,12 @@ function BoxDashboard({
             {type === 'prof' && (
               <div className="BdSubTitle">
                 {subtitle}
-                {processes.map((process) => {
+                {() => {
                   if (position === 'first' && dados.type) {
                     if (candidates?.length === 0) {
                       return 0;
                     }
-                    if (process.count_candidates === 0) {
-                      return 0;
-                    }
-                    if (candidates?.length !== 0) {
-                      return counterByDiscipline(position);
-                    }
-                    if (candidates?.length === processCount) {
-                      return candidates.length;
-                    }
+                    return counterByDiscipline(position);
                   }
                   if (position === 'second' && dados.type) {
                     if (candidates?.length === 0) {
@@ -131,7 +122,7 @@ function BoxDashboard({
                     return counterByDiscipline(position);
                   }
                   return <div />;
-                })}
+                }}
               </div>
             )}
             {type === 'adm' && (

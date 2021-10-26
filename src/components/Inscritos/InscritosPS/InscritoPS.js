@@ -75,7 +75,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
     if (candidate.selective_process.process_type === 'ISOLADA') {
       setProcesstype('Isolada');
     }
-  }, []);
+  }, [candidate]);
 
   return (
     <>

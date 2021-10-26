@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -35,8 +36,8 @@ function SelectiveProcesses() {
   const [data, setData] = useState(initialStateData);
 
   function verificationIsOpen(process) {
-    const beginDate = new Date(process.process_date_begin);
-    const endDate = new Date(process.process_date_end);
+    const beginDate = moment(process.process_date_begin).format();
+    const endDate = moment(process.process_date_end).format();
     const currentDate = new Date();
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
