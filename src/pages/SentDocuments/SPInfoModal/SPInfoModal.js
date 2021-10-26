@@ -26,7 +26,7 @@ function InfoModal({ close, conteudo }) {
     if (endData < currentDate) {
       return true;
     }
-    return true;
+    return false;
   }
   const handleClick = async () => {
     history.push({
