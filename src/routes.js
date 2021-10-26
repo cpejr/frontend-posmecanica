@@ -31,10 +31,10 @@ import Declaration from './pages/IssuingsReports/Declaration';
 import CompleteAta from './pages/IssuingsReports/CompleteAta';
 import IsolatedList from './pages/IsolatedList';
 import EditDiscipline from './pages/EditDiscipline';
+import ProcessSelectiveResult from './pages/IssuingsReports/ProcessSelectiveResult';
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
     height: '100%',
     width: '100%',
   },
@@ -76,6 +76,7 @@ function Routes() {
           <Route exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} />
           <Route exact path="/painel/administrator/lista-isoladas" component={IsolatedList} />
           <Route exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} />
+          <Route exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

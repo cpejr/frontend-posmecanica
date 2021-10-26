@@ -82,9 +82,11 @@ function registerDis() {
     },
   ];
   return (
-    <div className="screen-ps">
+    <div className="screen-CreateProcess">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      <h1> Cadastro de Processo Seletivo:</h1>
+      <div className="form-CreatSelectiveProcess-title">
+        <h1> Cadastro de Processo Seletivo:</h1>
+      </div>
       <div className="form_SP_cad_box_title">
         <div className="form_SP_cad_title">
           Dados do Processo
