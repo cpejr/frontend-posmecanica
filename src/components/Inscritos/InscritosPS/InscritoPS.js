@@ -29,7 +29,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
       managerService.getProfByDisciplineId(disciplineId),
     ]).then((response) => {
       line.disciplineName = response[0].discipline_name;
-      line.candidateDisciplineDeferment = response[1][0].cd_dis_deferment;
+      line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
       line.professorName = response[2].prof_name;
     });
     setObject((previousState) => [...previousState, line]);
