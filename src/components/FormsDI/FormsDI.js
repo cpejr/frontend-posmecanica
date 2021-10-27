@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import TextField from '@material-ui/core/TextField';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
