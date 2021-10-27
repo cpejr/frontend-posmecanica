@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
@@ -15,6 +16,7 @@ function StudentList() {
   const [allStudents, setAllStudents] = useState([]);
   const [filterStudents, setFilterStudents] = useState([]);
   const [dados, setDados] = useState(initialState);
+  const [loading, setLoading] = useState(false);
   const [period, setPeriod] = useState('');
   const [semestre, setSemestre] = useState([]);
   const [filterName, setFilterName] = useState();
@@ -30,22 +32,26 @@ function StudentList() {
   }, [dados]);
 
   useEffect(async () => {
-    const students = await managerService.getStudents();
-    const selectiveProcess = await managerService.getAllSelectiveProcess();
-    setAllStudents(students);
-    setFilterStudents(students);
-    let Array = [];
-    selectiveProcess.forEach((process) => {
-      Array.push(process.process_semester);
-    });
-    Array = [...new Set(Array)];
-    Array.sort();
-    const auxSemestre = [];
-    auxSemestre.push({ label: 'Todos', value: 'Todos' });
-    Array.forEach((semester) => {
-      auxSemestre.push({ label: semester, value: semester });
-    });
-    setSemestre(auxSemestre);
+    if (dados) {
+      setLoading(true);
+      const students = await managerService.getStudents();
+      const selectiveProcess = await managerService.getAllSelectiveProcess();
+      setAllStudents(students);
+      setFilterStudents(students);
+      let Array = [];
+      selectiveProcess.forEach((process) => {
+        Array.push(process.process_semester);
+      });
+      Array = [...new Set(Array)];
+      Array.sort();
+      const auxSemestre = [];
+      auxSemestre.push({ label: 'Todos', value: 'Todos' });
+      Array.forEach((semester) => {
+        auxSemestre.push({ label: semester, value: semester });
+      });
+      setSemestre(auxSemestre);
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -150,7 +156,12 @@ function StudentList() {
               />
             </div>
           </div>
-          <div className="gridAll">
+          <div className={loading ? 'gridLoadTrue' : 'gridAll'}>
+            {loading === true && (
+              <div className="gridLoaderTrue">
+                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              </div>
+            )}
             {filterStudents.map((student) => (
               <div className="formsDI_input">
                 <InscritoPS

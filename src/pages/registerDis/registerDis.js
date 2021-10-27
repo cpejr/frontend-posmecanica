@@ -113,7 +113,6 @@ function registerDis() {
                   type="text"
                   id="discipline_name"
                   label="Nome"
-                  width="22.5rem"
                   dados={dados}
                   setDados={handleChange}
                 />
@@ -127,7 +126,6 @@ function registerDis() {
                   label="Professor Responsável"
                   select
                   field={professorsList}
-                  width="22.5rem"
                   dados={prof}
                   setDados={handleChangeProfessor}
                 />
@@ -139,7 +137,6 @@ function registerDis() {
                 type="text"
                 id="discipline_code"
                 label="Código da Disciplina"
-                width="22.5rem"
                 dados={dados}
                 setDados={handleChange}
               />
@@ -150,7 +147,6 @@ function registerDis() {
                   type="text"
                   id="discipline_semester"
                   label="Período Ofertado"
-                  width="22.5rem"
                   select
                   field={semester}
                   dados={dados}
@@ -162,7 +158,6 @@ function registerDis() {
                   type="text"
                   id="discipline_is_isolated"
                   label="Disciplina Isolada"
-                  width="22.5rem"
                   field={booleans}
                   select
                   dados={dados}
@@ -175,7 +170,6 @@ function registerDis() {
                   label="Conteúdo"
                   field={enumm}
                   select
-                  width="22.5rem"
                   dados={dados}
                   setDados={handleChange}
                 />
@@ -184,8 +178,7 @@ function registerDis() {
               <StyledInput
                 type="text"
                 id="discipline_content"
-                label="Conteúdo"
-                width="22.5rem"
+                label="Descrição"
                 dados={dados}
                 setDados={handleChange}
               />
