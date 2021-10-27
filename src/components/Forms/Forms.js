@@ -4,7 +4,7 @@ import UploadInput from '../UploadInput';
 import './Forms.scss';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick,
+  initialState, formsInput, files, setFiles, handleClick, error,
 }) {
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -27,6 +27,7 @@ function Forms({
                 <div className="forms_input">
                   <StyledInput
                     required
+                    error={error}
                     type={item.type}
                     id={item.id}
                     label={item.label}
@@ -65,17 +66,17 @@ function Forms({
           <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
           <UploadInput files={files} setFiles={setFiles} fileName="Proficiência" />
         </div>
-        { dados.candidate_grade === 'DOUTORADO' && (
-        <>
-          <div className="forms_input_file">
-            <div className="forms_upload_text">Plano de Doutorado</div>
-            <UploadInput files={files} setFiles={setFiles} fileName="Plano de Doutorado" />
-          </div>
-          <div className="forms_input_file">
-            <div className="forms_upload_text">Comprovante de Mestrado</div>
-            <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Mestrado" />
-          </div>
-        </>
+        {dados.candidate_grade === 'DOUTORADO' && (
+          <>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Plano de Doutorado</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Plano de Doutorado" />
+            </div>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Comprovante de Mestrado</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Mestrado" />
+            </div>
+          </>
         )}
       </div>
       <div className="forms_divButton">

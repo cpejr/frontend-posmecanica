@@ -23,6 +23,7 @@ const initialState = {
 
 function registerDis() {
   const [professorsList, setProfessorsList] = useState([]);
+  const [error, setError] = useState(false);
   const [dados, setDados] = useState(initialState);
   const [prof, setProf] = useState();
   const history = useHistory();
@@ -58,6 +59,7 @@ function registerDis() {
       addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
+      setError(true);
     }
   };
   const [expandRightPanel, setExpandRightPanel] = useState(false);
@@ -114,6 +116,7 @@ function registerDis() {
                   id="discipline_name"
                   label="Nome"
                   dados={dados}
+                  error={error}
                   setDados={handleChange}
                 />
               </div>
@@ -125,6 +128,7 @@ function registerDis() {
                   id="prof_id"
                   label="Professor Responsável"
                   select
+                  error={error}
                   field={professorsList}
                   dados={prof}
                   setDados={handleChangeProfessor}
@@ -137,6 +141,7 @@ function registerDis() {
                 type="text"
                 id="discipline_code"
                 label="Código da Disciplina"
+                error={error}
                 dados={dados}
                 setDados={handleChange}
               />
@@ -147,6 +152,7 @@ function registerDis() {
                   type="text"
                   id="discipline_semester"
                   label="Período Ofertado"
+                  error={error}
                   select
                   field={semester}
                   dados={dados}
@@ -158,6 +164,7 @@ function registerDis() {
                   type="text"
                   id="discipline_is_isolated"
                   label="Disciplina Isolada"
+                  error={error}
                   field={booleans}
                   select
                   dados={dados}
@@ -169,6 +176,7 @@ function registerDis() {
                   id="discipline_type"
                   label="Conteúdo"
                   field={enumm}
+                  error={error}
                   select
                   dados={dados}
                   setDados={handleChange}
@@ -179,6 +187,7 @@ function registerDis() {
                 type="text"
                 id="discipline_content"
                 label="Descrição"
+                error={error}
                 dados={dados}
                 setDados={handleChange}
               />
