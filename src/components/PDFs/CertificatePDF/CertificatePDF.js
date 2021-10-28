@@ -1,10 +1,11 @@
 /*eslint-disable*/
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { FiPrinter } from 'react-icons/fi';
+import { FiPrinter, FiXCircle } from 'react-icons/fi';
 import moment from 'moment';
 import '../SummaryAtaPDF/SummaryAta.scss';
 import './Certificate.scss'
+import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ComponentToPrint extends React.Component {
@@ -23,12 +24,12 @@ class ComponentToPrint extends React.Component {
             alt="logotipo Universidade FEderal de Minas Gerais"
           />
           <p className="pdfSumary-dedicate">
-            Certificamos que: {`${defenseInfo.bank}`}, participaram como membros da Banca Examinadora da 
+            Certificamos que: {`${defenseInfo.bank}`}, participaram como membros da Banca Examinadora da
             {(defenseInfo.type == 'DISSERTACAO') ? (
               ' Dissertação'
             ) : (' Tese')} intitulada <a className="pdfCertificate-titleFormated">“{`${defenseInfo.title}`}”</a>,
-            de autoria do aluno(a) <a className="pdfCertificate-titleFormated">{`${defenseInfo.studName}`}</a>, do Programa 
-            de Pós-Graduação em Engenharia Mecânica, nível Mestrado, Área de Concentração: {`${defenseInfo.searchArea}`}, 
+            de autoria do aluno(a) <a className="pdfCertificate-titleFormated">{`${defenseInfo.studName}`}</a>, do Programa
+            de Pós-Graduação em Engenharia Mecânica, nível Mestrado, Área de Concentração: {`${defenseInfo.searchArea}`},
             defendida e aprovada em Belo Horizonte no dia {`${moment(defenseInfo.date).format('LL')}`}.
           </p>
         </div>
@@ -43,18 +44,26 @@ class ComponentToPrint extends React.Component {
 }
 
 const CertificatePDF = (props) => {
+  const history = useHistory();
   const infoDefense = props;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+  const handleBack = () => {
+    history.push('/painel/administrator/lista-estudantes');
+  };
 
   return (
     <div>
-      <div className="print-button" role="button" tabIndex="0" onClick={handlePrint} onKeyDown={handlePrint}>
-        <div className="print-button-text">
+      <div className="print-button">
+        <div className="print-button-text" role="button" tabIndex="0" onClick={handlePrint} onKeyDown={handlePrint}>
           <FiPrinter className="print-icon" size={25} />
           Imprimir
+        </div>
+        <div className="print-button-text" role="button" tabIndex="0" onClick={handleBack} onKeyDown={handleBack}>
+          <FiXCircle className="print-icon" size={25} />
+          Voltar
         </div>
       </div>
       <ComponentToPrint ref={componentRef} info={infoDefense.props[0]} />
