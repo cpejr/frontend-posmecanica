@@ -24,11 +24,12 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height, shrink, defaultValue, rows, multiline,
+  setDados, type, label, id, width, field, select, height, shrink, defaultValue, rows, multiline, error, text,
 
 }) {
 
-  const [error, setError] = useState(false);
+  const [validation, setValidation] = useState(false);
+  const [change, setChange] = useState(false);
   const [CPF, setCPF] = useState('');
   const [phone, setPhone] = useState('');
   const [CEP, setCEP] = useState('');
@@ -63,10 +64,11 @@ function StyledInput({
 
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
-      setError(true);
+      setValidadion(true);
     } else {
-      setError(false);
+      setValidation(false);
     }
+    setChange(true);
     const { value } = e.target;
     setDados(value, entrada);
     setCPF(maskCPF(e.target.value));
@@ -104,7 +106,7 @@ function StyledInput({
       }}
       multiline={multiline}
       rows={rows}
-      error={error}
+      error={(error && !change && text !== 'noRequired') || (validation)}
       type={type}
       min="0"
       label={label}
@@ -112,6 +114,7 @@ function StyledInput({
       id={id}
       width={width}
       select={select}
+      helperText={(error && !change && text !== 'noRequired') ? "Preencha esse campo." : ""}
       defaultValue={defaultValue}
       onChange={(e) => handleChange(e, id)}
       value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : undefined}

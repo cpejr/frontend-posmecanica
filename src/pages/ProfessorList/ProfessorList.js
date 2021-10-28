@@ -6,6 +6,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  CircularProgress,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaChevronCircleDown } from "react-icons/fa";
@@ -30,10 +31,13 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfessorList() {
   const [professors, setProfessors] = useState([]);
+  const [loading, setLoading] = useState(false);
   const searchAreaOrder = "prof_name";
   const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
+    if(professors) {
+      setLoading(true);
     const getProfessors = await managerService.getAllProfessors();
     const filteredProfessors = getProfessors.filter((searchName) =>
       searchName.prof_name
@@ -41,6 +45,8 @@ function ProfessorList() {
         .includes(inputText.toLowerCase())
     );
     setProfessors(filteredProfessors);
+    }
+    setLoading(false)
   }, [inputText]);
 
   const classes = useStyles();
@@ -136,6 +142,11 @@ function ProfessorList() {
             </h4>
           </div>
           <div className="professor-list-content">
+          {loading === true && (
+            <div className="BdDivGridLoader">
+              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+            </div>
+          )}
             <div className={classes.root}>
               {orderElements(professors, searchAreaOrder)?.map((item) => (
                 <Accordion key={item.search_area_id}>

@@ -46,6 +46,7 @@ function FormPs() {
     candidate_PcD: "",
   };
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -134,6 +135,7 @@ function FormPs() {
       }
     } else {
       addToast("Preencha todos os campos!", { appearance: "error" });
+      setError(true);
     }
   };
   return (
@@ -146,6 +148,7 @@ function FormPs() {
         files={files}
         setFiles={setFiles}
         handleClick={handleClick}
+        error={error}
       />
     </div>
   );
