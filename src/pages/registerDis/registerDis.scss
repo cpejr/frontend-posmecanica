@@ -1,5 +1,24 @@
 $azulPadrao: #1d2d57;
 
+.screen-ps-registerDis {
+  background-color: #ffff;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  .title_registerDiscipline {
+    text-align: center;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+    color: $azulPadrao;
+    font-weight: 500;
+    font-size: 3.5em;
+    @media (max-width: 450px) {
+      font-size: 25pt;
+    }
+  }
+}
 .form_dis_cad_box_title{
   display: flex;
   align-items: center;
@@ -13,6 +32,10 @@ $azulPadrao: #1d2d57;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 2em;
+
+  @media (max-width: 450px) {
+    font-size: 15pt;
+  }
 }
 .form_dis_cad_box{
   display: flex;
@@ -22,16 +45,21 @@ $azulPadrao: #1d2d57;
 .form_dis_cad_line{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 65%;
   min-height: 710px;
   align-items: center;
   border-radius: 12px;
-
+}
+.form_dis_cad_input{
+  width: 22.5rem;
+  @media (max-width: 450px) {
+    width: 15rem;
+  }
 }
 .MuiInputBase-root {
   background-color: white;
 }
+
 .input-content{
   align-items: center;
   flex-direction: row;
@@ -47,7 +75,6 @@ $azulPadrao: #1d2d57;
   button {
     height: 3rem;
     width: 35%;
-    min-width: 350px;
     border: 0;
     border-radius: 7px;
     background-color: $azulPadrao;
@@ -59,10 +86,10 @@ $azulPadrao: #1d2d57;
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .divButton-cad{
+@media (max-width: 450px) {
+  .divButton-cad {
     button {
-      min-width: 340px;
+      width: -webkit-fill-available;
     }
   }
 }

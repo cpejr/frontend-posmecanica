@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-// import TextField from '@material-ui/core/TextField';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick,
+  initialState, formsInput, files, setFiles, handleClick, error,
 }) {
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -23,16 +22,19 @@ function Forms({
       type: 'text',
       id: 'second_discipline_isolated',
       label: 'Segunda opção',
+      text: 'noRequired',
     },
     {
       type: 'text',
       id: 'third_discipline_isolated',
       label: 'Terceira opção',
+      text: 'noRequired',
     },
     {
       type: 'text',
       id: 'fourth_discipline_isolated',
       label: 'Quarta opção',
+      text: 'noRequired',
     },
   ];
   const [disciplines, setDisciplines] = useState([]);
@@ -40,6 +42,7 @@ function Forms({
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
       const disciplinas = [];
+      disciplinas.push({ label: 'Nenhuma', value: '' });
       resp.forEach((object) => {
         disciplinas.push({ label: object.discipline_name, value: object.discipline_id });
       });
@@ -64,6 +67,7 @@ function Forms({
                     type={item.type}
                     shrink={item.type === 'date' ? true : undefined}
                     id={item.id}
+                    error={error}
                     label={item.label}
                     width="22rem"
                     field={item.field}
@@ -90,7 +94,9 @@ function Forms({
               id={disc.id}
               label={disc.label}
               width="18em"
+              text={disc.text}
               field={disciplines}
+              error={error}
               select={1}
               dados={dados}
               setDados={handleChange}
@@ -111,9 +117,9 @@ function Forms({
           </div>
         ))}
       </div>
-      <div className="forms_line_files">
-        <div className="forms_input_file">
-          <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
+      <div className="formsDI_line_files">
+        <div className="formsDI_input_file">
+          <div className="formsDI_upload_text">Proficiência em Língua Inglesa</div>
           <UploadInput files={files} setFiles={setFiles} fileName="comprovante_proficiencia" />
         </div>
       </div>
@@ -129,6 +135,7 @@ function Forms({
             id="candidate_justify"
             label="Insira aqui sua justificativa"
             multiline
+            error={error}
             dados={dados}
             setDados={handleChange}
           />

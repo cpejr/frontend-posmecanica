@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  background-color: white;
+}
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMarginDense.MuiOutlinedInput-inputMarginDense{
+  opacity: 0.3;
+
+}
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font: normal 18pt Montserrat;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #FFFF;
+  text-align: center;
+
+}
+h2 {
+  color: #FFFF;
+  font-family: "Roboto", sans-serif;
+  font: normal 10pt Montserrat;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin: 5vh;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+.campos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.coluna{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  justify-content: center;
+  background-color: rgba(6, 23, 68, 1);
+  border-radius: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom:2vh ; 
+
+}
+.MuiFormControl-root.MuiTextField-root.campinho {
+  margin-bottom: 25px;
+  width: 85%;
+  background-color: white;
+  border: 1px solid #808080;
+  box-sizing: border-box;
+  border-radius: 6px;
+
+}
+
+.btn{
+
+  justify-content: center;
+  position: absolute;
+
+  
+ 
+  .p{
+    justify-content: center;
+    position: absolute;
+    left: 100px;
+  }
+}
+
+@media(max-width: 750px) {
+  .coluna{
+    width: 80%;
+  }
+}

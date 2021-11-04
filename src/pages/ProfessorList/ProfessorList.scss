@@ -1,5 +1,12 @@
-.box-container {
+.box-containerProfList {
     width: 100%;
+    @media (max-width: 650px) {
+        display: grid;
+    }
+}
+
+.grid-containerProfList{
+   height: max-content;
 }
 
 .professor-list-container {
@@ -35,23 +42,27 @@
     margin-bottom: 20px;
 }
 
-.header-content {
+.header-content_ProfList {    
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     margin-top: 50px;
     margin-bottom: 40px;
 
     @media (max-width: 650px) {
         flex-direction: column;
+        justify-content: center;
     }
 }
 
-.header-content-title {
-    margin-right: 10px;
+.header-content-title_ProfList {
+    display: flex;
+    align-items: center;
     font-size: 16px;
     font-weight: bold;
+    margin: 0;
     color: #000;
 }
 
@@ -64,7 +75,7 @@
 
     @media (max-width: 650px) {
         width: 50%;
-        margin-left: 24%;
+        min-width: 235px;
         margin-top: 15px;
     }
 }
@@ -80,6 +91,7 @@
 .professor-list-content {
     display: flex;
     flex-direction: column;
+    min-height: 280px;
     padding: 10px;
 }
 
@@ -91,6 +103,8 @@
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
 }
 
 .accordionBorderBottom {
@@ -118,6 +132,11 @@
     flex-direction: column;
 }
 
+.spanDisciplinasProfList {
+    // display: flex;
+    // flex-direction: row;
+}
+
 .professor-list-desc-item {
     font-family: "Montserrat", sans-serif;
     display: flex;
@@ -134,6 +153,81 @@
         font-weight: 400;
         color: #7a7a7a;
         margin-left: 5px;
+    }
+    @media (max-width: 580px) {
+        flex-direction: column;
+        p {
+            display: flex;
+            justify-content: center;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+            margin-left: 0;
+            margin-top: 5px;
+        }
+        a {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+    }
+    @media (max-width: 450px) {
+        p {
+            font-size: 13px;
+        }
+        span {
+            font-size: 10px;
+        }
+    }
+}
+
+.professor-list-desc-itemDisciplinas {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    .professor-list-desc-itemDisciplinasInside{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    p {
+        font-size: 15px;
+        font-weight: 700;
+        color: #7a7a7a;
+        min-width: 183.11px;
+    }
+    span {
+        font-size: 15px;
+        font-weight: 400;
+        color: #7a7a7a;
+        margin-left: 5px;
+    }
+    @media (max-width: 580px) {
+        flex-direction: column;
+        .professor-list-desc-itemDisciplinasInside{
+            display: block;
+            margin-top: 5px;
+        }
+        p {
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    @media (max-width: 450px) {
+        p {
+            font-size: 13px;
+        }
+        span {
+            font-size: 10px;
+        }
     }
 }
 

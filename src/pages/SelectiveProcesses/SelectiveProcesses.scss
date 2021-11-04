@@ -26,6 +26,15 @@ body {
   background-color:#061744;
   height: 3px;
 }
+.SP-loadTrue{
+  border: 1px solid #C4C4C4;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: 0px 3px 5px 0px #C4C4C4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px!important;
+}
 .SP-filter{
   display: flex;
   flex-direction: row;
@@ -37,6 +46,9 @@ body {
     font-family: montserrat;
     font-size: 2.4em;
     align-items: center;
+  }
+  .SP-filterBox{
+    width: 50%;
   }
 }
 
@@ -121,16 +133,18 @@ body {
 
 @media screen and (max-width: 750px){
   .SP-title{
-    font-size: 1.5em;
+    font-size: 2.0em;
   }
 
   .SP-filter{
-    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     .SP-subtitle{
-    font-size: 1em;
+    font-size: 1.3em;
     margin-bottom: 3%;
+    }
+    .SP-filterBox{
+      width: 50%;
     }
   }
 
@@ -141,6 +155,19 @@ body {
       .SP-barTitle{
         font-size: 1em;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 450px){
+  .SP-filter{
+    flex-direction: column;
+    .SP-subtitle{
+    font-size: 1.3em;
+    margin-bottom: 3%;
+    }
+    .SP-filterBox{
+      width: 75%;
     }
   }
 }

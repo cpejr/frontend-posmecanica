@@ -45,7 +45,11 @@ function DashboardAluno() {
     <div className="student-Root">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="studentContent">
-        <RightPanel inputProps={inputProps} expandRightPanel={expandRightPanel} />
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
         <div className="studentGrid">
           <h1 className="studentTitulo">Aluno</h1>
           <div className="icones">

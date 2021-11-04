@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 
 import './SelectiveProcess.scss';
@@ -13,6 +14,8 @@ function SelectiveProcess({
     data.process_name = infoPS.process_name;
     data.process_date_begin = infoPS.process_date_begin;
     data.process_date_end = infoPS.process_date_end;
+    data.candidate_quantity = infoPS.candidate_quantity;
+    data.process_id = infoPS.process_id;
     setData(data);
     handleClickOpen();
   };
@@ -20,8 +23,10 @@ function SelectiveProcess({
   useEffect(async () => {
     if (progress === 'Finalizado') {
       setInCourse(false);
-    } else {
+    } else if (progress === 'Em andamento') {
       setInCourse(true);
+    } else {
+      setInCourse(null);
     }
   }, []);
 
@@ -38,7 +43,7 @@ function SelectiveProcess({
           </button>
         </div>
       </div>
-      <div className={inCourse ? 'compoSP-buttonAndamento' : 'compoSP-buttonFinalizado'}>
+      <div className={inCourse ? 'campoSP-buttonAndamento' : inCourse === false ? 'campoSP-buttonFinalizado' : 'campoSP-buttonNaoIniciado'}>
         {progress}
       </div>
     </div>

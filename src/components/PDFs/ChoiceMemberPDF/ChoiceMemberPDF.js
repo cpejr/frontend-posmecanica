@@ -1,0 +1,69 @@
+/*eslint-disable*/
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import { FiPrinter, FiXCircle } from 'react-icons/fi';
+import moment from 'moment';
+import '../SummaryAtaPDF/SummaryAta.scss';
+import './ChoiceMember.scss';
+import { useHistory } from 'react-router-dom';
+
+// eslint-disable-next-line react/prefer-stateless-function
+class ComponentToPrint extends React.Component {
+  render() {
+    const qualiProps = this.props;
+    const qualiInfo = qualiProps.info;
+    return (
+      <div className="pdfrenderSummary-external-div">
+        <div className="pdfrender-text">
+          <div className="pdfrenderChoice-title">
+            ESCOLHA DO MEMBRO DA BANCA EXAMINADORA PARA
+            SUPERVISIONAR AS CORREÇÕES SUGERIDAS E/OU REQUERIDAS
+            <p className="pdfrender-paragraph"/>
+          </div>
+          <p className="pdfSumary-dedicate">
+            A Banca Examinadora constituída pelos professores: {`${qualiInfo.bank}`}  reunida no dia {`${moment(qualiInfo.date).format('LL')}`}
+            , às {`${qualiInfo.hour}`} horas, para examinar a dissertação intitulada <a className="pdfChoiceMember-title">“{`${qualiInfo.title}`}"</a>, 
+            defendida pelo  aluno <a className="pdfChoiceMember-student">{`${qualiInfo.studName}`}</a>, decidiu, por unanimidade, 
+            designar o(a) {`${qualiInfo.advisor}`}, para supervisionar as correções requeridas e/ou sugeridas 
+            pela Banca Examinadora do candidato.
+          </p>
+          <p className="pdfSumary-dedicate">
+            A Banca Examinadora decidiu ainda que o candidato terá um prazo de {`${qualiInfo.qualiDays}`} dias para a 
+            entrega da versão final de sua dissertação.
+          </p>
+          <p className="pdfSummary-date">Belo Horizonte, {`${moment(qualiInfo.currentDate).format('LL')}`}</p>
+        </div>
+      </div>
+    );
+  }
+}
+
+const ChoiceMemberPDF = (props) => {
+  const history = useHistory();
+  const infoQuali = props;
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  const handleBack = () => {
+    history.push('/painel/administrator/lista-estudantes');
+  };
+
+  return (
+    <div>
+      <div className="print-button">
+        <div className="print-button-text" role="button" tabIndex="0" onClick={handlePrint} onKeyDown={handlePrint}>
+          <FiPrinter className="print-icon" size={25} />
+          Imprimir
+        </div>
+        <div className="print-button-text" role="button" tabIndex="0" onClick={handleBack} onKeyDown={handleBack}>
+          <FiXCircle className="print-icon" size={25} />
+          Voltar
+        </div>
+      </div>
+      <ComponentToPrint ref={componentRef} info={infoQuali.props[0]} />
+    </div>
+  );
+};
+
+export default ChoiceMemberPDF;

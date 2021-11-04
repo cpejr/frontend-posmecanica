@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './CreateSelectiveProcess.scss';
+import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
+import moment from 'moment';
 import processType from '../../utils/processType';
-import SiteHeader from '../../components/SiteHeader';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
+import RightPanel from '../../components/Menu/RightPanel';
 import * as managerService from '../../services/manager/managerService';
 
 function registerDis() {
@@ -15,6 +18,7 @@ function registerDis() {
     process_date_end: '',
   };
   const [dados, setDados] = useState(initialState);
+  const history = useHistory();
   const { addToast } = useToasts();
 
   const handleChange = (value, field) => {
@@ -23,20 +27,69 @@ function registerDis() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    if (dados.process_type.length > 3
-      && dados.process_name.length > 3
-      && dados.process_date_begin !== ''
-      && dados.process_date_end !== '') {
-      await managerService.createSelectiveProcess(dados);
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+    if (dados.process_date_begin < dados.process_date_end) {
+      if (dados.process_type.length > 3
+        && dados.process_name.length > 3
+        && dados.process_date_begin !== ''
+        && dados.process_date_end !== '') {
+        dados.process_date_begin = moment(dados.process_date_begin).format();
+        dados.process_date_end = moment(dados.process_date_end).format();
+        const verify = await managerService.verifySelectiveProcess('process_type', dados);
+        if (verify.length === 0) {
+          await managerService.createSelectiveProcess(dados);
+          addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
+          history.push('/painel/processos-seletivos');
+        } else {
+          addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
+        }
+      } else {
+        addToast('Preencha todos os campos!', { appearance: 'error' });
+      }
     } else {
-      addToast('Preencha todos os campos!', { appearance: 'error' });
+      addToast('Data inválida!', { appearance: 'error' });
     }
   };
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
+  const inputProps = [
+    {
+      text: 'Página principal',
+      path: 'administrator',
+    },
+    {
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
+    },
+    {
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Cadastro de professores',
+      path: 'administrator/formulario-professores',
+    },
+    {
+      text: 'Cadastro de disciplina isolada',
+      path: 'administrator/cadastro-disciplina',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: '../esqueci-senha',
+    },
+  ];
   return (
-    <div className="screen-ps">
-      <SiteHeader />
-      <h1> Cadastro de Processo Seletivo:</h1>
+    <div className="screen-CreateProcess">
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+      <div className="form-CreatSelectiveProcess-title">
+        <h1> Cadastro de Processo Seletivo:</h1>
+      </div>
       <div className="form_SP_cad_box_title">
         <div className="form_SP_cad_title">
           Dados do Processo
@@ -102,6 +155,11 @@ function registerDis() {
             </div>
           </div>
         </div>
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
       </div>
       <Footer />
     </div>

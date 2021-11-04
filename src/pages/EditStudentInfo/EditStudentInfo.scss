@@ -20,9 +20,19 @@ $azulPadrao: #1d2d57;
   }
 }
 
-.screen-ps{
+.screen-Edit{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
+}
+
+.titleEdit{
+  h1{
+    font-size: 35pt;
+    color: #1d2d57;
+  }
 }
 
 .atualizationContent {
@@ -35,10 +45,60 @@ $azulPadrao: #1d2d57;
   width: 100%;
 }
 
+.formsEdit-input{
+  width: 22rem;
+}
+
+.formsEdit-title{
+  color: white;
+  margin-left: 1%;
+  font-family: Montserrat;
+  font-size: 25pt;
+}
+
+
+.formsEdit-inputBank{
+  width: 40rem;
+}
+
+.formsDI_line{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 735px){
+  .formsEdit-inputBank{
+    width: -webkit-fill-available;
+  }
+}
+
 @media (max-width: 450px){
   .Login-button1 {
     button {
       font-size: small;
   }
 }
+  .titleEdit{
+    h1{
+      font-size: 20pt;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .campsContent{
+    padding: 0;
+  }
+
+  .editBox{
+    align-items: center;
+  }
+
+  .formsEdit-input{
+    width: -webkit-fill-available;
+  }
+
+  .formsEdit-title{
+    font-size: 15pt;
+  }
 }

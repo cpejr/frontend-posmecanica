@@ -1,0 +1,167 @@
+.BoxResult{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  min-width: 650px;
+}
+
+.BoxResult-Father {
+  height: auto;
+  min-width: 650px;
+  width: max-content;
+  border: 1px solid black;
+
+}
+
+.BoxResult-SubTitleContent{
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
+
+.BoxResult-Title{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  color: black;
+  font-family: Montserrat;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.BoxResult-SubTitle-names{
+  width: 100%;
+  display: flex;
+  color: black;
+  font-size: 15pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.BoxResult-SubTitle-total{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+  font-size: 15pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ResultDiv-Grid{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+    p {
+      padding: 2px;
+    }
+}
+
+.Result-Indices {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: flex-start;
+  font-size: 12pt;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.Result-Input {
+  display: none;
+}
+.Result-InputReal{
+  display: flex;
+  width: -webkit-fill-available;
+  align-items: center;
+  .MuiSelect-filled.MuiSelect-filled{
+    text-align: center;
+    color: black;
+    background-color: rgba(245, 245, 245, 0.938);
+    border-radius: 5px;
+  }
+  .MuiFilledInput-underline{
+    color: black;
+  }
+  .MuiSelect-selectMenu{
+    padding: 24px 32px 24px 12px;
+  }
+  .MuiInputLabel-shrink {
+    transform-origin: left;
+  }
+  .MuiFormControl-root{
+    padding: 5px;
+  }
+  .MuiFormLabel-root {
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-justify: center;
+
+    @media (max-width: 763px){
+      font-size: 0.85rem;
+      max-width: 80%;
+    }
+    @media (max-width: 500px){
+      font-size: 0.8rem;
+    }
+    @media (max-width: 410px){
+      font-size: 0.6rem;
+    }
+    @media (max-width: 325px){
+      font-size: 0.5rem;
+    }
+  }
+}
+
+.Result-InputRealNoIcon{
+  display: flex;
+  width: -webkit-fill-available;
+  align-items: center;
+  .MuiSelect-filled.MuiSelect-filled{
+    text-align: center;
+    color: black;
+  }
+  .MuiFilledInput-underline{
+    color: black;
+  }
+  .MuiSelect-iconFilled{
+    display: none;
+  }
+  .MuiSelect-selectMenu{
+    padding: 24px 32px 24px 12px;
+  }
+  .MuiInputLabel-shrink {
+    transform-origin: left;
+  }
+  .MuiFormLabel-root {
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: none;
+
+    @media (max-width: 763px){
+      font-size: 0.85rem;
+      max-width: 80%;
+    }
+    @media (max-width: 500px){
+      font-size: 0.8rem;
+    }
+    @media (max-width: 410px){
+      font-size: 0.6rem;
+    }
+    @media (max-width: 325px){
+      font-size: 0.5rem;
+    }
+  }
+}

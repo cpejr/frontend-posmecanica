@@ -8,7 +8,7 @@
   z-index: 999;
   .SPinfoModalcontainer{
     position: absolute;
-    height: 500px;
+    height: fit-content;
     max-width: 600px;
     top: 3%;
     bottom: 3%;
@@ -17,6 +17,7 @@
     margin: auto;
     padding:  4em 2rem;
     background-color: #FFF;
+    border-radius: 5px;
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
   }
   .container{
@@ -35,7 +36,7 @@
 .divSPredirect{
   display: flex;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 20%;
 }
 .SPredirect {
   background-color: green;
@@ -70,4 +71,19 @@
 }
 .SPmodalCloseIcon {
   margin-right: 5px;
+}
+.SPbutton-result {
+  display: flex;
+  background: #3b54a7;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin-right: 10px;
+}
+
+.teste {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

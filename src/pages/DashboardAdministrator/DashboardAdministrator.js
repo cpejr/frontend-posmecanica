@@ -6,27 +6,35 @@ function DashboardAdministrator() {
   const inputProps = [
     {
       text: 'Lista de estudantes',
-      path: 'lista-estudantes',
+      path: 'administrator/lista-estudantes',
+    },
+    {
+      text: 'Lista de professores',
+      path: 'lista-professores',
+    },
+    {
+      text: 'Lista de Disciplinas',
+      path: 'administrator/lista-isoladas',
     },
     {
       text: 'Criar processo seletivo',
-      path: '/',
+      path: 'administrator/criar-processo-seletivo',
     },
     {
-      text: 'Postagens de teses',
-      path: '/',
+      text: 'Visualizar Processos Seletivos',
+      path: 'processos-seletivos',
     },
     {
       text: 'Cadastro de professores',
-      path: 'formulario-professores',
+      path: 'administrator/formulario-professores',
     },
     {
       text: 'Cadastro de disciplina isolada',
-      path: 'cadastro-disciplina',
+      path: 'administrator/cadastro-disciplina',
     },
     {
       text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      path: '../esqueci-senha',
     },
   ];
 

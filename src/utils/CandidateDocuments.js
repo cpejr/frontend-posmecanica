@@ -6,6 +6,7 @@ const infos = [
     text: 'Informações do candidato:',
     docs: [
       {
+        text: ['Form'],
         types: ['Formulário'],
         icons: [<RiFileInfoLine size="2em" />],
       },
@@ -15,12 +16,14 @@ const infos = [
     text: 'Documentos do candidato:',
     docs: [
       {
-        types: ['Registro Geral (RG)', 'Cadastro de Pessoa Física (CPF)'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        text: 'Docs',
+        types: ['Identidade', 'CPF', 'Diploma de Graduação', 'Plano de Doutorado'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
       {
-        types: ['Comprovante de Residência', 'Diploma de Graduação'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        text: 'Docs',
+        types: ['GRU', 'Proficiência', 'Comprovante de Endereço', 'Comprovante de Mestrado'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
     ],
   },

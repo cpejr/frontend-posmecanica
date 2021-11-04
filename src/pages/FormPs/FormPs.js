@@ -1,6 +1,7 @@
 /*eslint-disable*/
 
 import React, { useState, useEffect } from "react";
+import moment from 'moment'
 import "./FormPs.scss";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
@@ -45,6 +46,7 @@ function FormPs() {
     candidate_PcD: "",
   };
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -104,6 +106,11 @@ function FormPs() {
       dados.candidate_PcD !== "" &&
       files.length >= 6
     ) {
+      dados.candidate_birth = moment(dados.candidate_birth).format();
+      dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
+      dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
+      dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
+
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         dados.candidate_grade
@@ -113,6 +120,9 @@ function FormPs() {
           dados,
           selectiveProcesses[0].process_id
         );
+        const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+        let quantity = infoSelectiveProcess.candidate_quantity + 1;
+        await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
         files.forEach(async (file) => {
           const data = new FormData();
           data.append("file", file.file);
@@ -125,6 +135,7 @@ function FormPs() {
       }
     } else {
       addToast("Preencha todos os campos!", { appearance: "error" });
+      setError(true);
     }
   };
   return (
@@ -137,6 +148,7 @@ function FormPs() {
         files={files}
         setFiles={setFiles}
         handleClick={handleClick}
+        error={error}
       />
     </div>
   );

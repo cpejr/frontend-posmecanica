@@ -1,5 +1,5 @@
 import React from 'react';
-import Pdf from '../PDF';
+import Pdf from '../PDFs/DeclarationPDF';
 
 function StylePDF() {
   return (

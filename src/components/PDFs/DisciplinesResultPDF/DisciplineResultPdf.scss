@@ -1,0 +1,27 @@
+.pdfResult {
+  min-width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+}
+
+.print-buttonDiscipline{
+  min-width: 650px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #04133a, #092161, #04133a);
+
+  
+  .print-button-text {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 1% 2%;
+
+    .print-icon {
+        margin: 0 5px 0 5px;
+    }
+}
+}

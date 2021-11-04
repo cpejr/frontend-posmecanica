@@ -4,13 +4,15 @@ import { useToasts } from 'react-toast-notifications';
 import React, { useState } from 'react';
 import '../../components/CampoText/campotxt';
 import './forgetPass.scss';
+import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
-import Navbar from '../../components/Navbar';
+import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 function esqueciSenha() {
   const [email, setEmail] = useState('');
   const { addToast } = useToasts();
+  const history = useHistory();
   function confirmarEmail(e) {
     setEmail(e.target.value);
   }
@@ -22,22 +24,23 @@ function esqueciSenha() {
     try {
       e.preventDefault();
       await managerService.sendResetEmail(JSONtoSend);
+      history.push('/confirmacao');
+      addToast('Email enviado com sucesso!', { appearance: 'success' });
     } catch {
       addToast('Email não cadastrado!', { appearance: 'error' });
     }
   };
-
+  const [expandRightPanel, setExpandRightPanel] = useState(false);
   return (
 
     <div className="container">
-      <Navbar />
+      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
       <div className="campos">
 
         <div className="coluna">
           <div className="text1">
             <h1>Informe seu email cadastrado</h1>
             <h2>Enviaremos para seu email um link para realizar a alteração da sua senha.</h2>
-            <h3>Após feito isso, realize login novamente.</h3>
           </div>
           <TextField
             className="campinho"

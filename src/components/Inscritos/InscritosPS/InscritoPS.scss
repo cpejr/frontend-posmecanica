@@ -7,18 +7,31 @@
   width: 100%;
   margin-bottom: 0.5em;
 }
-.inscritoPSicon{
+.isoPsIcon{
   display: flex;
   justify-content: center;
-  width: 14.5%;
+  min-width: 50px;
 }
 .nomeInscrito {
   display: flex;
   align-items: center;
-  cursor: s-resize;
   font-family: Montserrat;
   font-size: 18px;
   width: 33%;
+
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
+  }
+
+  @media (max-width:400px) {
+    width: 50%;
+  }
 }
 .trash {
   cursor: pointer;
@@ -28,14 +41,117 @@
   width: 47.5%;
   font-family: Montserrat;
   text-align: center;
+
+  p:nth-child(1) {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: none;
+    }
+  }
+
+  p:nth-child(2) {
+    display: none;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: flex;
+    }
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    min-width: 55px;
+  }
+
+  @media (max-width: 400px) {
+    width: 20%;
+  }
 } 
-.mestrado{
-  background-color: red;
+.Mestrado{
+  display: flex;
+  justify-content: center;
+  background-color: #e72929;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  width: 80px;
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
+  }
 }
-.doutorado{
-  background-color: green;
+.Doutorado{
+  display: flex;
+  justify-content: center;
+  background-color: #29e729;
   color:white;
   padding: 4px;
+  border-radius: 4px;
+  width: 80px;
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
+  }
+}
+.Isolada{
+  display: flex;
+  justify-content: center;
+  background-color: #020896;
+  color:white;
+  width: 80px;
+  padding: 4px;
+  border-radius: 4px;
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    width: 75px;
+  }
+
+}
+.divButtonInfoIsolatedCandidate {
+  display: flex;
+  justify-content: center;
+  width: 47.5%;
+
+  p:nth-child(1) {
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: none;
+    }
+  }
+
+  p:nth-child(2) {
+    display: none;
+    justify-content: center;
+
+    @media (max-width: 400px){
+      display: flex;
+    }
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    min-width: 55px;
+  }
+
+  @media (max-width: 400px) {
+    width: 20%
+  }
+}
+.buttonInfoIsolatedCandidate {
+  background-color: transparent;
+  font-family: Montserrat;
+  font-size: 14px;
+  border: none;
+
+  @media(max-width: 500px){
+    font-size: 12px;
+    min-width: 55px;
+  }
 }
