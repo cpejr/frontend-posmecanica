@@ -209,6 +209,12 @@ export const login = async (userSent) => {
   return response;
 };
 
+export const validateSession = async () => {
+  const response = await requesterService.verify();
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const createProfessor = async (professor) => {
   const response = await requesterService.createProfessor(professor);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
