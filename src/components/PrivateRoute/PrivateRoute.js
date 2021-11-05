@@ -7,18 +7,15 @@ import {
 import { useAuth } from '../../providers/auth';
 
 function PrivateRoute({ component: Component, type, ...rest }) {
-  const { user } = useAuth();
+  const { user, isAuthenticated, typeAuthorized } = useAuth();
+
   return (
     <Route
       {...rest}
-      render={(props) => (type === 'both' && (user.type === 'administrator' || user.type === 'professor') ? (
+      render={(props) => ((isAuthenticated() && typeAuthorized(type, user)) ? (
         <Component {...props} />
       ) : (
-        user.type === type ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-        )
+        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
       ))}
     />
   );
