@@ -442,3 +442,14 @@ export const getThesisList = async (id) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
+
+export const getNotificationByUserId = async (id, type) => {
+  const response = await requesterService.getNotificationByUserId(id, type);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const updateMessage = async (id, message) => {
+  const response = await requesterService.updateMessage(id, message);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};

@@ -1,8 +1,10 @@
 import React from 'react';
 import './SPInfoModal.scss';
+import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({ close, conteudo }) {
+  const history = useHistory();
   function formatedDate(date) {
     const data = new Date(date);
     const day = data.getDate().toString();
@@ -12,6 +14,25 @@ function InfoModal({ close, conteudo }) {
     const year = data.getFullYear();
     return `${responseDay}/${responseMonth}/${year}`;
   }
+  const processId = [
+    {
+      id: conteudo.process_id,
+    },
+  ];
+  function verificationIsClose(endDate) {
+    const endData = new Date(endDate);
+    const currentDate = new Date();
+    if (endData < currentDate) {
+      return true;
+    }
+    return false;
+  }
+  const handleClick = async () => {
+    history.push({
+      pathname: '/painel/administrator/processos-seletivos/resultados',
+      state: { detail: processId },
+    });
+  };
   return (
     <div className="SPmodal">
       <div className="SPinfoModalcontainer">
@@ -42,6 +63,11 @@ function InfoModal({ close, conteudo }) {
             {` ${conteudo && formatedDate(conteudo.process_date_end)}`}
           </div>
         </div>
+        {conteudo.process_type === 'ISOLADA' && verificationIsClose(conteudo.process_date_end) && (
+          <div className="teste">
+            <button type="button" className="SPbutton-result" onClick={() => handleClick()}>RESULTADO</button>
+          </div>
+        )}
       </div>
     </div>
   );

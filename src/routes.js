@@ -31,16 +31,18 @@ import Declaration from './pages/IssuingsReports/Declaration';
 import CompleteAta from './pages/IssuingsReports/CompleteAta';
 import IsolatedList from './pages/IsolatedList';
 import EditDiscipline from './pages/EditDiscipline';
-import PrivateRoute from './components/PrivateRoute';
+import ProcessSelectiveResult from './pages/IssuingsReports/ProcessSelectiveResult';
 import SentDoubts from './pages/StudentSentDoubts';
 import StudentDocuments from './pages/StudentDocuments/StudentDocuments';
 import SendDoubts from './pages/StudentSendDoubts';
 import AdministratorDoubts from './pages/AdminDoubts';
 import ThesisList from './pages/ThesisList';
+import CreateNotification from './pages/CreateNotification';
+import StudentNotifications from './pages/StudentNotifications';
+import PrivateRoute from './components/PrivateRoute';
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
     height: '100%',
     width: '100%',
   },
@@ -58,9 +60,11 @@ function Routes() {
           <PrivateRoute exact path="/painel/aluno/duvidas/lista" component={SentDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/envio" component={SendDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/editar/" component={EditStudentInfo} type="aluno" />
+          <Route exact path="/painel/aluno/notificacoes" component={StudentNotifications} />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/duvidas" component={AdministratorDoubts} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
+          <Route exact path="/painel/administrator/criar-notificacao" component={CreateNotification} />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
@@ -87,6 +91,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-isoladas" component={IsolatedList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} type="administrator" />
+          <Route exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

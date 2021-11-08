@@ -139,3 +139,9 @@ export const deleteQualification = (qualiStudId) => httpClient.delete(`qualifica
 export const createDefense = (defense, defenseStudId) => httpClient.post(`defenses/${defenseStudId}`, defense);
 export const getByStudentDefense = (defenseStudId) => httpClient.get(`defenses/students/${defenseStudId}`);
 export const deleteDefense = (defenseStudId) => httpClient.delete(`defenses/${defenseStudId}`);
+export const getMessageByUserId = (id, type) => httpClient.get(`/messages/${type}/${id}`);
+export const getUploadedFileByUserId = (id) => httpClient.get(`candidates/documents/${id}`);
+export const createMessage = (message) => httpClient.post('/messages', message);
+export const getThesisList = (id) => httpClient.get(`students/thesis/${id}`);
+export const getNotificationByUserId = (id, type) => httpClient.get(`/messages/notification/${type}/${id}`);
+export const updateMessage = (id, message) => httpClient.put(`/messages/${id}`, message);

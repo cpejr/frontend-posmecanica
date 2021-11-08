@@ -89,6 +89,10 @@ function SentDoubts() {
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
+      const id = msg.message_id;
+      managerService.updateMessage(id, { message_status: 'answered' }).catch((err) => {
+        console.error(err);
+      });
     }
   }, [open]);
 
@@ -123,21 +127,21 @@ function SentDoubts() {
               <Link to="/painel/aluno/duvidas/envio"><Button>Criar +</Button></Link>
             </div>
             <List className={classes.root}>
-              {messages.map((m) => {
-                console.log('\n\n\n 🚀 ~ file: SentDoubts.js ~ line 140 ~ {messages.map ~ m', m);
-                return (
-                  <button type="button" className="messageRow" onClick={handleClickOpen('paper', m)}>
-                    <Divider component="li" />
-                    <ListItem alignItems="center" key={m.message_id}>
-                      <ListItemText
-                        primary={m.message_title}
-                        secondary={m.message_body}
-                      />
-                      <ChevronRightIcon fontSize="large" />
-                    </ListItem>
-                  </button>
-                );
-              })}
+              {messages.map((m) => (
+                <button type="button" className="messageRow" onClick={handleClickOpen('paper', m)}>
+                  <Divider component="li" />
+                  <ListItem alignItems="center" key={m.message_id}>
+                    {m.message_status === 'new'
+                      ? (<span className="dot" />)
+                      : (<span className="read-dot" />)}
+                    <ListItemText
+                      primary={m.message_title}
+                      secondary={m.message_body}
+                    />
+                    <ChevronRightIcon fontSize="large" />
+                  </ListItem>
+                </button>
+              ))}
               <Divider component="li" />
             </List>
             <Dialog

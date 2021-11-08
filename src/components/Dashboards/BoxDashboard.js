@@ -25,7 +25,6 @@ function BoxDashboard({
     setDados({ ...dados, [field]: value });
   };
   let processCount = 0;
-
   useEffect(async () => {
     if (type === 'adm' || type === 'prof') {
       setShowInput(true);

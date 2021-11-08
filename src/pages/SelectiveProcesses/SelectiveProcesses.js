@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import { CircularProgress } from '@material-ui/core';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
 import SelectiveProcess from '../../components/SelectiveProcess';
@@ -25,6 +27,7 @@ function SelectiveProcesses() {
   const [showSPInfoModal, setShowSPInfoModal] = useState(false);
   const [dados, setDados] = useState(initialState);
   const [period, setPeriod] = useState('');
+  const [loading, setLoading] = useState(false);
   const [allProcessMestrado, setAllProcessMestrado] = useState([]);
   const [filterProcessMestrado, setFilterProcessMestrado] = useState([]);
   const [allProcessDoutorado, setAllProcessDoutorado] = useState([]);
@@ -35,8 +38,8 @@ function SelectiveProcesses() {
   const [data, setData] = useState(initialStateData);
 
   function verificationIsOpen(process) {
-    const beginDate = new Date(process.process_date_begin);
-    const endDate = new Date(process.process_date_end);
+    const beginDate = moment(process.process_date_begin).format();
+    const endDate = moment(process.process_date_end).format();
     const currentDate = new Date();
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
@@ -65,28 +68,32 @@ function SelectiveProcesses() {
     }
   }, [dados]);
   useEffect(async () => {
-    const selectiveProcess = await managerService.getAllSelectiveProcess();
-    let newArray = selectiveProcess.filter((process) => process.process_type === 'MESTRADO');
-    setAllProcessMestrado(newArray);
-    setFilterProcessMestrado(newArray);
-    newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
-    setAllProcessDoutorado(newArray);
-    setFilterProcessDoutorado(newArray);
-    newArray = selectiveProcess.filter((process) => process.process_type === 'ISOLADA');
-    setAllProcessIsolada(newArray);
-    setFilterProcessIsolada(newArray);
-    let Array = [];
-    selectiveProcess.forEach((process) => {
-      Array.push(process.process_semester);
-    });
-    Array = [...new Set(Array)];
-    Array.sort();
-    const auxSemestre = [];
-    auxSemestre.push({ label: 'Todos', value: 'Todos' });
-    Array.forEach((semester) => {
-      auxSemestre.push({ label: semester, value: semester });
-    });
-    setSemestre(auxSemestre);
+    if (dados) {
+      setLoading(true);
+      const selectiveProcess = await managerService.getAllSelectiveProcess();
+      let newArray = selectiveProcess.filter((process) => process.process_type === 'MESTRADO');
+      setAllProcessMestrado(newArray);
+      setFilterProcessMestrado(newArray);
+      newArray = selectiveProcess.filter((process) => process.process_type === 'DOUTORADO');
+      setAllProcessDoutorado(newArray);
+      setFilterProcessDoutorado(newArray);
+      newArray = selectiveProcess.filter((process) => process.process_type === 'ISOLADA');
+      setAllProcessIsolada(newArray);
+      setFilterProcessIsolada(newArray);
+      let Array = [];
+      selectiveProcess.forEach((process) => {
+        Array.push(process.process_semester);
+      });
+      Array = [...new Set(Array)];
+      Array.sort();
+      const auxSemestre = [];
+      auxSemestre.push({ label: 'Todos', value: 'Todos' });
+      Array.forEach((semester) => {
+        auxSemestre.push({ label: semester, value: semester });
+      });
+      setSemestre(auxSemestre);
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -193,7 +200,12 @@ function SelectiveProcesses() {
               {period}
             </div>
           </div>
-          <div className="SP-bottomBar">
+          <div className={loading ? 'gridLoadTrue' : 'SP-bottomBar'}>
+            {loading === true && (
+              <div className="gridLoaderTrue">
+                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              </div>
+            )}
             {filterProcessMestrado.map((process, key) => (
               <SelectiveProcess
                 infoPS={process}

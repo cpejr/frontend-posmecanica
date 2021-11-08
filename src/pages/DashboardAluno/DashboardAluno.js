@@ -63,7 +63,7 @@ function DashboardAluno() {
               <FaFileCode style={{ fontSize: 50 }} />
               Meus Documentos
             </StyledButton>
-            <StyledButton className="buttonIcon">
+            <StyledButton className="buttonIcon" onClick={() => history.push('/painel/aluno/notificacoes')}>
               <IoMdNotifications style={{ fontSize: 50 }} />
               Notificações
             </StyledButton>

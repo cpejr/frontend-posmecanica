@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import StyledInput from '../../components/StyledInput';
@@ -10,13 +11,18 @@ import '../StudentsList/StudentList.scss';
 function IsolatedList() {
   const [allIsoladas, setAllIsoladas] = useState([]);
   const [filterIsoladas, setFilterIsoladas] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [filterName, setFilterName] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
 
   useEffect(async () => {
-    const isoladas = await managerService.getDisciplines();
-    setAllIsoladas(isoladas);
-    setFilterIsoladas(isoladas);
+    if (filterIsoladas) {
+      setLoading(true);
+      const isoladas = await managerService.getDisciplines();
+      setAllIsoladas(isoladas);
+      setFilterIsoladas(isoladas);
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -85,7 +91,12 @@ function IsolatedList() {
               />
             </div>
           </div>
-          <div className="gridAll">
+          <div className={loading ? 'gridLoadTrue' : 'gridAll'}>
+            {loading === true && (
+              <div className="gridLoaderTrue">
+                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              </div>
+            )}
             {filterIsoladas.map((isoladas) => (
               <div className="formsDI_input">
                 <Isolateds

@@ -19,7 +19,7 @@ function AdminDoubtContextProvider({ children }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user && user.id && user.id !== '') {
+    if (user && user.type === 'administrator') {
       managerService.getMessageByUserId(user.id, 'adm').then((res) => {
         setTotal(res.length);
         setDoubts(res);

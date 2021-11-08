@@ -60,12 +60,11 @@ function ApproveContent({ candidate }) {
     await managerService.denyCandidate(candidate.candidate_id);
     history.push('/painel/administrator');
   };
-  
   return (
     <div className="TC-page">
       {(candidate.candidate_approval === null || edit === true) ? (
         <>
-          <div className="TC-title">Deseja tornar esse candidato um aluno ativo?</div>
+          <div className="TC-title">{`Deseja tornar ${candidate.candidate_name} um(a) aluno(a) ativo(a)?`}</div>
           <button
             onClick={handleButtonsClick}
             id="aprovado"
@@ -87,9 +86,9 @@ function ApproveContent({ candidate }) {
         <>
           <div className="TC-title">
             {candidate.candidate_approval === true ? (
-              <>Candidato aprovado </>
+              <>{`${candidate.candidate_name} está aprovado(a)`}</>
             ) : (
-              <>Candidato já reprovado </>
+              <>{`${candidate.candidate_name} está reprovado(a)`}</>
             )}
           </div>
           <button
@@ -117,7 +116,7 @@ function ApproveContent({ candidate }) {
           handleCloseClick={handleCloseClick}
           handleConfirmClick={handleConfirmClick}
         >
-          {`Deseja confirmar que o candidato foi ${action.toLowerCase()} pela banca?`}
+          {`Deseja confirmar que o(a) ${candidate.candidate_name} foi ${action.toLowerCase()}(a) pela banca?`}
         </Modal>
       )}
       {showDeleteModal && (
@@ -125,7 +124,7 @@ function ApproveContent({ candidate }) {
           handleCloseClick={handleCloseClick}
           handleConfirmClick={handleDeleteClick}
         >
-          {`Deseja confirmar que o candidato foi ${action.toLowerCase()} pela banca?`}
+          {`Deseja confirmar que o(a) ${candidate.candidate_name} foi ${action.toLowerCase()}(a) pela banca?`}
         </Modal>
       )}
     </div>

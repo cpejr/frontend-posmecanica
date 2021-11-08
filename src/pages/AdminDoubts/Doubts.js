@@ -11,7 +11,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import { Link } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Navbar';
@@ -115,6 +114,11 @@ function SentDoubts() {
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
+
+      const id = msg.message_id;
+      managerService.updateMessage(id, { message_status: 'answered' }).catch((err) => {
+        console.error(err);
+      });
     }
   }, [open]);
 
@@ -126,9 +130,12 @@ function SentDoubts() {
     dados.message_parent_id = msg.message_id;
     dados.message_title = `Resposta: ${msg.message_title}`;
 
+    const id = msg.message_id;
+
     e.preventDefault();
     if (dados.message_body.length > 3) {
       await managerService.createMessage(dados);
+      await managerService.updateMessage(id, { message_status: 'answered' });
       addToast('Mensagem enviada com sucesso!', { appearance: 'success' });
       handleClose();
     } else {
@@ -142,7 +149,6 @@ function SentDoubts() {
       <div className="studentDoubt">
         <div className="doubtTitle">
           <h1>Dúvidas Recebidas:</h1>
-          {/* <Link to="/painel/aluno/duvidas/envio"><Button>Criar +</Button></Link> */}
         </div>
         <List className={classes.root}>
           {doubts?.map((d) => (

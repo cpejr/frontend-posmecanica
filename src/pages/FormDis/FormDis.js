@@ -48,6 +48,7 @@ function FormDis() {
     candidate_justify: "",
   };
   const [files, setFiles] = useState([]);
+  const [error, setError] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -159,6 +160,7 @@ function FormDis() {
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
     } else {
       addToast("Preencha todos os dados!", { appearance: "error" });
+      setError(true);
     }
   };
 
@@ -170,6 +172,7 @@ function FormDis() {
         initialState={initialState}
         formsInput={formsInput}
         files={files}
+        error={error}
         setFiles={setFiles}
         handleClick={handleClick}
       />
