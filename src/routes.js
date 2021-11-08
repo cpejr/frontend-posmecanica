@@ -60,11 +60,11 @@ function Routes() {
           <PrivateRoute exact path="/painel/aluno/duvidas/lista" component={SentDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/envio" component={SendDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/editar/" component={EditStudentInfo} type="aluno" />
-          <Route exact path="/painel/aluno/notificacoes" component={StudentNotifications} />
+          <PrivateRoute exact path="/painel/aluno/notificacoes" component={StudentNotifications} type="aluno" />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/duvidas" component={AdministratorDoubts} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-estudantes" component={StudentList} type="administrator" />
-          <Route exact path="/painel/administrator/criar-notificacao" component={CreateNotification} />
+          <PrivateRoute exact path="/painel/administrator/criar-notificacao" component={CreateNotification} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/editar/aluno" component={EditStudentInfo} type="administrator" />
           <PrivateRoute exact path="/painel/lista-professores" component={ProfessorList} type="both" />
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
@@ -91,7 +91,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/relatorios/ata-completa" component={CompleteAta} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/lista-isoladas" component={IsolatedList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} type="administrator" />
-          <Route exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} />
+          <PrivateRoute exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} type="administrator" />
           <Route path="/" component={Login} />
         </Switch>
       </div>

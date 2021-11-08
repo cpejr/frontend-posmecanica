@@ -127,11 +127,6 @@ export const createStudent = (student, studScholarship, email, name) => httpClie
 export const createStudentDiscipline = (id, disciplines) => httpClient.post(`/connect/student_dis/${id}`, { sd_dis_ids: disciplines });
 export const deleteStudent = (studentId) => httpClient.delete(`/students/${studentId}`);
 
-export const getMessageByUserId = (id, type) => httpClient.get(`/messages/${type}/${id}`);
-export const getUploadedFileByUserId = (id) => httpClient.get(`candidates/documents/${id}`);
-export const createMessage = (message) => httpClient.post('/messages', message);
-export const getThesisList = (id) => httpClient.get(`students/thesis/${id}`);
-
 export const createQualification = (qualification, qualiStudId) => httpClient.post(`qualifications/${qualiStudId}`, qualification);
 export const getByStudentQualification = (qualiStudId) => httpClient.get(`qualifications/students/${qualiStudId}`);
 export const deleteQualification = (qualiStudId) => httpClient.delete(`qualifications/${qualiStudId}`);
