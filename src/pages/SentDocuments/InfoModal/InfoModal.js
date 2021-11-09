@@ -37,7 +37,6 @@ function InfoModal({
       state: conteudo,
     });
   }
-
   async function redirectToQualification() {
     setAction('qualificação');
     const verify = await managerService.getByStudentQualification(conteudo.stud_id);
