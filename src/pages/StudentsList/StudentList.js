@@ -35,7 +35,6 @@ function StudentList() {
     if (dados) {
       setLoading(true);
       const students = await managerService.getStudents();
-      console.log('🚀 ~ file: StudentList.js ~ line 38 ~ useEffect ~ students', students);
       const selectiveProcess = await managerService.getAllSelectiveProcess();
       setAllStudents(students);
       setFilterStudents(students);

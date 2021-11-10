@@ -88,7 +88,7 @@ function InscritosIsoPS({
     setObject((previousState) => [...previousState, line]);
   };
 
-  const handleClickConfirmClick = () => {
+  const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
       if (candidate.disciplines.length === 1) {
         totalApprovalCandidate();
@@ -112,10 +112,22 @@ function InscritosIsoPS({
         });
       }
       if (candidate.disciplines.length === 4) {
+        managerService.updateByIdDisciplineDeferment({
+          cd_dis_deferment: true,
+        }, candidate.candidate_id, disciplineToDeferment);
+        setShowCandidate(false);
         managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
           .then((response) => {
-            if (response.length === 3) {
-              totalApprovalCandidate();
+            if (response.length === 4) {
+              verifyPriority(response, candidate).then((res) => {
+                if (res === true) {
+                  managerService.updateByIdDisciplineDeferment({
+                    cd_dis_deferment: true,
+                  }, candidate.candidate_id, candidate.fourth_discipline_isolated);
+                  setShowCandidate(false);
+                  totalApprovalCandidate();
+                }
+              });
             } else if (response.length === 2 // eslint-disable-next-line max-len
               && response.length !== 0) {
               verifyPriority(response, candidate).then((res) => {
@@ -128,12 +140,12 @@ function InscritosIsoPS({
                   totalApprovalCandidate();
                 }
               });
-            } else {
-              managerService.updateByIdDisciplineDeferment({
-                cd_dis_deferment: true,
-              }, candidate.candidate_id, disciplineToDeferment);
-              setShowCandidate(false);
             }
+            verifySituation().then((res) => {
+              if (res === true) {
+                totalApprovalCandidate();
+              }
+            });
           });
       }
       addToast('Candidato deferido com sucesso!', { appearance: 'success' });
