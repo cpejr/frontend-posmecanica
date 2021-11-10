@@ -51,9 +51,8 @@ body {
       border: 0;
       background-color: #b00910;
       color: #ffffff;
-      border-radius: 12px;
-      text-shadow: 0em 0.3em 0.3em #000;
-      box-shadow: 2px 3px 10px #000;
+      border-radius: 8px;
+      box-shadow: 2px 3px 10px #060838;
     cursor: pointer;
   }
   }
@@ -74,7 +73,7 @@ body {
   }
   .Login {
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     height: max-content;
     margin: 20px 5%;
     .Login-title {
