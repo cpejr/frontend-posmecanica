@@ -47,12 +47,14 @@ body {
   .Login-button1 {
     button {
       height: 7vh;
+      max-height: 60px;
       width: 22vw;
       border: 0;
       background-color: #b00910;
       color: #ffffff;
       border-radius: 8px;
       box-shadow: 2px 3px 10px #060838;
+      font-size: clamp(20px, 1em + 1vw, 40px);
     cursor: pointer;
   }
   }
@@ -60,6 +62,7 @@ body {
 .Login-inputs {
   display: flex;
   flex-direction: column;
+  width: 22vw;
 }
 .Login-link{
   margin-top: 2.5vh;
