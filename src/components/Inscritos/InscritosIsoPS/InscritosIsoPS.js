@@ -26,11 +26,11 @@ function InscritosIsoPS({
 
   const totalApprovalCandidate = async () => {
     candidate.candidate_scholarship = false;
-    managerService.createStudent(candidate);
-    managerService.updateByIdDisciplineDeferment({
+    await managerService.updateByIdDisciplineDeferment({
       cd_dis_deferment: true,
     }, candidate.candidate_id, disciplineToDeferment);
-    managerService.updateCandidate({
+    await managerService.createStudent(candidate);
+    await managerService.updateCandidate({
       candidate_deferment: true,
     }, candidate.candidate_id);
     setShowCandidate(false);
