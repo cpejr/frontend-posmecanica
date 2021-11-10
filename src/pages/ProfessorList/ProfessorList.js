@@ -114,12 +114,6 @@ function ProfessorList() {
               Abaixo, apresentaremos os professores relacionados às respectivas
               áreas de pesquisa que estes fazem parte.
             </p>
-            <p className="professor-list-second-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              magnam repudiandae veniam voluptatibus explicabo, enim eveniet, eius
-              deserunt doloremque, provident cumque sed quidem! Mollitia quos ut
-              dolorem, fugit dolore perspiciatis.
-            </p>
           </div>
           <div className="header-content_ProfList">
             <h2 className="header-content-title_ProfList">Buscar por nomes</h2>
