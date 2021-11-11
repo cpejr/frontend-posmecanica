@@ -94,25 +94,18 @@ function InscritosIsoPS({
         totalApprovalCandidate();
       }
       if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
-        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
-          .then((response) => {
-            if ((response.length === 1 && candidate.disciplines.length === 2)
-              || (response.length === 2 && candidate.disciplines.length === 3)) {
-              totalApprovalCandidate();
-            }
-          });
-        managerService.updateByIdDisciplineDeferment({
+        await managerService.updateByIdDisciplineDeferment({
           cd_dis_deferment: true,
         }, candidate.candidate_id, disciplineToDeferment);
-        setShowCandidate(false);
         verifySituation().then((res) => {
           if (res === true) {
             totalApprovalCandidate();
           }
         });
+        setShowCandidate(false);
       }
       if (candidate.disciplines.length === 4) {
-        managerService.updateByIdDisciplineDeferment({
+        await managerService.updateByIdDisciplineDeferment({
           cd_dis_deferment: true,
         }, candidate.candidate_id, disciplineToDeferment);
         setShowCandidate(false);
@@ -150,7 +143,7 @@ function InscritosIsoPS({
       }
       addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
-      managerService.updateByIdDisciplineDeferment({
+      await managerService.updateByIdDisciplineDeferment({
         cd_dis_deferment: false,
       }, candidate.candidate_id, disciplineToDeferment);
       setShowCandidate(null);
