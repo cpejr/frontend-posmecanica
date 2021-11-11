@@ -12,6 +12,7 @@
   justify-content: center;
   min-width: 50px;
 }
+
 .nomeInscrito {
   display: flex;
   align-items: center;
@@ -30,9 +31,32 @@
   }
 
   @media (max-width:400px) {
-    width: 50%;
+    width: 40%;
   }
 }
+
+.nomeDisciplina {
+  display: flex;
+  align-items: center;
+  font-family: Montserrat;
+  font-size: 18px;
+  width: 50%;
+
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @media(max-width: 500px){
+    font-size: 12px;
+  }
+
+  @media (max-width:400px) {
+    width: 60%;
+  }
+}
+
 .trash {
   cursor: pointer;
   width: 5%;

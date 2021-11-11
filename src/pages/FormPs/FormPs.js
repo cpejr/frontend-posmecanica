@@ -72,18 +72,18 @@ function FormPs() {
   const handleClick = async (e, dados) => {
     e.preventDefault();
     if (
-      dados.candidate_name.length > 3 &&
-      dados.candidate_cpf.length > 3 &&
-      dados.candidate_identity.length > 3 &&
+      dados.candidate_name.length >= 1 &&
+      dados.candidate_cpf.length >= 1 &&
+      dados.candidate_identity.length >= 1 &&
       dados.candidate_expedition !== "" &&
       dados.candidate_mother_name !== "" &&
       dados.candidate_father_name !== "" &&
-      dados.candidate_nationality.length > 3 &&
-      dados.candidate_civil_state.length > 3 &&
-      dados.candidate_birth.length > 3 &&
-      dados.candidate_race.length > 3 &&
-      dados.candidate_gender.length > 3 &&
-      dados.candidate_voter_title.length > 3 &&
+      dados.candidate_nationality.length >= 1 &&
+      dados.candidate_civil_state.length >= 1 &&
+      dados.candidate_birth.length >= 1 &&
+      dados.candidate_race.length >= 1 &&
+      dados.candidate_gender.length >= 1 &&
+      dados.candidate_voter_title.length >= 1 &&
       dados.candidate_zone_title !== "" &&
       dados.candidate_section_title !== "" &&
       dados.candidate_street !== "" &&
@@ -94,10 +94,10 @@ function FormPs() {
       dados.candidate_district !== "" &&
       dados.candidate_grade_date_begin !== "" &&
       dados.candidate_grade_date_end !== "" &&
-      dados.candidate_country.length > 3 &&
-      dados.candidate_cep.length > 3 &&
-      dados.candidate_email.length > 3 &&
-      dados.candidate_phone_number.length > 3 &&
+      dados.candidate_country.length >= 1 &&
+      dados.candidate_cep.length >= 1 &&
+      dados.candidate_email.length >= 1 &&
+      dados.candidate_phone_number.length >= 1 &&
       dados.candidate_university !== "" &&
       dados.candidate_grade_obtained !== "" &&
       dados.candidate_study_regimen !== "" &&
