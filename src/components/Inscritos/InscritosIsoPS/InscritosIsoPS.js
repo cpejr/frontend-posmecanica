@@ -94,63 +94,44 @@ function InscritosIsoPS({
         totalApprovalCandidate();
       }
       if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
-        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
-          .then((response) => {
-            if ((response.length === 1 && candidate.disciplines.length === 2)
-              || (response.length === 2 && candidate.disciplines.length === 3)) {
-              totalApprovalCandidate();
-            }
-          });
-        managerService.updateByIdDisciplineDeferment({
+        await managerService.updateByIdDisciplineDeferment({
+          cd_dis_deferment: true,
+        }, candidate.candidate_id, disciplineToDeferment);
+        verifySituation().then((res) => {
+          if (res === true) {
+            totalApprovalCandidate();
+          }
+        });
+        setShowCandidate(false);
+      }
+      if (candidate.disciplines.length === 4) {
+        await managerService.updateByIdDisciplineDeferment({
           cd_dis_deferment: true,
         }, candidate.candidate_id, disciplineToDeferment);
         setShowCandidate(false);
+        const response = await managerService.getByIdDisciplineDefermentCandidateSituation(
+          candidate.candidate_id, true,
+        );
+        if (response.length === 4) {
+          verifyPriority(response, candidate).then((res) => {
+            if (res === true) {
+              managerService.updateByIdDisciplineDeferment({
+                cd_dis_deferment: false,
+              }, candidate.candidate_id, candidate.fourth_discipline_isolated);
+              setShowCandidate(false);
+              totalApprovalCandidate();
+            }
+          });
+        }
         verifySituation().then((res) => {
           if (res === true) {
             totalApprovalCandidate();
           }
         });
       }
-      if (candidate.disciplines.length === 4) {
-        managerService.updateByIdDisciplineDeferment({
-          cd_dis_deferment: true,
-        }, candidate.candidate_id, disciplineToDeferment);
-        setShowCandidate(false);
-        managerService.getByIdDisciplineDefermentCandidateSituation(candidate.candidate_id, true)
-          .then((response) => {
-            if (response.length === 4) {
-              verifyPriority(response, candidate).then((res) => {
-                if (res === true) {
-                  managerService.updateByIdDisciplineDeferment({
-                    cd_dis_deferment: true,
-                  }, candidate.candidate_id, candidate.fourth_discipline_isolated);
-                  setShowCandidate(false);
-                  totalApprovalCandidate();
-                }
-              });
-            } else if (response.length === 2 // eslint-disable-next-line max-len
-              && response.length !== 0) {
-              verifyPriority(response, candidate).then((res) => {
-                if (res === true) {
-                  totalApprovalCandidate();
-                }
-              });
-              verifySituation().then((res) => {
-                if (res === true) {
-                  totalApprovalCandidate();
-                }
-              });
-            }
-            verifySituation().then((res) => {
-              if (res === true) {
-                totalApprovalCandidate();
-              }
-            });
-          });
-      }
       addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
-      managerService.updateByIdDisciplineDeferment({
+      await managerService.updateByIdDisciplineDeferment({
         cd_dis_deferment: false,
       }, candidate.candidate_id, disciplineToDeferment);
       setShowCandidate(null);
