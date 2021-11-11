@@ -15,7 +15,7 @@ function Isolateds({ isolated }) {
   return (
     <>
       <div className="linhaInscrito">
-        <div className="nomeInscrito">
+        <div className="nomeDisciplina">
           <IconContext.Provider value={{ size: 50 }}>
             <BiBookBookmark className="isoPsIcon" />
           </IconContext.Provider>
