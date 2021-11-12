@@ -59,26 +59,24 @@ function Forms({
               {topic.title}
             </div>
           </div>
-          {topic.lines.map((line) => (
-            <div className="formsDI_line">
-              {line.items.map((item) => (
-                <div className="formsDI_input">
-                  <StyledInput
-                    type={item.type}
-                    shrink={item.type === 'date' ? true : undefined}
-                    id={item.id}
-                    error={error}
-                    label={item.label}
-                    width="22rem"
-                    field={item.field}
-                    select={item.select}
-                    dados={dados}
-                    setDados={handleChange}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+          <div className="formsDI_box">
+            {topic.items.map((item) => (
+              <div className="formsDI_input">
+                <StyledInput
+                  type={item.type}
+                  shrink={item.type === 'date' ? true : undefined}
+                  id={item.id}
+                  error={error}
+                  label={item.label}
+                  width="22rem"
+                  field={item.field}
+                  select={item.select}
+                  dados={dados}
+                  setDados={handleChange}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       ))}
       <div className="formsDI_box_title">
