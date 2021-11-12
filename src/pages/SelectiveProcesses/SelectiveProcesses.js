@@ -40,7 +40,7 @@ function SelectiveProcesses() {
   function verificationIsOpen(process) {
     const beginDate = moment(process.process_date_begin).format();
     const endDate = moment(process.process_date_end).format();
-    const currentDate = new Date();
+    const currentDate = moment(new Date()).format();
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
     }

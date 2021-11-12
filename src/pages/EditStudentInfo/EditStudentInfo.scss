@@ -1,5 +1,5 @@
 $azulPadrao: #1d2d57;
-.Login-button1 {
+.Update-button1 {
     display: flex;
     justify-content: center;
     margin-top: 5em;
@@ -73,7 +73,7 @@ $azulPadrao: #1d2d57;
 }
 
 @media (max-width: 450px){
-  .Login-button1 {
+  .Update-button1 {
     button {
       font-size: small;
   }

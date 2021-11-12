@@ -15,14 +15,14 @@ function Login() {
     password: '',
   };
   const history = useHistory();
-  const [usuario, setUsusario] = useState(initialUser);
+  const [usuario, setUsuario] = useState(initialUser);
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [loading, setLoading] = useState(false);
   const { setUser } = useAuth();
 
   const handleChange = (value, field) => {
-    setUsusario({ ...usuario, [field]: value });
+    setUsuario({ ...usuario, [field]: value });
   };
 
   useEffect(() => {
@@ -85,7 +85,7 @@ function Login() {
               id="email"
               label="Email"
               width="35vh"
-              dados={usuario}
+              dados={ }
               setDados={handleChange}
             />
             <StyledInputWithIcon
