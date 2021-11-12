@@ -11,7 +11,7 @@ function Forms({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'Proficiência em Língua Inglesa'];
   const formsIsolatedDiscipline = [
     {
       type: 'text',
@@ -59,26 +59,24 @@ function Forms({
               {topic.title}
             </div>
           </div>
-          {topic.lines.map((line) => (
-            <div className="formsDI_line">
-              {line.items.map((item) => (
-                <div className="formsDI_input">
-                  <StyledInput
-                    type={item.type}
-                    shrink={item.type === 'date' ? true : undefined}
-                    id={item.id}
-                    error={error}
-                    label={item.label}
-                    width="22rem"
-                    field={item.field}
-                    select={item.select}
-                    dados={dados}
-                    setDados={handleChange}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+          <div className="formsDI_box">
+            {topic.items.map((item) => (
+              <div className="formsDI_input">
+                <StyledInput
+                  type={item.type}
+                  shrink={item.type === 'date' ? true : undefined}
+                  id={item.id}
+                  error={error}
+                  label={item.label}
+                  width="100%"
+                  field={item.field}
+                  select={item.select}
+                  dados={dados}
+                  setDados={handleChange}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       ))}
       <div className="formsDI_box_title">
@@ -86,14 +84,14 @@ function Forms({
           Escolha de disciplinas isoladas
         </div>
       </div>
-      <div className="formsDI_line">
+      <div className="formsDI_box">
         {formsIsolatedDiscipline.map((disc) => (
           <div className="formsDI_input">
             <StyledInput
               type={disc.type}
               id={disc.id}
               label={disc.label}
-              width="18em"
+              width="100%"
               text={disc.text}
               field={disciplines}
               error={error}
@@ -109,19 +107,13 @@ function Forms({
           Arquivos
         </div>
       </div>
-      <div className="formsDI_line_files">
+      <div className="formsDI_box">
         {formsFile.map((file) => (
           <div className="formsDI_input_file">
             <div className="formsDI_upload_text">{file}</div>
             <UploadInput files={files} setFiles={setFiles} fileName={file} />
           </div>
         ))}
-      </div>
-      <div className="formsDI_line_files">
-        <div className="formsDI_input_file">
-          <div className="formsDI_upload_text">Proficiência em Língua Inglesa</div>
-          <UploadInput files={files} setFiles={setFiles} fileName="comprovante_proficiencia" />
-        </div>
       </div>
       <div className="formsDI_box_title">
         <div className="formsDI_title">
