@@ -35,8 +35,11 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
         line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
         line.professorName = response[2].prof_name;
       }
+    }).then(() => {
+      if (line.disciplineName) {
+        setObject((previousState) => [...previousState, line]);
+      }
     });
-    setObject((previousState) => [...previousState, line]);
   };
 
   useEffect(() => {

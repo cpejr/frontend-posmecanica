@@ -44,13 +44,16 @@ function InscritosIsoPS({
     setIsoCandidates(removeCandidate);
   };
 
-  const verifyPriority = async (defermentTrue, cd) => {
+  const verifyPriority = async (defermentTrue, cd, discipline) => {
     if ((defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
-      && defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true)
+      && defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
+      && cd.third_discipline_isolated === discipline)
       || (defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
-        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true)
+        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
+        && cd.second_discipline_isolated === discipline)
       || (defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
-        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true)
+        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
+        && cd.first_discipline_isolated === discipline)
     ) {
       return true;
     }
@@ -113,19 +116,20 @@ function InscritosIsoPS({
           candidate.candidate_id, true,
         );
         if (response.length === 4) {
-          verifyPriority(response, candidate).then((res) => {
-            if (res === true) {
-              setShowCandidate(false);
-              totalApprovalCandidate();
-            }
-          });
+          totalApprovalCandidate();
           await managerService.updateByIdDisciplineDeferment({
             cd_dis_deferment: false,
           }, candidate.candidate_id, candidate.fourth_discipline_isolated);
         } else {
-          verifySituation().then((res) => {
+          verifyPriority(response, candidate, disciplineToDeferment).then((res) => {
             if (res === true) {
               totalApprovalCandidate();
+            } else {
+              verifySituation().then((resp) => {
+                if (resp === true) {
+                  totalApprovalCandidate();
+                }
+              });
             }
           });
         }
