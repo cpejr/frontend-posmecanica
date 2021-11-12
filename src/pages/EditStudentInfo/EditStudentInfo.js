@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './EditStudentInfo.scss';
 import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
@@ -8,31 +8,15 @@ import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import StudEdit from '../../utils/StudentEdit_ByAdmin';
 import Footer from '../../components/Footer';
-import { useAuth } from '../../providers/auth';
 
 function EditStudentInfo({ location }) {
   const history = useHistory();
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
-  const { user } = useAuth();
-
-  // eslint-disable-next-line camelcase
-  let stud_id;
-
-  useEffect(() => {
-    if (user.type === 'aluno') {
-      // eslint-disable-next-line camelcase
-      stud_id = user.id;
-    } else {
-      if (location.state == null || user) {
-        window.location = '/login';
-      }
-
-      // eslint-disable-next-line camelcase
-      stud_id = location.state.stud_id;
-    }
-  }, []);
-
+  if (location.state == null) {
+    window.location = '/login';
+  }
+  const { stud_id } = location.state; // eslint-disable-line
   const inputProps = [
     {
       text: 'Página principal',
