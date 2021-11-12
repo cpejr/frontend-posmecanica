@@ -28,9 +28,13 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
       managerService.getByIdDisciplineDeferment(candidateId, disciplineId),
       managerService.getProfByDisciplineId(disciplineId),
     ]).then((response) => {
-      line.disciplineName = response[0].discipline_name;
-      line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
-      line.professorName = response[2].prof_name;
+      if (studentCondition === 'true' && response[1][0]?.cd_dis_deferment === true) {
+        line.disciplineName = response[0].discipline_name;
+      } else if (studentCondition !== 'true') {
+        line.disciplineName = response[0].discipline_name;
+        line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
+        line.professorName = response[2].prof_name;
+      }
     });
     setObject((previousState) => [...previousState, line]);
   };

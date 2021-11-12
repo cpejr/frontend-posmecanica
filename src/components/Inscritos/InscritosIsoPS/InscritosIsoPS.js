@@ -115,19 +115,20 @@ function InscritosIsoPS({
         if (response.length === 4) {
           verifyPriority(response, candidate).then((res) => {
             if (res === true) {
-              managerService.updateByIdDisciplineDeferment({
-                cd_dis_deferment: false,
-              }, candidate.candidate_id, candidate.fourth_discipline_isolated);
               setShowCandidate(false);
               totalApprovalCandidate();
             }
           });
+          await managerService.updateByIdDisciplineDeferment({
+            cd_dis_deferment: false,
+          }, candidate.candidate_id, candidate.fourth_discipline_isolated);
+        } else {
+          verifySituation().then((res) => {
+            if (res === true) {
+              totalApprovalCandidate();
+            }
+          });
         }
-        verifySituation().then((res) => {
-          if (res === true) {
-            totalApprovalCandidate();
-          }
-        });
       }
       addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
