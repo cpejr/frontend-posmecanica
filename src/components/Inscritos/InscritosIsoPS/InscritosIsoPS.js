@@ -60,6 +60,12 @@ function InscritosIsoPS({
     return false;
   };
 
+  const dismissFourthDiscipline = async (candidateId, disciplineId) => {
+    await managerService.updateByIdDisciplineDeferment({
+      cd_dis_deferment: false,
+    }, candidateId, disciplineId);
+  };
+
   const verifySituation = async () => {
     const response1 = await managerService.getByIdDisciplineDefermentCandidateSituation(
       candidate.candidate_id,
@@ -117,13 +123,12 @@ function InscritosIsoPS({
         );
         if (response.length === 4) {
           totalApprovalCandidate();
-          await managerService.updateByIdDisciplineDeferment({
-            cd_dis_deferment: false,
-          }, candidate.candidate_id, candidate.fourth_discipline_isolated);
+          dismissFourthDiscipline(candidate.candidate_id, candidate.fourth_discipline_isolated);
         } else {
           verifyPriority(response, candidate, disciplineToDeferment).then((res) => {
             if (res === true) {
               totalApprovalCandidate();
+              dismissFourthDiscipline(candidate.candidate_id, candidate.fourth_discipline_isolated);
             } else {
               verifySituation().then((resp) => {
                 if (resp === true) {
