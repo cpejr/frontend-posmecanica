@@ -273,7 +273,7 @@ export const getActualSelectiveProcess = async (field, filter) => {
     (object) => {
       const initialDate = new Date(object.process_date_begin);
       const finalDate = new Date(object.process_date_end);
-      return initialDate <= new Date() && finalDate > new Date();
+      return initialDate <= new Date() && finalDate >= new Date();
     },
   );
   return filteredProcess;
