@@ -279,11 +279,17 @@ export const getActualSelectiveProcess = async (field, filter) => {
   return filteredProcess;
 };
 
-export const getAllSelectiveProcess = async () => {
-  const times = 0;
-  const response = await requesterService.getSelectiveProcess(times);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
+export const getAllSelectiveProcess = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allProcess = [];
+  do {
+    response = await requesterService.getSelectiveProcess(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allProcess = allProcess.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+  return allProcess;
 };
 
 export const getByIdSelectiveProcess = async (selectiveProcessId) => {
@@ -372,6 +378,7 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
   let times = 0;
   let response;
   let allCandidates = [];
+  let processFilter = [];
   do {
     response = await requesterService.getCandidates(times, field, filter);
     if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -379,12 +386,15 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
     times += 1;
   } while (response.data.length > 0);
 
-  const process = await getActualSelectiveProcess('process_type', 'ISOLADA');
-  const processFilter = allCandidates
-    .filter((resp) => resp.candidate_process_id === process[0].process_id);
+  const process = await getAllSelectiveProcess('process_type', 'ISOLADA');
+
+  process.forEach((item) => {
+    processFilter = processFilter.concat(allCandidates
+      .filter((resp) => resp.candidate_process_id === item?.process_id));
+  });
 
   const filteredCandidates = processFilter
-    .filter((resp) => resp.disciplines.some(
+    ?.filter((resp) => resp.disciplines.some(
       (element) => element.discipline_id === pageFilter,
     ) === true);
 
