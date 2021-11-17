@@ -75,26 +75,17 @@ function BoxDashboard({
 
   function count() {
     processCount = 0;
-    if (type === 'adm') {
+    if (!dados.type) {
       processes.forEach((element) => {
         processCount += element.count_candidates;
       });
       return processCount;
     }
-    if (position === 'first') {
-      list.forEach((e) => {
-        if (e.candidate_deferment === false) {
-          processCount += 1;
-        }
-      });
-    }
-    if (position === 'second') {
-      list.forEach((e) => {
-        if (e.candidate_deferment === true) {
-          processCount += 1;
-        }
-      });
-    }
+    processes.forEach((element) => {
+      if (element.process_type === dados.type) {
+        processCount += element.count_candidates;
+      }
+    });
     return processCount;
   }
 
@@ -129,13 +120,7 @@ function BoxDashboard({
             {type === 'adm' && (
               <div className="BdSubTitle">
                 {subtitle}
-                {(dados.type !== '' && type === 'adm') ? (
-                  processes.map((process) => {
-                    if (process.process_type === dados.type) {
-                      return process.count_candidates;
-                    }
-                    return <div />;
-                  })) : count()}
+                {count()}
               </div>
             )}
           </div>
