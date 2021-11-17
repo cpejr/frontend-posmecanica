@@ -6,7 +6,7 @@ function BoxDashboardAdministrator() {
   const [candidates, setCandidates] = useState([]);
   const [processsSelective, setProcesssSelective] = useState([]);
   useEffect(async () => {
-    const selectiveProcesses = await managerService.getAllSelectiveProcessPainelADM('process_type', ['ISOLADA', 'MESTRADO', 'DOUTORADO']);
+    const selectiveProcesses = await managerService.getAllSelectiveProcessPainels('process_type', ['ISOLADA', 'MESTRADO', 'DOUTORADO']);
     let totalCandidates = await managerService.getCandidates('candidate_process_id', (selectiveProcesses.map((selectiveProcess) => selectiveProcess.process_id)));
     totalCandidates = totalCandidates.filter((response) => {
       if (response.candidate_approval !== true

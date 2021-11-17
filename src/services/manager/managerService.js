@@ -293,7 +293,7 @@ export const getAllSelectiveProcess = async (field, filter) => {
 };
 
 // pega só os processos seletivos que terminaram a, no máximo, 1 ano.
-export const getAllSelectiveProcessPainelADM = async (field, filter) => {
+export const getAllSelectiveProcessPainels = async (field, filter) => {
   let times = 0;
   let response;
   let allProcess = [];
@@ -408,7 +408,7 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
     times += 1;
   } while (response.data.length > 0);
 
-  const process = await getAllSelectiveProcess('process_type', 'ISOLADA');
+  const process = await getAllSelectiveProcessPainels('process_type', 'ISOLADA');
 
   process.forEach((item) => {
     processFilter = processFilter.concat(allCandidates

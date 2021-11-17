@@ -58,18 +58,21 @@ function BoxDashboard({
 
   const counterByDiscipline = (positions) => {
     processCount = 0;
-    candidates?.forEach((e) => {
-      if (positions === 'first') {
-        if (e.candidate_discipline[0].cd_dis_deferment === null) {
-          processCount += 1;
+    if (dados.type) {
+      candidates?.forEach((e) => {
+        if (positions === 'first' && dados.type) {
+          if (e.candidate_discipline[0].cd_dis_deferment === null) {
+            processCount += 1;
+          }
+        } else if (positions === 'second' && dados.type) {
+          if (e.candidate_discipline[0].cd_dis_deferment === true) {
+            processCount += 1;
+          }
         }
-      } else if (positions === 'second') {
-        if (e.candidate_discipline[0].cd_dis_deferment === true) {
-          processCount += 1;
-        }
-      }
-    });
-
+      });
+    } else {
+      return <div />;
+    }
     return processCount;
   };
 
@@ -100,21 +103,7 @@ function BoxDashboard({
             {type === 'prof' && (
               <div className="BdSubTitle">
                 {subtitle}
-                {() => {
-                  if (position === 'first' && dados.type) {
-                    if (candidates?.length === 0) {
-                      return 0;
-                    }
-                    return counterByDiscipline(position);
-                  }
-                  if (position === 'second' && dados.type) {
-                    if (candidates?.length === 0) {
-                      return 0;
-                    }
-                    return counterByDiscipline(position);
-                  }
-                  return <div />;
-                }}
+                {counterByDiscipline(position)}
               </div>
             )}
             {type === 'adm' && (
