@@ -25,7 +25,7 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
         <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
       <div className="headerActions">
-        {user.type === 'administrator'
+        {user && user.type === 'administrator'
           && (
             <Link to="/painel/administrator/duvidas">
               <Badge badgeContent={total} color="primary">
