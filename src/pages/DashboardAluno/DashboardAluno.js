@@ -13,7 +13,6 @@ import './DashboardAluno.scss';
 
 function DashboardAluno() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
-  const history = useHistory();
   const StyledButton = withStyles({
     label: {
       display: 'flex',
