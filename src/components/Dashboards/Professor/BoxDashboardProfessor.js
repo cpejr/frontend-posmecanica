@@ -2,23 +2,23 @@
 import React, { useState, useEffect } from 'react';
 import Box from '../BoxDashboard';
 import * as managerService from '../../../services/manager/managerService';
+import { useAuth } from '../../../providers/auth';
 
 function BoxDashboardProfesssor() {
+  const { user } = useAuth();
   const [candidates, setCandidates] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [processsSelective, setProcesssSelective] = useState([]);
   const [disciplineObject, setDisciplineObject] = useState([]);
 
   useEffect(async () => {
-    const data = localStorage.getItem('user');
-    const user = JSON.parse(data);
     const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
     const disciplineAux = [];
     const allCandidatesArray = [];
     const disciplineProfessor = [];
     let filteredCandidates = [];
 
-    const getAllProfessorDiscipline = await managerService.getAllProfessorDiscipline('pd_professor_id', user.id);
+    const getAllProfessorDiscipline = await managerService.getAllProfessorDiscipline('pd_professor_id', user?.id);
     getAllProfessorDiscipline.forEach((response) => {
       disciplineProfessor.push(response.pd_dis_id);
     });
