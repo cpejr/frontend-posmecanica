@@ -10,7 +10,7 @@ function Forms({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU'];
 
   return (
     <div>

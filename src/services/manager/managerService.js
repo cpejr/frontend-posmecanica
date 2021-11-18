@@ -343,13 +343,11 @@ export const createStudent = async (student) => {
 
     const candidateDiscipline = await requesterService
       .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
-    if (disciplines.length === 4) {
-      if (candidateDiscipline.data.length === 3) {
-        sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
-        sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
-        sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
-        verify = true;
-      }
+    if (disciplines.length === 4 && candidateDiscipline.data.length === 4) {
+      sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
+      verify = true;
     } else {
       sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
     }

@@ -89,8 +89,8 @@ function StudentNotification() {
         descriptionElement.focus();
       }
       const id = msg.message_id;
-      managerService.updateMessage(id, { message_status: 'answered' }).then((res) => {
-        console.log(res);
+      managerService.updateMessage(id, { message_status: 'answered' }).catch((error) => {
+        console.error(error);
       });
     }
   }, [open]);
