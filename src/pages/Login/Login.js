@@ -85,7 +85,7 @@ function Login() {
               id="email"
               label="Email"
               width="35vh"
-              dados={ }
+              dados={usuario}
               setDados={handleChange}
             />
             <StyledInputWithIcon
