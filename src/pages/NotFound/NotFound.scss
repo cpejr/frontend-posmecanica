@@ -1,0 +1,58 @@
+.notFound-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  padding: 15px;
+}
+
+.robo-image:nth-child(1) > img:nth-child(1) {
+  height: 410px;
+ }
+
+ .notFount-boxText {
+   display: flex;
+   flex-direction: column;
+   margin-left: 15px;
+   justify-content: center;
+ }
+
+ .notFound-title{
+  color: black;
+  font-size: 28pt;
+  margin-bottom: 8%;
+
+ }
+ 
+ .notFound-text {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+   p{
+    font-family: Montserrat;
+    font-size: 12pt;
+   }
+ }
+
+ @media(max-width: 750px) {
+  .robo-image:nth-child(1) > img:nth-child(1) {
+    height: 310px;
+  }
+
+  .notFound-title {
+    font-size: 20pt;
+  }
+
+  .notFound-text {
+    p {
+      font-size: 10pt;
+    }
+  }
+ }
+
+ @media (max-width: 550px) {
+   .robo-image {
+     display: none;
+   }
+ }

@@ -32,6 +32,7 @@ import CompleteAta from './pages/IssuingsReports/CompleteAta';
 import IsolatedList from './pages/IsolatedList';
 import EditDiscipline from './pages/EditDiscipline';
 import ProcessSelectiveResult from './pages/IssuingsReports/ProcessSelectiveResult';
+import NotFound from './pages/NotFound/NotFound';
 
 const useStyles = makeStyles({
   container: {
@@ -46,6 +47,7 @@ function Routes() {
     <BrowserRouter>
       <div className={classes.container}>
         <Switch>
+          <Route exact path="/login" component={Login} />
           <Route exact path="/painel/professor" component={DashboardProfessor} />
           <Route exact path="/painel/aluno" component={DashboardAluno} />
           <Route exact path="/painel/administrator" component={DashboardAdministrator} />
@@ -77,7 +79,7 @@ function Routes() {
           <Route exact path="/painel/administrator/lista-isoladas" component={IsolatedList} />
           <Route exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} />
           <Route exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} />
-          <Route path="/" component={Login} />
+          <Route path="/" component={NotFound} />
         </Switch>
       </div>
     </BrowserRouter>
