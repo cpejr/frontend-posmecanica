@@ -5,8 +5,6 @@ export const sendResetEmail = (email) => httpClient.post('/login/forgotten_passw
 
 export const getUserFiles = (candidateId, fileName) => httpClient.get(`/candidates/documents/${candidateId}/${fileName}`);
 
-export const getByIdAdm = (admId) => httpClient.get(`/adms/${admId}`);
-
 export const getCandidates = (times, field, filter) => httpClient.get('/candidates', {
   params: {
     times,
@@ -58,8 +56,6 @@ export const createDiscipline = (discipline) => httpClient.post('/disciplines', 
 
 export const login = (user) => httpClient.post('/login', user);
 
-export const verify = () => httpClient.get('/login/verify');
-
 export const createProfessor = (professor) => httpClient.post('/professors', professor);
 export const getProfByDisciplineId = (disciplineId) => httpClient.get(`/professors/discipline/${disciplineId}`);
 export const getProfessor = (times, field, filter) => httpClient.get('/professors', {
@@ -79,7 +75,6 @@ export const getProfessorDiscipline = (times, field, filter) => httpClient.get('
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
-export const getByIdProfessor = (ProfId) => httpClient.get(`/professors/${ProfId}`);
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {

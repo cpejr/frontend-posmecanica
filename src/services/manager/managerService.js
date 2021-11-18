@@ -2,12 +2,6 @@ import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
 
-export const getByIdAdm = async (admId) => {
-  const response = await requesterService.getByIdAdm(admId);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
 export const getCandidates = async (field, filter) => {
   let times = 0;
   let response;
@@ -192,8 +186,8 @@ export const updateDiscipline = async (discipline, disciplineId) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const login = async (userSent) => {
-  const response = await requesterService.login(userSent);
+export const login = async (user) => {
+  const response = await requesterService.login(user);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('id'));
@@ -206,13 +200,7 @@ export const login = async (userSent) => {
     id,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
-  return response;
-};
-
-export const validateSession = async () => {
-  const response = await requesterService.verify();
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
+  window.location.href = `/painel/${response.data.user.type}`;
 };
 
 export const createProfessor = async (professor) => {
@@ -236,12 +224,6 @@ export const getAllProfessors = async () => {
 export const getAllProfessorDiscipline = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getProfessorDiscipline(times, field, filter);
-  if (isFailureStatus(response)) throw new Error('Problem with api response');
-  return response.data;
-};
-
-export const getByIdProfessor = async (ProfId) => {
-  const response = await requesterService.getByIdProfessor(ProfId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -343,13 +325,11 @@ export const createStudent = async (student) => {
 
     const candidateDiscipline = await requesterService
       .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
-    if (disciplines.length === 4) {
-      if (candidateDiscipline.data.length === 3) {
-        sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
-        sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
-        sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
-        verify = true;
-      }
+    if (disciplines.length === 4 && candidateDiscipline.data.length === 4) {
+      sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });
+      sdIdArray.push({ sd_dis_id: student.third_discipline_isolated });
+      verify = true;
     } else {
       sdId = candidateDiscipline?.data?.map((sd) => ({ sd_dis_id: sd.cd_dis_id }));
     }

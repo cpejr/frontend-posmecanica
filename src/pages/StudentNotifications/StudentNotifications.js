@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { MdChevronRight } from 'react-icons/md';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -89,8 +89,8 @@ function StudentNotification() {
         descriptionElement.focus();
       }
       const id = msg.message_id;
-      managerService.updateMessage(id, { message_status: 'answered' }).then((res) => {
-        console.log(res);
+      managerService.updateMessage(id, { message_status: 'answered' }).catch((error) => {
+        console.error(error);
       });
     }
   }, [open]);
@@ -136,7 +136,7 @@ function StudentNotification() {
                       primary={m.message_title}
                       secondary={m.message_body}
                     />
-                    <ChevronRightIcon fontSize="large" />
+                    <MdChevronRight size={30} />
                   </ListItem>
                 </button>
               ))}
