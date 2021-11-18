@@ -38,7 +38,7 @@ function LoginAdm() {
       <div className="Login-screen">
         <div className="Login">
           <div className="Login-title">
-            LoginAdm
+            Login
           </div>
           <div className="Login-inputs">
             <StyledInputWithIcon
