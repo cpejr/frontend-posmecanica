@@ -5,6 +5,8 @@ export const sendResetEmail = (email) => httpClient.post('/login/forgotten_passw
 
 export const getUserFiles = (candidateId, fileName) => httpClient.get(`/candidates/documents/${candidateId}/${fileName}`);
 
+export const getByIdAdm = (admId) => httpClient.get(`/adms/${admId}`);
+
 export const getCandidates = (times, field, filter) => httpClient.get('/candidates', {
   params: {
     times,
@@ -56,6 +58,8 @@ export const createDiscipline = (discipline) => httpClient.post('/disciplines', 
 
 export const login = (user) => httpClient.post('/login', user);
 
+export const verify = () => httpClient.get('/login/verify');
+
 export const createProfessor = (professor) => httpClient.post('/professors', professor);
 export const getProfByDisciplineId = (disciplineId) => httpClient.get(`/professors/discipline/${disciplineId}`);
 export const getProfessor = (times, field, filter) => httpClient.get('/professors', {
@@ -75,6 +79,7 @@ export const getProfessorDiscipline = (times, field, filter) => httpClient.get('
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const getByIdProfessor = (ProfId) => httpClient.get(`/professors/${ProfId}`);
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {
   params: {
@@ -129,3 +134,9 @@ export const deleteQualification = (qualiStudId) => httpClient.delete(`qualifica
 export const createDefense = (defense, defenseStudId) => httpClient.post(`defenses/${defenseStudId}`, defense);
 export const getByStudentDefense = (defenseStudId) => httpClient.get(`defenses/students/${defenseStudId}`);
 export const deleteDefense = (defenseStudId) => httpClient.delete(`defenses/${defenseStudId}`);
+export const getMessageByUserId = (id, type) => httpClient.get(`/messages/${type}/${id}`);
+export const getUploadedFileByUserId = (id) => httpClient.get(`candidates/documents/${id}`);
+export const createMessage = (message) => httpClient.post('/messages', message);
+export const getThesisList = (id) => httpClient.get(`students/thesis/${id}`);
+export const getNotificationByUserId = (id, type) => httpClient.get(`/messages/notification/${type}/${id}`);
+export const updateMessage = (id, message) => httpClient.put(`/messages/${id}`, message);

@@ -2,6 +2,12 @@ import * as requesterService from '../requester/requesterService';
 
 const isFailureStatus = (result) => !result || result.status >= 400;
 
+export const getByIdAdm = async (admId) => {
+  const response = await requesterService.getByIdAdm(admId);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getCandidates = async (field, filter) => {
   let times = 0;
   let response;
@@ -186,8 +192,8 @@ export const updateDiscipline = async (discipline, disciplineId) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const login = async (user) => {
-  const response = await requesterService.login(user);
+export const login = async (userSent) => {
+  const response = await requesterService.login(userSent);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('id'));
@@ -219,7 +225,13 @@ export const loginAdm = async (user) => {
     id,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
-  window.location.href = `/painel/${response.data.user.type}`;
+  return response;
+};
+
+export const validateSession = async () => {
+  const response = await requesterService.verify();
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
 };
 
 export const createProfessor = async (professor) => {
@@ -243,6 +255,12 @@ export const getAllProfessors = async () => {
 export const getAllProfessorDiscipline = async (field, filter) => {
   const times = 0;
   const response = await requesterService.getProfessorDiscipline(times, field, filter);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getByIdProfessor = async (ProfId) => {
+  const response = await requesterService.getByIdProfessor(ProfId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   return response.data;
 };
@@ -417,4 +435,38 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
   }
 
   return filteredCandidates;
+};
+
+export const getMessageByUserId = async (id, type) => {
+  const response = await requesterService.getMessageByUserId(id, type);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getUploadedFileByUserId = async (id) => {
+  const response = await requesterService.getUploadedFileByUserId(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const createMessage = async (message) => {
+  const response = await requesterService.createMessage(message);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+};
+
+export const getThesisList = async (id) => {
+  const response = await requesterService.getThesisList(id);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const getNotificationByUserId = async (id, type) => {
+  const response = await requesterService.getNotificationByUserId(id, type);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
+export const updateMessage = async (id, message) => {
+  const response = await requesterService.updateMessage(id, message);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
