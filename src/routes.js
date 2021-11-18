@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Login from './pages/Login';
+import LoginAdm from './pages/Login/LoginAdm/LoginAdm';
 import forgetPass from './pages/forgetPass/forgetPass';
 import DashboardProfessor from './pages/DashboardProfessor';
 import DashboardAdministrator from './pages/DashboardAdministrator';
@@ -77,6 +78,7 @@ function Routes() {
           <Route exact path="/painel/administrator/lista-isoladas" component={IsolatedList} />
           <Route exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} />
           <Route exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} />
+          <Route exact path="/consoleposmec" component={LoginAdm} />
           <Route path="/" component={Login} />
         </Switch>
       </div>

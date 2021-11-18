@@ -192,6 +192,25 @@ export const login = async (user) => {
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('id'));
   const id = usuario[fields];
+  if (response.data.user.type === 'administrator') throw new Error('Insufficient permission');
+  const userStorage = {
+    name: response.data.user.name,
+    email: response.data.user.email,
+    type: response.data.user.type,
+    acessToken: response.data.accessToken,
+    id,
+  };
+  localStorage.setItem('user', JSON.stringify(userStorage));
+  window.location.href = `/painel/${response.data.user.type}`;
+};
+
+export const loginAdm = async (user) => {
+  const response = await requesterService.login(user);
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  const usuario = response.data.user;
+  const fields = Object.keys(usuario).find((field) => field.includes('id'));
+  const id = usuario[fields];
+  if (response.data.user.type !== 'administrator') throw new Error('Insufficient permission');
   const userStorage = {
     name: response.data.user.name,
     email: response.data.user.email,
