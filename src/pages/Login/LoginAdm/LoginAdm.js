@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import '../Login.scss';
 import { useToasts } from 'react-toast-notifications';
 import { CircularProgress } from '@material-ui/core';
@@ -7,25 +7,45 @@ import StyledInputWithIcon from '../../../components/StyledInputWithIcon';
 import * as managerService from '../../../services/manager/managerService';
 import Header from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import { useAuth } from '../../../providers/auth';
 
 function LoginAdm() {
   const initialUser = {
     email: '',
     password: '',
   };
-  const [user, setUser] = useState(initialUser);
+  const history = useHistory();
+  const [usuario, setUsuario] = useState(initialUser);
   const { addToast } = useToasts();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { setUser } = useAuth();
+
   const handleChange = (value, field) => {
-    setUser({ ...user, [field]: value });
+    setUsuario({ ...usuario, [field]: value });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      localStorage.removeItem('user');
+    }
+  }, []);
 
   const handleClick = async (e) => {
     setLoading(true);
     try {
       e.preventDefault();
-      await managerService.loginAdm(user);
+      const response = await managerService.login(usuario);
+      const fields = Object.keys(response.data.user).find((field) => field.includes('id'));
+      const id = response.data.user[fields];
+      setUser({
+        name: response.data.user.name,
+        email: response.data.user.email,
+        type: response.data.user.type,
+        acessToken: response.data.accessToken,
+        id,
+      });
+      history.push(`/painel/${response.data.user.type}`);
     } catch {
       addToast('Acesso negado!', { appearance: 'error' });
       setLoading(false);
@@ -38,21 +58,23 @@ function LoginAdm() {
       <div className="Login-screen">
         <div className="Login">
           <div className="Login-title">
-            Login
+            LoginAdm
           </div>
           <div className="Login-inputs">
             <StyledInputWithIcon
               type="text"
               id="email"
               label="Email"
-              dados={user}
+              width="100%"
+              dados={usuario}
               setDados={handleChange}
             />
             <StyledInputWithIcon
               type="password"
               id="password"
               label="Senha"
-              dados={user}
+              width="100%"
+              dados={usuario}
               setDados={handleChange}
             />
           </div>

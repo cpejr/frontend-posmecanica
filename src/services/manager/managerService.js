@@ -207,11 +207,11 @@ export const login = async (userSent) => {
     id,
   };
   localStorage.setItem('user', JSON.stringify(userStorage));
-  window.location.href = `/painel/${response.data.user.type}`;
+  return response;
 };
 
-export const loginAdm = async (user) => {
-  const response = await requesterService.login(user);
+export const loginAdm = async (userSent) => {
+  const response = await requesterService.login(userSent);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('id'));
