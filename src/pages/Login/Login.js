@@ -84,7 +84,7 @@ function Login() {
               type="text"
               id="email"
               label="Email"
-              width="35vh"
+              width="100%"
               dados={usuario}
               setDados={handleChange}
             />
@@ -92,7 +92,7 @@ function Login() {
               type="password"
               id="password"
               label="Senha"
-              width="35vh"
+              width="100%"
               dados={usuario}
               setDados={handleChange}
             />
