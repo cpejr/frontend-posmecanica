@@ -11,19 +11,15 @@ $azulPadrao: #1d2d57;
 .forms_title {
   color: white;
   margin-left: 1%;
-  text-align: center;
   font-family: Montserrat;
   font-size: 2em;
 }
-.forms_box {
+.forms_line {
   background-color: #ffff;
   display: flex;
-  flex-wrap: wrap;
-  width: 95%;
-  max-width: 1600px;
-  justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
   margin-bottom: 1%;
 }
 .forms_line_files {
@@ -35,16 +31,13 @@ $azulPadrao: #1d2d57;
   margin-bottom: 1%;
 }
 .forms_input {
-  display: flex;
-  justify-content: center;
-  width: 22rem;
-  margin: 0 10px;
+  margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
 .forms_input_file {
-  margin: 15px 10px;
+  margin-right: 5%;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
@@ -77,10 +70,14 @@ $azulPadrao: #1d2d57;
   font-size: 2em;
 }
 .forms_upload_text {
-  font-size: 14px;
   margin-bottom: 10px;
 }
 @media screen and (max-width: 1250px) {
+  .forms_line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .forms_line_files {
     display: flex;
     flex-direction: column;

@@ -3,7 +3,7 @@ import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 import './Navbar.scss';
 import { Button } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
-import { MdChatBubble } from 'react-icons/md';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../providers/auth';
 import { useAdminDoubtContext } from '../../providers/adminDoubt';
@@ -25,11 +25,11 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
         <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
       <div className="headerActions">
-        {user.type === 'administrator'
+        {user && user.type === 'administrator'
           && (
             <Link to="/painel/administrator/duvidas">
               <Badge badgeContent={total} color="primary">
-                <MdChatBubble />
+                <ChatBubbleIcon />
               </Badge>
             </Link>
           )}
