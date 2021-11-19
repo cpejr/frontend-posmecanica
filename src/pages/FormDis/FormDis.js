@@ -58,7 +58,7 @@ function FormDis() {
       "ISOLADA"
     );
     if (selectiveProcesses.length === 0) {
-      history.push("login");
+      // history.push("/");
     }
   }, []);
 
