@@ -33,7 +33,7 @@ function registerDis() {
         && dados.process_date_begin !== ''
         && dados.process_date_end !== '') {
         dados.process_date_begin = moment(dados.process_date_begin).format();
-        dados.process_date_end = moment(dados.process_date_end).format();
+        dados.process_date_end = moment(dados.process_date_end).format('DD MMMM YYYY, 23:59:59');
         const verify = await managerService.verifySelectiveProcess('process_type', dados);
         if (verify.length === 0) {
           await managerService.createSelectiveProcess(dados);

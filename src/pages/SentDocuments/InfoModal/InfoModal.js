@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -21,6 +21,8 @@ function InfoModal({
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [action, setAction] = useState('');
+  const [selectiveProcessName, setSelectiveProcessName] = useState('-');
+
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -30,6 +32,13 @@ function InfoModal({
     }
     return 'Pendente';
   }
+
+  useEffect(async () => {
+    if (painelADM === 0) {
+      const process = await managerService.getByIdSelectiveProcess(conteudo.candidate_process_id);
+      setSelectiveProcessName(process.process_name);
+    }
+  }, []);
 
   function redirectToEdit() {
     history.push({
@@ -189,6 +198,16 @@ function InfoModal({
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
+                  <b>Data de Nascimento:</b>
+                  {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
+                </div>
+                <div>
+                  <b>Processo Seletivo:</b>
+                  {` ${selectiveProcessName}`}
+                </div>
+              </div>
+              <div className="rowGrid">
+                <div className="InsideRowGridModal">
                   <b>Primeira Disciplina Isolada:</b>
                   {` ${disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
                 </div>
@@ -206,10 +225,6 @@ function InfoModal({
                   <b>Quarta Disciplina Isolada:</b>
                   {` ${disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
                 </div>
-              </div>
-              <div className="row">
-                <b>Data de Nascimento:</b>
-                {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
               </div>
               <div className="row">
                 <b>Endereço:</b>

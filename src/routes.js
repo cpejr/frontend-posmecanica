@@ -40,6 +40,7 @@ import ThesisList from './pages/ThesisList';
 import CreateNotification from './pages/CreateNotification';
 import StudentNotifications from './pages/StudentNotifications';
 import PrivateRoute from './components/PrivateRoute';
+import NotFound from './pages/NotFound/NotFound';
 
 const useStyles = makeStyles({
   container: {
@@ -70,6 +71,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/criar-processo-seletivo" component={CreateSelectiveProcess} type="administrator" />
           <PrivateRoute exact path="/painel/aluno/postagem-teses" component={ThesesPost} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/teses" component={ThesisList} type="aluno" />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />
@@ -92,7 +94,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/lista-isoladas" component={IsolatedList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} type="administrator" />
-          <Route path="/" component={Login} />
+          <Route path="/" component={NotFound} />
         </Switch>
       </div>
     </BrowserRouter>
