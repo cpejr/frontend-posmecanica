@@ -5,7 +5,7 @@ import { FaFileCode } from 'react-icons/fa';
 import { IoMdNotifications } from 'react-icons/io';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Navbar';
 import RightPanel from '../../components/Menu/RightPanel';
@@ -67,12 +67,10 @@ function DashboardAluno() {
               <IoMdNotifications style={{ fontSize: 50 }} />
               Notificações
             </StyledButton>
-            <Link to="/painel/aluno/duvidas/lista">
-              <StyledButton className="buttonIcon">
-                <MdQuestionAnswer style={{ fontSize: 50 }} />
-                Dúvidas
-              </StyledButton>
-            </Link>
+            <StyledButton className="buttonIcon" onClick={() => history.push('/painel/aluno/duvidas/lista')}>
+              <MdQuestionAnswer style={{ fontSize: 50 }} />
+              Dúvidas
+            </StyledButton>
             <StyledButton className="buttonIcon" onClick={() => history.push('/painel/aluno/editar/')}>
               <MdBorderColor style={{ fontSize: 50 }} />
               Editar Informações
