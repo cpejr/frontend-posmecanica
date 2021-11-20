@@ -44,6 +44,10 @@ $azulPadrao: #1d2d57;
   font-family: Montserrat;
 }
 .forms_input_file {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
   margin: 15px 10px;
   text-align: center;
   font-weight: 600;
@@ -103,7 +107,7 @@ $azulPadrao: #1d2d57;
   .forms_input_file {
     margin-top: 0px;
     margin-bottom: 20px;
-    margin-right: 0;
+    margin-right: 0px;
   }
   .forms_divButton {
     display: flex;

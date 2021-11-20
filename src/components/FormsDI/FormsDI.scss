@@ -29,17 +29,22 @@ $azulPadrao: #1d2d57;
 .formsDI_input{
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 22rem;
   margin: 0 10px;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
 .formsDI_input_file{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
   margin: 15px 10px;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
+  font-size: large;
 }
 .formsDI_TextInputDiv{
   display: flex;
