@@ -91,7 +91,6 @@ function BoxDashboard({
     });
     return processCount;
   }
-
   return (
     <div className="BdMenu">
       <div className="BdTitle">
