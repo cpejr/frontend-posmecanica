@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import InfoModal from '../../../pages/SentDocuments/InfoModal';
@@ -7,6 +7,7 @@ import './InscritoPS.scss';
 import * as managerService from '../../../services/manager/managerService';
 
 function InscritoPS({ candidate, boolean, studentCondition }) {
+  const history = useHistory();
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   const [studentList, setStudentList] = useState();
@@ -84,6 +85,13 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
     }
   }, [candidate]);
 
+  const handleClick = () => {
+    history.push({
+      pathname: '/documentos-enviados',
+      state: { candidate },
+    });
+  };
+
   return (
     <>
       {candidate.selective_process.process_type !== 'ISOLADA' && studentList !== true ? (
@@ -138,6 +146,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
           studentList={studentCondition}
           disciplinaInfo={object}
           conteudo={candidate}
+          handleClick={handleClick}
           close={handleClickClose}
           className="isoPsLinkButton"
         />
