@@ -1,7 +1,7 @@
 .sentDocumentsRoot {
   width: 100%;
 
-  h1 {
+  .sentDocumentsTitle {
     color: black;
     padding: 2rem;
   }
@@ -9,4 +9,8 @@
     padding: 2rem;
 
   }
+}
+
+.sentDocumentsRootInside{
+  min-height: 100%;
 }
