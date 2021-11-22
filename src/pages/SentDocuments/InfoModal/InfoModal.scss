@@ -54,8 +54,14 @@
     background-color: #FFF;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.8);
-    @media (max-width: 450px){
-      height: 80%;
+    @media (max-width: 660px) {
+      height: 70% !important;
+    }
+    @media (max-width: 420px){
+      height: 80% !important;
+    }
+    @media (max-width: 350px){
+      height: 90% !important;
     }
   }
   .container{
