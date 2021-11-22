@@ -24,19 +24,17 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
         <img src="/images/engrenagem.png" alt="engrenagem" className="logoHeader" />
         <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
-      <div className="headerActions">
-        {user && user.type === 'administrator'
-          && (
-            <Link to="/painel/administrator/duvidas">
-              <Badge badgeContent={total} color="primary">
-                <MdChatBubble />
-              </Badge>
-            </Link>
-          )}
-        <Button className="buttonExpandIcon" onClick={handleClick}>
-          {expandIcon}
-        </Button>
-      </div>
+      {user && user.type === 'administrator'
+        && (
+          <Link to="/painel/administrator/duvidas">
+            <Badge badgeContent={total} color="primary">
+              <MdChatBubble size="25" />
+            </Badge>
+          </Link>
+        )}
+      <Button className="buttonExpandIcon" onClick={handleClick}>
+        {expandIcon}
+      </Button>
     </div>
   );
 }

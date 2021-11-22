@@ -9,6 +9,10 @@
   font-size: 14px;
   font-family: Montserrat;
 
+  .headerActions {
+    display: flex;
+    flex-direction: row;
+  }
   .headerActions span{
     cursor: pointer;
   }
@@ -35,7 +39,7 @@
 }
 .menuIcon {
  margin: 15px;
- font-size: 30px;
+ font-size: 40px;
  color: white;
 }
 .menuIcon:hover {
