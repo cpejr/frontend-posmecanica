@@ -1,0 +1,73 @@
+.WarningModalLogin{
+  position: fixed;
+  top: 0;
+  bottom:0;
+  right:0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 999;
+  .WarningModalLoginContainer{
+    position: absolute;
+    height: fit-content;
+    // max-width: 600px;
+    width: 70%;
+    top: 3%;
+    bottom: 3%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 3em 2rem;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  }
+  .container{
+    height: 50;
+  }
+  h2{
+    margin-top: 1.2em;
+    margin-bottom: 1.5em;
+    font-size: 1.8em;
+    color: #121212;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  p{
+    white-space: pre-wrap;
+  }
+}
+.WarningModalLoginContainerInside{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.WarningModalContent{
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  text-align: justify;
+  @media (max-width: 420px){
+    font-size: 0.8em;
+  }
+}
+.WarningModalCloseDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+.WarningModalCloseButton {
+  display: flex;
+  background: black;
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+@media (max-width: 550px){
+  .WarningModalLogin{
+    .WarningModalLoginContainer{
+      width: 85%;
+    }
+  }
+}

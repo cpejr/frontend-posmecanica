@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
           acessToken: getStorage.acessToken,
           id: response.prof_id,
         });
-      } else if (getStorage?.type === 'student') {
+      } else if (getStorage?.type === 'aluno') {
         const StudentPerson = await managerService.getByIdStudent(getStorage.id);
         response = await managerService.getByIdCandidate(StudentPerson.stud_candidate_id);
         setUser({
