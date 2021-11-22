@@ -19,7 +19,7 @@ httpClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const token = localStorage.getItem('user');
-    if (error.response.status === 403 && token) {
+    if (error.response?.status === 403 && token) {
       window.location.href = '/';
     }
     return error.response;
