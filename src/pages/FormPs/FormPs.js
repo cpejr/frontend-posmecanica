@@ -47,6 +47,7 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
+  const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -65,7 +66,9 @@ function FormPs() {
       selectiveProcessesMestrado.length === 0 &&
       selectiveProcessesDoutorado.length === 0
     ) {
-      history.push("login");
+      history.push("/");
+    } else {
+      setHasSelectiveProcess(true);
     }
   }, []);
 
@@ -140,16 +143,21 @@ function FormPs() {
   };
   return (
     <div className="screen-ps">
-      <SiteHeader />
-      <h1> Inscrição Processo Seletivo:</h1>
-      <Forms
-        initialState={initialState}
-        formsInput={formsInput}
-        files={files}
-        setFiles={setFiles}
-        handleClick={handleClick}
-        error={error}
-      />
+      {hasSelectiveProcess && (
+        <>
+          <SiteHeader />
+          <h1> Inscrição Processo Seletivo:</h1>
+          <Forms
+            initialState={initialState}
+            formsInput={formsInput}
+            files={files}
+            setFiles={setFiles}
+            handleClick={handleClick}
+            error={error}
+          />
+        </>
+      )}
+
     </div>
   );
 }
