@@ -58,7 +58,7 @@ function FormDis() {
       "ISOLADA"
     );
     if (selectiveProcesses.length === 0) {
-      // history.push("/");
+      history.push("/");
     }
   }, []);
 
@@ -101,22 +101,22 @@ function FormDis() {
       dados.candidate_graduation.length >= 1 &&
       files.length === 5 &&
       (dados.first_discipline_isolated &&
-      dados.first_discipline_isolated !== dados.second_discipline_isolated &&
-      dados.first_discipline_isolated !== dados.third_discipline_isolated &&
-      dados.first_discipline_isolated !== dados.fourth_discipline_isolated) ||
+        dados.first_discipline_isolated !== dados.second_discipline_isolated &&
+        dados.first_discipline_isolated !== dados.third_discipline_isolated &&
+        dados.first_discipline_isolated !== dados.fourth_discipline_isolated) ||
       (dados.second_discipline_isolated &&
-      dados.second_discipline_isolated !== dados.first_discipline_isolated &&
-      dados.second_discipline_isolated !== dados.third_discipline_isolated &&
-      dados.second_discipline_isolated !== dados.fourth_discipline_isolated) ||
+        dados.second_discipline_isolated !== dados.first_discipline_isolated &&
+        dados.second_discipline_isolated !== dados.third_discipline_isolated &&
+        dados.second_discipline_isolated !== dados.fourth_discipline_isolated) ||
       (dados.third_discipline_isolated &&
-      dados.third_discipline_isolated !== dados.first_discipline_isolated &&
-      dados.third_discipline_isolated !== dados.second_discipline_isolated &&
-      dados.third_discipline_isolated !== dados.fourth_discipline_isolated) ||
+        dados.third_discipline_isolated !== dados.first_discipline_isolated &&
+        dados.third_discipline_isolated !== dados.second_discipline_isolated &&
+        dados.third_discipline_isolated !== dados.fourth_discipline_isolated) ||
       (dados.fourth_discipline_isolated &&
-      dados.fourth_discipline_isolated !== dados.first_discipline_isolated &&
-      dados.fourth_discipline_isolated !== dados.second_discipline_isolated &&
-      dados.fourth_discipline_isolated !== dados.third_discipline_isolated)
-     
+        dados.fourth_discipline_isolated !== dados.first_discipline_isolated &&
+        dados.fourth_discipline_isolated !== dados.second_discipline_isolated &&
+        dados.fourth_discipline_isolated !== dados.third_discipline_isolated)
+
     ) {
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
@@ -132,7 +132,6 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
-        history.push("/");
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
@@ -142,20 +141,20 @@ function FormDis() {
     } else if (
       (dados.first_discipline_isolated &&
         (dados.first_discipline_isolated === dados.second_discipline_isolated ||
-        dados.first_discipline_isolated === dados.third_discipline_isolated ||
-        dados.first_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.first_discipline_isolated === dados.third_discipline_isolated ||
+          dados.first_discipline_isolated === dados.fourth_discipline_isolated)) ||
       (dados.second_discipline_isolated &&
         (dados.second_discipline_isolated === dados.first_discipline_isolated ||
-        dados.second_discipline_isolated === dados.third_discipline_isolated ||
-        dados.second_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.second_discipline_isolated === dados.third_discipline_isolated ||
+          dados.second_discipline_isolated === dados.fourth_discipline_isolated)) ||
       (dados.third_discipline_isolated &&
         (dados.third_discipline_isolated === dados.first_discipline_isolated ||
-        dados.third_discipline_isolated === dados.second_discipline_isolated ||
-        dados.third_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.third_discipline_isolated === dados.second_discipline_isolated ||
+          dados.third_discipline_isolated === dados.fourth_discipline_isolated)) ||
       (dados.fourth_discipline_isolated &&
         (dados.fourth_discipline_isolated === dados.first_discipline_isolated ||
-        dados.fourth_discipline_isolated === dados.second_discipline_isolated ||
-        dados.fourth_discipline_isolated === dados.third_discipline_isolated))
+          dados.fourth_discipline_isolated === dados.second_discipline_isolated ||
+          dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
     } else {
