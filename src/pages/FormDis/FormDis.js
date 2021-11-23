@@ -136,6 +136,7 @@ function FormDis() {
           await managerService.uploadFile(data, id, file.name);
         });
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+        history.push("/login");
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",

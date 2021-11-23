@@ -131,7 +131,7 @@ function FormPs() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
-        history.push("/");
+        history.push("/login");
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
