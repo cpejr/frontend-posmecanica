@@ -4,7 +4,7 @@ import './Navbar.scss';
 import { Button } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
 import { MdChatBubble } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../providers/auth';
 import { useAdminDoubtContext } from '../../providers/adminDoubt';
 
@@ -14,6 +14,7 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
   };
   const { user } = useAuth();
   const { total } = useAdminDoubtContext();
+  const location = useLocation();
 
   const expandIcon = expandRightPanel
     ? <AiOutlineMenuFold className="menuIcon" />
@@ -25,7 +26,8 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
         <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
       <div className="headerActions">
-        {user && user.type === 'administrator'
+        {(location.pathname === '/painel/administrator' || location.pathname === '/painel/administrator/duvidas')
+        && user && user.type === 'administrator'
           && (
             <Link to="/painel/administrator/duvidas">
               <Badge badgeContent={total} color="primary">
