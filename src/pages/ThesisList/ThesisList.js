@@ -13,24 +13,20 @@ import './thesisList.scss';
 
 const inputProps = [
   {
-    text: 'Notas',
-    path: '/',
+    text: 'Página Inicial',
+    path: 'aluno',
   },
   {
-    text: 'Teses',
-    path: '/',
-  },
-  {
-    text: 'Documentos',
-    path: '/painel/aluno/documentos',
+    text: 'Postagem Teses',
+    path: 'aluno/postagem-teses',
   },
   {
     text: 'Editar Informações',
-    path: '/',
+    path: 'aluno/editar',
   },
   {
-    text: 'Dúvidas',
-    path: '/',
+    text: 'Enviar Dúvida',
+    path: 'aluno/duvidas/envio',
   },
   {
     text: 'Redefinição de senha',
