@@ -72,6 +72,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/aluno/teses" component={ThesisList} type="aluno" />
           <Route exact path="/login" component={Login} />
           <Route exact path="/consoleposmec" component={Login} />
+          <Route exact path="/painel/esqueci-senha" component={forgetPass} />
           <Route exact path="/esqueci-senha" component={forgetPass} />
           <Route exact path="/confirmacao" component={Confirmation} />
           <Route exact path="/formulario-disciplina-isolada" component={FormDis} />

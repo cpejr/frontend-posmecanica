@@ -69,7 +69,7 @@ function SentDocuments({ location }) {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
 

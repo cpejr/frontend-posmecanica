@@ -72,7 +72,7 @@ function EditStudentInfo({ location }) {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const { addToast } = useToasts();

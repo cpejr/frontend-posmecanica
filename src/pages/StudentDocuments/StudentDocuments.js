@@ -13,24 +13,20 @@ import './sentDocuments.scss';
 
 const inputProps = [
   {
-    text: 'Notas',
-    path: '/',
+    text: 'Página principal',
+    path: 'aluno',
   },
   {
-    text: 'Teses',
-    path: '/',
+    text: 'Postagem de Teses',
+    path: 'aluno/postagem-teses',
   },
   {
-    text: 'Documentos',
-    path: '/painel/aluno/documentos',
+    text: 'Enviar Dúvida',
+    path: 'aluno/duvidas/envio',
   },
   {
-    text: 'Editar Informações',
-    path: '/',
-  },
-  {
-    text: 'Dúvidas',
-    path: '/',
+    text: 'Notificações',
+    path: 'aluno/notificacoes',
   },
   {
     text: 'Redefinição de senha',
