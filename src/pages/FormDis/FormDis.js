@@ -49,6 +49,7 @@ function FormDis() {
   };
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
+  const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -57,8 +58,10 @@ function FormDis() {
       "process_type",
       "ISOLADA"
     );
-    if (selectiveProcesses.length === 0) {
+     if (selectiveProcesses.length === 0) {
       history.push("/");
+    }else{
+      setHasSelectiveProcess(true);
     }
   }, []);
 
@@ -133,6 +136,7 @@ function FormDis() {
           await managerService.uploadFile(data, id, file.name);
         });
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+        history.push("/login");
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
@@ -162,19 +166,23 @@ function FormDis() {
       setError(true);
     }
   };
-
   return (
     <div className="form_dis_screen">
-      <SiteHeader />
-      <h1> Inscrição:</h1>
-      <Forms
-        initialState={initialState}
-        formsInput={formsInput}
-        files={files}
-        error={error}
-        setFiles={setFiles}
-        handleClick={handleClick}
-      />
+      {hasSelectiveProcess && (
+        <>
+          <SiteHeader />
+          <h1> Inscrição:</h1>
+          <Forms
+            initialState={initialState}
+            formsInput={formsInput}
+            files={files}
+            error={error}
+            setFiles={setFiles}
+            handleClick={handleClick}
+          />
+        </>
+      )}
+
     </div>
   );
 }
