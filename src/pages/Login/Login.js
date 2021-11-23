@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
@@ -48,12 +48,6 @@ function Login() {
     }
     return true;
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('user')) {
-      localStorage.removeItem('user');
-    }
-  }, []);
 
   const handleClick = async (e) => {
     const pathName = location.pathname;
