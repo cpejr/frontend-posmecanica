@@ -29,7 +29,7 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
           && (
             <Link to="/painel/administrator/duvidas">
               <Badge badgeContent={total} color="primary">
-                <MdChatBubble />
+                <MdChatBubble size={30} />
               </Badge>
             </Link>
           )}

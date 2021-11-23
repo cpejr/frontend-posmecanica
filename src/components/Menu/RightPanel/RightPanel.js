@@ -41,7 +41,7 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
             </ListItem>
           </Link>
         ))}
-        <Link to={{ pathname: '/login' }}>
+        <Link to={{ pathname: user.type === 'administrator' ? '/consoleposmec' : '/login' }}>
           <ListItem button>
             <ListItemText onClick={logout}>
               Logout

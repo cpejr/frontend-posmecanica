@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './Login.scss';
 import { useToasts } from 'react-toast-notifications';
 import { CircularProgress } from '@material-ui/core';
@@ -24,6 +24,7 @@ function Login() {
   const [showWarningModal, setShowWarningModal] = useState(false);
   const [contentWarningModal, setContentWarningModal] = useState('');
   const { setUser } = useAuth();
+  const location = useLocation();
 
   const handleChange = (value, field) => {
     setUsuario({ ...usuario, [field]: value });
@@ -55,13 +56,15 @@ function Login() {
   }, []);
 
   const handleClick = async (e) => {
+    const pathName = location.pathname;
+    const path = pathName === '/login' ? pathName : `/login${pathName}`;
     setLoading(true);
     let userStorage;
     if (await verifySecurity() === true) {
       const currentSecurityStatus = JSON.parse(localStorage.getItem('userSecurity'));
       try {
         e.preventDefault();
-        const response = await managerService.login(usuario);
+        const response = await managerService.login(usuario, path);
         const fields = Object.keys(response.data.user).find((field) => field.includes('id'));
         const id = response.data.user[fields];
         if (response.data.user.name === undefined) {
