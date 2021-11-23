@@ -6,7 +6,7 @@ import * as managerService from '../../../services/manager/managerService';
 import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
-  close, conteudo, painelADM, disciplinaInfo, studentList,
+  close, conteudo, painelADM, disciplinaInfo, studentList, handleClick,
 }) {
   function formatedDate(date) {
     const data = new Date(date);
@@ -337,6 +337,9 @@ function InfoModal({
                     </div>
                   </div>
                 )}
+            </div>
+            <div className="teste">
+              <button type="button" className="SPbutton-result" onClick={() => handleClick()}>Ver Documentos</button>
             </div>
           </div>
         </div>

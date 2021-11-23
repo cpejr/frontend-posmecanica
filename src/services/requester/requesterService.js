@@ -56,7 +56,7 @@ export const uploadThesis = (file, candidateId, fileName) => httpClient.post(`/s
 
 export const createDiscipline = (discipline) => httpClient.post('/disciplines', discipline);
 
-export const login = (user) => httpClient.post('/login', user);
+export const login = (user, path) => httpClient.post(path, user);
 
 export const verify = () => httpClient.get('/login/verify');
 

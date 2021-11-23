@@ -73,7 +73,7 @@ function StudentDocuments() {
       )
         : (
           <>
-            <h1>Teses:</h1>
+            <h1 className="sentDocumentsTitle">Teses:</h1>
             <div className="sentDocumentsWrapper">
               {user.name && <h2>{user.name}</h2>}
               {documents.map((document) => (

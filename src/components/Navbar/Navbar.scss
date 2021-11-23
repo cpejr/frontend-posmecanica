@@ -17,18 +17,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
   padding: 15px;
 }
 .logoHeader {
   height: 60px;
   width: 60px;
   margin-right: 2vw;
+  @media screen and (max-width: 450px) {
+    height: 35px;
+    width: 35px;
+  }
 }
 .titleHeader {
   font-family: Montserrat;
   font-size: 20px;
   width: 100%;
+  @media screen and (max-width: 450px) {
+    font-size: 10px;
+  }
 }
 .buttonExpandIcon {
   border-radius: 35px;
