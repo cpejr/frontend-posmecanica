@@ -192,8 +192,8 @@ export const updateDiscipline = async (discipline, disciplineId) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
-export const login = async (userSent) => {
-  const response = await requesterService.login(userSent);
+export const login = async (userSent, path) => {
+  const response = await requesterService.login(userSent, path);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
   const usuario = response.data.user;
   const fields = Object.keys(usuario).find((field) => field.includes('id'));

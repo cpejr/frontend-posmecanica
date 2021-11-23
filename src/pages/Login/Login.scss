@@ -69,6 +69,13 @@ body {
   font-size: 2vh;
   color: white;
 }
+.WarningModalLoginScreen {
+  color: black;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  font-family: Montserrat;
+}
 
 @media screen and (max-width: 1400px) {
   .Login-screen {

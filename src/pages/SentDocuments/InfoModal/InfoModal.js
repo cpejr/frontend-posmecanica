@@ -6,7 +6,7 @@ import * as managerService from '../../../services/manager/managerService';
 import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
-  close, conteudo, painelADM, disciplinaInfo, studentList,
+  close, conteudo, painelADM, disciplinaInfo, studentList, handleClick,
 }) {
   function formatedDate(date) {
     const data = new Date(date);
@@ -209,21 +209,21 @@ function InfoModal({
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Primeira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
+                  {` ${conteudo.disciplines[0]?.discipline_name ? conteudo.disciplines[0]?.discipline_name : '-'} `}
                 </div>
                 <div>
                   <b>Segunda Disciplina Isolada:</b>
-                  {` ${disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
+                  {` ${conteudo.disciplines[1]?.discipline_name ? conteudo.disciplines[1]?.discipline_name : '-'}`}
                 </div>
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
+                  {` ${conteudo.disciplines[2]?.discipline_name ? conteudo.disciplines[2]?.discipline_name : '-'}`}
                 </div>
                 <div>
                   <b>Quarta Disciplina Isolada:</b>
-                  {` ${disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
+                  {` ${conteudo.disciplines[3]?.discipline_name ? conteudo.disciplines[3]?.discipline_name : '-'}`}
                 </div>
               </div>
               <div className="row">
@@ -337,6 +337,9 @@ function InfoModal({
                     </div>
                   </div>
                 )}
+            </div>
+            <div className="teste">
+              <button type="button" className="SPbutton-result" onClick={() => handleClick()}>Ver Documentos</button>
             </div>
           </div>
         </div>
