@@ -155,7 +155,7 @@ function registerDis() {
                 <StyledInput
                   type="text"
                   id="discipline_semester"
-                  label="Período Ofertado"
+                  label="Status"
                   error={error}
                   select
                   field={semester}
