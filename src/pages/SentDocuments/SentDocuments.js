@@ -64,6 +64,10 @@ function SentDocuments({ location }) {
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },

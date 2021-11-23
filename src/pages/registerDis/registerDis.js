@@ -93,6 +93,10 @@ function registerDis() {
       path: 'administrator/formulario-professores',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
       text: 'Redefinição de senha',
       path: '../esqueci-senha',
     },
