@@ -8,14 +8,6 @@
   color: white;
   font-size: 14px;
   font-family: Montserrat;
-
-  .headerActions {
-    display: flex;
-    flex-direction: row;
-  }
-  .headerActions span{
-    cursor: pointer;
-  }
 }
 .divLogo {
   display: flex;
@@ -48,4 +40,16 @@
 }
 .menuIcon:hover {
   cursor: pointer
+ }
+
+ .doubtIcon{
+   font-size: 30px;
+
+   @media (max-width: 680px) {
+    font-size: 25px;
+  }
+
+   @media (max-width: 450px) {
+    font-size: 15px;
+  }
  }
