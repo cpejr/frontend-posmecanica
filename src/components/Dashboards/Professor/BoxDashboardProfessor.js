@@ -12,7 +12,7 @@ function BoxDashboardProfesssor() {
   const [disciplineObject, setDisciplineObject] = useState([]);
 
   useEffect(async () => {
-    const selectiveProcesses = await managerService.getActualSelectiveProcess('process_type', 'ISOLADA');
+    const selectiveProcesses = await managerService.getAllSelectiveProcessPainels('process_type', 'ISOLADA');
     const disciplineAux = [];
     const allCandidatesArray = [];
     const disciplineProfessor = [];

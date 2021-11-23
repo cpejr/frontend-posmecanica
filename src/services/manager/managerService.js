@@ -310,6 +310,28 @@ export const getAllSelectiveProcess = async (field, filter) => {
   return allProcess;
 };
 
+// pega só os processos seletivos que terminaram a, no máximo, 1 ano.
+export const getAllSelectiveProcessPainels = async (field, filter) => {
+  let times = 0;
+  let response;
+  let allProcess = [];
+  do {
+    response = await requesterService.getSelectiveProcess(times, field, filter);
+    if (isFailureStatus(response)) throw new Error('Problem with api response');
+    allProcess = allProcess.concat(response.data);
+    times += 1;
+  } while (response.data.length > 0);
+
+  const currentYear = new Date().getFullYear();
+
+  allProcess = allProcess.filter((element) => {
+    const year = new Date(element.process_date_end).getFullYear();
+    return year >= (currentYear - 1);
+  });
+
+  return allProcess;
+};
+
 export const getByIdSelectiveProcess = async (selectiveProcessId) => {
   const response = await requesterService.getByIdSelectiveProcess(selectiveProcessId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -404,7 +426,7 @@ export const getCandidatesWithDisciplineSituation = async (field, filter, pageFi
     times += 1;
   } while (response.data.length > 0);
 
-  const process = await getAllSelectiveProcess('process_type', 'ISOLADA');
+  const process = await getAllSelectiveProcessPainels('process_type', 'ISOLADA');
 
   process.forEach((item) => {
     processFilter = processFilter.concat(allCandidates
