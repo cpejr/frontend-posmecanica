@@ -94,7 +94,7 @@ function CreateNotification() {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (

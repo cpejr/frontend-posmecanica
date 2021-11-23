@@ -58,7 +58,7 @@ function ThesisQualification({ location }) {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const qualiProps = [

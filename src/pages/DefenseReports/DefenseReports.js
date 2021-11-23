@@ -48,7 +48,7 @@ function DefenseReports({ location }) {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const renderLine = (docs) => {

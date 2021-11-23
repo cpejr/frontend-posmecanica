@@ -87,7 +87,7 @@ function ProfessorList() {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const inputPropsProfessor = [
@@ -101,7 +101,7 @@ function ProfessorList() {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (
