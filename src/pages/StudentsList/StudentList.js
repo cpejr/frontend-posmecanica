@@ -167,7 +167,7 @@ function StudentList() {
               </div>
             )}
             {filterStudents.map((student) => (
-              <div className="formsDI_input">
+              <div className="formsDI_input_list">
                 <InscritoPS
                   candidate={student}
                   boolean="true"

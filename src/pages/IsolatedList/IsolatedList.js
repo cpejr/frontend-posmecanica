@@ -102,7 +102,7 @@ function IsolatedList() {
               </div>
             )}
             {filterIsoladas.map((isoladas) => (
-              <div className="formsDI_input">
+              <div className="formsDI_input_list">
                 <Isolateds
                   isolated={isoladas}
                 />
