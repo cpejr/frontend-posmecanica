@@ -60,7 +60,6 @@ function Routes() {
           <PrivateRoute exact path="/painel/aluno/documentos" component={StudentDocuments} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/lista" component={SentDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/envio" component={SendDoubts} type="aluno" />
-          <PrivateRoute exact path="/painel/aluno/editar" component={EditStudentInfo} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/notificacoes" component={StudentNotifications} type="aluno" />
           <PrivateRoute exact path="/painel/administrator" component={DashboardAdministrator} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/duvidas" component={AdministratorDoubts} type="administrator" />

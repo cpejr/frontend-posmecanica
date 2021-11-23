@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Fab } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Navbar';
@@ -21,12 +22,12 @@ const inputProps = [
     path: 'aluno/postagem-teses',
   },
   {
-    text: 'Editar Informações',
-    path: 'aluno/editar',
-  },
-  {
     text: 'Enviar Dúvida',
     path: 'aluno/duvidas/envio',
+  },
+  {
+    text: 'Notificações',
+    path: 'aluno/notificacoes',
   },
   {
     text: 'Redefinição de senha',
@@ -58,32 +59,47 @@ function StudentDocuments() {
 
   return (
     <div className="sentDocumentsRoot">
-      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      {loading ? (
-        <div style={{
-          height: '72%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-        >
-          <CircularProgress />
-        </div>
-      )
-        : (
-          <>
-            <h1 className="sentDocumentsTitle">Teses:</h1>
-            <div className="sentDocumentsWrapper">
-              {user.name && <h2>{user.name}</h2>}
-              {documents.map((document) => (
-                <StudentDocument file={document} />
-              ))}
-            </div>
-            <RightPanel
-              inputProps={inputProps}
-              expandRightPanel={expandRightPanel}
-              setExpandRightPanel={setExpandRightPanel}
-            />
-          </>
-        )}
-      <Footer />
+      <div className="screen-SentDoubts">
+        <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+        {loading ? (
+          <div style={{
+            height: '72%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+          >
+            <CircularProgress />
+          </div>
+        )
+          : (
+            <>
+              <div className="thesisList-header">
+                <div className="sentPostTitle">
+                  <h1 className="sentDocumentsTitle">Minhas Teses:</h1>
+                </div>
+                <div className="sentDocumentsPost">
+                  <Link to="/painel/aluno/postagem-teses">
+                    <Button className="button1">Postar +</Button>
+                    <Button className="button2">
+                      <Fab color="primary">
+                        +
+                      </Fab>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="sentDocumentsWrapper">
+                {documents.map((document) => (
+                  <StudentDocument file={document} />
+                ))}
+              </div>
+              <RightPanel
+                inputProps={inputProps}
+                expandRightPanel={expandRightPanel}
+                setExpandRightPanel={setExpandRightPanel}
+              />
+            </>
+          )}
+        <Footer />
+      </div>
     </div>
   );
 }

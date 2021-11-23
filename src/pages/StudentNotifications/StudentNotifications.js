@@ -53,27 +53,18 @@ function StudentNotification() {
     setOpen(false);
     setMsg({});
   };
-
   const inputProps = [
     {
-      text: 'Notas',
-      path: '/',
+      text: 'Página Principal',
+      path: 'aluno',
     },
     {
-      text: 'Teses',
-      path: '/',
+      text: 'Postagem de Teses',
+      path: 'aluno/postagem-teses',
     },
     {
-      text: 'Documentos',
-      path: '/painel/aluno/documentos',
-    },
-    {
-      text: 'Editar Informações',
-      path: '/',
-    },
-    {
-      text: 'Dúvidas',
-      path: '/',
+      text: 'Enviar Dúvida',
+      path: 'aluno/duvidas/envio',
     },
     {
       text: 'Redefinição de senha',
@@ -110,75 +101,77 @@ function StudentNotification() {
 
   return (
     <div className="doubtRoot">
-      <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      {loading ? (
-        <div style={{
-          height: '72%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-        >
-          <CircularProgress />
-        </div>
-      )
-        : (
-          <div className="studentDoubt">
-            <div className="doubtTitle">
-              <h1>Notificações:</h1>
-            </div>
-            <List className={classes.root}>
-              {messages.map((m) => (
-                <button type="button" className="messageRow" onClick={handleClickOpen('paper', m)}>
-                  <Divider component="li" />
-                  <ListItem alignItems="center" key={m.message_id}>
-                    {m.message_status === 'new'
-                      ? (<span className="dot" />)
-                      : (<span className="read-dot" />)}
-                    <ListItemText
-                      primary={m.message_title}
-                      secondary={m.message_body}
-                    />
-                    <MdChevronRight size={30} />
-                  </ListItem>
-                </button>
-              ))}
-              <Divider component="li" />
-            </List>
-            <Dialog
-              open={open}
-              fullWidth
-              onClose={handleClose}
-              scroll={scroll}
-              aria-labelledby="scroll-dialog-title"
-              aria-describedby="scroll-dialog-description"
-            >
-              <DialogTitle id="scroll-dialog-title">{msg.message_title}</DialogTitle>
-              <DialogContent dividers={scroll === 'paper'}>
-                <DialogContentText
-                  id="scroll-dialog-description"
-                  ref={descriptionElementRef}
-                  tabIndex={-1}
-                >
-                  <div>
-                    <h6>Mensagem Enviada:</h6>
-                    {msg.message_body}
-                    {msg.parent_message && (<h6>Resposta recebida:</h6>)}
-                    {msg.parent_message?.message_body}
-                  </div>
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Fechar
-                </Button>
-              </DialogActions>
-            </Dialog>
+      <div className="screen-SentDoubts">
+        <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+        {loading ? (
+          <div style={{
+            height: '72%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+          >
+            <CircularProgress />
           </div>
-        )}
-      <RightPanel
-        inputProps={inputProps}
-        expandRightPanel={expandRightPanel}
-        setExpandRightPanel={setExpandRightPanel}
-      />
-      <Footer />
+        )
+          : (
+            <div className="studentDoubt">
+              <div className="doubtTitle">
+                <h1>Notificações:</h1>
+              </div>
+              <List className={classes.root}>
+                {messages.map((m) => (
+                  <button type="button" className="messageRow" onClick={handleClickOpen('paper', m)}>
+                    <Divider component="li" />
+                    <ListItem alignItems="center" key={m.message_id}>
+                      {m.message_status === 'new'
+                        ? (<span className="dot" />)
+                        : (<span className="read-dot" />)}
+                      <ListItemText
+                        primary={m.message_title}
+                        secondary={m.message_body}
+                      />
+                      <MdChevronRight size={30} />
+                    </ListItem>
+                  </button>
+                ))}
+                <Divider component="li" />
+              </List>
+              <Dialog
+                open={open}
+                fullWidth
+                onClose={handleClose}
+                scroll={scroll}
+                aria-labelledby="scroll-dialog-title"
+                aria-describedby="scroll-dialog-description"
+              >
+                <DialogTitle id="scroll-dialog-title">{msg.message_title}</DialogTitle>
+                <DialogContent dividers={scroll === 'paper'}>
+                  <DialogContentText
+                    id="scroll-dialog-description"
+                    ref={descriptionElementRef}
+                    tabIndex={-1}
+                  >
+                    <div>
+                      <h6>Mensagem Enviada:</h6>
+                      {msg.message_body}
+                      {msg.parent_message && (<h6>Resposta recebida:</h6>)}
+                      {msg.parent_message?.message_body}
+                    </div>
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    Fechar
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+          )}
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
+        <Footer />
+      </div>
     </div>
   );
 }

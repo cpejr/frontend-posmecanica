@@ -3,6 +3,18 @@
   flex-direction: column;
   width: 100%;
 
+  .notification-Title {
+    margin-top: 2rem;
+    h1 {
+      color: black;
+      font-size: 25pt;
+      @media (max-width: 490px) {
+        color: black;
+        font-size: 16pt;
+      }
+    }
+  }
+
   .sendDoubtInputWrapper {
     width: 80%;
     margin: 0 auto;
@@ -27,6 +39,11 @@
       font-size: 25px;
       box-shadow: 1px 1px 5px #000;
       cursor: pointer;
+
+      @media (max-width: 450px) {
+        font-size: 15px;
+        padding: .7rem 2rem;
+      }
     }
   }
 }

@@ -62,24 +62,24 @@ function ThesesPost() {
   };
   const inputProps = [
     {
-      text: "Página Inicial",
-      path: "/",
+      text: 'Página Inicial',
+      path: 'aluno',
     },
     {
-      text: "Notas",
-      path: "/",
+      text: 'Visualizar Teses',
+      path: 'aluno/teses',
     },
     {
-      text: "Editar Informações",
-      path: "/",
+      text: 'Enviar Dúvida',
+      path: 'aluno/duvidas/envio',
     },
     {
-      text: "Dúvidas",
-      path: "/",
+      text: 'Notificações',
+      path: 'aluno/notificacoes',
     },
     {
-      text: "Redefinição de senha",
-      path: "../esqueci-senha",
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
 

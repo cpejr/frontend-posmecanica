@@ -1,5 +1,9 @@
 .sentDocumentsRoot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  height: 100%;
 
   .sentDocumentsTitle {
     color: black;
@@ -7,8 +11,48 @@
   }
   .sentDocumentsWrapper {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .tehsis-StudentName {
+      font-size: 12pt;
+      color: black;
+    }
+
+    .tehsis-StudentFile {
+      display: flex;
+      flex-direction: row;
+    }
 
   }
+
+  .thesisList-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .sentDocumentsPost {
+      .button1 {
+        position: absolute;
+        right: 2rem;
+        color: #1037a1;
+        @media (max-width: 490px) {
+          display: none;
+        }
+      }
+
+      .button2 {
+        display: none;
+        @media (max-width: 490px) {
+        margin-right: 20px;
+        display: initial;
+        position: static;
+        color: white;
+        }
+      }
+    }
+  }
+
 }
 
 .sentDocumentsRootInside{
