@@ -46,24 +46,24 @@ function FormProf() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (dados.prof_name !== ''
-    && dados.prof_email !== ''
-    && dados.prof_description !== ''
-    && dados.prof_curriculum !== ''
-    && dados.prof_gender !== ''
-    && dados.prof_active !== ''
-    && dados.prof_birth !== ''
-    && dados.prof_cpf !== ''
-    && dados.prof_credential !== ''
-    && dados.prof_type !== ''
-    && dados.prof_title !== ''
-    && dados.prof_title_year !== ''
-    && dados.prof_university !== ''
-    && dados.prof_city !== ''
-    && dados.prof_state !== ''
-    && dados.prof_country !== ''
-    && dados.prof_course !== ''
-    && dados.prof_treatment !== ''
-    && dados.prof_workplace !== '') {
+      && dados.prof_email !== ''
+      && dados.prof_description !== ''
+      && dados.prof_curriculum !== ''
+      && dados.prof_gender !== ''
+      && dados.prof_active !== ''
+      && dados.prof_birth !== ''
+      && dados.prof_cpf !== ''
+      && dados.prof_credential !== ''
+      && dados.prof_type !== ''
+      && dados.prof_title !== ''
+      && dados.prof_title_year !== ''
+      && dados.prof_university !== ''
+      && dados.prof_city !== ''
+      && dados.prof_state !== ''
+      && dados.prof_country !== ''
+      && dados.prof_course !== ''
+      && dados.prof_treatment !== ''
+      && dados.prof_workplace !== '') {
       dados.prof_birth = moment(dados.prof_birth).format();
       setLoading(true);
       await managerService.createProfessor(dados);
@@ -103,7 +103,7 @@ function FormProf() {
       path: 'processos-seletivos',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
