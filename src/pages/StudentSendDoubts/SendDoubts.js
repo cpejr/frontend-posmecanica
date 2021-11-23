@@ -37,8 +37,8 @@ function SendDoubts() {
       path: 'aluno/postagem-teses',
     },
     {
-      text: 'Editar Informações',
-      path: 'aluno/editar',
+      text: 'Notificações',
+      path: 'aluno/notificacoes',
     },
     {
       text: 'Dúvidas',

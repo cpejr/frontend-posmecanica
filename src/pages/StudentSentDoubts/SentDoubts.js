@@ -62,16 +62,16 @@ function SentDoubts() {
       path: 'aluno',
     },
     {
-      text: 'Postagem Teses',
+      text: 'Postagem de Teses',
       path: 'aluno/postagem-teses',
-    },
-    {
-      text: 'Editar Informações',
-      path: 'aluno/editar',
     },
     {
       text: 'Enviar Dúvida',
       path: 'aluno/duvidas/envio',
+    },
+    {
+      text: 'Notificações',
+      path: 'aluno/notificacoes',
     },
     {
       text: 'Redefinição de senha',
