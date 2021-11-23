@@ -24,11 +24,18 @@
   height: 60px;
   width: 60px;
   margin-right: 2vw;
+  @media screen and (max-width: 450px) {
+    height: 35px;
+    width: 35px;
+  }
 }
 .titleHeader {
   font-family: Montserrat;
   font-size: 20px;
   width: 100%;
+  @media screen and (max-width: 450px) {
+    font-size: 10px;
+  }
 }
 .buttonExpandIcon {
   border-radius: 35px;
