@@ -146,76 +146,78 @@ function SentDoubts() {
   return (
     <div className="doubtRoot">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
-      <div className="studentDoubt">
-        <div className="doubtTitle">
-          <h1>Dúvidas Recebidas:</h1>
+      <div className="screen-SentDoubts">
+        <div className="studentDoubt">
+          <div className="doubtTitle">
+            <h1>Dúvidas Recebidas:</h1>
+          </div>
+          <List className={classes.root}>
+            {doubts?.map((d) => (
+              <button type="button" className="messageRow" onClick={handleClickOpen('paper', d)}>
+                <Divider component="li" />
+                <ListItem alignItems="center" key={d.message_id}>
+                  <ListItemText
+                    primary={d.message_title}
+                    secondary={d.message_body}
+                  />
+                  <MdChevronRight size={30} />
+                </ListItem>
+              </button>
+            ))}
+            <Divider component="li" />
+          </List>
+          <Dialog
+            open={open}
+            fullWidth
+            onClose={handleClose}
+            scroll={scroll}
+            aria-labelledby="scroll-dialog-title"
+            aria-describedby="scroll-dialog-description"
+          >
+            <DialogTitle id="scroll-dialog-title">{msg.message_title}</DialogTitle>
+            <DialogContent dividers={scroll === 'paper'}>
+              <DialogContentText
+                id="scroll-dialog-description"
+                ref={descriptionElementRef}
+                tabIndex={-1}
+              >
+                <div>
+                  <h6>Mensagem Recebida:</h6>
+                  {msg.message_body}
+                  {msg.parent_message && (<h6>Resposta recebida:</h6>)}
+                </div>
+              </DialogContentText>
+              <div className="sendDoubtInputWrapper">
+                <div className="sendDoubtInput">
+                  <StyledInput
+                    type="text"
+                    id="message_body"
+                    label="Resposta"
+                    width="100%"
+                    multiline
+                    dados={dados}
+                    setDados={handleChange}
+                  />
+                </div>
+              </div>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="secondary">
+                Fechar
+              </Button>
+              <Button onClick={handleClick} color="primary">
+                Enviar
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
-        <List className={classes.root}>
-          {doubts?.map((d) => (
-            <button type="button" className="messageRow" onClick={handleClickOpen('paper', d)}>
-              <Divider component="li" />
-              <ListItem alignItems="center" key={d.message_id}>
-                <ListItemText
-                  primary={d.message_title}
-                  secondary={d.message_body}
-                />
-                <MdChevronRight size={30} />
-              </ListItem>
-            </button>
-          ))}
-          <Divider component="li" />
-        </List>
-        <Dialog
-          open={open}
-          fullWidth
-          onClose={handleClose}
-          scroll={scroll}
-          aria-labelledby="scroll-dialog-title"
-          aria-describedby="scroll-dialog-description"
-        >
-          <DialogTitle id="scroll-dialog-title">{msg.message_title}</DialogTitle>
-          <DialogContent dividers={scroll === 'paper'}>
-            <DialogContentText
-              id="scroll-dialog-description"
-              ref={descriptionElementRef}
-              tabIndex={-1}
-            >
-              <div>
-                <h6>Mensagem Recebida:</h6>
-                {msg.message_body}
-                {msg.parent_message && (<h6>Resposta recebida:</h6>)}
-              </div>
-            </DialogContentText>
-            <div className="sendDoubtInputWrapper">
-              <div className="sendDoubtInput">
-                <StyledInput
-                  type="text"
-                  id="message_body"
-                  label="Resposta"
-                  width="100%"
-                  multiline
-                  dados={dados}
-                  setDados={handleChange}
-                />
-              </div>
-            </div>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="secondary">
-              Fechar
-            </Button>
-            <Button onClick={handleClick} color="primary">
-              Enviar
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <RightPanel
+          inputProps={inputProps}
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
+        <Footer />
       </div>
-      <RightPanel
-        inputProps={inputProps}
-        expandRightPanel={expandRightPanel}
-        setExpandRightPanel={setExpandRightPanel}
-      />
-      <Footer />
     </div>
   );
 }
