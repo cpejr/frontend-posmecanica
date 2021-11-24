@@ -21,7 +21,7 @@ function ThesisDefense({ location }) {
   const [data, setData] = useState('');
   const history = useHistory();
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   function formatedDate(date) {
     let newData = '';
