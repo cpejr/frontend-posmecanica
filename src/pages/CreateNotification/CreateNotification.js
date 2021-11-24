@@ -93,6 +93,10 @@ function CreateNotification() {
       path: 'administrator/criar-notificacao',
     },
     {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
       path: 'esqueci-senha',
     },

@@ -1,0 +1,28 @@
+.thesisList-student {
+  width: 50%;
+}
+
+.thesisList-sentDocumentsWrapper {
+  margin-top: 20px;
+  padding: 2rem;
+
+}
+
+.thesisList-grid {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.thesisList-NoStudentSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #51595c56;
+  font-size: 180%;
+  @media (max-width: 400px){
+    font-size: 120%;
+  }
+}
