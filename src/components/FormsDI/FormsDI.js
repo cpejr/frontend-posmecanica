@@ -41,7 +41,7 @@ function Forms({
 
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
-      resp = resp.filter((item) => item.discipline_semester === 'ATIVO');
+      resp = resp.filter((item) => item.discipline_semester === 'OFERTADO');
       const disciplinas = [];
       disciplinas.push({ label: 'Nenhuma', value: '' });
       resp.forEach((object) => {
