@@ -16,12 +16,16 @@ const inputProps = [
     path: 'administrator',
   },
   {
-    text: 'Criar processo seletivo',
-    path: 'administrator/criar-notificacao',
-  },
-  {
     text: 'Lista de professores',
     path: 'lista-professores',
+  },
+  {
+    text: 'Lista de estudantes',
+    path: 'administrator/lista-estudantes',
+  },
+  {
+    text: 'Lista de Disciplinas',
+    path: 'administrator/lista-isoladas',
   },
   {
     text: 'Criar processo seletivo',
