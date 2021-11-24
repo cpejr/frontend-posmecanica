@@ -41,6 +41,7 @@ import CreateNotification from './pages/CreateNotification';
 import StudentNotifications from './pages/StudentNotifications';
 import PrivateRoute from './components/PrivateRoute';
 import NotFound from './pages/NotFound/NotFound';
+import ThesisListAdm from './pages/ThesisListAdm';
 
 const useStyles = makeStyles({
   container: {
@@ -95,6 +96,7 @@ function Routes() {
           <PrivateRoute exact path="/painel/administrator/lista-isoladas" component={IsolatedList} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/atualizar-disciplina" component={EditDiscipline} type="administrator" />
           <PrivateRoute exact path="/painel/administrator/processos-seletivos/resultados" component={ProcessSelectiveResult} type="administrator" />
+          <PrivateRoute exact path="/painel/administrator/teses" component={ThesisListAdm} type="administrator" />
           <Route path="/" component={NotFound} />
         </Switch>
       </div>
