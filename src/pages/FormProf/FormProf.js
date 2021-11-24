@@ -66,10 +66,15 @@ function FormProf() {
       && dados.prof_workplace !== '') {
       dados.prof_birth = moment(dados.prof_birth).format();
       setLoading(true);
-      await managerService.createProfessor(dados);
-      addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
-      setLoading(false);
-      history.push('/painel/lista-professores');
+      try {
+        await managerService.createProfessor(dados);
+        addToast('Cadastro realizado com sucesso!', { appearance: 'success' });
+        setLoading(false);
+        history.push('/painel/lista-professores');
+      } catch {
+        addToast('Erro ao cadastrar professor!', { appearance: 'error' });
+        setLoading(false);
+      }
     } else {
       addToast('Preencha todos os campos!', { appearance: 'error' });
       setLoading(false);
