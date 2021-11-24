@@ -55,6 +55,9 @@ $azulPadrao: #1d2d57;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 25pt;
+  @media (max-width: 600px){
+      font-size: 18pt;
+  }
 }
 
 
