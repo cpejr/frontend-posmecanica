@@ -78,8 +78,8 @@ function SentDoubts() {
       path: 'administrator',
     },
     {
-      text: 'Criar processo seletivo',
-      path: 'administrator/criar-notificacao',
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
     },
     {
       text: 'Lista de professores',
@@ -104,6 +104,10 @@ function SentDoubts() {
     {
       text: 'Enviar Notificação',
       path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
     },
     {
       text: 'Redefinição de senha',

@@ -19,7 +19,7 @@ function ThesisQualification({ location }) {
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   const history = useHistory();
   function formatedDate(date) {
@@ -55,6 +55,10 @@ function ThesisQualification({ location }) {
     {
       text: 'Enviar Notificação',
       path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
     },
     {
       text: 'Redefinição de senha',

@@ -21,7 +21,7 @@ function ThesisDefense({ location }) {
   const [data, setData] = useState('');
   const history = useHistory();
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   function formatedDate(date) {
     let newData = '';
@@ -64,6 +64,10 @@ function ThesisDefense({ location }) {
     {
       text: 'Enviar Notificação',
       path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
     },
     {
       text: 'Redefinição de senha',
