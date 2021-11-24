@@ -116,7 +116,7 @@ function EditDiscipline({ location }) {
               </div>
             </div>
           ))}
-          <div className="Login-button1">
+          <div className="Update-button1">
             <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
         </div>
