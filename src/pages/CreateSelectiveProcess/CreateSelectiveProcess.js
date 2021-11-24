@@ -142,8 +142,9 @@ function registerDis() {
                 <StyledInput
                   type="text"
                   id="process_semester"
-                  label="Semestre"
+                  label="Ano/Semestre"
                   width="100%"
+                  placeholder="xxxx/x"
                   dados={dados}
                   setDados={handleChange}
                 />

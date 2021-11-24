@@ -24,7 +24,7 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 function StyledInput({
-  setDados, type, label, id, width, field, select, height, shrink, defaultValue, rows, multiline, error, text,
+  setDados, type, label, id, width, field, select, height, shrink, defaultValue, rows, multiline, error, text, placeholder,
 
 }) {
 
@@ -127,8 +127,8 @@ function StyledInput({
       helperText={(error && !change && text !== 'noRequired') ? "Preencha esse campo." : ""}
       defaultValue={defaultValue}
       onChange={(e) => handleChange(e, id)}
-      value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : label === 'Semestre' ? semester : undefined}
-
+      value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : label === 'Ano/Semestre' ? semester : undefined}
+      placeholder={placeholder}
     >
       {select === true && field.length === 0 && loading === true && (
         <div className="loadingStyledInput">
