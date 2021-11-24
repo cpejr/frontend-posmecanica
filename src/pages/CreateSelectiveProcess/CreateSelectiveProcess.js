@@ -37,15 +37,19 @@ function registerDis() {
         const year = dados.process_semester.substr(0, 4);
         const semester = dados.process_semester.substr(4, 5);
         dados.process_semester = year.concat('/').concat(semester);
-        dados.process_date_begin = moment(dados.process_date_begin).format();
-        dados.process_date_end = moment(dados.process_date_end).format();
-        const verify = await managerService.verifySelectiveProcess('process_type', dados);
-        if (verify.length === 0) {
-          await managerService.createSelectiveProcess(dados);
-          addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
-          history.push('/painel/processos-seletivos');
+        if (semester === '1' || semester === '2') {
+          dados.process_date_begin = moment(dados.process_date_begin).format();
+          dados.process_date_end = moment(dados.process_date_end).format();
+          const verify = await managerService.verifySelectiveProcess('process_type', dados);
+          if (verify.length === 0) {
+            await managerService.createSelectiveProcess(dados);
+            addToast('Processo Seletivo criado com sucesso!', { appearance: 'success' });
+            history.push('/painel/processos-seletivos');
+          } else {
+            addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
+          }
         } else {
-          addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
+          addToast('Insira um semestre válido!', { appearance: 'error' });
         }
       } else {
         addToast('Preencha todos os campos corretamente!', { appearance: 'error' });
