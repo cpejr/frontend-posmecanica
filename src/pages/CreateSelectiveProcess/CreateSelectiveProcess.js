@@ -16,6 +16,7 @@ function registerDis() {
     process_name: '',
     process_date_begin: '',
     process_date_end: '',
+    process_semester: '',
   };
   const [dados, setDados] = useState(initialState);
   const history = useHistory();
@@ -31,9 +32,13 @@ function registerDis() {
       if (dados.process_type.length > 3
         && dados.process_name.length > 3
         && dados.process_date_begin !== ''
-        && dados.process_date_end !== '') {
+        && dados.process_date_end !== ''
+        && dados.process_semester.length === 5) {
+        const year = dados.process_semester.substr(0, 4);
+        const semester = dados.process_semester.substr(4, 5);
+        dados.process_semester = year.concat('/').concat(semester);
         dados.process_date_begin = moment(dados.process_date_begin).format();
-        dados.process_date_end = moment(dados.process_date_end).format('DD MMMM YYYY, 23:59:59');
+        dados.process_date_end = moment(dados.process_date_end).format();
         const verify = await managerService.verifySelectiveProcess('process_type', dados);
         if (verify.length === 0) {
           await managerService.createSelectiveProcess(dados);
@@ -43,7 +48,7 @@ function registerDis() {
           addToast('Já há um processo em andamento na data escolhida!', { appearance: 'error' });
         }
       } else {
-        addToast('Preencha todos os campos!', { appearance: 'error' });
+        addToast('Preencha todos os campos corretamente!', { appearance: 'error' });
       }
     } else {
       addToast('Data inválida!', { appearance: 'error' });
@@ -122,6 +127,18 @@ function registerDis() {
                   type="text"
                   id="process_name"
                   label="Nome do processo"
+                  width="100%"
+                  dados={dados}
+                  setDados={handleChange}
+                />
+              </div>
+            </div>
+            <div className="input-SPcontent">
+              <div className="form_SP_cad_input">
+                <StyledInput
+                  type="text"
+                  id="process_semester"
+                  label="Semestre"
                   width="100%"
                   dados={dados}
                   setDados={handleChange}

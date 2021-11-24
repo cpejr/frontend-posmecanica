@@ -33,6 +33,7 @@ function StyledInput({
   const [CPF, setCPF] = useState('');
   const [phone, setPhone] = useState('');
   const [CEP, setCEP] = useState('');
+  const [semester, setSemester] = useState('');
   const [loading, setLoading] = useState(true);
 
   // 000.000.000-00
@@ -62,6 +63,14 @@ function StyledInput({
       .replace(/(-\d{3})\d+?$/, '$1')
   );
 
+  // 2021/1
+  const maskSemester = (value) => (
+    value.toString()
+      .replace(/\D/g, '')
+      .replace(/(\d{4})(\d{1,2})/, '$1/$2')
+      .replace(/(\/\d{1})\d+?$/, '$1')
+  );
+
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
       setValidadion(true);
@@ -74,6 +83,7 @@ function StyledInput({
     setCPF(maskCPF(e.target.value));
     setPhone(maskPhone(e.target.value));
     setCEP(maskCEP(e.target.value));
+    setSemester(maskSemester(e.target.value));
   };
 
   setTimeout(() => {
@@ -117,7 +127,7 @@ function StyledInput({
       helperText={(error && !change && text !== 'noRequired') ? "Preencha esse campo." : ""}
       defaultValue={defaultValue}
       onChange={(e) => handleChange(e, id)}
-      value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : undefined}
+      value={label === 'CPF' ? CPF : label === 'Número do telefone' ? phone : label === 'CEP' ? CEP : label === 'Semestre' ? semester : undefined}
 
     >
       {select === true && field.length === 0 && loading === true && (
