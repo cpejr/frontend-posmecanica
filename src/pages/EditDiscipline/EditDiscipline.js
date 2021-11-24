@@ -47,7 +47,7 @@ function EditDiscipline({ location }) {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
@@ -120,7 +120,7 @@ function EditDiscipline({ location }) {
               </div>
             </div>
           ))}
-          <div className="Login-button1">
+          <div className="Update-button1">
             <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
         </div>

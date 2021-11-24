@@ -36,15 +36,15 @@ function ProfessorList() {
   const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
-    if(professors) {
+    if (professors) {
       setLoading(true);
-    const getProfessors = await managerService.getAllProfessors();
-    const filteredProfessors = getProfessors.filter((searchName) =>
-      searchName.prof_name
-        .toLowerCase()
-        .includes(inputText.toLowerCase())
-    );
-    setProfessors(filteredProfessors);
+      const getProfessors = await managerService.getAllProfessors();
+      const filteredProfessors = getProfessors.filter((searchName) =>
+        searchName.prof_name
+          .toLowerCase()
+          .includes(inputText.toLowerCase())
+      );
+      setProfessors(filteredProfessors);
     }
     setLoading(false)
   }, [inputText]);
@@ -78,7 +78,7 @@ function ProfessorList() {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
@@ -144,11 +144,11 @@ function ProfessorList() {
             </h4>
           </div>
           <div className="professor-list-content">
-          {loading === true && (
-            <div className="BdDivGridLoader">
-              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
-            </div>
-          )}
+            {loading === true && (
+              <div className="BdDivGridLoader">
+                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              </div>
+            )}
             <div className={classes.root}>
               {orderElements(professors, searchAreaOrder)?.map((item) => (
                 <Accordion key={item.search_area_id}>

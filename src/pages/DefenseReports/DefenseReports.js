@@ -39,7 +39,7 @@ function DefenseReports({ location }) {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
@@ -103,7 +103,7 @@ function DefenseReports({ location }) {
         setExpandRightPanel={setExpandRightPanel}
       />
       <div className="defenseReport-container">
-      {infos.map((info) => renderInfo(info))}
+        {infos.map((info) => renderInfo(info))}
         <RightPanel
           inputProps={inputProps}
           expandRightPanel={expandRightPanel}

@@ -42,7 +42,7 @@ function SentDoubts() {
   const { user } = useAuth();
 
   const classes = useStyles();
-  const { doubts } = useAdminDoubtContext();
+  const { doubts, setRefetch } = useAdminDoubtContext();
 
   const initialState = {
     message_sender_id: '',
@@ -98,7 +98,7 @@ function SentDoubts() {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
@@ -117,6 +117,7 @@ function SentDoubts() {
 
   const descriptionElementRef = useRef(null);
   useEffect(() => {
+    setRefetch(false);
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
@@ -127,6 +128,7 @@ function SentDoubts() {
       managerService.updateMessage(id, { message_status: 'answered' }).catch((err) => {
         console.error(err);
       });
+      setRefetch(true);
     }
   }, [open]);
 
@@ -164,6 +166,9 @@ function SentDoubts() {
               <button type="button" className="messageRow" onClick={handleClickOpen('paper', d)}>
                 <Divider component="li" />
                 <ListItem alignItems="center" key={d.message_id}>
+                  {d.message_status === 'new'
+                    ? (<span className="dot" />)
+                    : (<span className="read-dot" />)}
                   <ListItemText
                     primary={d.message_title}
                     secondary={d.message_body}
