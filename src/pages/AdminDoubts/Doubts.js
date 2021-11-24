@@ -78,8 +78,8 @@ function SentDoubts() {
       path: 'administrator',
     },
     {
-      text: 'Criar processo seletivo',
-      path: 'administrator/criar-notificacao',
+      text: 'Lista de estudantes',
+      path: 'administrator/lista-estudantes',
     },
     {
       text: 'Lista de professores',
