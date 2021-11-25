@@ -4,6 +4,7 @@ import { RiFileInfoLine, RiFile3Fill } from 'react-icons/ri';
 const infosIso = [
   {
     text: 'Informações do candidato:',
+    subText: 'Minhas Informações:',
     docs: [
       {
         text: ['Form'],
@@ -14,6 +15,7 @@ const infosIso = [
   },
   {
     text: 'Documentos do candidato:',
+    subText: 'Meus Documentos:',
     docs: [
       {
         text: 'Docs',

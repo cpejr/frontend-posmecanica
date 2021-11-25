@@ -63,6 +63,10 @@ function StudentNotification() {
       path: 'aluno/postagem-teses',
     },
     {
+      text: 'Meus Documentos',
+      path: 'aluno/documentos',
+    },
+    {
       text: 'Enviar Dúvida',
       path: 'aluno/duvidas/envio',
     },

@@ -30,6 +30,10 @@ function DashboardAluno() {
       path: 'aluno/duvidas/envio',
     },
     {
+      text: 'Meus Documentos',
+      path: 'aluno/documentos',
+    },
+    {
       text: 'Notificações',
       path: 'aluno/notificacoes',
     },

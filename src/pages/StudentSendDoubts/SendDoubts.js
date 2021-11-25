@@ -37,6 +37,10 @@ function SendDoubts() {
       path: 'aluno/postagem-teses',
     },
     {
+      text: 'Meus Documentos',
+      path: 'aluno/documentos',
+    },
+    {
       text: 'Notificações',
       path: 'aluno/notificacoes',
     },
