@@ -33,7 +33,6 @@ import IsolatedList from './pages/IsolatedList';
 import EditDiscipline from './pages/EditDiscipline';
 import ProcessSelectiveResult from './pages/IssuingsReports/ProcessSelectiveResult';
 import SentDoubts from './pages/StudentSentDoubts';
-import StudentDocuments from './pages/StudentDocuments/StudentDocuments';
 import SendDoubts from './pages/StudentSendDoubts';
 import AdministratorDoubts from './pages/AdminDoubts';
 import ThesisList from './pages/ThesisList';
@@ -42,6 +41,7 @@ import StudentNotifications from './pages/StudentNotifications';
 import PrivateRoute from './components/PrivateRoute';
 import NotFound from './pages/NotFound/NotFound';
 import ThesisListAdm from './pages/ThesisListAdm';
+import StudentDocsContent from './pages/SentDocuments/StudentDocsContent';
 
 const useStyles = makeStyles({
   container: {
@@ -58,7 +58,7 @@ function Routes() {
         <Switch>
           <PrivateRoute exact path="/painel/professor" component={DashboardProfessor} type="professor" />
           <PrivateRoute exact path="/painel/aluno" component={DashboardAluno} type="aluno" />
-          <PrivateRoute exact path="/painel/aluno/documentos" component={StudentDocuments} type="aluno" />
+          <PrivateRoute exact path="/painel/aluno/documentos" component={StudentDocsContent} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/lista" component={SentDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/duvidas/envio" component={SendDoubts} type="aluno" />
           <PrivateRoute exact path="/painel/aluno/notificacoes" component={StudentNotifications} type="aluno" />
