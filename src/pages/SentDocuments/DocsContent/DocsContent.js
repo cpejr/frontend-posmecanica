@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Document from '../../../components/Document';
 import infos from '../../../utils/CandidateDocuments';
+import infosIso from '../../../utils/CandidateDocumentsIso';
 import Modal from '../../../utils/GenericModal';
 import * as managerService from '../../../services/manager/managerService';
 import './DocsContent.scss';
@@ -66,7 +67,54 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
       );
     }
     return (
-      <div key={docs.types[1]} className="DC-documentsDivLine">
+      <div className="DC-documentsDivLine">
+        <Document
+          type={docs.types[0]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[0]}
+        </Document>
+        <Document
+          type={docs.types[1]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[1]}
+        </Document>
+        <Document
+          type={docs.types[2]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[2]}
+        </Document>
+        {candidate.candidate_grade === 'DOUTORADO'
+          && (
+            <Document
+              type={docs.types[3]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[3]}
+            </Document>
+          )}
+      </div>
+    );
+  };
+
+  const renderLineIso = (docs) => {
+    if (docs.types.length === 1) {
+      return (
+        <div key={docs.types[0]} className="DC-documentsDivLine">
+          <Document handleClick={handleClickInfoModal} type={docs.types[0]} text={docs.text[0]}>
+            {docs.icons[0]}
+          </Document>
+        </div>
+      );
+    }
+    return (
+      <div className="DC-documentsDivLine">
         <Document
           type={docs.types[0]}
           candidate={candidate.candidate_id}
@@ -111,15 +159,28 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
     </div>
   );
 
+  const renderInfoIso = (info) => (
+    <div key={info.text} className="DC-infoContainer">
+      <div className="DC-personNameTitle">
+        {info.text}
+      </div>
+      {info.docs.map((line) => renderLineIso(line))}
+    </div>
+  );
+
   return (
     <div>
       <div className="DC-title">
         Documentos Enviados
       </div>
       <div className="DC-documentsDiv">
-        {infos.map((info) => renderInfo(info))}
+        {candidate.candidate_grade === 'NENHUMA DAS OPÇÕES' ? (
+          infosIso.map((info) => renderInfoIso(info))
+        ) : (
+          infos.map((info) => renderInfo(info))
+        )}
       </div>
-      {(candidate.candidate_form_approval === null || edit === true) ? (
+      {(candidate.candidate_form_approval === null || edit === true) && (candidate.candidate_grade !== 'NENHUMA DAS OPÇÕES') ? (
         <div className="DC-buttons">
           <div className="DC-button-aprovar">
             <button type="button" onClick={handleButtonsClick}>
@@ -136,15 +197,17 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         <div className="DC-result">
           {candidate.candidate_form_approval === true ? (
             <p>Documentos Homologados</p>
-          ) : (
+          ) : (candidate.candidate_grade !== 'NENHUMA DAS OPÇÕES' && (
             <p>Documentos não homologados</p>
-          )}
+          ))}
           <div className="DC-buttons">
-            <div className="DC-button-aprovar">
-              <button type="button" onClick={() => setEdit(true)}>
-                Alterar resultado
-              </button>
-            </div>
+            {candidate.candidate_grade !== 'NENHUMA DAS OPÇÕES' && (
+              <div className="DC-button-aprovar">
+                <button type="button" onClick={() => setEdit(true)}>
+                  <p>Alterar resultado</p>
+                </button>
+              </div>
+            )}
             {candidate.candidate_form_approval === false && (
               <div className="DC-button-solicitar">
                 <button type="button" onClick={handleButtonDeleteClick}>

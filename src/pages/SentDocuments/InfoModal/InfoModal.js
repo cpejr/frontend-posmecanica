@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -6,7 +6,7 @@ import * as managerService from '../../../services/manager/managerService';
 import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
-  close, conteudo, painelADM, disciplinaInfo, studentList,
+  close, conteudo, painelADM, disciplinaInfo, studentList, handleClick,
 }) {
   function formatedDate(date) {
     const data = new Date(date);
@@ -21,6 +21,8 @@ function InfoModal({
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [action, setAction] = useState('');
+  const [selectiveProcessName, setSelectiveProcessName] = useState('-');
+
   function disciplineSituation(discipline) {
     if (discipline === false) {
       return 'Indeferida';
@@ -31,13 +33,19 @@ function InfoModal({
     return 'Pendente';
   }
 
+  useEffect(async () => {
+    if (painelADM === 0) {
+      const process = await managerService.getByIdSelectiveProcess(conteudo.candidate_process_id);
+      setSelectiveProcessName(process.process_name);
+    }
+  }, []);
+
   function redirectToEdit() {
     history.push({
       pathname: '/painel/administrator/editar/aluno',
       state: conteudo,
     });
   }
-
   async function redirectToQualification() {
     setAction('qualificação');
     const verify = await managerService.getByStudentQualification(conteudo.stud_id);
@@ -190,27 +198,33 @@ function InfoModal({
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
+                  <b>Data de Nascimento:</b>
+                  {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
+                </div>
+                <div>
+                  <b>Processo Seletivo:</b>
+                  {` ${selectiveProcessName}`}
+                </div>
+              </div>
+              <div className="rowGrid">
+                <div className="InsideRowGridModal">
                   <b>Primeira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[0]?.discipline_name ? conteudo?.disciplines[0]?.discipline_name : '-'} `}
+                  {` ${disciplinaInfo && disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
                 </div>
                 <div>
                   <b>Segunda Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[1]?.discipline_name ? conteudo?.disciplines[1]?.discipline_name : '-'}`}
+                  {` ${disciplinaInfo && disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
                 </div>
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
                   <b>Terceira Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[2]?.discipline_name ? conteudo?.disciplines[2]?.discipline_name : '-'}`}
+                  {` ${disciplinaInfo && disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
                 </div>
                 <div>
                   <b>Quarta Disciplina Isolada:</b>
-                  {` ${conteudo?.disciplines[3]?.discipline_name ? conteudo?.disciplines[3]?.discipline_name : '-'}`}
+                  {` ${disciplinaInfo && disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
                 </div>
-              </div>
-              <div className="row">
-                <b>Data de Nascimento:</b>
-                {` ${conteudo && formatedDate(conteudo.candidate_birth)}`}
               </div>
               <div className="row">
                 <b>Endereço:</b>
@@ -323,6 +337,9 @@ function InfoModal({
                     </div>
                   </div>
                 )}
+            </div>
+            <div className="teste">
+              <button type="button" className="SPbutton-result" onClick={() => handleClick()}>Ver Documentos</button>
             </div>
           </div>
         </div>

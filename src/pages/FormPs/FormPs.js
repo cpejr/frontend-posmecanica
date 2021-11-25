@@ -47,6 +47,7 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(false);
+  const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -65,25 +66,27 @@ function FormPs() {
       selectiveProcessesMestrado.length === 0 &&
       selectiveProcessesDoutorado.length === 0
     ) {
-      history.push("login");
+      history.push("/");
+    } else {
+      setHasSelectiveProcess(true);
     }
   }, []);
 
   const handleClick = async (e, dados) => {
     e.preventDefault();
     if (
-      dados.candidate_name.length > 3 &&
-      dados.candidate_cpf.length > 3 &&
-      dados.candidate_identity.length > 3 &&
+      dados.candidate_name.length >= 1 &&
+      dados.candidate_cpf.length >= 1 &&
+      dados.candidate_identity.length >= 1 &&
       dados.candidate_expedition !== "" &&
       dados.candidate_mother_name !== "" &&
       dados.candidate_father_name !== "" &&
-      dados.candidate_nationality.length > 3 &&
-      dados.candidate_civil_state.length > 3 &&
-      dados.candidate_birth.length > 3 &&
-      dados.candidate_race.length > 3 &&
-      dados.candidate_gender.length > 3 &&
-      dados.candidate_voter_title.length > 3 &&
+      dados.candidate_nationality.length >= 1 &&
+      dados.candidate_civil_state.length >= 1 &&
+      dados.candidate_birth.length >= 1 &&
+      dados.candidate_race.length >= 1 &&
+      dados.candidate_gender.length >= 1 &&
+      dados.candidate_voter_title.length >= 1 &&
       dados.candidate_zone_title !== "" &&
       dados.candidate_section_title !== "" &&
       dados.candidate_street !== "" &&
@@ -94,10 +97,10 @@ function FormPs() {
       dados.candidate_district !== "" &&
       dados.candidate_grade_date_begin !== "" &&
       dados.candidate_grade_date_end !== "" &&
-      dados.candidate_country.length > 3 &&
-      dados.candidate_cep.length > 3 &&
-      dados.candidate_email.length > 3 &&
-      dados.candidate_phone_number.length > 3 &&
+      dados.candidate_country.length >= 1 &&
+      dados.candidate_cep.length >= 1 &&
+      dados.candidate_email.length >= 1 &&
+      dados.candidate_phone_number.length >= 1 &&
       dados.candidate_university !== "" &&
       dados.candidate_grade_obtained !== "" &&
       dados.candidate_study_regimen !== "" &&
@@ -128,7 +131,7 @@ function FormPs() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
-        history.push("/");
+        history.push("/login");
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
@@ -140,16 +143,21 @@ function FormPs() {
   };
   return (
     <div className="screen-ps">
-      <SiteHeader />
-      <h1> Inscrição Processo Seletivo:</h1>
-      <Forms
-        initialState={initialState}
-        formsInput={formsInput}
-        files={files}
-        setFiles={setFiles}
-        handleClick={handleClick}
-        error={error}
-      />
+      {hasSelectiveProcess && (
+        <>
+          <SiteHeader />
+          <h1> Inscrição Processo Seletivo:</h1>
+          <Forms
+            initialState={initialState}
+            formsInput={formsInput}
+            files={files}
+            setFiles={setFiles}
+            handleClick={handleClick}
+            error={error}
+          />
+        </>
+      )}
+
     </div>
   );
 }

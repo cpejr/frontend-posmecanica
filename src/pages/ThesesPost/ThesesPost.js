@@ -50,7 +50,7 @@ function ThesesPost() {
         try {
           setButtonState("spinerButton");
           setTextButton("");
-          await managerService.uploadThesis(data, user.name, thesisName);
+          await managerService.uploadThesis(data, user.id, thesisName);
           addToast("Tese postada com sucesso!", { appearance: "success" });
           history.push("/painel/aluno");
         } catch {
@@ -62,24 +62,28 @@ function ThesesPost() {
   };
   const inputProps = [
     {
-      text: "Página Inicial",
-      path: "/",
+      text: 'Página Inicial',
+      path: 'aluno',
     },
     {
-      text: "Notas",
-      path: "/",
+      text: 'Visualizar Teses',
+      path: 'aluno/teses',
     },
     {
-      text: "Editar Informações",
-      path: "/",
+      text: 'Enviar Dúvida',
+      path: 'aluno/duvidas/envio',
     },
     {
-      text: "Dúvidas",
-      path: "/",
+      text: 'Meus Documentos',
+      path: 'aluno/documentos',
     },
     {
-      text: "Redefinição de senha",
-      path: "../esqueci-senha",
+      text: 'Notificações',
+      path: 'aluno/notificacoes',
+    },
+    {
+      text: 'Redefinição de senha',
+      path: 'esqueci-senha',
     },
   ];
 

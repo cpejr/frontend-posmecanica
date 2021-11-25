@@ -40,7 +40,7 @@ function SelectiveProcesses() {
   function verificationIsOpen(process) {
     const beginDate = moment(process.process_date_begin).format();
     const endDate = moment(process.process_date_end).format();
-    const currentDate = new Date();
+    const currentDate = moment(new Date()).format();
     if (currentDate >= beginDate && currentDate <= endDate) {
       return 'Em andamento';
     }
@@ -146,12 +146,20 @@ function SelectiveProcesses() {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const inputPropsProfessor = [
@@ -165,7 +173,7 @@ function SelectiveProcesses() {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (

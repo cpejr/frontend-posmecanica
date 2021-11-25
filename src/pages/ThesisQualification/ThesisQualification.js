@@ -19,7 +19,7 @@ function ThesisQualification({ location }) {
   const [local, setLocal] = useState();
   const [data, setData] = useState('');
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   const history = useHistory();
   function formatedDate(date) {
@@ -49,12 +49,20 @@ function ThesisQualification({ location }) {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const qualiProps = [

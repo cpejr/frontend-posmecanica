@@ -17,7 +17,7 @@ function StudentReport({
 }) {
   const history = useHistory();
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   const { addToast } = useToasts();
   const [showConfirmModal, setShowConfirmModal] = useState(false);

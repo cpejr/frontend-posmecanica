@@ -25,7 +25,7 @@ const DisciplineEdit = [
           {
             type: 'text',
             id: 'discipline_semester',
-            label: 'Semestre de oferta',
+            label: 'Status',
             field: semester,
             select: true,
             className: 'formsEdit-input',

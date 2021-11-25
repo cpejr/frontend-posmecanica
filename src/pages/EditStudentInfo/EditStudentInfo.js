@@ -14,9 +14,12 @@ function EditStudentInfo({ location }) {
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
-  const { stud_id } = location.state; // eslint-disable-line
+
+  // eslint-disable-next-line camelcase
+  const { stud_id } = location.state;
+
   const inputProps = [
     {
       text: 'Página principal',
@@ -47,12 +50,20 @@ function EditStudentInfo({ location }) {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const { addToast } = useToasts();
@@ -108,7 +119,7 @@ function EditStudentInfo({ location }) {
               </div>
             </div>
           ))}
-          <div className="Login-button1">
+          <div className="Update-button1">
             <button type="submit" onClick={handleClick}>Atualizar</button>
           </div>
         </div>

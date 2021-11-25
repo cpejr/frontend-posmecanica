@@ -11,36 +11,49 @@ $azulPadrao: #1d2d57;
 .formsDI_title{
   color: white;
   margin-left: 1%;
+  text-align: center;
   font-family: Montserrat;
   font-size: 2.0em;
 }
-.formsDI_line{
+.formsDI_box{
   background-color: #ffff;
   display: flex;
-  justify-content: center;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  margin-bottom: 1%;
-}
-.formsDI_line_files{
-  background-color: #ffff;
-  display: flex;
-  justify-content: center;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
+  flex-wrap: wrap;
+  width: 95%;
+  max-width: 1600px;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 1%;
 }
 .formsDI_input{
-  margin-right: 5%;
+  display: flex;
+  justify-content: center;
+  margin: 0 10px;
+  width: 22rem;
+  text-align: center;
+  font-weight: 600;
+  font-family: Montserrat;
+}
+
+.formsDI_input_list{
+  display: flex;
+  justify-content: center;
+  margin: 0 10px;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
 }
 .formsDI_input_file{
-  margin-right: 5%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 10px;
   text-align: center;
   font-weight: 600;
   font-family: Montserrat;
+  font-size: large;
 }
 .formsDI_TextInputDiv{
   display: flex;
@@ -80,34 +93,13 @@ $azulPadrao: #1d2d57;
 }
 
 @media screen and (max-width: 1250px) {
-  .formsDI_line{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.formsDI_line_files{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .formsDI_box_title{
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(to right, $azulPadrao,#1037a1);
-  margin-top: 2%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 5%;
+  margin: 2%;
   height: 7%;
-}
-.formsDI_input{
-  margin-right: 0;
-}
-.formsDI_input_file {
-  margin-top: 0px;
-  margin-bottom: 20px;
-  margin-right: 0;
 }
 .formsDI_divButton {
   display: flex;

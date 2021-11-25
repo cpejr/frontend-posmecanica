@@ -36,15 +36,15 @@ function ProfessorList() {
   const [inputText, setInputText] = useState("");
 
   useEffect(async () => {
-    if(professors) {
+    if (professors) {
       setLoading(true);
-    const getProfessors = await managerService.getAllProfessors();
-    const filteredProfessors = getProfessors.filter((searchName) =>
-      searchName.prof_name
-        .toLowerCase()
-        .includes(inputText.toLowerCase())
-    );
-    setProfessors(filteredProfessors);
+      const getProfessors = await managerService.getAllProfessors();
+      const filteredProfessors = getProfessors.filter((searchName) =>
+        searchName.prof_name
+          .toLowerCase()
+          .includes(inputText.toLowerCase())
+      );
+      setProfessors(filteredProfessors);
     }
     setLoading(false)
   }, [inputText]);
@@ -78,12 +78,20 @@ function ProfessorList() {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const inputPropsProfessor = [
@@ -97,7 +105,7 @@ function ProfessorList() {
     },
     {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (
@@ -113,12 +121,6 @@ function ProfessorList() {
             <p className="professor-list-first-text">
               Abaixo, apresentaremos os professores relacionados às respectivas
               áreas de pesquisa que estes fazem parte.
-            </p>
-            <p className="professor-list-second-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              magnam repudiandae veniam voluptatibus explicabo, enim eveniet, eius
-              deserunt doloremque, provident cumque sed quidem! Mollitia quos ut
-              dolorem, fugit dolore perspiciatis.
             </p>
           </div>
           <div className="header-content_ProfList">
@@ -142,11 +144,11 @@ function ProfessorList() {
             </h4>
           </div>
           <div className="professor-list-content">
-          {loading === true && (
-            <div className="BdDivGridLoader">
-              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
-            </div>
-          )}
+            {loading === true && (
+              <div className="BdDivGridLoader">
+                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              </div>
+            )}
             <div className={classes.root}>
               {orderElements(professors, searchAreaOrder)?.map((item) => (
                 <Accordion key={item.search_area_id}>

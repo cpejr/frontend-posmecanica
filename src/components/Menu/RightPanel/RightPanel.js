@@ -7,11 +7,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import Drawer from '@material-ui/core/Drawer';
-import { useAuth, logout } from '../../../providers/auth';
+import { useAuth } from '../../../providers/auth';
 import './RightPanel.scss';
 
 function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const HeaderPanel = (
     <ListItem className="userPanelHeader">
@@ -41,9 +41,9 @@ function RightPanel({ inputProps, expandRightPanel, setExpandRightPanel }) {
             </ListItem>
           </Link>
         ))}
-        <Link to={{ pathname: '/login' }}>
+        <Link to={{ pathname: user.type === 'administrator' ? '/consoleposmec' : '/login' }}>
           <ListItem button>
-            <ListItemText onClick={() => logout()}>
+            <ListItemText onClick={logout}>
               Logout
             </ListItemText>
           </ListItem>

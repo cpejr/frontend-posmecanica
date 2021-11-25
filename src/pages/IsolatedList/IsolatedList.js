@@ -64,12 +64,20 @@ function IsolatedList() {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (
@@ -98,7 +106,7 @@ function IsolatedList() {
               </div>
             )}
             {filterIsoladas.map((isoladas) => (
-              <div className="formsDI_input">
+              <div className="formsDI_input_list">
                 <Isolateds
                   isolated={isoladas}
                 />

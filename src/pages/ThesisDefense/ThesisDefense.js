@@ -21,7 +21,7 @@ function ThesisDefense({ location }) {
   const [data, setData] = useState('');
   const history = useHistory();
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   function formatedDate(date) {
     let newData = '';
@@ -58,12 +58,20 @@ function ThesisDefense({ location }) {
       path: 'administrator/formulario-professores',
     },
     {
-      text: 'Cadastro de disciplina isolada',
+      text: 'Cadastro de disciplina',
       path: 'administrator/cadastro-disciplina',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   const defenseProps = [

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 import { BiUserCircle } from 'react-icons/bi';
 import InfoModal from '../../../pages/SentDocuments/InfoModal';
@@ -7,6 +7,7 @@ import './InscritoPS.scss';
 import * as managerService from '../../../services/manager/managerService';
 
 function InscritoPS({ candidate, boolean, studentCondition }) {
+  const history = useHistory();
   const [processType, setProcesstype] = useState();
   const [stylesProcessType, setstylesProcessType] = useState(false);
   const [studentList, setStudentList] = useState();
@@ -28,11 +29,18 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
       managerService.getByIdDisciplineDeferment(candidateId, disciplineId),
       managerService.getProfByDisciplineId(disciplineId),
     ]).then((response) => {
-      line.disciplineName = response[0].discipline_name;
-      line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
-      line.professorName = response[2].prof_name;
+      if (studentCondition === 'true' && response[1][0]?.cd_dis_deferment === true) {
+        line.disciplineName = response[0].discipline_name;
+      } else if (studentCondition !== 'true') {
+        line.disciplineName = response[0].discipline_name;
+        line.candidateDisciplineDeferment = response[1][0]?.cd_dis_deferment;
+        line.professorName = response[2].prof_name;
+      }
+    }).then(() => {
+      if (line.disciplineName) {
+        setObject((previousState) => [...previousState, line]);
+      }
     });
-    setObject((previousState) => [...previousState, line]);
   };
 
   useEffect(() => {
@@ -76,6 +84,13 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
       setProcesstype('Isolada');
     }
   }, [candidate]);
+
+  const handleClick = () => {
+    history.push({
+      pathname: '/documentos-enviados',
+      state: { candidate },
+    });
+  };
 
   return (
     <>
@@ -131,6 +146,7 @@ function InscritoPS({ candidate, boolean, studentCondition }) {
           studentList={studentCondition}
           disciplinaInfo={object}
           conteudo={candidate}
+          handleClick={handleClick}
           close={handleClickClose}
           className="isoPsLinkButton"
         />

@@ -93,8 +93,16 @@ function registerDis() {
       path: 'administrator/formulario-professores',
     },
     {
+      text: 'Enviar Notificação',
+      path: 'administrator/criar-notificacao',
+    },
+    {
+      text: 'Visualizar Teses',
+      path: 'administrator/teses',
+    },
+    {
       text: 'Redefinição de senha',
-      path: '../esqueci-senha',
+      path: 'esqueci-senha',
     },
   ];
   return (
@@ -151,7 +159,7 @@ function registerDis() {
                 <StyledInput
                   type="text"
                   id="discipline_semester"
-                  label="Período Ofertado"
+                  label="Status"
                   error={error}
                   select
                   field={semester}

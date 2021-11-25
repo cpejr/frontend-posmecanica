@@ -1,5 +1,9 @@
 .box-containerProfList {
     width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     @media (max-width: 650px) {
         display: grid;
     }
@@ -7,6 +11,7 @@
 
 .grid-containerProfList{
    height: max-content;
+   min-height: 100%;
 }
 
 .professor-list-container {

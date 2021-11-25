@@ -1,0 +1,53 @@
+.screen-Doubts{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.gridDoubts {
+  align-content: center;
+}
+
+.titleDoubts{
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: xx-large;;
+  color: #122452;
+}
+
+.sendDoubtRoot{
+  display: grid;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .sendDoubtInputWrapper {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .MuiInputBase-root {
+    margin-top: 0 !important;
+  }
+  .sendDoubtBtn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    button{
+      padding: .5rem 2rem;
+      border: 0;
+      border-radius: 7px;
+      background-color: #1d2d57;
+      color: #ffffff;
+      border-radius: 5px;
+      font-size: 25px;
+      box-shadow: 1px 1px 5px #000;
+      cursor: pointer;
+    }
+  }
+}
