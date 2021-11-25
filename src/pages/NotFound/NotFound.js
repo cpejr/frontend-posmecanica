@@ -23,7 +23,7 @@ function NotFound() {
                 Não foi possível encontrar a página que você estava procurando. Isso ocorre porque:
               </p>
               <p>
-                - Há um erro no URL em seu navegador da web. Verifique o URL e tente novamnte.
+                - Há um erro no URL em seu navegador da web. Verifique o URL e tente novamente.
               </p>
               <p>
                 - A página que você está procurando foi movida ou excluída.
