@@ -6,7 +6,7 @@ import { CircularProgress } from '@material-ui/core';
 import moment from 'moment';
 import StyledInputWithIcon from '../../components/StyledInputWithIcon';
 import * as managerService from '../../services/manager/managerService';
-import Header from '../../components/Navbar';
+import Header from '../../components/SecondHeader';
 import Footer from '../../components/Footer';
 import { useAuth } from '../../providers/auth';
 import WarningModal from '../SentDocuments/WarningModal/WarningModal';
