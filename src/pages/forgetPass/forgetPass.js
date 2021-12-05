@@ -6,7 +6,7 @@ import '../../components/CampoText/campotxt';
 import './forgetPass.scss';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../services/manager/managerService';
-import Header from '../../components/Navbar';
+import Header from '../../components/SecondHeader';
 import Footer from '../../components/Footer';
 
 function esqueciSenha() {

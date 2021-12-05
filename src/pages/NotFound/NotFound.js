@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/Navbar';
+import Header from '../../components/SecondHeader';
 import Footer from '../../components/Footer';
 import './NotFound.scss';
 
