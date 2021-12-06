@@ -139,6 +139,7 @@ function SentDoubts() {
     dados.message_receiver_id = msg.message_sender_id;
     dados.message_parent_id = msg.message_id;
     dados.message_title = `Resposta: ${msg.message_title}`;
+    dados.message_type = 'answer';
 
     const id = msg.message_id;
 
