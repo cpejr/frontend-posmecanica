@@ -73,7 +73,7 @@ function StyledInput({
 
   const handleChange = (e, entrada) => {
     if (type === 'number' && e.target.value < 0) {
-      setValidadion(true);
+      setValidation(true);
     } else {
       setValidation(false);
     }

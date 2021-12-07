@@ -10,7 +10,7 @@ function Forms({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae'];
 
   return (
     <div>
@@ -70,6 +70,28 @@ function Forms({
             </div>
           </>
         )}
+
+        {(dados.candidate_nationality.toLowerCase().trim() === 'brasileira' || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && (
+          <>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Certidão de Quitação Eleitoral</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Certidão de Quitação Eleitoral" />
+            </div>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">de Obrigações Militares</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Comprovante Obrigações Militares" />
+            </div>
+          </>
+        )}
+        {(dados.candidate_nationality.toLowerCase().trim() !== 'brasileira' || dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro') && (
+          <>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Páginas do Visto de Entrada no Brasil</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Páginas do Visto de Entrada no Brasil" />
+            </div>
+          </>
+        )}
+
       </div>
       <div className="forms_divButton">
         <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
