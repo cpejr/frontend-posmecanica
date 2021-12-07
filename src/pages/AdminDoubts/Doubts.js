@@ -123,24 +123,22 @@ function SentDoubts() {
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
-
-      const id = msg.message_id;
-      managerService.updateMessage(id, { message_status: 'answered' }).catch((err) => {
-        console.error(err);
-      });
       setRefetch(true);
     }
   }, [open]);
 
   const handleClick = async (e) => {
+    const id = msg.message_id;
+    managerService.updateMessage(id, { message_status: 'answered' }).catch((err) => {
+      console.error(err);
+    });
     dados.message_sender_id = user.id;
     dados.message_sender_type = user.type;
     dados.message_receiver_type = user.type === 'aluno' ? 'administrator' : 'aluno';
     dados.message_receiver_id = msg.message_sender_id;
     dados.message_parent_id = msg.message_id;
     dados.message_title = `Resposta: ${msg.message_title}`;
-
-    const id = msg.message_id;
+    dados.message_type = 'answer';
 
     e.preventDefault();
     if (dados.message_body.length > 3) {
@@ -197,29 +195,38 @@ function SentDoubts() {
                 <div>
                   <h6>Mensagem Recebida:</h6>
                   {msg.message_body}
-                  {msg.parent_message && (<h6>Resposta recebida:</h6>)}
+                  {msg.parent_message && (
+                    <div>
+                      <h6>Resposta recebida:</h6>
+                      {msg.parent_message.message_body}
+                    </div>
+                  )}
                 </div>
               </DialogContentText>
               <div className="sendDoubtInputWrapper">
-                <div className="sendDoubtInput">
-                  <StyledInput
-                    type="text"
-                    id="message_body"
-                    label="Resposta"
-                    width="100%"
-                    multiline
-                    dados={dados}
-                    setDados={handleChange}
-                  />
-                </div>
+                {!msg.parent_message && (
+                  <div className="sendDoubtInput">
+                    <StyledInput
+                      type="text"
+                      id="message_body"
+                      label="Resposta"
+                      width="100%"
+                      multiline
+                      dados={dados}
+                      setDados={handleChange}
+                    />
+                  </div>
+                )}
               </div>
             </DialogContent>
             <DialogActions>
+              {!msg.parent_message && (
+                <Button onClick={handleClick} color="primary">
+                  Enviar
+                </Button>
+              )}
               <Button onClick={handleClose} color="secondary">
                 Fechar
-              </Button>
-              <Button onClick={handleClick} color="primary">
-                Enviar
               </Button>
             </DialogActions>
           </Dialog>
