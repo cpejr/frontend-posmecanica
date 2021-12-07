@@ -80,7 +80,7 @@ function Forms({
             {dados.candidate_gender === 'masculino' && (
               <div className="forms_input_file">
                 <div className="forms_upload_text">Comprovante de Obrigações Militares</div>
-                <UploadInput files={files} setFiles={setFiles} fileName="Comprovante Obrigações Militares" />
+                <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Obrigações Militares" />
               </div>
             )}
           </>

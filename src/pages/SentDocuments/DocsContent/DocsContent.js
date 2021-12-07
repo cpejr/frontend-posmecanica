@@ -89,14 +89,52 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         >
           {docs.icons[2]}
         </Document>
+        <Document
+          type={docs.types[5]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[5]}
+        </Document>
         {candidate.candidate_grade === 'DOUTORADO'
           && (
             <Document
-              type={docs.types[3]}
+              type={docs.types[4]}
               candidate={candidate.candidate_id}
               text={docs.text}
             >
-              {docs.icons[3]}
+              {docs.icons[4]}
+            </Document>
+          )}
+        {(candidate.candidate_nationality.toLowerCase() === 'brasileiro' || candidate.candidate_nationality.toLowerCase() === 'brasileira')
+          ? (
+            <>
+              <Document
+                type={docs.types[6]}
+                candidate={candidate.candidate_id}
+                text={docs.text}
+              >
+                {docs.icons[6]}
+              </Document>
+
+              {candidate.candidate_gender === 'masculino'
+                && (
+                  <Document
+                    type={docs.types[7]}
+                    candidate={candidate.candidate_id}
+                    text={docs.text}
+                  >
+                    {docs.icons[7]}
+                  </Document>
+                )}
+            </>
+          ) : (
+            <Document
+              type={docs.types[8]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[8]}
             </Document>
           )}
       </div>
@@ -136,16 +174,6 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         >
           {docs.icons[2]}
         </Document>
-        {candidate.candidate_grade === 'DOUTORADO'
-          && (
-            <Document
-              type={docs.types[3]}
-              candidate={candidate.candidate_id}
-              text={docs.text}
-            >
-              {docs.icons[3]}
-            </Document>
-          )}
       </div>
     );
   };
