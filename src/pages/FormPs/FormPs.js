@@ -74,7 +74,6 @@ function FormPs() {
   }, []);
 
   const verify = (dados) => {
-    console.log(dados);
     // verifica se é brasileiro homem e é candidato a dourorado
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
     || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
@@ -101,13 +100,13 @@ function FormPs() {
     }
     // verifica se é estrangeiro e é candidato a dourorado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
+      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
       && dados.candidate_grade === 'DOUTORADO' && files.length === 12) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
+      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
       && dados.candidate_grade !== 'DOUTORADO' && files.length === 10) {
       return true;
     }
