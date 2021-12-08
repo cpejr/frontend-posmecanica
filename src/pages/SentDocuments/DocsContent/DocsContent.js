@@ -66,6 +66,7 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         </div>
       );
     }
+    console.log(candidate.candidate_race);
     return (
       <div className="DC-documentsDivLine">
         <Document
@@ -89,14 +90,79 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         >
           {docs.icons[2]}
         </Document>
+        <Document
+          type={docs.types[3]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[3]}
+        </Document>
+        <Document
+          type={docs.types[5]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[5]}
+        </Document>
         {candidate.candidate_grade === 'DOUTORADO'
           && (
             <Document
-              type={docs.types[3]}
+              type={docs.types[4]}
               candidate={candidate.candidate_id}
               text={docs.text}
             >
-              {docs.icons[3]}
+              {docs.icons[4]}
+            </Document>
+          )}
+        {candidate.candidate_race === 'indígena'
+          && (
+            <Document
+              type={docs.types[9]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[9]}
+            </Document>
+          )}
+        {candidate.candidate_PcD === true
+          && (
+            <Document
+              type={docs.types[10]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[10]}
+            </Document>
+          )}
+        {(candidate.candidate_nationality.toLowerCase() === 'brasileiro' || candidate.candidate_nationality.toLowerCase() === 'brasileira')
+          ? (
+            <>
+              <Document
+                type={docs.types[6]}
+                candidate={candidate.candidate_id}
+                text={docs.text}
+              >
+                {docs.icons[6]}
+              </Document>
+
+              {candidate.candidate_gender === 'masculino'
+                && (
+                  <Document
+                    type={docs.types[7]}
+                    candidate={candidate.candidate_id}
+                    text={docs.text}
+                  >
+                    {docs.icons[7]}
+                  </Document>
+                )}
+            </>
+          ) : (
+            <Document
+              type={docs.types[8]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[8]}
             </Document>
           )}
       </div>
@@ -136,16 +202,6 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         >
           {docs.icons[2]}
         </Document>
-        {candidate.candidate_grade === 'DOUTORADO'
-          && (
-            <Document
-              type={docs.types[3]}
-              candidate={candidate.candidate_id}
-              text={docs.text}
-            >
-              {docs.icons[3]}
-            </Document>
-          )}
       </div>
     );
   };

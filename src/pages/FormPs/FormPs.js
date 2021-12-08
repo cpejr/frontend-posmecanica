@@ -46,6 +46,7 @@ function FormPs() {
     candidate_PcD: "",
   };
   const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
@@ -71,6 +72,46 @@ function FormPs() {
       setHasSelectiveProcess(true);
     }
   }, []);
+
+  const verify = (dados) => {
+    // verifica se é brasileiro homem e é candidato a doutorado
+    if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
+    || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
+    && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
+      return true;
+    }
+    // verifica se é brasileiro homem e é candidato a mestrado
+    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 11) {
+      return true;
+    }
+    // verifica se é brasileiro mulher ou outro e é candidato a doutorado
+    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      return true;
+    }
+    // verifica se é brasileiro mulher ou outro e é candidato a mestrado
+    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      return true;
+    }
+    // verifica se é estrangeiro e é candidato a doutorado
+    else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
+      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      return true;
+    }
+    // verifica se é estrangeiro e é candidato a mestrado
+    else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
+      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      return true;
+    }
+    return false;
+  }
 
   const handleClick = async (e, dados) => {
     e.preventDefault();
@@ -107,7 +148,7 @@ function FormPs() {
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
       dados.candidate_PcD !== "" &&
-      files.length >= 6
+      verify(dados)
     ) {
       dados.candidate_birth = moment(dados.candidate_birth).format();
       dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
@@ -119,26 +160,41 @@ function FormPs() {
         dados.candidate_grade
       );
       if (selectiveProcesses.length !== 0) {
-        const id = await managerService.createCandidate(
-          dados,
-          selectiveProcesses[0].process_id
-        );
-        const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
-        let quantity = infoSelectiveProcess.candidate_quantity + 1;
-        await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
-        files.forEach(async (file) => {
-          const data = new FormData();
-          data.append("file", file.file);
-          await managerService.uploadFile(data, id, file.name);
-        });
-        history.push("/login");
-        addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+        try {
+          const id = await managerService.createCandidate(
+            dados,
+            selectiveProcesses[0].process_id
+          );
+          const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+          let quantity = infoSelectiveProcess.candidate_quantity + 1;
+          setLoading(true);
+          await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
+          for (const file of files) {
+            const data = new FormData();
+            data.append("file", file.file);
+            await managerService.uploadFile(data, id, file.name);
+          };
+          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          setLoading(false);
+          window.location.href = 'https://ppgmec.eng.ufmg.br/';
+
+        } catch {
+          addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
+          setLoading(false);
+          setError(true);
+          return;
+        }
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
       }
     } else {
-      addToast("Preencha todos os campos!", { appearance: "error" });
-      setError(true);
+      if (!verify(dados)) {
+        addToast("Insira todos os arquivos!", { appearance: "error" });
+        setError(true);
+      } else {
+        addToast("Preencha todos os campos!", { appearance: "error" });
+        setError(true);
+      }
     }
   };
   return (
@@ -151,6 +207,7 @@ function FormPs() {
             initialState={initialState}
             formsInput={formsInput}
             files={files}
+            loading={loading}
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
