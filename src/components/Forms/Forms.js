@@ -44,7 +44,7 @@ function Forms({
       ))}
       <div className="forms_box_title">
         <div className="forms_title">
-          Arquivos
+          Arquivos (Tamanho máximo: 1 MB, formato PDF)
         </div>
       </div>
       <div className="forms_box">
