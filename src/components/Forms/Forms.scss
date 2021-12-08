@@ -76,9 +76,18 @@ $azulPadrao: #1d2d57;
 }
 .forms_title {
   color: white;
+  display: flex;
+  flex-direction: row;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 2em;
+
+  p:nth-child(1) {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+   }
 }
 .forms_upload_text {
   font-size: 14px;

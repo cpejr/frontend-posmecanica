@@ -66,6 +66,7 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         </div>
       );
     }
+    console.log(candidate.candidate_race);
     return (
       <div className="DC-documentsDivLine">
         <Document
@@ -111,6 +112,26 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
               text={docs.text}
             >
               {docs.icons[4]}
+            </Document>
+          )}
+        {candidate.candidate_race === 'indígena'
+          && (
+            <Document
+              type={docs.types[9]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[9]}
+            </Document>
+          )}
+        {candidate.candidate_PcD === true
+          && (
+            <Document
+              type={docs.types[10]}
+              candidate={candidate.candidate_id}
+              text={docs.text}
+            >
+              {docs.icons[10]}
             </Document>
           )}
         {(candidate.candidate_nationality.toLowerCase() === 'brasileiro' || candidate.candidate_nationality.toLowerCase() === 'brasileira')

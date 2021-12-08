@@ -44,7 +44,9 @@ function Forms({
       ))}
       <div className="forms_box_title">
         <div className="forms_title">
-          Arquivos (Tamanho máximo: 1 MB, formato PDF)
+          Arquivos
+          {' '}
+          <p>(Tamanho máximo de cada arquivo: 1 MB, formato PDF)</p>
         </div>
       </div>
       <div className="forms_box">
@@ -67,6 +69,22 @@ function Forms({
             <div className="forms_input_file">
               <div className="forms_upload_text">Comprovante de Mestrado</div>
               <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Mestrado" />
+            </div>
+          </>
+        )}
+        {dados.candidate_race === 'indígena' && (
+          <>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Formulários para Indígenas (arquivo único)</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Formulários para Indígenas" />
+            </div>
+          </>
+        )}
+        {dados.candidate_PcD === true && (
+          <>
+            <div className="forms_input_file">
+              <div className="forms_upload_text">Formulários para pessoas com deficiência (arquivo único)</div>
+              <UploadInput files={files} setFiles={setFiles} fileName="Formulários para pessoas com deficiência" />
             </div>
           </>
         )}
