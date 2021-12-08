@@ -90,6 +90,13 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
           {docs.icons[2]}
         </Document>
         <Document
+          type={docs.types[3]}
+          candidate={candidate.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[3]}
+        </Document>
+        <Document
           type={docs.types[5]}
           candidate={candidate.candidate_id}
           text={docs.text}

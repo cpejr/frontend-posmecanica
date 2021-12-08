@@ -1,17 +1,17 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { useState } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import './Forms.scss';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick, error,
+  initialState, formsInput, files, setFiles, handleClick, error, loading,
 }) {
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae'];
-  console.log(dados);
   return (
     <div>
       {formsInput.map((topic) => (
@@ -93,9 +93,18 @@ function Forms({
           </>
         )}
       </div>
-      <div className="forms_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
-      </div>
+      {loading === true ? (
+        <div className="BdDivGridLoader">
+          <div className="Loader-form">
+            <p>Aguarde, subindo arquivos...</p>
+            <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+          </div>
+        </div>
+      ) : (
+        <div className="forms_divButton">
+          <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
+        </div>
+      )}
     </div>
   );
 }

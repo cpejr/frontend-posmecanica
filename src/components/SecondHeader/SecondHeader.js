@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <div className="containerHeader">
       <div className="divLogo">
-        <img src="/images/engrenagem.png" alt="engrenagem" className="logoHeader" />
+        <img src="/Images/engrenagem.png" alt="engrenagem" className="logoHeader" />
         <div className="titleHeader">Pós Mecânica UFMG</div>
       </div>
       <div className="headerActions">
