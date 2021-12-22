@@ -76,13 +76,35 @@ $azulPadrao: #1d2d57;
 }
 .forms_title {
   color: white;
+  display: flex;
+  flex-direction: row;
   margin-left: 1%;
   font-family: Montserrat;
   font-size: 2em;
+
+  p:nth-child(1) {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+   }
 }
 .forms_upload_text {
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+.Loader-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+
+  p {
+    font-size: 20pt;
+    font-family: Montserrat;
+  }
 }
 @media screen and (max-width: 1250px) {
   .forms_line_files {

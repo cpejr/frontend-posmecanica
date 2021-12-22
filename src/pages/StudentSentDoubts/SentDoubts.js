@@ -100,7 +100,8 @@ function SentDoubts() {
   useEffect(() => {
     if (user.id) {
       managerService.getMessageByUserId(user.id, 'student').then((res) => {
-        setMessages(res);
+        const t = res.filter((m) => m.message_type === 'message');
+        setMessages(t);
       }).catch((error) => {
         console.error(error);
         addToast('Erro ao buscar dúvidas', { appearance: 'error' });

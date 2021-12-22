@@ -1,24 +1,15 @@
 import React from 'react';
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
-import './Navbar.scss';
-import { Button } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
 import { MdChatBubble } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../providers/auth';
 import { useAdminDoubtContext } from '../../providers/adminDoubt';
 
-export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
-  const handleClick = () => {
-    setExpandRightPanel(!expandRightPanel);
-  };
+export default function Navbar() {
   const { user } = useAuth();
   const { total } = useAdminDoubtContext();
   const location = useLocation();
 
-  const expandIcon = expandRightPanel
-    ? <AiOutlineMenuFold className="menuIcon" />
-    : <AiOutlineMenuUnfold className="menuIcon" />;
   return (
     <div className="containerHeader">
       <div className="divLogo">
@@ -35,9 +26,6 @@ export default function Navbar({ expandRightPanel, setExpandRightPanel }) {
               </Badge>
             </Link>
           )}
-        <Button className="buttonExpandIcon" onClick={handleClick}>
-          {expandIcon}
-        </Button>
       </div>
     </div>
   );
