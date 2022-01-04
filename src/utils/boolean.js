@@ -1,5 +1,5 @@
 const Boolean = [
-  { label: 'SIM', value: 1 },
-  { label: 'NÃO', value: 0 },
+  { label: 'SIM', value: true },
+  { label: 'NÃO', value: false },
 ];
 export default Boolean;
