@@ -26,15 +26,15 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
   const handleConfirmClick = async () => {
     if (action.toLowerCase() === 'homologar') {
       await managerService.updateCandidate({
-        candidate_form_approval: true,
+        candidate_form_approval: 1,
       }, candidate.candidate_id);
-      candidate.candidate_form_approval = true;
+      candidate.candidate_form_approval = 1;
       setHasChanged(true);
     } else {
       await managerService.updateCandidate({
-        candidate_form_approval: false,
+        candidate_form_approval: 0,
       }, candidate.candidate_id);
-      candidate.candidate_form_approval = false;
+      candidate.candidate_form_approval = 0;
       setHasChanged(false);
     }
     setEdit(false);
