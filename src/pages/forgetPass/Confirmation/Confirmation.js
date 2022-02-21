@@ -4,18 +4,12 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../../../components/Footer';
 import Navbar from '../../../components/SecondHeader';
 import './Confirmation.scss';
-import { useAuth } from '../../../providers/auth';
 
 function Confirmation() {
   const history = useHistory();
-  const { user } = useAuth();
 
   const handleClick = () => {
-    if (user.type === 'administrator') {
-      history.push('/consoleposmec');
-    } else {
-      history.push('/login');
-    }
+    history.push('/login');
   };
 
   return (

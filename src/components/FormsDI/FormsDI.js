@@ -39,6 +39,11 @@ function Forms({
   ];
   const [disciplines, setDisciplines] = useState([]);
 
+  function confirmExit() {
+    return 'Deseja realmente sair desta página?';
+  }
+  window.onbeforeunload = confirmExit;
+
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
       resp = resp.filter((item) => item.discipline_semester === 'OFERTADO');

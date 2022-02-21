@@ -27,6 +27,15 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
+export const verifyCandidateExistence = async (candidateProcessId, candidateCPF) => {
+  const response = await requesterService.verifyCandidateExistence(
+    candidateProcessId,
+    candidateCPF,
+  );
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getUserFiles = async (candidateId, fileName) => {
   const response = await requesterService.getUserFiles(candidateId, fileName);
   if (isFailureStatus(response)) throw new Error('Problem with api response');

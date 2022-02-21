@@ -33,29 +33,45 @@ class ComponentToPrint extends React.Component {
         </div>
         <div className="pdf-text">
           <div className="pdf-title">DECLARAÇÃO</div>
-          <p className="pdf-dedicate">
-            Declaro, para os devidos fins, que {`${studentInfo.name}`},
-            matrícula nº {`${studentInfo.register}`}, é aluno regularmente matriculado no
-            Programa de Pós-Graduação em Engenharia Mecânica, nível 
-            {(studentInfo.grade == 'MESTRADO') ? (
-              ' Mestrado'
-            ) : (' Doutorado')},
-            da Universidade Federal de Minas Gerais, frequentando regularmente
-            as atividades desde {`${moment(studentInfo.inscrition).format('MMMM [de] YYYY')}`}.
-          </p>
-          <p className="pdf-dedicate">
-            {(studentInfo.scholarship == true) ? (
-              `Declaro, ainda, que o referido aluno é bolsista do Conselho 
+          <p className="text-grid">
+            <p className="pdf-dedicate">
+              Declaro, para os devidos fins, que {`${studentInfo.name}`},
+              matrícula nº {`${studentInfo.register}`}, é aluno regularmente matriculado no
+              Programa de Pós-Graduação em Engenharia Mecânica, nível
+              {(studentInfo.grade == 'MESTRADO') ? (
+                ' Mestrado'
+              ) : (' Doutorado')},
+              da Universidade Federal de Minas Gerais, frequentando regularmente
+              as atividades desde {`${moment(studentInfo.inscrition).format('MMMM [de] YYYY')}`}.
+            </p>
+            <p className="pdf-dedicate">
+              {(studentInfo.date !== '' && studentInfo.years !== '') ? (
+                `Declaro, ainda, que o curso de${(studentInfo.grade == 'MESTRADO') ? (
+                  ' Mestrado'
+                ) : (' Doutorado')} tem duração de ${studentInfo.years} (${extenso(studentInfo.years)})  
+                ${(studentInfo.years > 1) ? (
+                  ' anos'
+                ) : (' ano')} e que a defesa de ${(studentInfo.grade == 'MESTRADO') ? (
+                  ' dissertação'
+                ) : (' tese')} do referido aluno deverá ocorrer até ${moment(studentInfo.dateEnd).format('MMMM [de] YYYY')}.
+              `
+              ) : ('')}
+            </p>
+            {(studentInfo.amount !== '' && studentInfo.value !== '') ? (
+              <p className="pdf-dedicate">
+                {(studentInfo.scholarship == true) ? (
+                  `Declaro, ainda, que o referido aluno é bolsista do Conselho 
               Nacional de Desenvolvimento Científico
               e Tecnológico (CNPq), recebendo, mensalmente, a quantia
               correspondente a ${studentInfo.amount} (${extenso(studentInfo.amount, { number: { gender: 'f' } })}) 
               ${(studentInfo.amount > 1) ? (
-                ' bolsas'
-              ) : (' bolsa')}, de ${(studentInfo.grade == 'MESTRADO') ? (
-                ' mestrado'
-              ) : (' doutorado')}, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
+                    ' bolsas'
+                  ) : (' bolsa')}, de ${(studentInfo.grade == 'MESTRADO') ? (
+                    ' mestrado'
+                  ) : (' doutorado')}, no valor de R$${studentInfo.value} (${extenso(studentInfo.value, { mode: 'currency', currency: { type: 'BRL' } })}),
               de acordo com a legislação vigente.`
-            ) : ('')}
+                ) : ('')}
+              </p>) : ('')}
           </p>
           <p className="pdf-date">Belo Horizonte, {`${moment(studentInfo.currentDate).format('LL')}`}</p>
           <div className="pdf-coordinator">

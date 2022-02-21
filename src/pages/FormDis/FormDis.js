@@ -58,9 +58,9 @@ function FormDis() {
       "process_type",
       "ISOLADA"
     );
-     if (selectiveProcesses.length === 0) {
+    if (selectiveProcesses.length === 0) {
       history.push("/");
-    }else{
+    } else {
       setHasSelectiveProcess(true);
     }
   }, []);
@@ -126,6 +126,15 @@ function FormDis() {
         "ISOLADA"
       );
       if (selectiveProcesses.length !== 0) {
+        const verifyCandidateExistence = await managerService.verifyCandidateExistence(
+          selectiveProcesses[0]?.process_id,
+          dados?.candidate_cpf,
+        );
+        if (verifyCandidateExistence) {
+          addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+          setError(true);
+          return;
+        }
         const id = await managerService.createCandidateISO(
           dados,
           selectiveProcesses[0].process_id
@@ -136,7 +145,7 @@ function FormDis() {
           await managerService.uploadFile(data, id, file.name);
         });
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-        history.push("/login");
+        window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
