@@ -2,6 +2,7 @@ import { CircularProgress } from '@material-ui/core';
 import React, { useState } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
+import WarnningModal from '../../utils/WarnningModal';
 import './Forms.scss';
 
 function Forms({
@@ -112,15 +113,19 @@ function Forms({
         )}
       </div>
       {loading === true ? (
-        <div className="BdDivGridLoader">
-          <div className="Loader-form">
-            <p>Aguarde, subindo arquivos...</p>
-            <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+        <WarnningModal>
+          <div className="BdDivGridLoader">
+            <div className="Loader-form">
+              <p>Aguarde, subindo arquivos...</p>
+              <p>Por gentileza, não saia da página</p>
+              <br />
+              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+            </div>
           </div>
-        </div>
+        </WarnningModal>
       ) : (
         <div className="forms_divButton">
-          <button type="submit" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
+          <button type="submit" id="botao" onClick={(e) => handleClick(e, dados)}>Cadastrar</button>
         </div>
       )}
     </div>

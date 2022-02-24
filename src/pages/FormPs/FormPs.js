@@ -11,6 +11,11 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
+  function confirmExit() {
+    if(!exit)
+    return 'Deseja realmente sair desta página?';
+  }
+  window.onbeforeunload = confirmExit; 
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -47,6 +52,7 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
@@ -150,6 +156,7 @@ function FormPs() {
       dados.candidate_PcD !== "" &&
       verify(dados)
     ) {
+      document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
       dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
@@ -174,7 +181,9 @@ function FormPs() {
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
+          setExit(true);
           addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          addToast("Redirecionando...", { appearance: "success" });
           setLoading(false);
           window.location.href = 'https://ppgmec.eng.ufmg.br/';
 
