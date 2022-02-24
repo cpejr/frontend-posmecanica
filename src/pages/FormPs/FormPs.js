@@ -83,37 +83,37 @@ function FormPs() {
     // verifica se é brasileiro homem e é candidato a doutorado
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
     || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-    && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
+    && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 11) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a doutorado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a doutorado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
       && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
       && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
       return true;
     }
     return false;

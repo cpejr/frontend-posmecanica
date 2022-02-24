@@ -12,6 +12,10 @@ function Forms({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
+  function confirmExit() {
+    return 'Deseja realmente sair desta página?';
+  }
+  window.onbeforeunload = confirmExit;
   const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae'];
   return (
     <div>
