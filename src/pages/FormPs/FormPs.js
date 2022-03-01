@@ -153,8 +153,7 @@ function FormPs() {
       dados.candidate_study_regimen !== "" &&
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
-      dados.candidate_PcD !== "" &&
-      verify(dados)
+      dados.candidate_PcD !== ""
     ) {
       document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
@@ -182,13 +181,9 @@ function FormPs() {
             await managerService.uploadFile(data, id, file.name);
           };
           setExit(true);
-          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-          addToast("Redirecionando...", { appearance: "success" });
-          setLoading(false);
-          window.location.href = 'https://ppgmec.eng.ufmg.br/';
-
         } catch {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
+          document.getElementById('botao').disabled = false;
           setLoading(false);
           setError(true);
           return;
@@ -220,6 +215,7 @@ function FormPs() {
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
+            exit={exit}
           />
         </>
       )}
