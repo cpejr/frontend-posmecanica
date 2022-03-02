@@ -115,86 +115,95 @@ function FormPs() {
 
   const handleClick = async (e, dados) => {
     setLoading(true);
-    e.preventDefault();
-    if (
-      dados.candidate_name.length >= 1 &&
-      dados.candidate_cpf.length >= 1 &&
-      dados.candidate_identity.length >= 1 &&
-      dados.candidate_expedition !== "" &&
-      dados.candidate_mother_name !== "" &&
-      dados.candidate_father_name !== "" &&
-      dados.candidate_nationality.length >= 1 &&
-      dados.candidate_civil_state.length >= 1 &&
-      dados.candidate_birth.length >= 1 &&
-      dados.candidate_race.length >= 1 &&
-      dados.candidate_gender.length >= 1 &&
-      dados.candidate_voter_title.length >= 1 &&
-      dados.candidate_zone_title !== "" &&
-      dados.candidate_section_title !== "" &&
-      dados.candidate_street !== "" &&
-      dados.candidate_grade !== "" &&
-      dados.candidate_city !== "" &&
-      dados.candidate_state !== "" &&
-      dados.candidate_adress_num !== "" &&
-      dados.candidate_district !== "" &&
-      dados.candidate_grade_date_begin !== "" &&
-      dados.candidate_grade_date_end !== "" &&
-      dados.candidate_country.length >= 1 &&
-      dados.candidate_cep.length >= 1 &&
-      dados.candidate_email.length >= 1 &&
-      dados.candidate_phone_number.length >= 1 &&
-      dados.candidate_university !== "" &&
-      dados.candidate_grade_obtained !== "" &&
-      dados.candidate_study_regimen !== "" &&
-      dados.candidate_scholarship !== "" &&
-      dados.candidate_concentration_area !== "" &&
-      dados.candidate_PcD !== "" &&
-      verify(dados)
-    ) {
-      dados.candidate_birth = moment(dados.candidate_birth).format();
-      dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
-      dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
-      dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
+    try {
+      e.preventDefault();
+      if (
+        dados.candidate_name.length >= 1 &&
+        dados.candidate_cpf.length >= 1 &&
+        dados.candidate_identity.length >= 1 &&
+        dados.candidate_expedition !== "" &&
+        dados.candidate_mother_name !== "" &&
+        dados.candidate_father_name !== "" &&
+        dados.candidate_nationality.length >= 1 &&
+        dados.candidate_civil_state.length >= 1 &&
+        dados.candidate_birth.length >= 1 &&
+        dados.candidate_race.length >= 1 &&
+        dados.candidate_gender.length >= 1 &&
+        dados.candidate_voter_title.length >= 1 &&
+        dados.candidate_zone_title !== "" &&
+        dados.candidate_section_title !== "" &&
+        dados.candidate_street !== "" &&
+        dados.candidate_grade !== "" &&
+        dados.candidate_city !== "" &&
+        dados.candidate_state !== "" &&
+        dados.candidate_adress_num !== "" &&
+        dados.candidate_district !== "" &&
+        dados.candidate_grade_date_begin !== "" &&
+        dados.candidate_grade_date_end !== "" &&
+        dados.candidate_country.length >= 1 &&
+        dados.candidate_cep.length >= 1 &&
+        dados.candidate_email.length >= 1 &&
+        dados.candidate_phone_number.length >= 1 &&
+        dados.candidate_university !== "" &&
+        dados.candidate_grade_obtained !== "" &&
+        dados.candidate_study_regimen !== "" &&
+        dados.candidate_scholarship !== "" &&
+        dados.candidate_concentration_area !== "" &&
+        dados.candidate_PcD !== "" &&
+        verify(dados)
+      ) {
+        dados.candidate_birth = moment(dados.candidate_birth).format();
+        dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
+        dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
+        dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
 
-      const selectiveProcesses = await managerService.getActualSelectiveProcess(
-        "process_type",
-        dados.candidate_grade
-      );
-      if (selectiveProcesses.length !== 0) {
-        try {
-          const id = await managerService.createCandidate(
-            dados,
-            selectiveProcesses[0].process_id
-          );
-          const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
-          let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
-          for (const file of files) {
-            const data = new FormData();
-            data.append("file", file.file);
-            await managerService.uploadFile(data, id, file.name);
-          };
-          setTimeout(() => { }, 5000);
-          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-          setLoading(false);
-          window.location.href = 'https://ppgmec.eng.ufmg.br/';
-        } catch {
-          addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
-          setLoading(false);
-          setError(true);
-          return;
+        const selectiveProcesses = await managerService.getActualSelectiveProcess(
+          "process_type",
+          dados.candidate_grade
+        );
+        if (selectiveProcesses.length !== 0) {
+          try {
+            const id = await managerService.createCandidate(
+              dados,
+              selectiveProcesses[0].process_id
+            );
+            const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+            let quantity = infoSelectiveProcess.candidate_quantity + 1;
+            await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
+            for (const file of files) {
+              const data = new FormData();
+              data.append("file", file.file);
+              await managerService.uploadFile(data, id, file.name);
+            };
+            setTimeout(() => { }, 5000);
+            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+            setLoading(false);
+            // window.location.href = 'https://ppgmec.eng.ufmg.br/';
+          } catch {
+            addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
+            setLoading(false);
+            setError(true);
+            return;
+          }
+        } else {
+          addToast("Processo seletivo não encontrado!", { appearance: "error" });
         }
       } else {
-        addToast("Processo seletivo não encontrado!", { appearance: "error" });
+        if (!verify(dados)) {
+          addToast("Insira todos os arquivos!", { appearance: "error" });
+          setLoading(false);
+          setError(true);
+        } else {
+          addToast("Preencha todos os campos!", { appearance: "error" });
+          setLoading(false);
+          setError(true);
+        }
       }
-    } else {
-      if (!verify(dados)) {
-        addToast("Insira todos os arquivos!", { appearance: "error" });
-        setError(true);
-      } else {
-        addToast("Preencha todos os campos!", { appearance: "error" });
-        setError(true);
-      }
+    } catch (error) {
+      addToast("Erro!", { appearance: "error" });
+      setLoading(false);
+      setError(true);
+      return;
     }
   };
   return (

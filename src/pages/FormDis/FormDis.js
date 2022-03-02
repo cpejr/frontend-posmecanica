@@ -139,7 +139,7 @@ function FormDis() {
         setTimeout(() => { }, 5000);
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
         setLoading(false);
-        window.location.href = 'https://ppgmec.eng.ufmg.br/';
+        // window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
