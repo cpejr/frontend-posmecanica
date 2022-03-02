@@ -114,6 +114,7 @@ function FormPs() {
   }
 
   const handleClick = async (e, dados) => {
+    setLoading(true);
     e.preventDefault();
     if (
       dados.candidate_name.length >= 1 &&
@@ -167,7 +168,6 @@ function FormPs() {
           );
           const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          setLoading(true);
           await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
           for (const file of files) {
             const data = new FormData();
