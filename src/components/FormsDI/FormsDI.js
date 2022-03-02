@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick, error,
+  initialState, formsInput, files, setFiles, handleClick, error, loading,
 }) {
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -134,9 +135,18 @@ function Forms({
           />
         </div>
       </div>
-      <div className="formsDI_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
-      </div>
+      {loading === true ? (
+        <div className="BdDivGridLoader">
+          <div className="Loader-form">
+            <p>Aguarde, enviando arquivos...</p>
+            <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+          </div>
+        </div>
+      ) : (
+        <div className="formsDI_divButton">
+          <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
+        </div>
+      )}
     </div>
   );
 }

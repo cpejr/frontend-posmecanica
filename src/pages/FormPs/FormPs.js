@@ -76,8 +76,8 @@ function FormPs() {
   const verify = (dados) => {
     // verifica se é brasileiro homem e é candidato a doutorado
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-    || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-    && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
@@ -174,10 +174,10 @@ function FormPs() {
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
+          setTimeout(() => { }, 5000);
           addToast("Cadastro realizado com sucesso!", { appearance: "success" });
           setLoading(false);
           window.location.href = 'https://ppgmec.eng.ufmg.br/';
-
         } catch {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
           setLoading(false);

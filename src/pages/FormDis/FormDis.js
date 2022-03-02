@@ -48,6 +48,7 @@ function FormDis() {
     candidate_justify: "",
   };
   const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
@@ -58,9 +59,9 @@ function FormDis() {
       "process_type",
       "ISOLADA"
     );
-     if (selectiveProcesses.length === 0) {
+    if (selectiveProcesses.length === 0) {
       history.push("/");
-    }else{
+    } else {
       setHasSelectiveProcess(true);
     }
   }, []);
@@ -135,12 +136,15 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
+        setTimeout(() => { }, 5000);
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-        history.push("/login");
+        setLoading(false);
+        window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
         });
+        setLoading(false);
       }
     } else if (
       (dados.first_discipline_isolated &&
@@ -161,8 +165,10 @@ function FormDis() {
           dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
+      setLoading(false);
     } else {
       addToast("Preencha todos os dados!", { appearance: "error" });
+      setLoading(false);
       setError(true);
     }
   };
@@ -176,6 +182,7 @@ function FormDis() {
             initialState={initialState}
             formsInput={formsInput}
             files={files}
+            loading={loading}
             error={error}
             setFiles={setFiles}
             handleClick={handleClick}
