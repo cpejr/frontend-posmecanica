@@ -178,7 +178,6 @@ function FormPs() {
               await managerService.uploadFile(data, id, file.name);
             };
             setTimeout(() => { }, 5000);
-            setLoading(false);
             setExit(true);
           } catch {
             addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });

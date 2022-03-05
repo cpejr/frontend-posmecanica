@@ -139,6 +139,7 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
+        setExit(true);
       } else {
         document.getElementById('botao').disabled = false;
         setLoading(false);
@@ -166,12 +167,10 @@ function FormDis() {
           dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
       document.getElementById('botao').disabled = false;
-      setLoading(false);
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
       setLoading(false);
     } else {
       document.getElementById('botao').disabled = false;
-      setLoading(false);
       addToast("Preencha todos os dados!", { appearance: "error" });
       setLoading(false);
       setError(true);
@@ -188,6 +187,7 @@ function FormDis() {
             formsInput={formsInput}
             files={files}
             loading={loading}
+            exit={exit}
             error={error}
             setFiles={setFiles}
             handleClick={handleClick}
