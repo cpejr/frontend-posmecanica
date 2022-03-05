@@ -7,7 +7,6 @@ import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
 import WarnningModal from '../../utils/WarnningModal';
 import { GoVerified } from 'react-icons/go';
-import { CircularProgress } from '@material-ui/core';
 
 function Forms({
   initialState, formsInput, files, setFiles, handleClick, error, exit, loading,

@@ -79,8 +79,6 @@ function FormPs() {
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
     || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
     && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
-      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
@@ -195,30 +193,17 @@ function FormPs() {
           setLoading(false);
           setError(true);
         }
-      } else {
-        if (!verify(dados)) {
-          addToast("Insira todos os arquivos!", { appearance: "error" });
-          setLoading(false);
-          setError(true);
-        } else {
-          addToast("Preencha todos os campos!", { appearance: "error" });
-          setLoading(false);
-          setError(true);
-        }
-      }
-    } catch (error) {
-      addToast("Erro!", { appearance: "error" });
-      setLoading(false);
-      setError(true);
-      return;
-    } else {
+      } 
+      else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       }
     }
