@@ -123,6 +123,14 @@ function Login() {
     setLoading(false);
   };
 
+  async function verifyKey(e) {
+    const key = e;
+    if (key.keyCode === 13) {
+      handleClick(e);
+    }
+  }
+  document.body.onkeydown = verifyKey;
+
   return (
     <div className="Login-externalDiv">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
