@@ -11,11 +11,6 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
-  function confirmExit() {
-    if(!exit)
-    return 'Deseja realmente sair desta página?';
-  }
-  window.onbeforeunload = confirmExit; 
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -153,7 +148,7 @@ function FormPs() {
       dados.candidate_study_regimen !== "" &&
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
-      dados.candidate_PcD !== ""
+      dados.candidate_PcD !== "" 
     ) {
       document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
@@ -194,9 +189,11 @@ function FormPs() {
     } else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
         setError(true);
       }
     }

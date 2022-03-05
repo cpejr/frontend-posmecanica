@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { CircularProgress } from '@material-ui/core';
 import { useToasts } from 'react-toast-notifications';
 import { GoVerified } from 'react-icons/go';
@@ -10,6 +11,10 @@ import './Forms.scss';
 function Forms({
   initialState, formsInput, files, setFiles, handleClick, error, loading, exit,
 }) {
+  window.onbeforeunload = confirmExit;
+  function confirmExit() {
+    if (!exit) { return 'Deseja realmente sair desta página?'; }
+  }
   const { addToast } = useToasts();
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
@@ -19,7 +24,7 @@ function Forms({
     addToast('Redirecionando...', { appearance: 'success' });
     window.location.href = 'https://ppgmec.eng.ufmg.br/';
   }
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae e comprovantes (arquivo único)'];
   return (
     <div>
       {formsInput.map((topic) => (

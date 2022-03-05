@@ -1,12 +1,20 @@
+/*eslint-disable*/
 import React, { useState, useEffect } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
+import WarnningModal from '../../utils/WarnningModal';
+import { GoVerified } from 'react-icons/go';
+import { CircularProgress } from '@material-ui/core';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick, error,
+  initialState, formsInput, files, setFiles, handleClick, error, exit, loading,
 }) {
+  window.onbeforeunload = confirmExit;
+  function confirmExit() {
+    if (!exit) { return 'Deseja realmente sair desta página?'; }
+  }
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
@@ -38,10 +46,6 @@ function Forms({
     },
   ];
   const [disciplines, setDisciplines] = useState([]);
-  function confirmExit() {
-    return 'Deseja realmente sair desta página?';
-  }
-  window.onbeforeunload = confirmExit;
 
   useEffect(async () => {
     managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
@@ -138,9 +142,46 @@ function Forms({
           />
         </div>
       </div>
-      <div className="formsDI_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
-      </div>
+      {(loading === true) ? (
+        <>
+          {(exit === true) && (
+            <WarnningModal>
+              <GoVerified size={52} color="inherit" className="LoaderProfCandidates" />
+              <div className="BdDivGridLoader">
+                <div className="Loader-form">
+                  <p>Cadastro Realizado com sucesso!</p>
+                  <p>Verifique o número de protocolo em seu email.</p>
+                </div>
+              </div>
+              <div className="postButton">
+                <button
+                  className="buttonPost"
+                  type="submit"
+                  onClick={(e) => handleClickRedirect(e)}
+                >
+                  OK
+                </button>
+              </div>
+            </WarnningModal>
+          )}
+          {(exit === false) && (
+            <WarnningModal>
+              <div className="BdDivGridLoader">
+                <div className="Loader-form">
+                  <p>Aguarde, subindo arquivos...</p>
+                  <p>Por gentileza, não saia da página</p>
+                  <br />
+                  <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+                </div>
+              </div>
+            </WarnningModal>
+          )}
+        </>
+      ) : (
+        <div className="forms_divButton">
+          <button type="submit" id="botao" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
+        </div>
+      )}
     </div>
   );
 }
