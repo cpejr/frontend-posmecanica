@@ -178,7 +178,7 @@ function FormPs() {
             setTimeout(() => { }, 5000);
             addToast("Cadastro realizado com sucesso!", { appearance: "success" });
             setLoading(false);
-            // window.location.href = 'https://ppgmec.eng.ufmg.br/';
+            window.location.href = 'https://ppgmec.eng.ufmg.br/';
           } catch {
             addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
             setLoading(false);

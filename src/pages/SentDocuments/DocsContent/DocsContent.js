@@ -66,7 +66,6 @@ function DocsContent({ setShowInfoModal, setHasChanged, candidate }) {
         </div>
       );
     }
-    console.log(candidate.candidate_race);
     return (
       <div className="DC-documentsDivLine">
         <Document

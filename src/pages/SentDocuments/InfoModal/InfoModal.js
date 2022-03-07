@@ -112,9 +112,16 @@ function InfoModal({
             </button>
             <div>
               <h2>Detalhes do Candidato:</h2>
-              <div className="row">
-                <b>Data de Inscrição:</b>
-                {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
+              <div className="rowGrid">
+                <div className="InsideRowGridModal">
+                  <b>Data de Inscrição:</b>
+                  {` ${conteudo && formatedDate(conteudo.candidate_date_inscrition)}`}
+                </div>
+                <div>
+                  <b>Protocolo:</b>
+                  {` ${conteudo && conteudo.candidate_protocol_number ? conteudo.candidate_protocol_number : '-'}`}
+                </div>
+
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
