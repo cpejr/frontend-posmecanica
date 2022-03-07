@@ -48,6 +48,7 @@ function FormDis() {
     candidate_justify: "",
   };
   const [files, setFiles] = useState([]);
+  const [exit, setExit] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
@@ -122,6 +123,8 @@ function FormDis() {
         dados.fourth_discipline_isolated !== dados.third_discipline_isolated)
 
     ) {
+      document.getElementById('botao').disabled = true;
+      setLoading(true);
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         "ISOLADA"
@@ -136,8 +139,9 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
-        setTimeout(() => { }, 5000);
-        addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+        setExit(true);
+      } else {
+        document.getElementById('botao').disabled = false;
         setLoading(false);
         window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
@@ -164,9 +168,11 @@ function FormDis() {
           dados.fourth_discipline_isolated === dados.second_discipline_isolated ||
           dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
+      document.getElementById('botao').disabled = false;
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
       setLoading(false);
     } else {
+      document.getElementById('botao').disabled = false;
       addToast("Preencha todos os dados!", { appearance: "error" });
       setLoading(false);
       setError(true);
@@ -183,6 +189,7 @@ function FormDis() {
             formsInput={formsInput}
             files={files}
             loading={loading}
+            exit={exit}
             error={error}
             setFiles={setFiles}
             handleClick={handleClick}

@@ -104,6 +104,9 @@ $azulPadrao: #1d2d57;
   p {
     font-size: 20pt;
     font-family: Montserrat;
+    @media screen and (max-width: 420px) {
+      font-size: 15pt;
+    }
   }
 }
 @media screen and (max-width: 1250px) {
