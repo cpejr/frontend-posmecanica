@@ -77,8 +77,8 @@ function FormPs() {
   const verify = (dados) => {
     // verifica se é brasileiro homem e é candidato a doutorado
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-    || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-    && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
@@ -156,47 +156,57 @@ function FormPs() {
       dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
       dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
-       
 
-        const selectiveProcesses = await managerService.getActualSelectiveProcess(
-          "process_type",
-          dados.candidate_grade
-        );
-        if (selectiveProcesses.length !== 0) {
-          try {
-            setLoading(true);
-            const id = await managerService.createCandidate(
-              dados,
-              selectiveProcesses[0].process_id
-            );
-            const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
-            let quantity = infoSelectiveProcess.candidate_quantity + 1;
-            await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
-            for (const file of files) {
-              const data = new FormData();
-              data.append("file", file.file);
-              await managerService.uploadFile(data, id, file.name);
-            };
-            setTimeout(() => { }, 5000);
-            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-            setLoading(false);
-            setExit(true);
-            window.location.href = 'https://ppgmec.eng.ufmg.br/';
-          } catch {
-            addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
-            document.getElementById('botao').disabled = false;
+
+      const selectiveProcesses = await managerService.getActualSelectiveProcess(
+        "process_type",
+        dados.candidate_grade
+      );
+      if (selectiveProcesses.length !== 0) {
+        try {
+          setLoading(true);
+          const verifyCandidateExistence = await managerService.verifyCandidateExistence(
+            selectiveProcesses[0]?.process_id,
+            dados?.candidate_cpf,
+          );
+          if (verifyCandidateExistence) {
+            addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
             setLoading(false);
             setError(true);
             return;
           }
-        } else {
-          addToast("Processo seletivo não encontrado!", { appearance: "error" });
+          const id = await managerService.createCandidate(
+            dados,
+            selectiveProcesses[0].process_id
+          );
+          const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+          let quantity = infoSelectiveProcess.candidate_quantity + 1;
+          await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
+          for (const file of files) {
+            const data = new FormData();
+            data.append("file", file.file);
+            await managerService.uploadFile(data, id, file.name);
+          };
+          setTimeout(() => { }, 5000);
+          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          setLoading(false);
+          setExit(true);
+          window.location.href = 'https://ppgmec.eng.ufmg.br/';
+        } catch {
+          addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
           document.getElementById('botao').disabled = false;
           setLoading(false);
           setError(true);
+          return;
         }
-      } 
-      else {
+      } else {
+        addToast("Processo seletivo não encontrado!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setError(true);
+      }
+    }
+    else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;

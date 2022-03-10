@@ -130,6 +130,15 @@ function FormDis() {
         "ISOLADA"
       );
       if (selectiveProcesses.length !== 0) {
+        const verifyCandidateExistence = await managerService.verifyCandidateExistence(
+          selectiveProcesses[0]?.process_id,
+          dados?.candidate_cpf,
+        );
+        if (verifyCandidateExistence) {
+          addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+          setError(true);
+          return;
+        }
         const id = await managerService.createCandidateISO(
           dados,
           selectiveProcesses[0].process_id
@@ -139,9 +148,9 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
+        setTimeout(() => { }, 5000);
+        addToast("Cadastro realizado com sucesso!", { appearance: "success" });
         setExit(true);
-      } else {
-        document.getElementById('botao').disabled = false;
         setLoading(false);
         window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
@@ -149,6 +158,7 @@ function FormDis() {
           appearance: "error",
         });
         setLoading(false);
+        document.getElementById('botao').disabled = false;
       }
     } else if (
       (dados.first_discipline_isolated &&
