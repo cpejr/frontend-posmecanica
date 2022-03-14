@@ -104,7 +104,7 @@ function FormDis() {
       dados.candidate_phone_number.length >= 1 &&
       dados.candidate_university !== "" &&
       dados.candidate_graduation.length >= 1 &&
-      files.length === 6 &&
+      files.length === 5 &&
       (dados.first_discipline_isolated &&
         dados.first_discipline_isolated !== dados.second_discipline_isolated &&
         dados.first_discipline_isolated !== dados.third_discipline_isolated &&
@@ -149,10 +149,8 @@ function FormDis() {
           await managerService.uploadFile(data, id, file.name);
         });
         setTimeout(() => { }, 5000);
-        addToast("Cadastro realizado com sucesso!", { appearance: "success" });
         setExit(true);
         setLoading(false);
-        window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",

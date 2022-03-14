@@ -15,6 +15,10 @@ function Forms({
   function confirmExit() {
     if (!exit) { return 'Deseja realmente sair desta página?'; }
   }
+  function handleClickRedirect() {
+    addToast('Redirecionando...', { appearance: 'success' });
+    window.location.href = 'https://ppgmec.eng.ufmg.br/';
+  }
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
