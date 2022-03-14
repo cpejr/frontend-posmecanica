@@ -48,6 +48,8 @@ function FormDis() {
     candidate_justify: "",
   };
   const [files, setFiles] = useState([]);
+  const [exit, setExit] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const history = useHistory();
@@ -66,8 +68,8 @@ function FormDis() {
   }, []);
 
   const handleClick = async (e, dados) => {
+    setLoading(true);
     dados.candidate_grade = "NENHUMA DAS OPÇÕES";
-
     e.preventDefault();
     if (
       dados.candidate_name.length >= 1 &&
@@ -102,7 +104,7 @@ function FormDis() {
       dados.candidate_phone_number.length >= 1 &&
       dados.candidate_university !== "" &&
       dados.candidate_graduation.length >= 1 &&
-      files.length === 5 &&
+      files.length === 6 &&
       (dados.first_discipline_isolated &&
         dados.first_discipline_isolated !== dados.second_discipline_isolated &&
         dados.first_discipline_isolated !== dados.third_discipline_isolated &&
@@ -121,6 +123,8 @@ function FormDis() {
         dados.fourth_discipline_isolated !== dados.third_discipline_isolated)
 
     ) {
+      document.getElementById('botao').disabled = true;
+      setLoading(true);
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         "ISOLADA"
@@ -144,12 +148,17 @@ function FormDis() {
           data.append("file", file.file);
           await managerService.uploadFile(data, id, file.name);
         });
+        setTimeout(() => { }, 5000);
         addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+        setExit(true);
+        setLoading(false);
         window.location.href = 'https://ppgmec.eng.ufmg.br/';
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
         });
+        setLoading(false);
+        document.getElementById('botao').disabled = false;
       }
     } else if (
       (dados.first_discipline_isolated &&
@@ -169,9 +178,13 @@ function FormDis() {
           dados.fourth_discipline_isolated === dados.second_discipline_isolated ||
           dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
+      document.getElementById('botao').disabled = false;
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
+      setLoading(false);
     } else {
+      document.getElementById('botao').disabled = false;
       addToast("Preencha todos os dados!", { appearance: "error" });
+      setLoading(false);
       setError(true);
     }
   };
@@ -185,6 +198,8 @@ function FormDis() {
             initialState={initialState}
             formsInput={formsInput}
             files={files}
+            loading={loading}
+            exit={exit}
             error={error}
             setFiles={setFiles}
             handleClick={handleClick}

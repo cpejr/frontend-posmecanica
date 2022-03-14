@@ -9,11 +9,20 @@ $azulPadrao: #1d2d57;
   height: 8%;
 }
 .formsDI_title{
+  display: flex;
   color: white;
   margin-left: 1%;
   text-align: center;
   font-family: Montserrat;
   font-size: 2.0em;
+  flex-direction: row;
+
+  p:nth-child(1) {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+   }
 }
 .formsDI_box{
   background-color: #ffff;

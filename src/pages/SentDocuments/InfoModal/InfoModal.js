@@ -208,24 +208,34 @@ function InfoModal({
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
-                  <b>Primeira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
-                </div>
-                <div>
-                  <b>Segunda Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
+                  <b>Área de Concentração:</b>
+                  {` ${conteudo?.candidate_concentration_area ? conteudo?.candidate_concentration_area : '-'}`}
                 </div>
               </div>
-              <div className="rowGrid">
-                <div className="InsideRowGridModal">
-                  <b>Terceira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
-                </div>
-                <div>
-                  <b>Quarta Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
-                </div>
-              </div>
+              {conteudo?.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
+                <>
+                  <div className="rowGrid">
+                    <div className="InsideRowGridModal">
+                      <b>Primeira Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
+                    </div>
+                    <div>
+                      <b>Segunda Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
+                    </div>
+                  </div>
+                  <div className="rowGrid">
+                    <div className="InsideRowGridModal">
+                      <b>Terceira Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
+                    </div>
+                    <div>
+                      <b>Quarta Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
+                    </div>
+                  </div>
+                </>
+              )}
               <div className="row">
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
