@@ -3,6 +3,9 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../../services/manager/managerService';
+import professorDocsIso from '../../../utils/professorDocsIso';
+import Document from '../../../components/Document';
+import { useAuth } from '../../../providers/auth';
 import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
@@ -17,11 +20,50 @@ function InfoModal({
     const year = data.getFullYear();
     return `${responseDay}/${responseMonth}/${year}`;
   }
-
+  const { user } = useAuth();
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [action, setAction] = useState('');
   const [selectiveProcessName, setSelectiveProcessName] = useState('-');
+
+  const renderLineIso = (docs) => {
+    if (docs.types.length === 1) {
+      return (
+        <div key={docs.types[0]} className="DC-documentsDivLine">
+          <Document type={docs.types[0]} text={docs.text[0]}>
+            {docs.icons[0]}
+          </Document>
+        </div>
+      );
+    }
+    return (
+      <div className="documentsProfIso">
+        <Document
+          type={docs.types[0]}
+          candidate={conteudo.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[0]}
+        </Document>
+        <Document
+          type={docs.types[1]}
+          candidate={conteudo.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[1]}
+        </Document>
+      </div>
+    );
+  };
+
+  const renderInfoIso = (info) => (
+    <div key={info.text} className="DC-infoContainer">
+      <div className="DC-personNameTitle">
+        {info.text}
+      </div>
+      {info.docs.map((line) => renderLineIso(line))}
+    </div>
+  );
 
   function disciplineSituation(discipline) {
     if (discipline === false) {
@@ -245,6 +287,13 @@ function InfoModal({
                   <b>Justificativa:</b>
                   {` ${conteudo?.candidate_justify}`}
                 </div>
+              )}
+              {user?.type === 'professor' && (
+                <>
+                  <div className="DC-documentsDiv">
+                    {professorDocsIso.map((info) => renderInfoIso(info))}
+                  </div>
+                </>
               )}
             </div>
             {studentList === 'true' && conteudo.process_type !== 'ISOLADA' && (

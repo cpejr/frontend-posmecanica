@@ -89,6 +89,14 @@
   justify-content: center;
 }
 
+.documentsProfIso{
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:center;
+  margin-top: 15px;
+}
+
 .InfoModalStudentRedirect {
   display: flex;
   background: #3b54a7;

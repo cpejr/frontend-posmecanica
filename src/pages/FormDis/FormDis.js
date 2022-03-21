@@ -55,6 +55,16 @@ function FormDis() {
   const history = useHistory();
   const { addToast } = useToasts();
 
+  const verifyFilesSize = () => {
+    for (const file of files) {
+      const maxSize = 1 * 1024 * 1024;
+      if (file.size > maxSize) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   useEffect(async () => {
     const selectiveProcesses = await managerService.getActualSelectiveProcess(
       "process_type",
@@ -68,10 +78,10 @@ function FormDis() {
   }, []);
 
   const handleClick = async (e, dados) => {
-    setLoading(true);
     dados.candidate_grade = "NENHUMA DAS OPÇÕES";
     e.preventDefault();
     if (
+      verifyFilesSize() &&
       dados.candidate_name.length >= 1 &&
       dados.candidate_cpf.length >= 1 &&
       dados.candidate_identity.length >= 1 &&
@@ -104,7 +114,7 @@ function FormDis() {
       dados.candidate_phone_number.length >= 1 &&
       dados.candidate_university !== "" &&
       dados.candidate_graduation.length >= 1 &&
-      files.length === 5 &&
+      files.length === 6 &&
       (dados.first_discipline_isolated &&
         dados.first_discipline_isolated !== dados.second_discipline_isolated &&
         dados.first_discipline_isolated !== dados.third_discipline_isolated &&
@@ -124,6 +134,7 @@ function FormDis() {
 
     ) {
       document.getElementById('botao').disabled = true;
+      setError(false);
       setLoading(true);
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
@@ -135,7 +146,9 @@ function FormDis() {
           dados?.candidate_cpf,
         );
         if (verifyCandidateExistence) {
+          setLoading(false);
           addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+          document.getElementById('botao').disabled = false;
           setError(true);
           return;
         }
@@ -143,6 +156,9 @@ function FormDis() {
           dados,
           selectiveProcesses[0].process_id
         );
+        const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+        let quantity = infoSelectiveProcess.candidate_quantity + 1;
+        await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
         files.forEach(async (file) => {
           const data = new FormData();
           data.append("file", file.file);
@@ -150,7 +166,6 @@ function FormDis() {
         });
         setTimeout(() => { }, 5000);
         setExit(true);
-        setLoading(false);
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
@@ -179,6 +194,10 @@ function FormDis() {
       document.getElementById('botao').disabled = false;
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
       setLoading(false);
+    } else if (!verifyFilesSize()) {
+      document.getElementById('botao').disabled = false;
+      addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
+      setError(true);
     } else {
       document.getElementById('botao').disabled = false;
       addToast("Preencha todos os dados!", { appearance: "error" });

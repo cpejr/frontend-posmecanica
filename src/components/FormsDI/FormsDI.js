@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
 import WarningModal from '../../utils/WarningModal';
@@ -15,6 +16,7 @@ function Forms({
   function confirmExit() {
     if (!exit) { return 'Deseja realmente sair desta página?'; }
   }
+  const { addToast } = useToasts();
   function handleClickRedirect() {
     addToast('Redirecionando...', { appearance: 'success' });
     window.location.href = 'https://ppgmec.eng.ufmg.br/';
@@ -53,7 +55,6 @@ function Forms({
 
   useEffect(async () => {
     managerService.getDisciplines().then((resp) => {
-      console.log(resp);
       resp = resp.filter((item) => item.discipline_semester === 'OFERTADO');
       const disciplinas = [];
       disciplinas.push({ label: 'Nenhuma', value: '' });
@@ -149,7 +150,7 @@ function Forms({
           />
         </div>
       </div>
-      {(loading === true) ? (
+      {(loading === true && error === false) ? (
         <>
           {(exit === true) && (
             <WarningModal>

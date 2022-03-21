@@ -38,9 +38,11 @@ function registerDis() {
         const semester = dados.process_semester.substr(4, 5);
         dados.process_semester = year.concat('/').concat(semester);
         if (semester === '1' || semester === '2') {
-          dados.process_date_begin = moment(dados.process_date_begin).format();
-          dados.process_date_end = moment(dados.process_date_end).set({
-            hour: 23, minute: 59, second: 59, millisecond: 59,
+          dados.process_date_begin = moment(dados.process_date_begin).set({
+            hour: 3, minute: 0, second: 0, millisecond: 0,
+          }).format();
+          dados.process_date_end = moment(dados.process_date_end).add(1, 'days').set({
+            hour: 2, minute: 59, second: 59, millisecond: 59,
           }).format();
           const verify = await managerService.verifySelectiveProcess('process_type', dados);
           if (verify.length === 0) {
