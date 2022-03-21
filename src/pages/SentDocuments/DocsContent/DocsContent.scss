@@ -110,8 +110,10 @@
     align-content: center;
 
     .DC-documentsDivLine{
-      display: flex;
-      flex-direction: column;
+      display:grid;
+      align-items:center;
+      justify-content:center;
+      grid-template-columns:1fr 1fr 1fr 1fr 1fr;
     }
   }
   .DC-buttons{
@@ -142,7 +144,7 @@
   }
   .DC-result{
     p{
-      font-size: 1.7em;
+      font-size: 0.7em;
     }
   }
 }

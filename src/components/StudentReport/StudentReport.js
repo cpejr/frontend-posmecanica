@@ -7,6 +7,7 @@ import typeAproval from '../../utils/typeAproval';
 import '../Document/Document.scss';
 import * as managerService from '../../services/manager/managerService';
 import GenericModal from '../../utils/GenericModal';
+import OptionsModal from '../../utils/OptionsModal';
 
 function StudentReport({
   children,
@@ -22,11 +23,18 @@ function StudentReport({
   const { addToast } = useToasts();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showDadosModal, setShowDadosModal] = useState(false);
+  const [showEndModal, setShowEndModal] = useState(false);
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [showOptionsModal2, setShowOptionsModal2] = useState(false);
   const [showAprovalModal, setShowAprovalModal] = useState(false);
+  const [negative1, setNegative1] = useState(false);
+  const [negative2, setNegative2] = useState(false);
   const [aproval, setAproval] = useState();
   const [days, setDays] = useState();
-  const [quantidade, setQuantidade] = useState();
-  const [valor, setValor] = useState();
+  const [date, setDate] = useState('');
+  const [year, setYear] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [valor, setValor] = useState('');
   const handleClickReports = async () => {
     const student = await managerService.getByIdStudent(location.state.stud_id);
     if (path === 'declaracao') {
@@ -38,6 +46,8 @@ function StudentReport({
           grade: location.state.candidate_grade,
           inscrition: location.state.candidate_date_inscrition,
           scholarship: location.state.candidate_scholarship,
+          dateEnd: date,
+          years: year,
           amount: quantidade,
           value: valor,
           currentDate: new Date(),
@@ -108,6 +118,10 @@ function StudentReport({
     setShowConfirmModal(false);
     setShowDadosModal(false);
     setShowAprovalModal(false);
+    setShowOptionsModal(false);
+    setShowOptionsModal2(false);
+    setShowEndModal(false);
+    setDate('');
   };
   const handleConfirmClick = async () => {
     handleClickReports();
@@ -115,13 +129,37 @@ function StudentReport({
   const handleVerifyReport = async () => {
     if (path === 'escolha-membro') {
       setShowConfirmModal(true);
-    } else if (path === 'declaracao' && location.state.candidate_scholarship === true) {
-      setShowDadosModal(true);
+    } else if (path === 'declaracao' && date === '' && negative1 === false) {
+      setShowOptionsModal(true);
+    } else if (path === 'declaracao' && location.state.candidate_scholarship === true && negative2 === false) {
+      setShowOptionsModal2(true);
     } else if (path === 'ata-completa') {
       setShowAprovalModal(true);
     } else {
       handleClickReports();
     }
+  };
+  const handleContinueClick = async () => {
+    setShowOptionsModal(false);
+    setShowEndModal(true);
+  };
+  const handleContinueClick2 = async () => {
+    setShowOptionsModal2(false);
+    setShowDadosModal(true);
+  };
+  const handleContinueConfirmClick = async () => {
+    setShowEndModal(false);
+    handleVerifyReport();
+  };
+  const handleNegativeClick1 = async () => {
+    setNegative1(true);
+    setShowOptionsModal(false);
+    handleVerifyReport();
+  };
+  const handleNegativeClick2 = async () => {
+    setNegative2(true);
+    setShowOptionsModal2(false);
+    handleVerifyReport();
   };
   return (
     <div className="Document-externalDiv">
@@ -134,6 +172,46 @@ function StudentReport({
             {type}
           </button>
         )}
+      {showOptionsModal && (
+        <OptionsModal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleContinueClick}
+          handleNegativeClick={handleNegativeClick1}
+        >
+          Deseja incluir previsão de término?
+        </OptionsModal>
+      )}
+      {showOptionsModal2 && (
+        <OptionsModal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleContinueClick2}
+          handleNegativeClick={handleNegativeClick2}
+        >
+          Deseja incluir declaração de bolsista?
+        </OptionsModal>
+      )}
+      {showEndModal && (
+        <GenericModal
+          handleCloseClick={handleCloseClick}
+          handleConfirmClick={handleContinueConfirmClick}
+        >
+          Insira o tempo de duração e a data da previsão do término.
+          <TextField
+            id="outlined-number"
+            label="Anos"
+            type="number"
+            style={{ marginTop: '20px' }}
+            onChange={(e) => setYear(e.target.value)}
+          />
+          <TextField
+            id="outlined-date"
+            label="Data"
+            type="date"
+            style={{ marginTop: '20px' }}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </GenericModal>
+      )}
       {showConfirmModal && (
         <GenericModal
           handleCloseClick={handleCloseClick}

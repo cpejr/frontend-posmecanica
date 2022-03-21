@@ -24,8 +24,8 @@ const infosIso = [
       },
       {
         text: 'Docs',
-        types: ['Proficiência', 'Comprovante de Endereço'],
-        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
+        types: ['Histórico', 'Comprovante de Endereço', 'Currículo Lattes'],
+        icons: [<RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />, <RiFile3Fill size="2em" />],
       },
     ],
   },

@@ -24,6 +24,7 @@ export const getCandidateDiscipline = (times, field, filter) => httpClient.get('
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const verifyCandidateExistence = (candidateProcessId, candidateCPF) => httpClient.get(`/candidates/verifyExistence/${candidateProcessId}/${candidateCPF}`);
 export const getByIdDisciplineDeferment = (firstFilter, secondFilter) => httpClient.get('/getByIdDisciplineDeferment/candidate_dis', {
   params: {
     firstFilter,

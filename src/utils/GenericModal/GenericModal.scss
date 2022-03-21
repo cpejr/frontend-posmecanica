@@ -47,6 +47,11 @@
 .row{
   margin-bottom: 1em;
 }
+.DM-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .DM-button{
   display: flex;
   justify-content: center;
@@ -54,7 +59,8 @@
   button{
     background-color: #04064B;
     height: 7vh;
-    width: 15vw;
+    width: 10vw;
+    margin-left: 5px;
     border: 0;
     color: #ffffff;
     border-radius: 0.9em;
@@ -71,5 +77,8 @@
       width: 35vw;
       font-size: 10pt;
     }
+  }
+  .DM-row {
+    flex-direction: column;
   }
 }

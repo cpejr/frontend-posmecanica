@@ -1,5 +1,7 @@
 .TC-page {
   display: flex;
+  height: 65vh;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -60,5 +62,8 @@
 @media screen and (max-width: 330px) {
   .TC-title{
     font-size: 1.7em;
+  }
+  .TC-page{
+    height: 75vh;
   }
 }

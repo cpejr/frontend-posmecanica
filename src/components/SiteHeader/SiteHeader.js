@@ -74,7 +74,7 @@ function SiteHeader() {
         ))}
       </div>
       <div className="site-header-logo">
-        <img alt="ufmg-logo" src="/images/logo-ufmg-branca.png" />
+        <img alt="ufmg-logo" src="/Images/logo-ufmg-branca.png" />
       </div>
     </div>
   );
