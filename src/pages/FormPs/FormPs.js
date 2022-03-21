@@ -11,11 +11,6 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
-  function confirmExit() {
-    if (!exit)
-      return 'Deseja realmente sair desta página?';
-  }
-  window.onbeforeunload = confirmExit;
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -52,9 +47,9 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
-  const [exit, setExit] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -162,12 +157,14 @@ function FormPs() {
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
       dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
 
+
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         dados.candidate_grade
       );
-      if (selectiveProcesses?.length !== 0) {
+      if (selectiveProcesses.length !== 0) {
         try {
+          setLoading(true);
           const verifyCandidateExistence = await managerService.verifyCandidateExistence(
             selectiveProcesses[0]?.process_id,
             dados?.candidate_cpf,
@@ -184,33 +181,41 @@ function FormPs() {
           );
           const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          setLoading(true);
           await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
           for (const file of files) {
             const data = new FormData();
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
-          setExit(true);
+          setTimeout(() => { }, 5000);
           addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-          addToast("Redirecionando...", { appearance: "success" });
           setLoading(false);
+          setExit(true);
           window.location.href = 'https://ppgmec.eng.ufmg.br/';
-        } catch (error) {
+        } catch {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
+          document.getElementById('botao').disabled = false;
           setLoading(false);
           setError(true);
           return;
         }
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setError(true);
       }
-    } else {
+    }
+    else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       }
     }
@@ -229,6 +234,7 @@ function FormPs() {
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
+            exit={exit}
           />
         </>
       )}

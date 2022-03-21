@@ -1,17 +1,31 @@
+/*eslint-disable*/
 import React, { useState, useEffect } from 'react';
+import { CircularProgress } from '@material-ui/core';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
+import WarningModal from '../../utils/WarningModal';
+import { GoVerified } from 'react-icons/go';
 
 function Forms({
-  initialState, formsInput, files, setFiles, handleClick, error,
+  initialState, formsInput, files, setFiles, handleClick, error, exit, loading,
 }) {
+  window.onbeforeunload = confirmExit;
+  function confirmExit() {
+    if (!exit) { return 'Deseja realmente sair desta página?'; }
+  }
+  const { addToast } = useToasts();
+  function handleClickRedirect() {
+    addToast('Redirecionando...', { appearance: 'success' });
+    window.location.href = 'https://ppgmec.eng.ufmg.br/';
+  }
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'Proficiência em Língua Inglesa'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'Histórico', 'Currículo Lattes'];
   const formsIsolatedDiscipline = [
     {
       type: 'text',
@@ -39,13 +53,8 @@ function Forms({
   ];
   const [disciplines, setDisciplines] = useState([]);
 
-  function confirmExit() {
-    return 'Deseja realmente sair desta página?';
-  }
-  window.onbeforeunload = confirmExit;
-
   useEffect(async () => {
-    managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
+    managerService.getDisciplines().then((resp) => {
       resp = resp.filter((item) => item.discipline_semester === 'OFERTADO');
       const disciplinas = [];
       disciplinas.push({ label: 'Nenhuma', value: '' });
@@ -111,6 +120,8 @@ function Forms({
       <div className="formsDI_box_title">
         <div className="formsDI_title">
           Arquivos
+          {' '}
+          <p>(Tamanho máximo de cada arquivo: 1 MB, formato PDF)</p>
         </div>
       </div>
       <div className="formsDI_box">
@@ -139,9 +150,46 @@ function Forms({
           />
         </div>
       </div>
-      <div className="formsDI_divButton">
-        <button type="submit" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
-      </div>
+      {(loading === true && error === false) ? (
+        <>
+          {(exit === true) && (
+            <WarningModal>
+              <GoVerified size={52} color="inherit" className="LoaderProfCandidates" />
+              <div className="BdDivGridLoader">
+                <div className="Loader-form">
+                  <p>Cadastro Realizado com sucesso!</p>
+                  <p>Verifique o número de protocolo em seu email.</p>
+                </div>
+              </div>
+              <div className="postButton">
+                <button
+                  className="buttonPost"
+                  type="submit"
+                  onClick={(e) => handleClickRedirect(e)}
+                >
+                  OK
+                </button>
+              </div>
+            </WarningModal>
+          )}
+          {(exit === false) && (
+            <WarningModal>
+              <div className="BdDivGridLoader">
+                <div className="Loader-form">
+                  <p>Aguarde, subindo arquivos...</p>
+                  <p>Por gentileza, não saia da página</p>
+                  <br />
+                  <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+                </div>
+              </div>
+            </WarningModal>
+          )}
+        </>
+      ) : (
+        <div className="forms_divButton">
+          <button type="submit" id="botao" onClick={(e) => handleClick(e, dados)}>Inscrever</button>
+        </div>
+      )}
     </div>
   );
 }

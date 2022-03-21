@@ -3,6 +3,9 @@ import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import * as managerService from '../../../services/manager/managerService';
+import professorDocsIso from '../../../utils/professorDocsIso';
+import Document from '../../../components/Document';
+import { useAuth } from '../../../providers/auth';
 import GenericModal from '../../../utils/GenericModal';
 
 function InfoModal({
@@ -17,11 +20,50 @@ function InfoModal({
     const year = data.getFullYear();
     return `${responseDay}/${responseMonth}/${year}`;
   }
-
+  const { user } = useAuth();
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [action, setAction] = useState('');
   const [selectiveProcessName, setSelectiveProcessName] = useState('-');
+
+  const renderLineIso = (docs) => {
+    if (docs.types.length === 1) {
+      return (
+        <div key={docs.types[0]} className="DC-documentsDivLine">
+          <Document type={docs.types[0]} text={docs.text[0]}>
+            {docs.icons[0]}
+          </Document>
+        </div>
+      );
+    }
+    return (
+      <div className="documentsProfIso">
+        <Document
+          type={docs.types[0]}
+          candidate={conteudo.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[0]}
+        </Document>
+        <Document
+          type={docs.types[1]}
+          candidate={conteudo.candidate_id}
+          text={docs.text}
+        >
+          {docs.icons[1]}
+        </Document>
+      </div>
+    );
+  };
+
+  const renderInfoIso = (info) => (
+    <div key={info.text} className="DC-infoContainer">
+      <div className="DC-personNameTitle">
+        {info.text}
+      </div>
+      {info.docs.map((line) => renderLineIso(line))}
+    </div>
+  );
 
   function disciplineSituation(discipline) {
     if (discipline === false) {
@@ -208,24 +250,34 @@ function InfoModal({
               </div>
               <div className="rowGrid">
                 <div className="InsideRowGridModal">
-                  <b>Primeira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
-                </div>
-                <div>
-                  <b>Segunda Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
+                  <b>Área de Concentração:</b>
+                  {` ${conteudo?.candidate_concentration_area ? conteudo?.candidate_concentration_area : '-'}`}
                 </div>
               </div>
-              <div className="rowGrid">
-                <div className="InsideRowGridModal">
-                  <b>Terceira Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
-                </div>
-                <div>
-                  <b>Quarta Disciplina Isolada:</b>
-                  {` ${disciplinaInfo && disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
-                </div>
-              </div>
+              {conteudo?.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
+                <>
+                  <div className="rowGrid">
+                    <div className="InsideRowGridModal">
+                      <b>Primeira Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[0]?.disciplineName ? disciplinaInfo[0]?.disciplineName : '-'} `}
+                    </div>
+                    <div>
+                      <b>Segunda Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[1]?.disciplineName ? disciplinaInfo[1]?.disciplineName : '-'}`}
+                    </div>
+                  </div>
+                  <div className="rowGrid">
+                    <div className="InsideRowGridModal">
+                      <b>Terceira Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[2]?.disciplineName ? disciplinaInfo[2]?.disciplineName : '-'}`}
+                    </div>
+                    <div>
+                      <b>Quarta Disciplina Isolada:</b>
+                      {` ${disciplinaInfo && disciplinaInfo[3]?.disciplineName ? disciplinaInfo[3]?.disciplineName : '-'}`}
+                    </div>
+                  </div>
+                </>
+              )}
               <div className="row">
                 <b>Endereço:</b>
                 {` ${conteudo?.candidate_street}, N°${conteudo?.candidate_adress_num}, ${conteudo?.candidate_district}, ${conteudo?.candidate_city}, ${conteudo?.candidate_state}, ${conteudo?.candidate_country}`}
@@ -235,6 +287,13 @@ function InfoModal({
                   <b>Justificativa:</b>
                   {` ${conteudo?.candidate_justify}`}
                 </div>
+              )}
+              {user?.type === 'professor' && (
+                <>
+                  <div className="DC-documentsDiv">
+                    {professorDocsIso.map((info) => renderInfoIso(info))}
+                  </div>
+                </>
               )}
             </div>
             {studentList === 'true' && conteudo.process_type !== 'ISOLADA' && (
