@@ -80,6 +80,8 @@ export const getProfessorDiscipline = (times, field, filter) => httpClient.get('
   },
   paramsSerializer: (params) => qs.stringify(params),
 });
+export const updateByIdDisciplineProfessor = (disciplineId, professorId) => httpClient.put(`/update/professor_discipline/${disciplineId}`, professorId);
+
 export const getByIdProfessor = (ProfId) => httpClient.get(`/professors/${ProfId}`);
 
 export const getSearchArea = (times, field, filter) => httpClient.get('/searchAreas', {

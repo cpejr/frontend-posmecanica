@@ -38,7 +38,9 @@ function registerDis() {
         const semester = dados.process_semester.substr(4, 5);
         dados.process_semester = year.concat('/').concat(semester);
         if (semester === '1' || semester === '2') {
-          dados.process_date_begin = moment(dados.process_date_begin).format();
+          dados.process_date_begin = moment(dados.process_date_begin).set({
+            hour: 0, minute: 0, second: 0, millisecond: 0,
+          }).format();
           dados.process_date_end = moment(dados.process_date_end).set({
             hour: 23, minute: 59, second: 59, millisecond: 59,
           }).format();

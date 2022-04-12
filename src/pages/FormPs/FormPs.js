@@ -191,26 +191,36 @@ function FormPs() {
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
-          setExit(true);
-          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-          addToast("Redirecionando...", { appearance: "success" });
-          setLoading(false);
-          window.location.href = 'https://ppgmec.eng.ufmg.br/';
+          setTimeout(() => {
+            setExit(true);
+            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+            addToast("Redirecionando...", { appearance: "success" });
+            setLoading(false);
+            window.location.href = 'https://ppgmec.eng.ufmg.br/';
+          }, 5000);
         } catch (error) {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
+          document.getElementById('botao').disabled = false;
           setLoading(false);
           setError(true);
           return;
         }
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setError(true);
       }
     } else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
         setError(true);
       }
     }
