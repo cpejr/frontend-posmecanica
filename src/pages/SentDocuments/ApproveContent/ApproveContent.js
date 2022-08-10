@@ -22,11 +22,11 @@ function ApproveContent({ candidate }) {
     if (action.toLowerCase() === "aprovado") {
       await managerService.updateCandidate(
         {
-          candidate_approval: true,
+          candidate_approval: 1,
         },
         candidate.candidate_id
       );
-      candidate.candidate_approval = true;
+      candidate.candidate_approval = 1;
       if (result.length === 0) {
         await managerService.createStudent(candidate);
       }

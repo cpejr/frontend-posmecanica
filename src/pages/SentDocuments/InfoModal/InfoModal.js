@@ -7,6 +7,8 @@ import professorDocsIso from '../../../utils/professorDocsIso';
 import Document from '../../../components/Document';
 import { useAuth } from '../../../providers/auth';
 import GenericModal from '../../../utils/GenericModal';
+import { useToasts } from 'react-toast-notifications';
+import ResultModal from '../../../utils/ResultModal';
 
 function InfoModal({
   close, conteudo, painelADM, disciplinaInfo, studentList, handleClick,
@@ -21,10 +23,39 @@ function InfoModal({
     return `${responseDay}/${responseMonth}/${year}`;
   }
   const { user } = useAuth();
+  const { addToast } = useToasts();
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
+  const [showOkModal, setOkShowModal] = useState(false);
+  const [showErroModal, setErroShowModal] = useState(false);
   const [action, setAction] = useState('');
   const [selectiveProcessName, setSelectiveProcessName] = useState('-');
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  async function handleClickConfirm() {
+    try {
+      await managerService.denyCandidate(conteudo.candidate_id);
+      addToast('Candidato excluído com sucesso!', { appearance: 'success' });
+      setShowConfirmModal(false);
+      setOkShowModal(true);
+    } catch (err) {
+      addToast('Erro ao excluir candidato', { appearance: 'success' });
+      setShowConfirmModal(false);
+      setErroShowModal(true);
+    }
+  }
+
+  function handleClickOk() {
+    document.location.reload(true);
+  }
+
+  function handleClickClose() {
+    setShowConfirmModal(false);
+  }
+
+  function handleClickExcluir() {
+    setShowConfirmModal(true);
+  }
 
   const renderLineIso = (docs) => {
     if (docs.types.length === 1) {
@@ -259,6 +290,10 @@ function InfoModal({
                   <b>Área de Concentração:</b>
                   {` ${conteudo?.candidate_concentration_area ? conteudo?.candidate_concentration_area : '-'}`}
                 </div>
+                <div className="InsideRowGridModal">
+                  <b>Candidato a bolsa:</b>
+                  {` ${(conteudo?.candidate_scholarship != null) ? (conteudo?.candidate_scholarship ? 'SIM' : 'NÃO') : '-'}`}
+                </div>
               </div>
               {conteudo?.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
                 <>
@@ -405,6 +440,7 @@ function InfoModal({
             </div>
             <div className="teste">
               <button type="button" className="SPbutton-result" onClick={() => handleClick()}>Ver Documentos</button>
+              <button type="button" className="SPbutton-result" onClick={() => handleClickExcluir()}>Excluir</button>
             </div>
           </div>
         </div>
@@ -418,6 +454,28 @@ function InfoModal({
           {` ${action}`}
           , deseja remarcar?
         </GenericModal>
+      )}
+      {showConfirmModal && (
+        <GenericModal
+          handleConfirmClick={handleClickConfirm}
+          handleCloseClick={handleClickClose}
+        >
+          Deseja excluir esse candidato?
+        </GenericModal>
+      )}
+      {showOkModal && (
+        <ResultModal
+          handleConfirmClick={handleClickOk}
+        >
+          Candidato Excluído com Sucesso!
+        </ResultModal>
+      )}
+      {showErroModal && (
+        <ResultModal
+          handleConfirmClick={handleClickOk}
+        >
+          ERRO ao excluir candidato!
+        </ResultModal>
       )}
     </>
   );

@@ -64,7 +64,7 @@ function InfoModal({ close, conteudo }) {
             {` ${conteudo && formatedDate(conteudo.process_date_end)}`}
           </div>
         </div>
-        {conteudo.process_type === 'ISOLADA' && verificationIsClose(conteudo.process_date_end) && (
+        {conteudo.process_type === 'ISOLADA' && (
           <div className="teste">
             <button type="button" className="SPbutton-result" onClick={() => handleClick()}>RESULTADO</button>
           </div>

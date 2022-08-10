@@ -55,6 +55,7 @@ function FormPs() {
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const [exit, setExit] = useState(false);
+  const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -119,8 +120,25 @@ function FormPs() {
     return false;
   }
 
+  async function verifyFilesSize() {
+    files.forEach(async (file) => {
+      const data = new FormData();
+      data.append("file", file.file);
+
+      const maxSize = 1 * 1024 * 1024;
+      if (file.file.size > maxSize) {
+        addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
+        setTimeout(() => {
+          setTeste(false);
+        }, 5000);
+      }
+    });
+  }
+
   const handleClick = async (e, dados) => {
     e.preventDefault();
+    await verifyFilesSize();
+    console.log(teste);
     if (
       dados.candidate_name.length >= 1 &&
       dados.candidate_cpf.length >= 1 &&
@@ -154,7 +172,8 @@ function FormPs() {
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
       dados.candidate_PcD !== "" &&
-      verify(dados)
+      verify(dados) &&
+      teste
     ) {
       document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
@@ -174,6 +193,7 @@ function FormPs() {
           );
           if (verifyCandidateExistence) {
             addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+            document.getElementById('botao').disabled = false;
             setLoading(false);
             setError(true);
             return;
@@ -194,14 +214,13 @@ function FormPs() {
           setTimeout(() => {
             setExit(true);
             addToast("Cadastro realizado com sucesso!", { appearance: "success" });
-            addToast("Redirecionando...", { appearance: "success" });
-            setLoading(false);
-            window.location.href = 'https://ppgmec.eng.ufmg.br/';
           }, 5000);
         } catch (error) {
+          setLoading(false);
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
           document.getElementById('botao').disabled = false;
-          setLoading(false);
+          console.log('aqiu');
+          setExit(false);
           setError(true);
           return;
         }
@@ -209,6 +228,7 @@ function FormPs() {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
         setError(true);
       }
     } else {
@@ -216,11 +236,19 @@ function FormPs() {
         addToast("Insira todos os arquivos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
+        setError(true);
+      } else if (!teste) {
+        setTeste(true);
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
         setError(true);
       }
     }
@@ -236,6 +264,7 @@ function FormPs() {
             formsInput={formsInput}
             files={files}
             loading={loading}
+            exit={exit}
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
