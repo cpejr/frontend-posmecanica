@@ -24,17 +24,17 @@ function InscritosIsoPS({
     setShowConfirmModalCandidate(false);
   };
 
-  const totalApprovalCandidate = async () => {
-    candidate.candidate_scholarship = false;
-    await managerService.updateByIdDisciplineDeferment({
-      cd_dis_deferment: true,
-    }, candidate.candidate_id, disciplineToDeferment);
-    await managerService.createStudent(candidate);
-    await managerService.updateCandidate({
-      candidate_deferment: true,
-    }, candidate.candidate_id);
-    setShowCandidate(false);
-  };
+  // const totalApprovalCandidate = async () => {
+  //   candidate.candidate_scholarship = false;
+  //   await managerService.updateByIdDisciplineDeferment({
+  //     cd_dis_deferment: true,
+  //   }, candidate.candidate_id, disciplineToDeferment);
+  //   await managerService.createStudent(candidate);
+  //   await managerService.updateCandidate({
+  //     candidate_deferment: true,
+  //   }, candidate.candidate_id);
+  //   setShowCandidate(false);
+  // };
 
   const deleteCandidate = async () => {
     await managerService.denyCandidate(candidate.candidate_id);
@@ -44,27 +44,27 @@ function InscritosIsoPS({
     setIsoCandidates(removeCandidate);
   };
 
-  const verifyPriority = async (defermentTrue, cd, discipline) => {
-    if ((defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
-      && defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
-      && cd.third_discipline_isolated === discipline)
-      || (defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
-        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
-        && cd.second_discipline_isolated === discipline)
-      || (defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
-        && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
-        && cd.first_discipline_isolated === discipline)
-    ) {
-      return true;
-    }
-    return false;
-  };
+  // const verifyPriority = async (defermentTrue, cd, discipline) => {
+  //  if ((defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
+  //     && defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
+  //     && cd.third_discipline_isolated === discipline)
+  //     || (defermentTrue?.some((item) => item.cd_dis_id === cd.first_discipline_isolated) === true
+  //      && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
+  //       && cd.second_discipline_isolated === discipline)
+  //    || (defermentTrue?.some((item) => item.cd_dis_id === cd.second_discipline_isolated) === true
+  //      && defermentTrue?.some((item) => item.cd_dis_id === cd.third_discipline_isolated) === true
+  //       && cd.first_discipline_isolated === discipline)
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
 
-  const dismissFourthDiscipline = async (candidateId, disciplineId) => {
-    await managerService.updateByIdDisciplineDeferment({
-      cd_dis_deferment: false,
-    }, candidateId, disciplineId);
-  };
+  // const dismissFourthDiscipline = async (candidateId, disciplineId) => {
+  //   await managerService.updateByIdDisciplineDeferment({
+  //     cd_dis_deferment: false,
+  //   }, candidateId, disciplineId);
+  // };
 
   const verifySituation = async () => {
     const response1 = await managerService.getByIdDisciplineDefermentCandidateSituation(
@@ -100,13 +100,13 @@ function InscritosIsoPS({
   const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
       try {
-      await managerService.updateByIdDisciplineDeferment({
-           cd_dis_deferment: true,
-         }, candidate.candidate_id, disciplineToDeferment);
-          addToast('Candidato deferido com sucesso!', { appearance: 'success' });
-        } catch(err){
-          addToast('Erro ao deferir candidato!', { appearance: 'error' }); 
-        }
+        await managerService.updateByIdDisciplineDeferment({
+          cd_dis_deferment: true,
+        }, candidate.candidate_id, disciplineToDeferment);
+        addToast('Candidato deferido com sucesso!', { appearance: 'success' });
+      } catch (err) {
+        addToast('Erro ao deferir candidato!', { appearance: 'error' });
+      }
     } else {
       await managerService.updateByIdDisciplineDeferment({
         cd_dis_deferment: false,

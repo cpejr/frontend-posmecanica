@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Document.scss';
 import * as managerService from '../../services/manager/managerService';
 
@@ -12,71 +12,71 @@ function SentDocuments({
   const handleClickShowDocs = async () => {
     let fileName;
     switch (type) {
-
       case 'Identidade':
         fileName = 'identidade';
         break;
 
       case 'CPF':
-        fileName = 'cpf'
+        fileName = 'cpf';
         break;
 
       case 'Diploma de Graduação':
-        fileName = 'diploma'
+        fileName = 'diploma';
         break;
 
       case 'Comprovante de Endereço':
-        fileName = 'endereco'
+        fileName = 'endereco';
         break;
 
       case 'GRU':
-        fileName = 'gru'
+        fileName = 'gru';
         break;
 
       case 'Histórico Escolar':
-        fileName = 'historico'
+        fileName = 'historico';
         break;
 
       case 'Certidão de Nascimento ou Casamento':
-        fileName = 'certidao'
+        fileName = 'certidao';
         break;
 
       case 'Curriculum Vitae e comprovantes (arquivo único)':
-        fileName = 'curriculum'
+        fileName = 'curriculum';
         break;
 
       case 'Proficiência em Língua Inglesa':
-        fileName = 'proficiencia'
+        fileName = 'proficiencia';
         break;
 
       case 'Plano de Doutorado':
-        fileName = 'plano'
+        fileName = 'plano';
         break;
 
       case 'Comprovante de Mestrado':
-        fileName = 'mestrado'
+        fileName = 'mestrado';
         break;
 
       case 'Formulários para Indígenas (arquivo único)':
-        fileName = 'indigenas'
+        fileName = 'indigenas';
         break;
 
       case 'Formulários para pessoas com deficiência (arquivo único)':
-        fileName = 'deficiencia'
+        fileName = 'deficiencia';
         break;
 
       case 'Certidão de Quitação Eleitoral':
-        fileName = 'eleitoral'
+        fileName = 'eleitoral';
         break;
 
       case 'Comprovante de Obrigações Militares':
-        fileName = 'militares'
+        fileName = 'militares';
         break;
 
       case 'Páginas do Visto de Entrada no Brasil':
-        fileName = 'visto'
+        fileName = 'visto';
         break;
-
+      default:
+        break;
     }
     const url = await managerService.getUserFiles(candidate, fileName);
     window.open(`${url[0].url}`);
