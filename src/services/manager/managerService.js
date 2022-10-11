@@ -385,7 +385,6 @@ export const createStudent = async (student) => {
 
     const candidateDiscipline = await requesterService
       .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, 1);
-    // MYSQL não estava lendo o true da forma como deveria, por isso o 1
     if (disciplines.length === 4 && candidateDiscipline.data.length === 4) {
       sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
       sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });

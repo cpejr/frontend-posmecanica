@@ -3,7 +3,7 @@ import civilStatus from "./civil_status";
 import states from "./states";
 import genres from "./genres";
 import booleans from './boolean';
-import concentrationArea from "./concentratioArea";
+import concentrationArea from "./concentrationArea";
 import races from "./races";
 import { TitleTypes } from "./titleTypes";
 
