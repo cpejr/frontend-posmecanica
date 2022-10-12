@@ -1,17 +1,18 @@
 import React from 'react';
 import './SPInfoModal.scss';
+import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
 
 function InfoModal({ close, conteudo }) {
   const history = useHistory();
   function formatedDate(date) {
-    const data = new Date(date);
-    const day = data.getDate().toString();
+    const data = moment(date).subtract(3, 'hours').utc(false);
+    const day = data.date().toString();
     const responseDay = day.length === 1 ? `0${day}` : day;
-    const month = (data.getMonth() + 1).toString(); // +1 pois no getMonth Janeiro começa com zero.
+    const month = (data.month() + 1).toString(); // +1 pois no getMonth Janeiro começa com zero.
     const responseMonth = month.length === 1 ? `0${month}` : month;
-    const year = data.getFullYear();
+    const year = data.year();
     return `${responseDay}/${responseMonth}/${year}`;
   }
   const processId = [

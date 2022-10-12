@@ -168,7 +168,7 @@ function BoxResult({
           {position === 'second' && dados.type && loading === false && (
             <div className="ResultDiv-Grid">
               {candidates?.map((listDeferItem) => {
-                if (listDeferItem.candidate_discipline[0].cd_dis_deferment === true) {
+                if (listDeferItem.candidate_discipline[0].cd_dis_deferment === 1) {
                   return (
                     <DisciplinesResult
                       candidate={listDeferItem}

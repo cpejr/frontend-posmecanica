@@ -11,6 +11,11 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
+  function confirmExit() {
+    if (!exit)
+      return 'Deseja realmente sair desta página?';
+  }
+  window.onbeforeunload = confirmExit;
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -50,6 +55,8 @@ function FormPs() {
   const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
+  const [exit, setExit] = useState(false);
+  const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -114,8 +121,25 @@ function FormPs() {
     return false;
   }
 
+  async function verifyFilesSize() {
+    files.forEach(async (file) => {
+      const data = new FormData();
+      data.append("file", file.file);
+
+      const maxSize = 1 * 1024 * 1024;
+      if (file.file.size > maxSize) {
+        addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
+        setTimeout(() => {
+          setTeste(false);
+        }, 5000);
+      }
+    });
+  }
+
   const handleClick = async (e, dados) => {
     e.preventDefault();
+    await verifyFilesSize();
+    console.log(teste);
     if (
       dados.candidate_name.length >= 1 &&
       dados.candidate_cpf.length >= 1 &&
@@ -149,7 +173,8 @@ function FormPs() {
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
       dados.candidate_PcD !== "" &&
-      verify(dados)
+      verify(dados) &&
+      teste
     ) {
       document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
@@ -162,15 +187,15 @@ function FormPs() {
         "process_type",
         dados.candidate_grade
       );
-      if (selectiveProcesses.length !== 0) {
+      if (selectiveProcesses?.length !== 0) {
         try {
-          setLoading(true);
           const verifyCandidateExistence = await managerService.verifyCandidateExistence(
             selectiveProcesses[0]?.process_id,
             dados?.candidate_cpf,
           );
           if (verifyCandidateExistence) {
             addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+            document.getElementById('botao').disabled = false;
             setLoading(false);
             setError(true);
             return;
@@ -187,15 +212,16 @@ function FormPs() {
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
-          setTimeout(() => { }, 5000);
-          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          setTimeout(() => {
+            setExit(true);
+            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          }, 5000);
+        } catch (error) {
           setLoading(false);
-          setExit(true);
-          window.location.href = 'https://ppgmec.eng.ufmg.br/';
-        } catch {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
           document.getElementById('botao').disabled = false;
-          setLoading(false);
+          console.log('aqiu');
+          setExit(false);
           setError(true);
           return;
         }
@@ -203,6 +229,7 @@ function FormPs() {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
         setError(true);
       }
     }
@@ -211,11 +238,19 @@ function FormPs() {
         addToast("Insira todos os arquivos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
+        setError(true);
+      } else if (!teste) {
+        setTeste(true);
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
         setLoading(false);
+        setExit(false);
         setError(true);
       }
     }
@@ -231,6 +266,7 @@ function FormPs() {
             formsInput={formsInput}
             files={files}
             loading={loading}
+            exit={exit}
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}

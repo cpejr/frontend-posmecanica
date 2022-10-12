@@ -99,47 +99,14 @@ function InscritosIsoPS({
 
   const handleClickConfirmClick = async () => {
     if (buttonName === 'Deferir') {
-      if (candidate.disciplines.length === 1) {
-        totalApprovalCandidate();
-      }
-      if (candidate.disciplines.length === 2 || candidate.disciplines.length === 3) {
-        await managerService.updateByIdDisciplineDeferment({
-          cd_dis_deferment: true,
-        }, candidate.candidate_id, disciplineToDeferment);
-        verifySituation().then((res) => {
-          if (res === true) {
-            totalApprovalCandidate();
-          }
-        });
-        setShowCandidate(false);
-      }
-      if (candidate.disciplines.length === 4) {
-        await managerService.updateByIdDisciplineDeferment({
-          cd_dis_deferment: true,
-        }, candidate.candidate_id, disciplineToDeferment);
-        setShowCandidate(false);
-        const response = await managerService.getByIdDisciplineDefermentCandidateSituation(
-          candidate.candidate_id, true,
-        );
-        if (response.length === 4) {
-          totalApprovalCandidate();
-          dismissFourthDiscipline(candidate.candidate_id, candidate.fourth_discipline_isolated);
-        } else {
-          verifyPriority(response, candidate, disciplineToDeferment).then((res) => {
-            if (res === true) {
-              totalApprovalCandidate();
-              dismissFourthDiscipline(candidate.candidate_id, candidate.fourth_discipline_isolated);
-            } else {
-              verifySituation().then((resp) => {
-                if (resp === true) {
-                  totalApprovalCandidate();
-                }
-              });
-            }
-          });
+      try {
+      await managerService.updateByIdDisciplineDeferment({
+           cd_dis_deferment: true,
+         }, candidate.candidate_id, disciplineToDeferment);
+          addToast('Candidato deferido com sucesso!', { appearance: 'success' });
+        } catch(err){
+          addToast('Erro ao deferir candidato!', { appearance: 'error' }); 
         }
-      }
-      addToast('Candidato deferido com sucesso!', { appearance: 'success' });
     } else {
       await managerService.updateByIdDisciplineDeferment({
         cd_dis_deferment: false,

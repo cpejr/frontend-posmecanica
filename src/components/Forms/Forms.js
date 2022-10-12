@@ -5,7 +5,7 @@ import { GoVerified } from 'react-icons/go';
 import React, { useState } from 'react';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
-import WarnningModal from '../../utils/WarnningModal';
+import WarningModal from '../../utils/WarningModal';
 import './Forms.scss';
 
 function Forms({
@@ -24,7 +24,16 @@ function Forms({
     addToast('Redirecionando...', { appearance: 'success' });
     window.location.href = 'https://ppgmec.eng.ufmg.br/';
   }
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento', 'Curriculum Vitae e comprovantes (arquivo único)'];
+console.log(loading);
+  const formsFile = [{
+    formFile: ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço',
+      'GRU', 'Histórico Escolar', 'Certidão de Nascimento ou Casamento',
+      'Curriculum Vitae e comprovantes (arquivo único)'],
+
+    fileName: ['identidade', 'cpf', 'diploma', 'endereco',
+      'gru', 'historico', 'certidao', 'curriculum']
+  }];
+
   return (
     <div>
       {formsInput.map((topic) => (
@@ -65,23 +74,65 @@ function Forms({
       <div className="forms_box">
         {formsFile.map((file) => (
           <div className="forms_input_file">
-            <div className="forms_upload_text">{file}</div>
-            <UploadInput files={files} setFiles={setFiles} fileName={file} />
+            <div className="forms_upload_text">{file.formFile[0]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[0]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[1]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[1]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[2]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[2]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[3]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[3]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[4]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[4]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[5]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[5]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[6]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[6]} />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[7]}</div>
+            <UploadInput files={files} setFiles={setFiles} fileName={file.fileName[7]} />
           </div>
         ))}
         <div className="forms_input_file">
           <div className="forms_upload_text">Proficiência em Língua Inglesa</div>
-          <UploadInput files={files} setFiles={setFiles} fileName="Proficiência" />
+          <UploadInput files={files} setFiles={setFiles} fileName="proficiencia" />
         </div>
         {dados.candidate_grade === 'DOUTORADO' && (
           <>
             <div className="forms_input_file">
               <div className="forms_upload_text">Plano de Doutorado</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Plano de Doutorado" />
+              <UploadInput files={files} setFiles={setFiles} fileName="plano" />
             </div>
             <div className="forms_input_file">
               <div className="forms_upload_text">Comprovante de Mestrado</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Mestrado" />
+              <UploadInput files={files} setFiles={setFiles} fileName="mestrado" />
             </div>
           </>
         )}
@@ -89,7 +140,7 @@ function Forms({
           <>
             <div className="forms_input_file">
               <div className="forms_upload_text">Formulários para Indígenas (arquivo único)</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Formulários para Indígenas" />
+              <UploadInput files={files} setFiles={setFiles} fileName="indigenas" />
             </div>
           </>
         )}
@@ -97,7 +148,7 @@ function Forms({
           <>
             <div className="forms_input_file">
               <div className="forms_upload_text">Formulários para pessoas com deficiência (arquivo único)</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Formulários para pessoas com deficiência" />
+              <UploadInput files={files} setFiles={setFiles} fileName="deficiencia" />
             </div>
           </>
         )}
@@ -106,12 +157,12 @@ function Forms({
           <>
             <div className="forms_input_file">
               <div className="forms_upload_text">Certidão de Quitação Eleitoral</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Certidão de Quitação Eleitoral" />
+              <UploadInput files={files} setFiles={setFiles} fileName="eleitoral" />
             </div>
             {dados.candidate_gender === 'masculino' && (
               <div className="forms_input_file">
                 <div className="forms_upload_text">Comprovante de Obrigações Militares</div>
-                <UploadInput files={files} setFiles={setFiles} fileName="Comprovante de Obrigações Militares" />
+                <UploadInput files={files} setFiles={setFiles} fileName="militares" />
               </div>
             )}
           </>
@@ -119,7 +170,7 @@ function Forms({
           <>
             <div className="forms_input_file">
               <div className="forms_upload_text">Páginas do Visto de Entrada no Brasil</div>
-              <UploadInput files={files} setFiles={setFiles} fileName="Páginas do Visto de Entrada no Brasil" />
+              <UploadInput files={files} setFiles={setFiles} fileName="visto" />
             </div>
           </>
         )}
@@ -127,7 +178,7 @@ function Forms({
       {(loading === true) ? (
         <>
           {(exit === true) && (
-            <WarnningModal>
+            <WarningModal>
               <GoVerified size={52} color="inherit" className="LoaderProfCandidates" />
               <div className="BdDivGridLoader">
                 <div className="Loader-form">
@@ -144,10 +195,10 @@ function Forms({
                   OK
                 </button>
               </div>
-            </WarnningModal>
+            </WarningModal>
           )}
           {(exit === false) && (
-            <WarnningModal>
+            <WarningModal>
               <div className="BdDivGridLoader">
                 <div className="Loader-form">
                   <p>Aguarde, subindo arquivos...</p>
@@ -156,7 +207,7 @@ function Forms({
                   <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
                 </div>
               </div>
-            </WarnningModal>
+            </WarningModal>
           )}
         </>
       ) : (

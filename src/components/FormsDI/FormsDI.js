@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core';
 import StyledInput from '../StyledInput';
 import UploadInput from '../UploadInput';
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../services/manager/managerService';
 import './FormsDI.scss';
-import WarnningModal from '../../utils/WarnningModal';
+import WarningModal from '../../utils/WarningModal';
 import { GoVerified } from 'react-icons/go';
 
 function Forms({
@@ -15,11 +16,16 @@ function Forms({
   function confirmExit() {
     if (!exit) { return 'Deseja realmente sair desta página?'; }
   }
+  const { addToast } = useToasts();
+  function handleClickRedirect() {
+    addToast('Redirecionando...', { appearance: 'success' });
+    window.location.href = 'https://ppgmec.eng.ufmg.br/';
+  }
   const [dados, setDados] = useState(initialState);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'Proficiência em Língua Inglesa'];
+  const formsFile = ['Identidade', 'CPF', 'Diploma de Graduação', 'Comprovante de Endereço', 'Histórico', 'Currículo Lattes e comprovantes (arquivo único)'];
   const formsIsolatedDiscipline = [
     {
       type: 'text',
@@ -48,7 +54,7 @@ function Forms({
   const [disciplines, setDisciplines] = useState([]);
 
   useEffect(async () => {
-    managerService.getDisciplines('discipline_is_isolated', true).then((resp) => {
+    managerService.getDisciplines().then((resp) => {
       resp = resp.filter((item) => item.discipline_semester === 'OFERTADO');
       const disciplinas = [];
       disciplinas.push({ label: 'Nenhuma', value: '' });
@@ -114,6 +120,8 @@ function Forms({
       <div className="formsDI_box_title">
         <div className="formsDI_title">
           Arquivos
+          {' '}
+          <p>(Tamanho máximo de cada arquivo: 1 MB, formato PDF)</p>
         </div>
       </div>
       <div className="formsDI_box">
@@ -142,10 +150,10 @@ function Forms({
           />
         </div>
       </div>
-      {(loading === true) ? (
+      {(loading === true && error === false) ? (
         <>
           {(exit === true) && (
-            <WarnningModal>
+            <WarningModal>
               <GoVerified size={52} color="inherit" className="LoaderProfCandidates" />
               <div className="BdDivGridLoader">
                 <div className="Loader-form">
@@ -162,10 +170,10 @@ function Forms({
                   OK
                 </button>
               </div>
-            </WarnningModal>
+            </WarningModal>
           )}
           {(exit === false) && (
-            <WarnningModal>
+            <WarningModal>
               <div className="BdDivGridLoader">
                 <div className="Loader-form">
                   <p>Aguarde, subindo arquivos...</p>
@@ -174,7 +182,7 @@ function Forms({
                   <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
                 </div>
               </div>
-            </WarnningModal>
+            </WarningModal>
           )}
         </>
       ) : (

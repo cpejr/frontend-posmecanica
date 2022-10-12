@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
+import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -93,7 +94,7 @@ function ThesisDefense({ location }) {
     defense_protocol: numero,
     defense_place: local,
     defense_hour: hora,
-    defense_date: data,
+    defense_date: moment(data).format(),
   };
   const Defense = async () => {
     if (

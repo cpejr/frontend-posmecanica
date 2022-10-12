@@ -98,14 +98,14 @@ function ApproveContent({ candidate }) {
             )}
           </div>
           <button
-            onClick={() => {setEdit(true)}}
+            onClick={() => { setEdit(true) }}
             id="aprovado"
             className="TC-button-aprovar"
             type="button"
           >
             Alterar resultado
           </button>
-          {candidate.candidate_approval === false &&(
+          {candidate.candidate_approval === false && (
             <button
               onClick={handleButtonDeleteClick}
               id="reprovado"

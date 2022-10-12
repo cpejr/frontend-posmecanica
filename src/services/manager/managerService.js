@@ -27,6 +27,15 @@ export const getByIdCandidate = async (candidateId) => {
   return response.data;
 };
 
+export const verifyCandidateExistence = async (candidateProcessId, candidateCPF) => {
+  const response = await requesterService.verifyCandidateExistence(
+    candidateProcessId,
+    candidateCPF,
+  );
+  if (isFailureStatus(response)) throw new Error('Problem with api response');
+  return response.data;
+};
+
 export const getUserFiles = async (candidateId, fileName) => {
   const response = await requesterService.getUserFiles(candidateId, fileName);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -220,6 +229,11 @@ export const createProfessor = async (professor) => {
   if (isFailureStatus(response)) throw new Error('Problem with api response');
 };
 
+export const updateDisciplineProfessor = async (disciplineId, professorId) => {
+  const resp = await requesterService.updateByIdDisciplineProfessor(disciplineId, professorId);
+  if (isFailureStatus(resp)) throw new Error('Problem with api response');
+};
+
 export const getProfByDisciplineId = async (disciplineId) => {
   const response = await requesterService.getProfByDisciplineId(disciplineId);
   if (isFailureStatus(response)) throw new Error('Problem with api response');
@@ -370,7 +384,7 @@ export const createStudent = async (student) => {
     let verify = false;
 
     const candidateDiscipline = await requesterService
-      .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, true);
+      .getByIdDisciplineDefermentCandidateSituation(student.candidate_id, 1);
     if (disciplines.length === 4 && candidateDiscipline.data.length === 4) {
       sdIdArray.push({ sd_dis_id: student.first_discipline_isolated });
       sdIdArray.push({ sd_dis_id: student.second_discipline_isolated });

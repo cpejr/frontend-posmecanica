@@ -3,6 +3,7 @@ import { TextField, InputAdornment } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import MenuItem from '@material-ui/core/MenuItem';
+import moment from 'moment';
 import typeDefense from '../../utils/typeDefense';
 import Header from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -83,7 +84,7 @@ function ThesisQualification({ location }) {
     quali_title: titulo,
     quali_place: local,
     quali_hour: hora,
-    quali_date: data,
+    quali_date: moment(data).format(),
   };
   const Qualificaçao = async () => {
     if (
