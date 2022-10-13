@@ -52,6 +52,7 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
   const [exit, setExit] = useState(false);
@@ -181,6 +182,7 @@ function FormPs() {
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
       dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
 
+
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         dados.candidate_grade
@@ -204,7 +206,6 @@ function FormPs() {
           );
           const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          setLoading(true);
           await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
           for (const file of files) {
             const data = new FormData();
@@ -231,7 +232,8 @@ function FormPs() {
         setExit(false);
         setError(true);
       }
-    } else {
+    }
+    else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
         document.getElementById('botao').disabled = false;
@@ -268,6 +270,7 @@ function FormPs() {
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
+            exit={exit}
           />
         </>
       )}

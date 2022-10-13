@@ -78,6 +78,7 @@ function FormDis() {
   }, []);
 
   const handleClick = async (e, dados) => {
+    setLoading(true);
     dados.candidate_grade = "NENHUMA DAS OPÇÕES";
     e.preventDefault();
     if (
