@@ -55,7 +55,6 @@ function FormPs() {
   const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
-  const [exit, setExit] = useState(false);
   const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();
@@ -125,7 +124,6 @@ function FormPs() {
     files.forEach(async (file) => {
       const data = new FormData();
       data.append("file", file.file);
-
       const maxSize = 1 * 1024 * 1024;
       if (file.file.size > maxSize) {
         addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
