@@ -1,5 +1,4 @@
 /*eslint-disable*/
-
 import React, { useState, useEffect } from "react";
 import moment from 'moment'
 import "./FormPs.scss";
@@ -55,7 +54,6 @@ function FormPs() {
   const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
-  const [exit, setExit] = useState(false);
   const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();
@@ -270,7 +268,6 @@ function FormPs() {
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
-            exit={exit}
           />
         </>
       )}

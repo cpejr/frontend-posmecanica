@@ -12,9 +12,10 @@ function DisciplinesResult({
 
   return (
     <div className="isoPsListItem" id={candidate.candidate_id}>
-      <div className="Result-candidateName">
-        <p>{candidate.candidate_name}</p>
+      <div className="Result-candidate">
+        <p className="Result-fields">{candidate.candidate_name}</p>
         <p>{candidate.candidate_cpf}</p>
+        <p className="Result-fields">{candidate.discipline_name}</p>
       </div>
       {showCandidate === null
         && (

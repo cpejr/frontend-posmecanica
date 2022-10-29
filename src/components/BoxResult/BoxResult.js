@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core';
@@ -8,84 +9,97 @@ import DisciplinesResult from '../DisciplinesResult';
 
 function BoxResult({
   subtitle, title,
-  type, processes, position,
+  type, processes,
   disciplineFilter,
 }) {
+  const allDisciplinesKey = 'all';
   const initialState = {
     type: '',
   };
-  const [showInput, setShowInput] = useState(false);
+
   const [dados, setDados] = useState(initialState);
   const [candidates, setCandidates] = useState();
+  const [disciplineCandidates, setDisciplineCandidates] = useState({});
   const [loading, setLoading] = useState(false);
   const [empty, setEmpty] = useState(false);
+  const [disciplines, setDisciplines] = useState(disciplineFilter);
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
-  let processCount = 0;
-  useEffect(async () => {
-    if (type === 'adm' || type === 'prof') {
-      setShowInput(true);
-    }
-  }, []);
 
   useEffect(async () => {
+    if (!disciplineFilter.length || !processes.length) return;
+
+    setLoading(true);
     setEmpty(false);
-    if (dados.type) {
-      setLoading(true);
-      const filteredCandidates = await managerService.getCandidatesWithDisciplineSituation(
-        'candidate_process_id',
-        processes[0].process_id,
-        dados.type,
-      );
 
-      setLoading(false);
-      setCandidates(filteredCandidates);
-      let verify;
-      if (position === 'first') {
-        verify = filteredCandidates
-          ?.every((resp) => resp.candidate_discipline[0].cd_dis_deferment === true);
-      } else {
-        verify = filteredCandidates
-          ?.every((resp) => resp.candidate_discipline[0].cd_dis_deferment === null);
-      }
-      if (filteredCandidates?.length === 0 || verify === true) {
-        setEmpty(true);
-      }
-    }
-  }, [dados.type]);
+    const requests = disciplineFilter.map(({ value }) => managerService.getAllCandidateDiscipline('cd_dis_id', value));
+    const allDefermentedCandidatesByDiscipline = await Promise.all(requests);
 
-  const counterByDiscipline = (positions) => {
-    processCount = 0;
-    candidates?.forEach((e) => {
-      if (positions === 'first') {
-        if (e.candidate_discipline[0].cd_dis_deferment === null) {
-          processCount += 1;
-        }
-      } else if (positions === 'second') {
-        if (e.candidate_discipline[0].cd_dis_deferment === true) {
-          processCount += 1;
-        }
-      }
-    });
+    const proccessAllCandidates = (await managerService.getCandidates('candidate_process_id', processes[0]?.process_id))
+      .reduce((acc, { candidate_id, candidate_name, candidate_cpf }) => {
+        acc[candidate_id] = { candidate_id, candidate_name, candidate_cpf };
+        return acc;
+      }, {});
 
-    return processCount;
-  };
+    const processDefermentedCandidatesByDiscipline = allDefermentedCandidatesByDiscipline
+      .reduce((acc, defermentedCandidates, idx) => {
+        const { label: name, value: id } = disciplineFilter[idx];
+
+        const disciplineDefermentedCandidates = defermentedCandidates
+          .reduce((discipline, {
+            cd_candidate_id,
+            cd_dis_deferment,
+          }) => {
+            if (
+              Object.keys(proccessAllCandidates).includes(cd_candidate_id)
+              && cd_dis_deferment
+            ) {
+              discipline.push({
+                discipline_name: name,
+                ...proccessAllCandidates[cd_candidate_id],
+              });
+            }
+            return discipline;
+          }, []);
+
+        acc[id] = disciplineDefermentedCandidates;
+        return acc;
+      }, {});
+
+    const allProcessDefermentedCandidates = Object.values(processDefermentedCandidatesByDiscipline)
+      .reduce((acc, discipline) => [...acc, ...discipline], []);
+    processDefermentedCandidatesByDiscipline[allDisciplinesKey] = allProcessDefermentedCandidates;
+    setDisciplineCandidates(processDefermentedCandidatesByDiscipline);
+
+    const allDisciplinesOption = { label: 'TODAS AS DISCIPLINAS', value: initialState.type };
+    setDisciplines([allDisciplinesOption, ...disciplineFilter]);
+
+    setLoading(false);
+  }, [disciplineFilter, processes]);
+
+  useEffect(() => {
+    if (!Object.keys(disciplineCandidates).length) return;
+
+    const disciplineId = dados.type || allDisciplinesKey;
+    const filteredCandidates = disciplineCandidates[disciplineId];
+
+    setCandidates(filteredCandidates);
+    setEmpty(!filteredCandidates?.length);
+  }, [dados.type, disciplineCandidates]);
 
   return (
     <div className="BoxResult">
       <div className="BoxResult-Father">
         <div className="BoxResult-Title">
-          <div className={showInput ? (!dados.type ? 'Result-InputReal' : 'Result-InputRealNoIcon') : 'Result-Input'}>
+          <div className={!dados.type ? 'Result-InputReal' : 'Result-InputRealNoIcon'}>
             <StyledInput
               type="text"
               id="type"
               label="Selecione uma disciplina"
-              field={disciplineFilter}
+              field={disciplines}
               select
               background="transparent"
-              dados={dados}
-              in
               setDados={handleChange}
             />
           </div>
@@ -95,35 +109,14 @@ function BoxResult({
             </div>
             <div className="BoxResult-SubTitle-total">
               {subtitle}
-              {processes.map((process) => {
-                if (position === 'first' && dados.type) {
-                  if (candidates?.length === 0) {
-                    return 0;
-                  }
-                  if (process.count_candidates === 0) {
-                    return 0;
-                  }
-                  if (candidates?.length !== 0) {
-                    return counterByDiscipline(position);
-                  }
-                  if (candidates?.length === processCount) {
-                    return candidates.length;
-                  }
-                }
-                if (position === 'second' && dados.type) {
-                  if (candidates?.length === 0) {
-                    return 0;
-                  }
-                  return counterByDiscipline(position);
-                }
-                return <div />;
-              })}
+              {candidates?.length || 0}
             </div>
           </div>
         </div>
         <div className="Result-Indices">
           <p>NOME</p>
           <p>CPF</p>
+          <p>DISCIPLINA</p>
         </div>
         <div className={type === 'prof' ? (
           loading ? 'BdBoxProfLoaderTrue' : 'BdBoxProf'
@@ -131,56 +124,29 @@ function BoxResult({
           loading ? 'BdBoxLoaderTrue' : 'BdBox'
         )}
         >
-          {dados.type && loading === true && (
+          {loading && (
             <div className="BdDivGridLoader">
-              <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+              <CircularProgress color="inherit" size={32} className="LoaderProfCandidates" />
             </div>
           )}
-          {!dados.type && (
-            <div className="BdDivGridNoDisciplineSelected">
-              <p>~ Selecione uma disciplina ~</p>
-            </div>
-          )}
-          {empty === true && (
+          {empty && (
             <div className="BdDivGridNoDisciplineSelected">
               <p>~ Não há candidatos para essa disciplina ~</p>
             </div>
           )}
-
-          {position === 'first' && dados.type && loading === false && (
+          {!loading && (
             <div className="ResultDiv-Grid">
-              {candidates?.map((element) => {
-                if (element.candidate_discipline[0].cd_dis_deferment === null) {
-                  return (
-                    <DisciplinesResult
-                      candidate={element}
-                      isoCandidates={candidates}
-                      disciplineToDeferment={dados.type}
-                      setIsoCandidates={setCandidates}
-                      key={element.candidate_id}
-                    />
-                  );
-                }
-                return <div />;
-              })}
-            </div>
-          )}
-          {position === 'second' && dados.type && loading === false && (
-            <div className="ResultDiv-Grid">
-              {candidates?.map((listDeferItem) => {
-                if (listDeferItem.candidate_discipline[0].cd_dis_deferment === 1) {
-                  return (
-                    <DisciplinesResult
-                      candidate={listDeferItem}
-                      isoCandidates={candidates}
-                      disciplineToDeferment={dados.type}
-                      setIsoCandidates={setCandidates}
-                      key={listDeferItem.candidate_id}
-                    />
-                  );
-                }
-                return <div />;
-              })}
+              {candidates
+                ?.sort((prev, next) => prev.candidate_name.localeCompare(next.candidate_name))
+                ?.map((listDeferItem) => (
+                  <DisciplinesResult
+                    candidate={listDeferItem}
+                    isoCandidates={candidates}
+                    disciplineToDeferment={dados.type}
+                    setIsoCandidates={setCandidates}
+                    key={listDeferItem.candidate_id + listDeferItem.discipline_name}
+                  />
+                ))}
             </div>
           )}
         </div>
