@@ -11,7 +11,6 @@ function SelectiveProcessResult({ processId }) {
 
   useEffect(async () => {
     const selectiveProcesses = [await managerService.getByIdSelectiveProcess(processId)];
-    const disciplineAux = [];
     const allCandidatesArray = [];
     const disciplines = [];
     let filteredCandidates = [];
@@ -19,9 +18,7 @@ function SelectiveProcessResult({ processId }) {
     const getDiscipline = await managerService.getDisciplines();
     getDiscipline.forEach((response) => {
       disciplines.push({ label: response.discipline_name, value: response.discipline_id });
-      disciplineAux.push({ label: disciplines.discipline_name, value: disciplines.discipline_id });
     });
-
     filteredCandidates = [...new Set(allCandidatesArray)];
     setCandidates(filteredCandidates);
 
@@ -41,8 +38,6 @@ function SelectiveProcessResult({ processId }) {
         list={filteredStudents}
         setList={setFilteredStudents}
         disciplineFilter={disciplineObject}
-        position="second"
-        type="prof"
         processes={processsSelective}
       />
     </div>
