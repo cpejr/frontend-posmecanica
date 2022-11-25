@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Modal from "../../../utils/GenericModal";
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from "../../../services/manager/managerService";
 import "./ApproveContent.scss";
 
@@ -10,6 +11,7 @@ function ApproveContent({ candidate }) {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [edit, setEdit] = useState(false);
+  const { addToast } = useToasts();
   const history = useHistory();
 
   const handleCloseClick = () => {
@@ -20,17 +22,26 @@ function ApproveContent({ candidate }) {
   const handleConfirmClick = async () => {
     const result = await managerService.getStudents('stud_candidate_id', candidate.candidate_id);
     if (action.toLowerCase() === "aprovado") {
-      await managerService.updateCandidate(
-        {
-          candidate_approval: true,
-        },
-        candidate.candidate_id
-      );
-      candidate.candidate_approval = true;
       if (result.length === 0) {
-        await managerService.createStudent(candidate);
+        try {
+          await managerService.createStudent(candidate);
+          await managerService.updateCandidate(
+            {
+              candidate_approval: true,
+            },
+            candidate.candidate_id
+          );
+          setShowConfirmModal(false);
+        }
+        catch (error) {
+          addToast('Este endereço de email já esta cadastrado em nosso sistema!', { appearance: 'error' });
+        }
       }
-    } else {
+      else{
+        addToast('Esse candidato já está cadastrado em nosso sistema!', { appearance: 'error' });
+      }
+    }
+    else {
       await managerService.updateCandidate(
         {
           candidate_approval: false,
@@ -41,14 +52,13 @@ function ApproveContent({ candidate }) {
         await managerService.deleteStudent(result[0].stud_id);
         await managerService.updateSelectiveProcess(
           {
-            candidate_quantity: candidate_quantity-1
+            candidate_quantity: candidate_quantity - 1
           },
           candidate.candidate_process_id
         )
       }
       candidate.candidate_approval = false;
     }
-    setShowConfirmModal(false);
   };
 
   const handleButtonsClick = (e) => {
