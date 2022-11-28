@@ -11,6 +11,11 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
+  function confirmExit() {
+    if (!exit)
+      return 'Deseja realmente sair desta página?';
+  }
+  window.onbeforeunload = confirmExit;
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -47,8 +52,10 @@ function FormPs() {
   };
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
+  const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -76,45 +83,61 @@ function FormPs() {
   const verify = (dados) => {
     // verifica se é brasileiro homem e é candidato a doutorado
     if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-    || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-    && dados.candidate_grade === 'DOUTORADO' && files.length >= 13) {
+      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 11) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a doutorado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
       || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a doutorado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
       && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a mestrado
     else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
       && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
       return true;
     }
     return false;
   }
 
+  async function verifyFilesSize() {
+    files.forEach(async (file) => {
+      const data = new FormData();
+      data.append("file", file.file);
+      const maxSize = 1 * 1024 * 1024;
+      if (file.file.size > maxSize) {
+        addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
+        setTimeout(() => {
+          setTeste(false);
+        }, 5000);
+      }
+    });
+  }
+
   const handleClick = async (e, dados) => {
     e.preventDefault();
+    await verifyFilesSize();
+    console.log(teste);
     if (
       dados.candidate_name.length >= 1 &&
       dados.candidate_cpf.length >= 1 &&
@@ -148,51 +171,84 @@ function FormPs() {
       dados.candidate_scholarship !== "" &&
       dados.candidate_concentration_area !== "" &&
       dados.candidate_PcD !== "" &&
-      verify(dados)
+      verify(dados) &&
+      teste
     ) {
+      document.getElementById('botao').disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
       dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
       dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
       dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
 
+
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
         dados.candidate_grade
       );
-      if (selectiveProcesses.length !== 0) {
+      if (selectiveProcesses?.length !== 0) {
         try {
+          const verifyCandidateExistence = await managerService.verifyCandidateExistence(
+            selectiveProcesses[0]?.process_id,
+            dados?.candidate_cpf,
+          );
+          if (verifyCandidateExistence) {
+            addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
+            document.getElementById('botao').disabled = false;
+            setLoading(false);
+            setError(true);
+            return;
+          }
           const id = await managerService.createCandidate(
             dados,
             selectiveProcesses[0].process_id
           );
           const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          setLoading(true);
           await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
           for (const file of files) {
             const data = new FormData();
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
           };
-          addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          setTimeout(() => {
+            setExit(true);
+            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+          }, 5000);
+        } catch (error) {
           setLoading(false);
-          window.location.href = 'https://ppgmec.eng.ufmg.br/';
-
-        } catch {
           addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
-          setLoading(false);
+          document.getElementById('botao').disabled = false;
+          console.log('aqiu');
+          setExit(false);
           setError(true);
           return;
         }
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
+        setError(true);
       }
-    } else {
+    }
+    else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
+        setError(true);
+      } else if (!teste) {
+        setTeste(true);
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
+        document.getElementById('botao').disabled = false;
+        setLoading(false);
+        setExit(false);
         setError(true);
       }
     }
@@ -208,9 +264,11 @@ function FormPs() {
             formsInput={formsInput}
             files={files}
             loading={loading}
+            exit={exit}
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
+            exit={exit}
           />
         </>
       )}

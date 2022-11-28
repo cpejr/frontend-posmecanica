@@ -39,6 +39,12 @@ function ApproveContent({ candidate }) {
       );
       if (result.length > 0) {
         await managerService.deleteStudent(result[0].stud_id);
+        await managerService.updateSelectiveProcess(
+          {
+            candidate_quantity: candidate_quantity-1
+          },
+          candidate.candidate_process_id
+        )
       }
       candidate.candidate_approval = false;
     }
@@ -92,14 +98,14 @@ function ApproveContent({ candidate }) {
             )}
           </div>
           <button
-            onClick={() => {setEdit(true)}}
+            onClick={() => { setEdit(true) }}
             id="aprovado"
             className="TC-button-aprovar"
             type="button"
           >
             Alterar resultado
           </button>
-          {candidate.candidate_approval === false &&(
+          {candidate.candidate_approval === false && (
             <button
               onClick={handleButtonDeleteClick}
               id="reprovado"

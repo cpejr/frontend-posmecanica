@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../EditStudentInfo/EditStudentInfo.scss';
 import { useToasts } from 'react-toast-notifications';
 import { useHistory } from 'react-router-dom';
@@ -8,13 +8,16 @@ import StyledInput from '../../components/StyledInput/StyledInput';
 import * as managerService from '../../services/manager/managerService';
 import DisciplineEdit from '../../utils/DisciplineEdit_ByAdmin';
 import Footer from '../../components/Footer';
+import './EditDiscipline.scss';
 
 function EditDiscipline({ location }) {
   const history = useHistory();
+  const [professorsList, setProfessorsList] = useState([]);
+  const [prof, setProf] = useState();
   const [dados, setDados] = useState();
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   if (location.state == null) {
-    window.location = '/login';
+    window.location = '/';
   }
   const { discipline_id } = location.state; // eslint-disable-line
   const inputProps = [
@@ -67,7 +70,13 @@ function EditDiscipline({ location }) {
   const handleClick = async (e) => {
     try {
       e.preventDefault();
-      await managerService.updateDiscipline(dados, discipline_id);
+      if (dados) { await managerService.updateDiscipline(dados, discipline_id); }
+      if (prof) {
+        await managerService.updateDisciplineProfessor(
+          discipline_id,
+          { pd_professor_id: prof.prof_id },
+        );
+      }
       addToast('Disciplina atualizada com sucesso!', { appearance: 'success' });
       history.push('/painel/administrator/lista-isoladas');
     } catch {
@@ -77,6 +86,20 @@ function EditDiscipline({ location }) {
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
+  const handleChangeProfessor = (value, field) => {
+    setProf({ ...prof, [field]: value });
+  };
+
+  useEffect(async () => {
+    managerService.getAllProfessors().then((response) => {
+      const professors = [];
+      response?.forEach((object) => {
+        professors.push({ label: object.prof_name, value: object.prof_id });
+      });
+      setProfessorsList(professors);
+    });
+  }, []);
+
   return (
     <div className="screen-Edit">
       <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
@@ -90,6 +113,20 @@ function EditDiscipline({ location }) {
               <div className="formsDI_box_title">
                 <div className="formsEdit-title">
                   {topic.title}
+                </div>
+              </div>
+              <div className="formsEdit-inputProfessorBox">
+                <div className="formsEdit-inputProfessor">
+                  <StyledInput
+                    type="text"
+                    id="prof_id"
+                    label="Professor responsável"
+                    select
+                    defaultValue={location.state.professors[0].prof_id}
+                    field={professorsList}
+                    dados={prof}
+                    setDados={handleChangeProfessor}
+                  />
                 </div>
               </div>
               <div className="editBox">

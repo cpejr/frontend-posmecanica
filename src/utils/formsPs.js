@@ -3,6 +3,7 @@ import civilStatus from "./civil_status";
 import states from "./states";
 import genres from "./genres";
 import booleans from './boolean';
+import concentrationArea from "./concentrationArea";
 import races from "./races";
 import { TitleTypes } from "./titleTypes";
 
@@ -251,8 +252,8 @@ const formsInput = [
         type: "text",
         id: "candidate_concentration_area",
         label: "Área de concentração",
-        field: null,
-        select: false,
+        field: concentrationArea,
+        select: true,
       },
       {
         type: "text",
