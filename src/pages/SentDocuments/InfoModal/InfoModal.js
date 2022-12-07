@@ -1,13 +1,15 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import './InfoModal.scss';
 import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 import * as managerService from '../../../services/manager/managerService';
 import professorDocsIso from '../../../utils/professorDocsIso';
 import Document from '../../../components/Document';
 import { useAuth } from '../../../providers/auth';
 import GenericModal from '../../../utils/GenericModal';
-import { useToasts } from 'react-toast-notifications';
 import ResultModal from '../../../utils/ResultModal';
 
 function InfoModal({
@@ -292,7 +294,7 @@ function InfoModal({
                 </div>
                 <div className="InsideRowGridModal">
                   <b>Candidato a bolsa:</b>
-                  {` ${(conteudo?.candidate_scholarship != null) ? (conteudo?.candidate_scholarship ? 'SIM' : 'NÃO') : '-'}`}
+                  {`${(conteudo?.candidate_scholarship != null) ? (conteudo?.candidate_scholarship ? 'SIM' : 'NÃO') : '-'}`}
                 </div>
               </div>
               {conteudo?.candidate_grade === 'NENHUMA DAS OPÇÕES' && (
