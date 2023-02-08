@@ -55,7 +55,6 @@ function FormPs() {
   const [exit, setExit] = useState(false);
   const [error, setError] = useState(false);
   const [hasSelectiveProcess, setHasSelectiveProcess] = useState(false);
-  const [exit, setExit] = useState(false);
   const [teste, setTeste] = useState(true);
   const history = useHistory();
   const { addToast } = useToasts();

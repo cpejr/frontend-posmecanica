@@ -41,7 +41,7 @@ function SentDocuments({
         fileName = 'certidao'
         break;
 
-      case 'Curriculum Vitae e comprovantes (arquivo único)':
+      case 'Curriculum Vitae':
         fileName = 'curriculum'
         break;
 
