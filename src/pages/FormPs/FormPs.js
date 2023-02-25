@@ -1,7 +1,7 @@
 /*eslint-disable*/
 
 import React, { useState, useEffect } from "react";
-import moment from 'moment'
+import moment from "moment";
 import "./FormPs.scss";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
@@ -12,8 +12,7 @@ import formsInput from "../../utils/formsPs";
 
 function FormPs() {
   function confirmExit() {
-    if (!exit)
-      return 'Deseja realmente sair desta página?';
+    if (!exit) return "Deseja realmente sair desta página?";
   }
   window.onbeforeunload = confirmExit;
   const initialState = {
@@ -82,43 +81,65 @@ function FormPs() {
 
   const verify = (dados) => {
     // verifica se é brasileiro homem e é candidato a doutorado
-    if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 12) {
+    if (
+      (dados.candidate_nationality.toLowerCase().trim() === "brasileira" ||
+        dados.candidate_nationality.toLowerCase().trim() === "brasileiro") &&
+      dados.candidate_gender === "masculino" &&
+      dados.candidate_grade === "DOUTORADO" &&
+      files.length >= 12
+    ) {
       return true;
     }
     // verifica se é brasileiro homem e é candidato a mestrado
-    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender === 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 10) {
+    else if (
+      (dados.candidate_nationality.toLowerCase().trim() === "brasileira" ||
+        dados.candidate_nationality.toLowerCase().trim() === "brasileiro") &&
+      dados.candidate_gender === "masculino" &&
+      dados.candidate_grade !== "DOUTORADO" &&
+      files.length >= 10
+    ) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a doutorado
-    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
+    else if (
+      (dados.candidate_nationality.toLowerCase().trim() === "brasileira" ||
+        dados.candidate_nationality.toLowerCase().trim() === "brasileiro") &&
+      dados.candidate_gender !== "masculino" &&
+      dados.candidate_grade === "DOUTORADO" &&
+      files.length >= 11
+    ) {
       return true;
     }
     // verifica se é brasileiro mulher ou outro e é candidato a mestrado
-    else if ((dados.candidate_nationality.toLowerCase().trim() === 'brasileira'
-      || dados.candidate_nationality.toLowerCase().trim() === 'brasileiro') && dados.candidate_gender !== 'masculino'
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
+    else if (
+      (dados.candidate_nationality.toLowerCase().trim() === "brasileira" ||
+        dados.candidate_nationality.toLowerCase().trim() === "brasileiro") &&
+      dados.candidate_gender !== "masculino" &&
+      dados.candidate_grade !== "DOUTORADO" &&
+      files.length >= 9
+    ) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a doutorado
-    else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
-      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade === 'DOUTORADO' && files.length >= 11) {
+    else if (
+      dados.candidate_nationality.toLowerCase().trim() !== "brasileira" &&
+      dados.candidate_nationality.toLowerCase().trim() !== "brasileiro" &&
+      dados.candidate_grade === "DOUTORADO" &&
+      files.length >= 11
+    ) {
       return true;
     }
     // verifica se é estrangeiro e é candidato a mestrado
-    else if ((dados.candidate_nationality.toLowerCase().trim() !== 'brasileira'
-      && dados.candidate_nationality.toLowerCase().trim() !== 'brasileiro')
-      && dados.candidate_grade !== 'DOUTORADO' && files.length >= 9) {
+    else if (
+      dados.candidate_nationality.toLowerCase().trim() !== "brasileira" &&
+      dados.candidate_nationality.toLowerCase().trim() !== "brasileiro" &&
+      dados.candidate_grade !== "DOUTORADO" &&
+      files.length >= 9
+    ) {
       return true;
     }
     return false;
-  }
+  };
 
   async function verifyFilesSize() {
     files.forEach(async (file) => {
@@ -127,7 +148,9 @@ function FormPs() {
 
       const maxSize = 1 * 1024 * 1024;
       if (file.file.size > maxSize) {
-        addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
+        addToast("Arquivo não suportado! (Máximo 1 MB)", {
+          appearance: "error",
+        });
         setTimeout(() => {
           setTeste(false);
         }, 5000);
@@ -175,12 +198,17 @@ function FormPs() {
       verify(dados) &&
       teste
     ) {
-      document.getElementById('botao').disabled = true;
+      document.getElementById("botao").disabled = true;
       dados.candidate_birth = moment(dados.candidate_birth).format();
-      dados.candidate_grade_date_begin = moment(dados.candidate_grade_date_begin).format();
-      dados.candidate_grade_date_end = moment(dados.candidate_grade_date_end).format();
-      dados.candidate_date_inscrition = moment(dados.candidate_date_inscrition).format();
-
+      dados.candidate_grade_date_begin = moment(
+        dados.candidate_grade_date_begin
+      ).format();
+      dados.candidate_grade_date_end = moment(
+        dados.candidate_grade_date_end
+      ).format();
+      dados.candidate_date_inscrition = moment(
+        dados.candidate_date_inscrition
+      ).format();
 
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
         "process_type",
@@ -188,13 +216,17 @@ function FormPs() {
       );
       if (selectiveProcesses?.length !== 0) {
         try {
-          const verifyCandidateExistence = await managerService.verifyCandidateExistence(
-            selectiveProcesses[0]?.process_id,
-            dados?.candidate_cpf,
-          );
+          const verifyCandidateExistence =
+            await managerService.verifyCandidateExistence(
+              selectiveProcesses[0]?.process_id,
+              dados?.candidate_cpf
+            );
           if (verifyCandidateExistence) {
-            addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
-            document.getElementById('botao').disabled = false;
+            addToast(
+              "Já há um candidato cadastrado com os respectivos dados!",
+              { appearance: "error" }
+            );
+            document.getElementById("botao").disabled = false;
             setLoading(false);
             setError(true);
             return;
@@ -203,51 +235,60 @@ function FormPs() {
             dados,
             selectiveProcesses[0].process_id
           );
-          const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+          const infoSelectiveProcess =
+            await managerService.getByIdSelectiveProcess(
+              selectiveProcesses[0].process_id
+            );
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
+          await managerService.updateSelectiveProcess(
+            { candidate_quantity: quantity },
+            selectiveProcesses[0].process_id
+          );
           for (const file of files) {
             const data = new FormData();
             data.append("file", file.file);
             await managerService.uploadFile(data, id, file.name);
-          };
+          }
           setTimeout(() => {
             setExit(true);
-            addToast("Cadastro realizado com sucesso!", { appearance: "success" });
+            addToast("Cadastro realizado com sucesso!", {
+              appearance: "success",
+            });
           }, 5000);
         } catch (error) {
           setLoading(false);
-          addToast("Erro ao cadastrar candidato, confira se suas informações estão corretas!", { appearance: "error" });
-          document.getElementById('botao').disabled = false;
-          console.log('aqiu');
+          addToast(
+            "Erro ao cadastrar candidato, confira se suas informações estão corretas!",
+            { appearance: "error" }
+          );
+          document.getElementById("botao").disabled = false;
           setExit(false);
           setError(true);
           return;
         }
       } else {
         addToast("Processo seletivo não encontrado!", { appearance: "error" });
-        document.getElementById('botao').disabled = false;
+        document.getElementById("botao").disabled = false;
         setLoading(false);
         setExit(false);
         setError(true);
       }
-    }
-    else {
+    } else {
       if (!verify(dados)) {
         addToast("Insira todos os arquivos!", { appearance: "error" });
-        document.getElementById('botao').disabled = false;
+        document.getElementById("botao").disabled = false;
         setLoading(false);
         setExit(false);
         setError(true);
       } else if (!teste) {
         setTeste(true);
-        document.getElementById('botao').disabled = false;
+        document.getElementById("botao").disabled = false;
         setLoading(false);
         setExit(false);
         setError(true);
       } else {
         addToast("Preencha todos os campos!", { appearance: "error" });
-        document.getElementById('botao').disabled = false;
+        document.getElementById("botao").disabled = false;
         setLoading(false);
         setExit(false);
         setError(true);
@@ -273,7 +314,6 @@ function FormPs() {
           />
         </>
       )}
-
     </div>
   );
 }

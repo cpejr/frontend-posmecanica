@@ -63,7 +63,7 @@ function FormDis() {
       }
     }
     return true;
-  }
+  };
 
   useEffect(async () => {
     const selectiveProcesses = await managerService.getActualSelectiveProcess(
@@ -82,48 +82,49 @@ function FormDis() {
     dados.candidate_grade = "NENHUMA DAS OPÇÕES";
     e.preventDefault();
     if (
-      verifyFilesSize() &&
-      dados.candidate_name.length >= 1 &&
-      dados.candidate_cpf.length >= 1 &&
-      dados.candidate_identity.length >= 1 &&
-      dados.candidate_expedition !== "" &&
-      dados.candidate_nationality.length >= 1 &&
-      dados.candidate_mother_name.length >= 1 &&
-      dados.candidate_father_name.length >= 1 &&
-      dados.candidate_civil_state.length >= 1 &&
-      dados.candidate_birth !== "" &&
-      dados.candidate_race.length >= 1 &&
-      dados.candidate_gender.length >= 1 &&
-      dados.candidate_voter_title.length >= 1 &&
-      dados.candidate_zone_title !== "" &&
-      dados.candidate_section_title !== "" &&
-      dados.candidate_street !== "" &&
-      dados.candidate_pGraduate_university !== "" &&
-      dados.candidate_pGraduation_course !== "" &&
-      dados.candidate_ufmg_active_serv !== "" &&
-      dados.candidate_ufmg_retired_serv !== "" &&
-      dados.candidate_city !== "" &&
-      dados.candidate_state !== "" &&
-      dados.candidate_district !== "" &&
-      dados.candidate_state !== "" &&
-      dados.candidate_adress_num !== "" &&
-      dados.candidate_country.length >= 1 &&
-      dados.candidate_cep.length >= 1 &&
-      dados.candidate_grade_date_begin !== "" &&
-      dados.candidate_grade_date_end !== "" &&
-      dados.candidate_email.length >= 1 &&
-      dados.candidate_phone_number.length >= 1 &&
-      dados.candidate_university !== "" &&
-      dados.candidate_graduation.length >= 1 &&
-      files.length === 6 &&
-      (dados.first_discipline_isolated &&
+      (verifyFilesSize() &&
+        dados.candidate_name.length >= 1 &&
+        dados.candidate_cpf.length >= 1 &&
+        dados.candidate_identity.length >= 1 &&
+        dados.candidate_expedition !== "" &&
+        dados.candidate_nationality.length >= 1 &&
+        dados.candidate_mother_name.length >= 1 &&
+        dados.candidate_father_name.length >= 1 &&
+        dados.candidate_civil_state.length >= 1 &&
+        dados.candidate_birth !== "" &&
+        dados.candidate_race.length >= 1 &&
+        dados.candidate_gender.length >= 1 &&
+        dados.candidate_voter_title.length >= 1 &&
+        dados.candidate_zone_title !== "" &&
+        dados.candidate_section_title !== "" &&
+        dados.candidate_street !== "" &&
+        dados.candidate_pGraduate_university !== "" &&
+        dados.candidate_pGraduation_course !== "" &&
+        dados.candidate_ufmg_active_serv !== "" &&
+        dados.candidate_ufmg_retired_serv !== "" &&
+        dados.candidate_city !== "" &&
+        dados.candidate_state !== "" &&
+        dados.candidate_district !== "" &&
+        dados.candidate_state !== "" &&
+        dados.candidate_adress_num !== "" &&
+        dados.candidate_country.length >= 1 &&
+        dados.candidate_cep.length >= 1 &&
+        dados.candidate_grade_date_begin !== "" &&
+        dados.candidate_grade_date_end !== "" &&
+        dados.candidate_email.length >= 1 &&
+        dados.candidate_phone_number.length >= 1 &&
+        dados.candidate_university !== "" &&
+        dados.candidate_graduation.length >= 1 &&
+        files.length === 6 &&
+        dados.first_discipline_isolated &&
         dados.first_discipline_isolated !== dados.second_discipline_isolated &&
         dados.first_discipline_isolated !== dados.third_discipline_isolated &&
         dados.first_discipline_isolated !== dados.fourth_discipline_isolated) ||
       (dados.second_discipline_isolated &&
         dados.second_discipline_isolated !== dados.first_discipline_isolated &&
         dados.second_discipline_isolated !== dados.third_discipline_isolated &&
-        dados.second_discipline_isolated !== dados.fourth_discipline_isolated) ||
+        dados.second_discipline_isolated !==
+          dados.fourth_discipline_isolated) ||
       (dados.third_discipline_isolated &&
         dados.third_discipline_isolated !== dados.first_discipline_isolated &&
         dados.third_discipline_isolated !== dados.second_discipline_isolated &&
@@ -132,9 +133,8 @@ function FormDis() {
         dados.fourth_discipline_isolated !== dados.first_discipline_isolated &&
         dados.fourth_discipline_isolated !== dados.second_discipline_isolated &&
         dados.fourth_discipline_isolated !== dados.third_discipline_isolated)
-
     ) {
-      document.getElementById('botao').disabled = true;
+      document.getElementById("botao").disabled = true;
       setError(false);
       setLoading(true);
       const selectiveProcesses = await managerService.getActualSelectiveProcess(
@@ -142,14 +142,17 @@ function FormDis() {
         "ISOLADA"
       );
       if (selectiveProcesses.length !== 0) {
-        const verifyCandidateExistence = await managerService.verifyCandidateExistence(
-          selectiveProcesses[0]?.process_id,
-          dados?.candidate_cpf,
-        );
+        const verifyCandidateExistence =
+          await managerService.verifyCandidateExistence(
+            selectiveProcesses[0]?.process_id,
+            dados?.candidate_cpf
+          );
         if (verifyCandidateExistence) {
           setLoading(false);
-          addToast("Já há um candidato cadastrado com os respectivos dados!", { appearance: "error" });
-          document.getElementById('botao').disabled = false;
+          addToast("Já há um candidato cadastrado com os respectivos dados!", {
+            appearance: "error",
+          });
+          document.getElementById("botao").disabled = false;
           setError(true);
           return;
         }
@@ -158,9 +161,15 @@ function FormDis() {
             dados,
             selectiveProcesses[0].process_id
           );
-          const infoSelectiveProcess = await managerService.getByIdSelectiveProcess(selectiveProcesses[0].process_id);
+          const infoSelectiveProcess =
+            await managerService.getByIdSelectiveProcess(
+              selectiveProcesses[0].process_id
+            );
           let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          await managerService.updateSelectiveProcess({ candidate_quantity: quantity, }, selectiveProcesses[0].process_id);
+          await managerService.updateSelectiveProcess(
+            { candidate_quantity: quantity },
+            selectiveProcesses[0].process_id
+          );
           files.forEach(async (file) => {
             const data = new FormData();
             data.append("file", file.file);
@@ -175,43 +184,49 @@ function FormDis() {
           });
           setLoading(false);
           setError(true);
-          document.getElementById('botao').disabled = false;
+          document.getElementById("botao").disabled = false;
         }
       } else {
         addToast("O processo seletivo selecionado não está aberto!", {
           appearance: "error",
         });
         setLoading(false);
-        document.getElementById('botao').disabled = false;
+        document.getElementById("botao").disabled = false;
       }
     } else if (
       (dados.first_discipline_isolated &&
         (dados.first_discipline_isolated === dados.second_discipline_isolated ||
           dados.first_discipline_isolated === dados.third_discipline_isolated ||
-          dados.first_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.first_discipline_isolated ===
+            dados.fourth_discipline_isolated)) ||
       (dados.second_discipline_isolated &&
         (dados.second_discipline_isolated === dados.first_discipline_isolated ||
-          dados.second_discipline_isolated === dados.third_discipline_isolated ||
-          dados.second_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.second_discipline_isolated ===
+            dados.third_discipline_isolated ||
+          dados.second_discipline_isolated ===
+            dados.fourth_discipline_isolated)) ||
       (dados.third_discipline_isolated &&
         (dados.third_discipline_isolated === dados.first_discipline_isolated ||
-          dados.third_discipline_isolated === dados.second_discipline_isolated ||
-          dados.third_discipline_isolated === dados.fourth_discipline_isolated)) ||
+          dados.third_discipline_isolated ===
+            dados.second_discipline_isolated ||
+          dados.third_discipline_isolated ===
+            dados.fourth_discipline_isolated)) ||
       (dados.fourth_discipline_isolated &&
         (dados.fourth_discipline_isolated === dados.first_discipline_isolated ||
-          dados.fourth_discipline_isolated === dados.second_discipline_isolated ||
+          dados.fourth_discipline_isolated ===
+            dados.second_discipline_isolated ||
           dados.fourth_discipline_isolated === dados.third_discipline_isolated))
     ) {
-      document.getElementById('botao').disabled = false;
+      document.getElementById("botao").disabled = false;
       addToast("Preencha com disciplinas diferentes!", { appearance: "error" });
       setLoading(false);
     } else if (!verifyFilesSize()) {
-      document.getElementById('botao').disabled = false;
+      document.getElementById("botao").disabled = false;
       addToast("Arquivo não suportado! (Máximo 1 MB)", { appearance: "error" });
       setLoading(false);
       setError(true);
     } else {
-      document.getElementById('botao').disabled = false;
+      document.getElementById("botao").disabled = false;
       addToast("Preencha todos os dados!", { appearance: "error" });
       setLoading(false);
       setError(true);
@@ -235,7 +250,6 @@ function FormDis() {
           />
         </>
       )}
-
     </div>
   );
 }
