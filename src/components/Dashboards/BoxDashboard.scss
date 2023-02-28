@@ -46,7 +46,6 @@
   font-family: Montserrat;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding-left: 24px;
   padding-right: 24px;
   background-color: #061744;
@@ -54,6 +53,7 @@
 .BdTitleNumber{
   display: flex;
   width: 50%;
+  margin-right: 10%;
 }
 .BdSubTitle{
   width: 100%;
@@ -87,10 +87,11 @@
 }
 .BdInputReal{
   display: flex;
-  width: 16rem;
+  width: 12rem;
   align-items: center;
+  margin-left: 2%;
   .MuiSelect-selectMenu{
-    padding: 24px 32px 24px 12px;
+    padding: 24px 22px 14px 12px;
   }
   .MuiInputLabel-shrink {
     transform-origin: left;
@@ -117,7 +118,7 @@
   }
 }
 
-@media (max-width: 769px){
+@media (max-width: 800px){
 
   .BdTitle {
     justify-content: center;
