@@ -86,6 +86,7 @@ function BoxDashboard({
 
   const counterByDiscipline = (positions) => {
     processCount = 0;
+    console.log("Alunos:", candidates);
     if (dados.type) {
       candidates?.forEach((e) => {
         if (positions === "first" && dados.type) {
@@ -93,7 +94,9 @@ function BoxDashboard({
             processCount += 1;
           }
         } else if (positions === "second" && dados.type) {
-          if (e.candidate_discipline[0].cd_dis_deferment === true) {
+          console.log("Entrou");
+          if (e.candidate_discipline[0].cd_dis_deferment === 1) {
+            console.log("Entrou2");
             processCount += 1;
           }
         }
@@ -103,7 +106,7 @@ function BoxDashboard({
     }
     return processCount;
   };
-
+  console.log("Numero de aprovados:", processCount);
   const candidatos = list.filter((listItem) => {
     let active = true;
 
@@ -139,18 +142,20 @@ function BoxDashboard({
               </div>
             )}
           </div>
-          <div className={showInput ? "BdInputReal" : "BdInput"}>
-            <StyledInput
-              type="text"
-              id="semester"
-              label="Semestre"
-              width="100%"
-              field={semestre}
-              select
-              dados={dados}
-              setDados={handleChange}
-            />
-          </div>
+          {type === "adm" && (
+            <div className={showInput ? "BdInputReal" : "BdInput"}>
+              <StyledInput
+                type="text"
+                id="semester"
+                label="Semestre"
+                width="100%"
+                field={semestre}
+                select
+                dados={dados}
+                setDados={handleChange}
+              />
+            </div>
+          )}
           <div className={showInput ? "BdInputReal" : "BdInput"}>
             <StyledInput
               type="text"
@@ -234,8 +239,7 @@ function BoxDashboard({
             <div className="BdDivGrid">
               {candidates?.map((listDeferItem) => {
                 if (
-                  listDeferItem.candidate_discipline[0].cd_dis_deferment ===
-                  true
+                  listDeferItem.candidate_discipline[0].cd_dis_deferment === 1
                 ) {
                   return (
                     <BoxProf
