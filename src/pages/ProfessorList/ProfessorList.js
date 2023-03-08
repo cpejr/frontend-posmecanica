@@ -264,16 +264,18 @@ function ProfessorList() {
                             Ver Currículo
                           </a>
                         </div>
-                        <button
-                          type="button"
-                          className="SPbutton-result"
-                          onClick={() => {
-                            setSelectedProf(item.prof_id);
-                            handleClickExcluir();
-                          }}
-                        >
-                          Excluir
-                        </button>
+                        {user.type === "administrator" && (
+                          <button
+                            type="button"
+                            className="SPbutton-result"
+                            onClick={() => {
+                              setSelectedProf(item.prof_id);
+                              handleClickExcluir();
+                            }}
+                          >
+                            Excluir
+                          </button>
+                        )}
                       </AccordionDetails>
                     </div>
                   </AccordionDetails>
