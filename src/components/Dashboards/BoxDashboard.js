@@ -86,7 +86,6 @@ function BoxDashboard({
 
   const counterByDiscipline = (positions) => {
     processCount = 0;
-    console.log("Alunos:", candidates);
     if (dados.type) {
       candidates?.forEach((e) => {
         if (positions === "first" && dados.type) {
@@ -94,9 +93,7 @@ function BoxDashboard({
             processCount += 1;
           }
         } else if (positions === "second" && dados.type) {
-          console.log("Entrou");
           if (e.candidate_discipline[0].cd_dis_deferment === 1) {
-            console.log("Entrou2");
             processCount += 1;
           }
         }
@@ -106,7 +103,6 @@ function BoxDashboard({
     }
     return processCount;
   };
-  console.log("Numero de aprovados:", processCount);
   const candidatos = list.filter((listItem) => {
     let active = true;
 

@@ -10,12 +10,14 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaChevronCircleDown } from "react-icons/fa";
-import Footer from '../../components/Footer';
+import Footer from "../../components/Footer";
 import Header from "../../components/Navbar";
-import RightPanel from '../../components/Menu/RightPanel';
+import RightPanel from "../../components/Menu/RightPanel";
 import orderElements from "../../utils/order.js";
 import * as managerService from "../../services/manager/managerService";
-import { useAuth } from '../../providers/auth';
+import { useAuth } from "../../providers/auth";
+import GenericModal from "../../utils/GenericModal";
+import ResultModal from "../../utils/ResultModal";
 
 import "./ProfessorList.scss";
 
@@ -34,19 +36,44 @@ function ProfessorList() {
   const [loading, setLoading] = useState(false);
   const searchAreaOrder = "prof_name";
   const [inputText, setInputText] = useState("");
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showOkModal, setOkShowModal] = useState(false);
+  const [showErroModal, setErroShowModal] = useState(false);
+  const [selectedProf, setSelectedProf] = useState("");
+
+  function handleClickExcluir() {
+    setShowConfirmModal(true);
+  }
+
+  function handleClickClose() {
+    setShowConfirmModal(false);
+  }
+
+  function handleClickOk() {
+    document.location.reload(true);
+  }
+
+  async function handleClickConfirm() {
+    try {
+      await managerService.deleteProfessor(selectedProf);
+      setShowConfirmModal(false);
+      setOkShowModal(true);
+    } catch (err) {
+      setShowConfirmModal(false);
+      setErroShowModal(true);
+    }
+  }
 
   useEffect(async () => {
     if (professors) {
       setLoading(true);
       const getProfessors = await managerService.getAllProfessors();
       const filteredProfessors = getProfessors.filter((searchName) =>
-        searchName.prof_name
-          .toLowerCase()
-          .includes(inputText.toLowerCase())
+        searchName.prof_name.toLowerCase().includes(inputText.toLowerCase())
       );
       setProfessors(filteredProfessors);
     }
-    setLoading(false)
+    setLoading(false);
   }, [inputText]);
 
   const classes = useStyles();
@@ -54,64 +81,67 @@ function ProfessorList() {
   const [expandRightPanel, setExpandRightPanel] = useState(false);
   const inputProps = [
     {
-      text: 'Página principal',
-      path: 'administrator',
+      text: "Página principal",
+      path: "administrator",
     },
     {
-      text: 'Lista de estudantes',
-      path: 'administrator/lista-estudantes',
+      text: "Lista de estudantes",
+      path: "administrator/lista-estudantes",
     },
     {
-      text: 'Lista de Disciplinas',
-      path: 'administrator/lista-isoladas',
+      text: "Lista de Disciplinas",
+      path: "administrator/lista-isoladas",
     },
     {
-      text: 'Criar processo seletivo',
-      path: 'administrator/criar-processo-seletivo',
+      text: "Criar processo seletivo",
+      path: "administrator/criar-processo-seletivo",
     },
     {
-      text: 'Visualizar Processos Seletivos',
-      path: 'processos-seletivos',
+      text: "Visualizar Processos Seletivos",
+      path: "processos-seletivos",
     },
     {
-      text: 'Cadastro de professores',
-      path: 'administrator/formulario-professores',
+      text: "Cadastro de professores",
+      path: "administrator/formulario-professores",
     },
     {
-      text: 'Cadastro de disciplina',
-      path: 'administrator/cadastro-disciplina',
+      text: "Cadastro de disciplina",
+      path: "administrator/cadastro-disciplina",
     },
     {
-      text: 'Enviar Notificação',
-      path: 'administrator/criar-notificacao',
+      text: "Enviar Notificação",
+      path: "administrator/criar-notificacao",
     },
     {
-      text: 'Visualizar Teses',
-      path: 'administrator/teses',
+      text: "Visualizar Teses",
+      path: "administrator/teses",
     },
     {
-      text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      text: "Redefinição de senha",
+      path: "esqueci-senha",
     },
   ];
   const inputPropsProfessor = [
     {
-      text: 'Página principal',
-      path: 'professor',
+      text: "Página principal",
+      path: "professor",
     },
     {
-      text: 'Processos Seletivos',
-      path: 'processos-seletivos',
+      text: "Processos Seletivos",
+      path: "processos-seletivos",
     },
     {
-      text: 'Redefinição de senha',
-      path: 'esqueci-senha',
+      text: "Redefinição de senha",
+      path: "esqueci-senha",
     },
   ];
   return (
     <div className="box-containerProfList">
       <div className="grid-containerProfList">
-        <Header expandRightPanel={expandRightPanel} setExpandRightPanel={setExpandRightPanel} />
+        <Header
+          expandRightPanel={expandRightPanel}
+          setExpandRightPanel={setExpandRightPanel}
+        />
         <div className="professor-list-container">
           <h1>Professores</h1>
           <div className="professor-list-container-border-bottom">
@@ -146,14 +176,20 @@ function ProfessorList() {
           <div className="professor-list-content">
             {loading === true && (
               <div className="BdDivGridLoader">
-                <CircularProgress size={32} color="inherit" className="LoaderProfCandidates" />
+                <CircularProgress
+                  size={32}
+                  color="inherit"
+                  className="LoaderProfCandidates"
+                />
               </div>
             )}
             <div className={classes.root}>
               {orderElements(professors, searchAreaOrder)?.map((item) => (
                 <Accordion key={item.search_area_id}>
                   <AccordionSummary
-                    expandIcon={<FaChevronCircleDown color="#1f487c" size={17} />}
+                    expandIcon={
+                      <FaChevronCircleDown color="#1f487c" size={17} />
+                    }
                   >
                     <div className="accordionHeadeBox">
                       <Typography>
@@ -182,13 +218,31 @@ function ProfessorList() {
                         <div className="professor-list-desc-itemDisciplinas">
                           <p>Disciplinas ministradas: </p>
                           <div className="professor-list-desc-itemDisciplinasInside">
-                            {item.disciplines && (item.disciplines.length === 0 ? <span> - </span> : (item.disciplines?.map((disciplinas) => {
-                              if (disciplinas.discipline_name === item.disciplines[item.disciplines.length - 1].discipline_name) {
-                                return <span className="spanDisciplinasProfList">{disciplinas.discipline_name}</span>
-                              } else {
-                                return <span className="spanDisciplinasProfList">{disciplinas.discipline_name},</span>
-                              }
-                            })))}
+                            {item.disciplines &&
+                              (item.disciplines.length === 0 ? (
+                                <span> - </span>
+                              ) : (
+                                item.disciplines?.map((disciplinas) => {
+                                  if (
+                                    disciplinas.discipline_name ===
+                                    item.disciplines[
+                                      item.disciplines.length - 1
+                                    ].discipline_name
+                                  ) {
+                                    return (
+                                      <span className="spanDisciplinasProfList">
+                                        {disciplinas.discipline_name}
+                                      </span>
+                                    );
+                                  } else {
+                                    return (
+                                      <span className="spanDisciplinasProfList">
+                                        {disciplinas.discipline_name},
+                                      </span>
+                                    );
+                                  }
+                                })
+                              ))}
                           </div>
                         </div>
                         <div className="professor-list-desc-item">
@@ -210,6 +264,16 @@ function ProfessorList() {
                             Ver Currículo
                           </a>
                         </div>
+                        <button
+                          type="button"
+                          className="SPbutton-result"
+                          onClick={() => {
+                            setSelectedProf(item.prof_id);
+                            handleClickExcluir();
+                          }}
+                        >
+                          Excluir
+                        </button>
                       </AccordionDetails>
                     </div>
                   </AccordionDetails>
@@ -218,22 +282,38 @@ function ProfessorList() {
             </div>
           </div>
         </div>
-        {user.type === 'administrator'
-          && (
-            <RightPanel
-              inputProps={inputProps}
-              expandRightPanel={expandRightPanel}
-              setExpandRightPanel={setExpandRightPanel}
-            />
-          )}
-        {user.type === 'professor'
-          && (
-            <RightPanel
-              inputProps={inputPropsProfessor}
-              expandRightPanel={expandRightPanel}
-              setExpandRightPanel={setExpandRightPanel}
-            />
-          )}
+        {showConfirmModal && (
+          <GenericModal
+            handleConfirmClick={handleClickConfirm}
+            handleCloseClick={handleClickClose}
+          >
+            Deseja excluir esse candidato?
+          </GenericModal>
+        )}
+        {showOkModal && (
+          <ResultModal handleConfirmClick={handleClickOk}>
+            Professor Excluído com Sucesso!
+          </ResultModal>
+        )}
+        {showErroModal && (
+          <ResultModal handleConfirmClick={handleClickOk}>
+            ERRO ao excluir professor!
+          </ResultModal>
+        )}
+        {user.type === "administrator" && (
+          <RightPanel
+            inputProps={inputProps}
+            expandRightPanel={expandRightPanel}
+            setExpandRightPanel={setExpandRightPanel}
+          />
+        )}
+        {user.type === "professor" && (
+          <RightPanel
+            inputProps={inputPropsProfessor}
+            expandRightPanel={expandRightPanel}
+            setExpandRightPanel={setExpandRightPanel}
+          />
+        )}
       </div>
       <Footer />
     </div>
