@@ -94,77 +94,86 @@ function Forms({
         </div>
       </div>
       <div className="forms_box">
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[0]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[0]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[1]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[1]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[2]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[2]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[3]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[3]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[4]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[4]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[5]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[5]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[6]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[6]}
-          />
-        </div>
-
-        <div className="forms_input_file">
-          <div className="forms_upload_text">{formsFile.formFile[7]}</div>
-          <UploadInput
-            files={files}
-            setFiles={setFiles}
-            fileName={formsFile.fileName[7]}
-          />
-        </div>
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[0]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[0]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[1]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[1]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[2]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[2]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[3]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[3]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[4]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[4]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[5]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[5]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[6]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[6]}
+            />
+          </div>
+        ))}
+        {formsFile.map((file) => (
+          <div className="forms_input_file">
+            <div className="forms_upload_text">{file.formFile[7]}</div>
+            <UploadInput
+              files={files}
+              setFiles={setFiles}
+              fileName={file.fileName[7]}
+            />
+          </div>
+        ))}
 
         <div className="forms_input_file">
           <div className="forms_upload_text">

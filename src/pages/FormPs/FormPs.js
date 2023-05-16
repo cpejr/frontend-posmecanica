@@ -11,10 +11,6 @@ import * as managerService from "../../services/manager/managerService";
 import formsInput from "../../utils/formsPs";
 
 function FormPs() {
-  function confirmExit() {
-    if (!exit) return "Deseja realmente sair desta página?";
-  }
-  window.onbeforeunload = confirmExit;
   const initialState = {
     candidate_name: "",
     candidate_cpf: "",
@@ -215,6 +211,7 @@ function FormPs() {
         dados.candidate_grade
       );
       if (selectiveProcesses?.length !== 0) {
+        setLoading(true);
         try {
           const verifyCandidateExistence =
             await managerService.verifyCandidateExistence(
@@ -230,31 +227,29 @@ function FormPs() {
             setLoading(false);
             setError(true);
             return;
-          }
-          const id = await managerService.createCandidate(
-            dados,
-            selectiveProcesses[0].process_id
-          );
-          const infoSelectiveProcess =
-            await managerService.getByIdSelectiveProcess(
+          } else {
+            const id = await managerService.createCandidate(
+              dados,
               selectiveProcesses[0].process_id
             );
-          let quantity = infoSelectiveProcess.candidate_quantity + 1;
-          await managerService.updateSelectiveProcess(
-            { candidate_quantity: quantity },
-            selectiveProcesses[0].process_id
-          );
-          for (const file of files) {
-            const data = new FormData();
-            data.append("file", file.file);
-            await managerService.uploadFile(data, id, file.name);
+            const infoSelectiveProcess =
+              await managerService.getByIdSelectiveProcess(
+                selectiveProcesses[0].process_id
+              );
+            let quantity = infoSelectiveProcess.candidate_quantity + 1;
+            await managerService.updateSelectiveProcess(
+              { candidate_quantity: quantity },
+              selectiveProcesses[0].process_id
+            );
+            for (const file of files) {
+              const data = new FormData();
+              data.append("file", file.file);
+              await managerService.uploadFile(data, id, file.name);
+            }
+            setTimeout(() => {
+              setExit(true);
+            }, 5000);
           }
-          setTimeout(() => {
-            setExit(true);
-            addToast("Cadastro realizado com sucesso!", {
-              appearance: "success",
-            });
-          }, 5000);
         } catch (error) {
           setLoading(false);
           addToast(
@@ -310,7 +305,6 @@ function FormPs() {
             setFiles={setFiles}
             handleClick={handleClick}
             error={error}
-            exit={exit}
           />
         </>
       )}
