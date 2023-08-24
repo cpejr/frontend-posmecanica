@@ -29,6 +29,7 @@ function Forms({
   const handleChange = (value, field) => {
     setDados({ ...dados, [field]: value });
   };
+  console.log(files);
   function handleClickRedirect() {
     addToast("Redirecionando...", { appearance: "success" });
     window.location.href = "https://ppgmec.eng.ufmg.br/";

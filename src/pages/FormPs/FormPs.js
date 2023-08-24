@@ -157,7 +157,6 @@ function FormPs() {
   const handleClick = async (e, dados) => {
     e.preventDefault();
     await verifyFilesSize();
-    console.log(teste);
     if (
       dados.candidate_name.length >= 1 &&
       dados.candidate_cpf.length >= 1 &&
